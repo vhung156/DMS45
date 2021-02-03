@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C1D0789-E140-444B-998E-CA243D6DC7A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epoint.Modules.GL</RootNamespace>
+    <AssemblyName>Epoint.Modules.GL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>epoint.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\E-DMS40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Epoint\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.XtraBars.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.XtraNavBar.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.BoPhan, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.BoPhan.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.DoiTuong, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.DoiTuong.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.HopDong, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.HopDong.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.Kho, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.Kho.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.KhoanMuc, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.KhoanMuc.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.KhuVuc, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.KhuVuc.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.NguonVon, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.NguonVon.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.NhanVien, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.NhanVien.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.Po, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.Po.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.SanPham, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.SanPham.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.So, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.So.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.TacVu, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.TacVu.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.TaiKhoan, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.TaiKhoan.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.ThuChi, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.ThuChi.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.Thue, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.Thue.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.TienTe, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.TienTe.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.TyGia, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.TyGia.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.VatTu, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Lists.VatTu.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Modules, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Commons, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Elements, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Librarys, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Librarys.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.1.271, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\BluePoint\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmDuDauHanTt_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauHanTt_Edit.Designer.cs">
+      <DependentUpon>frmDuDauHanTt_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauHanTt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauHanTt_View.Designer.cs">
+      <DependentUpon>frmDuDauHanTt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBudgetDt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBudgetDt.Designer.cs">
+      <DependentUpon>frmBudgetDt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBudgetDt_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBudgetDt_Edit.Designer.cs">
+      <DependentUpon>frmBudgetDt_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBudgetCp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBudgetCp.Designer.cs">
+      <DependentUpon>frmBudgetCp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBudgetCp_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBudgetCp_Edit.Designer.cs">
+      <DependentUpon>frmBudgetCp_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauXdCb_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauXdCb_View.Designer.cs">
+      <DependentUpon>frmDuDauXdCb_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauXdCb_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauXdCb_Edit.Designer.cs">
+      <DependentUpon>frmDuDauXdCb_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFilter.Designer.cs">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyenPbCt_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyenPbCt_Edit.Designer.cs">
+      <DependentUpon>frmKetChuyenPbCt_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyenPb_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyenPb_Edit.Designer.cs">
+      <DependentUpon>frmKetChuyenPb_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyenPb_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyenPb_View.Designer.cs">
+      <DependentUpon>frmKetChuyenPb_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyen_Run.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyen_Run.Designer.cs">
+      <DependentUpon>frmKetChuyen_Run.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauGLCt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauGLCt_View.Designer.cs">
+      <DependentUpon>frmDuDauGLCt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauGL_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauGL_Edit.Designer.cs">
+      <DependentUpon>frmDuDauGL_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuDauGL_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuDauGL_View.Designer.cs">
+      <DependentUpon>frmDuDauGL_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtKT_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtKT_Edit.Designer.cs">
+      <DependentUpon>frmCtKT_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyen_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyen_View.designer.cs">
+      <DependentUpon>frmKetChuyen_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKetChuyen_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetChuyen_Edit.Designer.cs">
+      <DependentUpon>frmKetChuyen_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCt_View.Designer.cs">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTinh_CLTG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTinh_CLTG.designer.cs">
+      <DependentUpon>frmTinh_CLTG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTinh_CLTG_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTinh_CLTG_Edit.Designer.cs">
+      <DependentUpon>frmTinh_CLTG_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmDuDauHanTt_Edit.resx">
+      <DependentUpon>frmDuDauHanTt_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauHanTt_View.resx">
+      <DependentUpon>frmDuDauHanTt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBudgetDt.resx">
+      <DependentUpon>frmBudgetDt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBudgetDt_Edit.resx">
+      <DependentUpon>frmBudgetDt_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBudgetCp.resx">
+      <DependentUpon>frmBudgetCp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBudgetCp_Edit.resx">
+      <DependentUpon>frmBudgetCp_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauXdCb_View.resx">
+      <DependentUpon>frmDuDauXdCb_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauXdCb_Edit.resx">
+      <DependentUpon>frmDuDauXdCb_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFilter.resx">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyenPbCt_Edit.resx">
+      <DependentUpon>frmKetChuyenPbCt_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyenPb_Edit.resx">
+      <DependentUpon>frmKetChuyenPb_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyenPb_View.resx">
+      <DependentUpon>frmKetChuyenPb_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyen_Run.resx">
+      <DependentUpon>frmKetChuyen_Run.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauGLCt_View.resx">
+      <DependentUpon>frmDuDauGLCt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauGL_Edit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDuDauGL_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuDauGL_View.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDuDauGL_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtKT_Edit.resx">
+      <DependentUpon>frmCtKT_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyen_View.resx">
+      <DependentUpon>frmKetChuyen_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetChuyen_Edit.resx">
+      <DependentUpon>frmKetChuyen_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCt_View.resx">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTinh_CLTG.resx">
+      <DependentUpon>frmTinh_CLTG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTinh_CLTG_Edit.resx">
+      <DependentUpon>frmTinh_CLTG_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="epoint.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

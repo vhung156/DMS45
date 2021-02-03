@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF90494E-7D7C-49FA-A792-9E1836DE92F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epoint.Modules.AP</RootNamespace>
+    <AssemblyName>Epoint.Modules.AP</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>epoint.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\E-DMS40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Epoint\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.Data.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Tutorials.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.Tutorials.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.Utils.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.XtraEditors.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.XtraNavBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.XtraTreeList.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v11.2.Design, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\DevExpress.XtraTreeList.v11.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists">
+      <HintPath>..\..\..\Epoint\Epoint.Lists.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Modules, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Commons">
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Data">
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Elements">
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Librarys, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Librarys.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmCtPO_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtPO_Edit.designer.cs">
+      <DependentUpon>frmCtPO_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaMua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaMua.designer.cs">
+      <DependentUpon>frmGiaMua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaMua_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaMua_Edit.designer.cs">
+      <DependentUpon>frmGiaMua_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPbCp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPbCp.designer.cs">
+      <DependentUpon>frmPbCp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPbCp_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPbCp_View.Designer.cs">
+      <DependentUpon>frmPbCp_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtNM_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtNM_Edit.Designer.cs">
+      <DependentUpon>frmCtNM_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPbCp_Dkl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPbCp_Dkl.Designer.cs">
+      <DependentUpon>frmPbCp_Dkl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhanBoThueNk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhanBoThueNk.Designer.cs">
+      <DependentUpon>frmPhanBoThueNk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCt_View.Designer.cs">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmCtPO_Edit.resx">
+      <DependentUpon>frmCtPO_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaMua.resx">
+      <DependentUpon>frmGiaMua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaMua_Edit.resx">
+      <DependentUpon>frmGiaMua_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPbCp.resx">
+      <DependentUpon>frmPbCp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPbCp_View.resx">
+      <DependentUpon>frmPbCp_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtNM_Edit.resx">
+      <DependentUpon>frmCtNM_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPbCp_Dkl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPbCp_Dkl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhanBoThueNk.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPhanBoThueNk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCt_View.resx">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="epoint.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

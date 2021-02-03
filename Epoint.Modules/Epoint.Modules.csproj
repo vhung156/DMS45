@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B973DBE5-40C3-4EC9-AD76-905E691154A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epoint.Modules</RootNamespace>
+    <AssemblyName>Epoint.Modules</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>epoint.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\E-DMS40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Epoint\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraBars.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraNavBar.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists">
+      <HintPath>..\..\..\Epoint\Epoint.Lists.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Reports, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Commons, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Data, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Elements, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Librarys, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Epoint\Epoint.Systems.Librarys.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmDmSoCt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDmSoCt.designer.cs">
+      <DependentUpon>frmDmSoCt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDmSoCt_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDmSoCt_Edit.designer.cs">
+      <DependentUpon>frmDmSoCt_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTtCustomer40.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTtCustomer40.Designer.cs">
+      <DependentUpon>frmHanTtCustomer40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTtCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTtCustomer.Designer.cs">
+      <DependentUpon>frmHanTtCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTt.Designer.cs">
+      <DependentUpon>frmHanTt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChecked.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChecked.designer.cs">
+      <DependentUpon>frmChecked.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhSo_Ct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhSo_Ct.designer.cs">
+      <DependentUpon>frmDanhSo_Ct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDesign_Mau_Ct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDesign_Mau_Ct.designer.cs">
+      <DependentUpon>frmDesign_Mau_Ct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTtCust_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTtCust_View.Designer.cs">
+      <DependentUpon>frmHanTtCust_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInheritVoucher_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInheritVoucher_Filter.designer.cs">
+      <DependentUpon>frmInheritVoucher_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInheritVoucher_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInheritVoucher_View.designer.cs">
+      <DependentUpon>frmInheritVoucher_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIn_Ct_HD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIn_Ct_HD.Designer.cs">
+      <DependentUpon>frmIn_Ct_HD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDuyet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuyet.designer.cs">
+      <DependentUpon>frmDuyet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFilter.Designer.cs">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTt_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTt_Filter.Designer.cs">
+      <DependentUpon>frmHanTt_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHanTt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHanTt_View.Designer.cs">
+      <DependentUpon>frmHanTt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIn_Ct_Khac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIn_Ct_Khac.designer.cs">
+      <DependentUpon>frmIn_Ct_Khac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIn_CT_Tien_NT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIn_CT_Tien_NT.Designer.cs">
+      <DependentUpon>frmIn_CT_Tien_NT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMemberSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMemberSetup.designer.cs">
+      <DependentUpon>frmMemberSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMemberSetup_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMemberSetup_Edit.designer.cs">
+      <DependentUpon>frmMemberSetup_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpening_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpening_Edit.Designer.cs">
+      <DependentUpon>frmOpening_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIn_CT_UNC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIn_CT_UNC.Designer.cs">
+      <DependentUpon>frmIn_CT_UNC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuyenSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuyenSo.designer.cs">
+      <DependentUpon>frmQuyenSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuyenSo_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuyenSo_Edit.designer.cs">
+      <DependentUpon>frmQuyenSo_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrans_Voucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrans_Voucher.Designer.cs">
+      <DependentUpon>frmTrans_Voucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVoucher_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVoucher_Edit.designer.cs">
+      <DependentUpon>frmVoucher_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpening_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpening_View.Designer.cs">
+      <DependentUpon>frmOpening_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVoucher_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVoucher_View.designer.cs">
+      <DependentUpon>frmVoucher_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Opening.cs" />
+    <Compile Include="PrintVoucher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmDmSoCt.resx">
+      <DependentUpon>frmDmSoCt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDmSoCt_Edit.resx">
+      <DependentUpon>frmDmSoCt_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTtCustomer40.resx">
+      <DependentUpon>frmHanTtCustomer40.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTtCustomer.resx">
+      <DependentUpon>frmHanTtCustomer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTt.resx">
+      <DependentUpon>frmHanTt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChecked.resx">
+      <DependentUpon>frmChecked.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhSo_Ct.resx">
+      <DependentUpon>frmDanhSo_Ct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDesign_Mau_Ct.resx">
+      <DependentUpon>frmDesign_Mau_Ct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTtCust_View.resx">
+      <DependentUpon>frmHanTtCust_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInheritVoucher_Filter.resx">
+      <DependentUpon>frmInheritVoucher_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInheritVoucher_View.resx">
+      <DependentUpon>frmInheritVoucher_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIn_Ct_HD.resx">
+      <DependentUpon>frmIn_Ct_HD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDuyet.resx">
+      <DependentUpon>frmDuyet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFilter.resx">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTt_Filter.resx">
+      <DependentUpon>frmHanTt_Filter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHanTt_View.resx">
+      <DependentUpon>frmHanTt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIn_Ct_Khac.resx">
+      <DependentUpon>frmIn_Ct_Khac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIn_CT_Tien_NT.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmIn_CT_Tien_NT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMemberSetup.resx">
+      <DependentUpon>frmMemberSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMemberSetup_Edit.resx">
+      <DependentUpon>frmMemberSetup_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpening_Edit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOpening_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIn_CT_UNC.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmIn_CT_UNC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpening_View.resx">
+      <DependentUpon>frmOpening_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuyenSo.resx">
+      <DependentUpon>frmQuyenSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuyenSo_Edit.resx">
+      <DependentUpon>frmQuyenSo_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrans_Voucher.resx">
+      <DependentUpon>frmTrans_Voucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVoucher_Edit.resx">
+      <DependentUpon>frmVoucher_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVoucher_View.resx">
+      <DependentUpon>frmVoucher_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="epoint.snk" />
+    <None Include="Resources\EpointVoucherTemplete.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

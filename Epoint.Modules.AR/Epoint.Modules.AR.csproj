@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{138D5475-8275-4A13-8774-B77C683C5692}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epoint.Modules.AR</RootNamespace>
+    <AssemblyName>Epoint.Modules.AR</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>epoint.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\E-DMS40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Epoint\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraBars.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraNavBar.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Lists.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Lists.DoiTuong, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Lists.DoiTuong.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Modules, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Reports, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\Epoint.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Commons, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Systems.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Data, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Systems.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Elements, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Systems.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Systems.Librarys, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Systems.Librarys.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Discount\Discount.cs" />
+    <Compile Include="Discount\frmDiscountManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscountManual.Designer.cs">
+      <DependentUpon>frmDiscountManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmSelectTypeINT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmSelectTypeINT.designer.cs">
+      <DependentUpon>frmSelectTypeINT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmCheckStock_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmCheckStock_View.Designer.cs">
+      <DependentUpon>frmCheckStock_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmCtSO_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmCtSO_View.Designer.cs">
+      <DependentUpon>frmCtSO_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNh_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNh_Copy.designer.cs">
+      <DependentUpon>frmGiaBanNh_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfigDetail_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfigDetail_Edit.Designer.cs">
+      <DependentUpon>frmPJPConfigDetail_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPJPDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPJPDetail.designer.cs">
+      <DependentUpon>frmPJPDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfig_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfig_Edit.Designer.cs">
+      <DependentUpon>frmPJPConfig_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPJPConfig.Designer.cs">
+      <DependentUpon>frmPJPConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscountDetail_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscountDetail_View.Designer.cs">
+      <DependentUpon>frmDiscountDetail_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmImportHD_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmImportHD_View.Designer.cs">
+      <DependentUpon>frmImportHD_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmGopPXK_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmGopPXK_Edit.designer.cs">
+      <DependentUpon>frmGopPXK_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPXK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPXK.Designer.cs">
+      <DependentUpon>frmPXK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNhDt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNhDt.Designer.cs">
+      <DependentUpon>frmGiaBanNhDt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmGiaBanNh.Designer.cs">
+      <DependentUpon>frmGiaBanNh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmGopHD_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmGopHD_Edit.designer.cs">
+      <DependentUpon>frmGopHD_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmSaleOrder_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmSaleOrder_Edit.designer.cs">
+      <DependentUpon>frmSaleOrder_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscItem_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscItem_Edit.Designer.cs">
+      <DependentUpon>frmDiscItem_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscFreeItem_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscFreeItem_Edit.Designer.cs">
+      <DependentUpon>frmDiscFreeItem_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscBreak_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscBreak_Edit.Designer.cs">
+      <DependentUpon>frmDiscBreak_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscountConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscountConfig.Designer.cs">
+      <DependentUpon>frmDiscountConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmDiscountConfig_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscountConfig_Edit.Designer.cs">
+      <DependentUpon>frmDiscountConfig_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChonHD_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChonHD_Filter.designer.cs">
+      <DependentUpon>frmChonHD_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChonHD_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChonHD_View.designer.cs">
+      <DependentUpon>frmChonHD_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtHD_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtHD_Edit.designer.cs">
+      <DependentUpon>frmCtHD_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtSO_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtSO_Edit.Designer.cs">
+      <DependentUpon>frmCtSO_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaBan_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaBan_Edit.Designer.cs">
+      <DependentUpon>frmGiaBan_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaBan.Designer.cs">
+      <DependentUpon>frmGiaBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCt_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCt_View.Designer.cs">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryDoiTuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQueryDoiTuong.Designer.cs">
+      <DependentUpon>frmQueryDoiTuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Discount\frmDiscountManual.resx">
+      <DependentUpon>frmDiscountManual.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmSelectTypeINT.resx">
+      <DependentUpon>frmSelectTypeINT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmCheckStock_View.resx">
+      <DependentUpon>frmCheckStock_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmCtSO_View.resx">
+      <DependentUpon>frmCtSO_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmGiaBanNh_Copy.resx">
+      <DependentUpon>frmGiaBanNh_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPJPConfigDetail_Edit.resx">
+      <DependentUpon>frmPJPConfigDetail_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPJPDetail.resx">
+      <DependentUpon>frmPJPDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPJPConfig_Edit.resx">
+      <DependentUpon>frmPJPConfig_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPJPConfig.resx">
+      <DependentUpon>frmPJPConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscountDetail_View.resx">
+      <DependentUpon>frmDiscountDetail_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmImportHD_View.resx">
+      <DependentUpon>frmImportHD_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmGopPXK_Edit.resx">
+      <DependentUpon>frmGopPXK_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPXK.resx">
+      <DependentUpon>frmPXK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmGiaBanNhDt.resx">
+      <DependentUpon>frmGiaBanNhDt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmGiaBanNh.resx">
+      <DependentUpon>frmGiaBanNh.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmGopHD_Edit.resx">
+      <DependentUpon>frmGopHD_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmSaleOrder_Edit.resx">
+      <DependentUpon>frmSaleOrder_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscItem_Edit.resx">
+      <DependentUpon>frmDiscItem_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscFreeItem_Edit.resx">
+      <DependentUpon>frmDiscFreeItem_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscBreak_Edit.resx">
+      <DependentUpon>frmDiscBreak_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscountConfig.resx">
+      <DependentUpon>frmDiscountConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscountConfig_Edit.resx">
+      <DependentUpon>frmDiscountConfig_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChonHD_Filter.resx">
+      <DependentUpon>frmChonHD_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChonHD_View.resx">
+      <DependentUpon>frmChonHD_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtHD_Edit.resx">
+      <DependentUpon>frmCtHD_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtSO_Edit.resx">
+      <DependentUpon>frmCtSO_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaBan_Edit.resx">
+      <DependentUpon>frmGiaBan_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaBan.resx">
+      <DependentUpon>frmGiaBan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCt_View.resx">
+      <DependentUpon>frmCt_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQueryDoiTuong.resx">
+      <DependentUpon>frmQueryDoiTuong.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\About.png" />
+    <Content Include="Resources\Tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="epoint.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
