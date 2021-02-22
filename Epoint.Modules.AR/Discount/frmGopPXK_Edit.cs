@@ -121,13 +121,6 @@ namespace Epoint.Modules.AR
         private void FillData()
         {
 
-            string strKeyFillterCt = " ";
-
-            string strSelectPh = " *";
-            string strSelectCt = enuNew_Edit == enuEdit.New ? " TOP 1 * " : "*";// enuNew_Edit == enuEdit.New lấy hàng đầu tiên
-
-            
-
             if (enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy)
             {
                 if (dtDetail != null)
@@ -174,8 +167,7 @@ namespace Epoint.Modules.AR
             }
             else
             {  
-                //dtEditPh = DataTool.SQLGetDataTable("OM_PXK", strSelectPh, strKeyFillterCt, null);
-                // dtEditCt = DataTool.SQLGetDataTable("OM_PXKDetail", strSelectCt, strKeyFillterCt, null);
+
                 Hashtable ht = new Hashtable();
                 ht.Add("MA_PX", drEdit["Ma_PX"].ToString());
                 ht.Add("MA_DVCS", Element.sysMa_DvCs);
@@ -268,16 +260,6 @@ namespace Epoint.Modules.AR
                 return false;
             }
 
-            //if (Common.GetPartitionCurrent() != 0 && this.enuNew_Edit == enuEdit.Edit && this.drEditPh["Ngay_Ct", DataRowVersion.Original] != DBNull.Value)
-            //{
-            //    if (((DateTime)this.drEditPh["Ngay_Ct"]).Year != ((DateTime)this.drEditPh["Ngay_Ct", DataRowVersion.Original]).Year)
-            //    {
-            //        Common.MsgCancel("Dữ liệu đã phân vùng, không cho phép sửa chứng từ từ năm này sang năm khác");
-            //        return false;
-            //    }
-            //}
-
-
             if(Element.sysWorkingYear != Library.StrToDate(dteNgay_Ct.Text).Year)
             {
                 EpointMessage.MsgOk("Ngày chứng từ không nằm trong năm làm việc ! ");
@@ -310,7 +292,6 @@ namespace Epoint.Modules.AR
                 if (dtCheckTon != null && dtCheckTon.Rows.Count > 0)
                 {
                     EpointMessage.MsgOk("Tồn tại mặt hàng bị âm kho khi xuất kho. Kiểm tra lại tồn kho! ");
-                    //if (!Common.MsgYes_No("Tồn tại mặt hàng bị âm kho khi xuất kho. Bạn có muốn tiếp tục không !"))
                         return false;
                 }
             }
@@ -331,9 +312,8 @@ namespace Epoint.Modules.AR
             //Luu xuong CSDL
             if (!DataTool.SQLUpdate(enuNew_Edit, "OM_PXK", ref drEdit))
                 return false;
-            //UpdateCt(dtEditCt);
-            Save_PXKDetail(dtEditCt);
-            //EpointProcessBox.Show(this);          
+            
+            Save_PXKDetail(dtEditCt);       
             return true;
         }
 
@@ -735,8 +715,6 @@ namespace Epoint.Modules.AR
             if (this.strMa_Ct != "IN")
                 return;
 
-            //strStt_List = string.Empty;
-           
             Hashtable htPara = new Hashtable();
             htPara.Add("STTLIST", strStt_List);
             htPara.Add("MA_DVCS", Element.sysMa_DvCs);
@@ -786,6 +764,11 @@ namespace Epoint.Modules.AR
                 }
 
                 this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_Edit);
+
+            }
+            else if (this.enuNew_Edit == enuEdit.New)
+            {
+                this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_New);
 
             }
         }
