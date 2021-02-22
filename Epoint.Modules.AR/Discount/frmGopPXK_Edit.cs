@@ -410,7 +410,6 @@ namespace Epoint.Modules.AR
             else
             {
                 txtMa_Xe.Text = drLookup["Ma_Xe"].ToString();
-                //txtTen_CbNv_Gh.Text = drLookup["Ten_CBNV"].ToString();
 
             }
 
@@ -459,15 +458,10 @@ namespace Epoint.Modules.AR
             htPara["MA_PX"] = drCurrent["MA_PX"].ToString();
             htPara["STT"] = drCurrent["STT"].ToString();
             htPara["MA_DVCS"] = Element.sysMa_DvCs;
-            //if (DataTool.SQLDelete("OM_PXKDetail",drCurrent))
             if (SQLExec.Execute("sp_Delete_PXKDetail", htPara, CommandType.StoredProcedure))
             {
                 bdsEditCt.RemoveAt(bdsEditCt.Position);
                 dtEditCt.AcceptChanges();
-
-
-                //FillData();
-                //bdsPXK.Position = bdsPXK.Find("Ma_PX", this.strMa_PX);
             }
             else
             {
@@ -738,15 +732,15 @@ namespace Epoint.Modules.AR
 
                 if (!Element.sysIs_Admin)
                 {
-                    string strCreate_User = (string)drEditPh["Create_Log"];
+                    string strCreate_User = (string)this.drEdit["User_Crtd"];
 
-                    if (strCreate_User != string.Empty && strCreate_User.Substring(14) != Element.sysUser_Id)
+                    if (strCreate_User != string.Empty && strCreate_User != Element.sysUser_Id)
                     {
                         string strUser_Allow = (string)SQLExec.ExecuteReturnValue("SELECT Member_ID_Allow FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'") + ",";
 
                         if (!strUser_Allow.Contains("*,")) //Được phép sửa tất cả
                         {
-                            if (!strUser_Allow.Contains(strCreate_User.Substring(14) + ","))
+                            if (!strUser_Allow.Contains(strCreate_User + ","))
                             {
                                 this.btgAccept.btAccept.Enabled = false;
                                 return;
