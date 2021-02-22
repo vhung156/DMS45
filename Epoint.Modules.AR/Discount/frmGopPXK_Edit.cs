@@ -784,6 +784,9 @@ namespace Epoint.Modules.AR
                     btCheckStock.Enabled = false;
                     this.btgAccept.btAccept.Enabled = false;
                 }
+
+                this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_Edit);
+
             }
         }
 
