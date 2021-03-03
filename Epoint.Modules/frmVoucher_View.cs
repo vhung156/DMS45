@@ -18,6 +18,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Base;
 using System.Collections;
+using System.Linq;
 
 namespace Epoint.Modules
 {
@@ -83,12 +84,12 @@ namespace Epoint.Modules
 
             this.Build();
 
-            object objNgay_CtMax = SQLExec.ExecuteReturnValue("SELECT MAX(Ngay_Ct) FROM " + (string)drDmCt["Table_Ph"] + " WHERE Ma_Ct LIKE '" + this.strMa_Ct_List.Split(',')[0] + "' AND Ma_DvCs = '" + Element.sysMa_DvCs + "'");
+            object objNgay_CtMax = SQLExec.ExecuteReturnValue("SELECT TOP 1 (Ngay_Ct) FROM " + (string)drDmCt["Table_Ph"] + " WHERE Ma_Ct LIKE '" + this.strMa_Ct_List.Split(',')[0] + "' AND Ma_DvCs = '" + Element.sysMa_DvCs + "' ORDER BY Ngay_Ct DESC");
             int iInterval = Convert.ToInt32(Parameters.GetParaValue("DAY_FILTER"));
             string sYear = Convert.ToString(Parameters.GetParaValue("YEAR_FILTER"));
             string sMonth = Convert.ToString(Parameters.GetParaValue("MONTH_FILTER"));
 
-            DateTime dteNgay_Ct2 = objNgay_CtMax != DBNull.Value ? (DateTime)objNgay_CtMax : DateTime.Now;
+            DateTime dteNgay_Ct2 = objNgay_CtMax == null ||  objNgay_CtMax == DBNull.Value ? DateTime.Now :(DateTime)objNgay_CtMax ;
             DateTime dteNgay_Ct1 = dteNgay_Ct2.Subtract(new TimeSpan(iInterval, 0, 0, 0));
 
             string strFilterKey = string.Empty;
@@ -922,7 +923,7 @@ namespace Epoint.Modules
 
         private void SetKeyFillter()
         {
-            object objNgay_Ct = SQLExec.ExecuteReturnValue("SELECT MAX(Ngay_Ct) FROM " + ((string)this.drDmCt["Table_Ph"]) + " WHERE Ma_Ct LIKE '" + this.strMa_Ct_List.Split(new char[] { ',' })[0] + "' AND Ma_DvCs = '" + Element.sysMa_DvCs + "'");
+            object objNgay_Ct = SQLExec.ExecuteReturnValue("SELECT TOP 1 (Ngay_Ct) FROM " + ((string)this.drDmCt["Table_Ph"]) + " WHERE Ma_Ct LIKE '" + this.strMa_Ct_List.Split(new char[] { ',' })[0] + "' AND Ma_DvCs = '" + Element.sysMa_DvCs + "' ORDER BY Ngay_Ct DESC");
 
             //object obj3 = null;
             //if (this.drDmCt.Table.Columns.Contains("Day_Filter"))
@@ -934,7 +935,7 @@ namespace Epoint.Modules
             //int days = (str == "") ? Convert.ToInt32(Parameters.GetParaValue("DAY_FILTER")) : Convert.ToInt32(str);
 
             int days = Convert.ToInt32(Parameters.GetParaValue("DAY_FILTER"));
-            DateTime dteNgay = (objNgay_Ct != DBNull.Value) ? ((DateTime)objNgay_Ct) : DateTime.Now;
+            DateTime dteNgay = (objNgay_Ct == DBNull.Value || objNgay_Ct== null) ? DateTime.Now :((DateTime)objNgay_Ct) ;
             DateTime time2 = dteNgay.Subtract(new TimeSpan(days, 0, 0, 0));
             string str4 = string.Empty + "(Ma_Ct IN ('" + this.strMa_Ct_List.Replace(",", "','") + "'))";
             string str2 = str4 + " AND (Ngay_Ct BETWEEN  '" + Library.DateToStr(time2) + "' AND '" + Library.DateToStr(dteNgay) + "')";
@@ -962,7 +963,292 @@ namespace Epoint.Modules
             this.strKey_Ct = str2;
         }
 
+        public void Import_Excel(bool IsAspocel)
+        {
+            try
+            {
+                DataTable dtImport = null;
+                OpenFileDialog dialog = new OpenFileDialog
+                {
+                    DefaultExt = "xls",
+                    Filter = "*.xls|*.xls"
+                };
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    dtImport = Common.ReadExcel(dialog.FileName);
+                }
 
+                if (dtImport != null)
+                {
+
+                    DataRow rowCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct_List);
+                    string strTableName = (string)rowCt["Table_Ct"];
+                    string strTable_Ph = (string)rowCt["Table_Ph"];
+                    string strSp_UpdatePh = (string)rowCt["Sp_UpdatePh"];
+                    string strSp_UpdateCt = (string)rowCt["Sp_UpdateCt"];
+                    DataTable tableVoucher = DataTool.SQLGetDataTable(strTable_Ph, "TOP 0 * ", " 0 = 1", null);
+                    DataTable tableDetail = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
+                    DataTable tableStructForStt = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
+                    DataTable tableARBan = tableDetail.Clone();
+                    //Format dtimport
+                    foreach (DataRow rowIp in dtImport.Rows)
+                    {
+                        rowIp["Ong_Ba"] = rowIp["Ong_Ba"].ToString().Trim() == string.Empty ? rowIp["Ten_Dt"] : rowIp["Ong_Ba"];
+                        rowIp["Gia2"] = rowIp["Gia"];
+                        rowIp["Gia_Nt2"] = rowIp["Gia_Nt2"];
+                        rowIp["Tien_Nt"] = rowIp["Tien"];
+                        rowIp["Tien2"] = rowIp["Tien"];
+                        rowIp["Tien_Nt2"] = rowIp["Tien"];
+                        //rowIp["Gia_Nt9"] = rowIp["Gia"];
+                        //rowIp["Tien_Nt9"] = rowIp["Tien"];
+                        //rowIp["He_So9"] = 1;
+
+                    }
+
+
+
+
+                    tableARBan.Merge(dtImport, true, MissingSchemaAction.Ignore);
+                    foreach (DataRow rowAR in tableARBan.Rows)
+                    {
+                        DataRow dr = rowAR;
+                        Common.SetDefaultDataRow(ref dr);
+                        if (tableARBan.Columns.Contains("Tien_Nt2"))
+                        {
+                            dr["Tien_Nt9"] = dr["Tien_Nt2"];
+                        }
+                        else if (tableARBan.Columns.Contains("Tien_Nt"))
+                        {
+                            dr["Tien_Nt9"] = dr["Tien_Nt"];
+                        }
+                        if (tableARBan.Columns.Contains("So_Luong") && tableARBan.Columns.Contains("So_Luong9"))
+                        {
+                            dr["So_Luong9"] = dr["So_Luong"];
+                        }
+                        if (tableARBan.Columns.Contains("Gia_Nt2") && tableARBan.Columns.Contains("Gia_Nt9"))
+                        {
+                            dr["Gia_Nt9"] = dr["Gia_Nt2"];
+                        }
+                        if (tableARBan.Columns.Contains("Gia_Nt") && tableARBan.Columns.Contains("Gia_Nt9"))
+                        {
+                            dr["Gia_Nt9"] = dr["Gia_Nt"];
+                        }
+                        if (tableARBan.Columns.Contains("So_Ct") && (dr["So_Ct"] == DBNull.Value || dr["So_Ct"].ToString() == string.Empty))
+                        {
+                            dr["So_Ct"] = dr["So_Ct0"];
+                        }                        
+                    }
+
+                    var structStt = from c in tableARBan.AsEnumerable()
+                                 group c by new
+                                 {
+                                     Ma_Ct = c.Field<string>("Ma_Ct"),
+                                     So_Ct = c.Field<string>("So_Ct"),//column names for checking duplicate values.
+                                     Ngay_Ct = c.Field<DateTime>("Ngay_Ct"),
+                                     
+                                 } into g
+                                 where g.Key.So_Ct != string.Empty
+                                 select new
+                                 {
+                                     g.Key.Ma_Ct,
+                                     g.Key.So_Ct,
+                                     g.Key.Ngay_Ct
+                                 };                  
+
+                    //foreach (DataRow row3 in tableARBan.Rows)
+                    //{
+                        
+                    //    if (tableStructForStt.Select(string.Concat(new object[] { "Ma_Ct = '", row3["Ma_Ct"], "' AND Ngay_Ct = '", row3["Ngay_Ct"], "' AND So_Ct = '", row3["So_Ct"], "'" })).Length == 0)
+                    //    {
+                    //        DataRow row4 = tableStructForStt.NewRow();
+                    //        row4["Ma_Ct"] = row3["Ma_Ct"];
+                    //        row4["Ngay_Ct"] = row3["Ngay_Ct"];
+                    //        row4["So_Ct"] = row3["So_Ct"];
+                    //        tableStructForStt.Rows.Add(row4);
+                    //    }
+                    //}
+                    foreach (var c in structStt)
+                    {
+
+                       if (c.So_Ct == string.Empty)
+                            continue;
+
+                        string strColumnName;
+                        Exception exception;
+                        DataRow[] drAr = tableARBan.Select(string.Concat(new object[] { "Ma_Ct = '", c.Ma_Ct, "' AND Ngay_Ct = '", c.Ngay_Ct, "' AND So_Ct = '", c.So_Ct, "'" }));
+                        DataRow drVoucher = tableVoucher.NewRow();
+                        Common.SetDefaultDataRow(ref drVoucher);
+                        Common.CopyDataRow(drAr[0], drVoucher);
+                        if (drVoucher.Table.Columns.Contains("Duyet"))
+                        {
+                            drVoucher["Duyet"] = 1;
+                        }
+                        if (tableARBan.Columns.Contains("So_Luong") && tableVoucher.Columns.Contains("TSo_Luong"))
+                        {
+                            drVoucher["TSo_Luong"] = Common.SumDCValue(drAr, "So_Luong");
+                        }
+                        if (tableARBan.Columns.Contains("Tien"))
+                        {
+                            drVoucher["TTien0"] = Common.SumDCValue(drAr, "Tien");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt"))
+                        {
+                            drVoucher["TTien_Nt0"] = Common.SumDCValue(drAr, "Tien_Nt");
+                        }
+                        if (tableARBan.Columns.Contains("Tien2"))
+                        {
+                            drVoucher["TTien0"] = Common.SumDCValue(drAr, "Tien2");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt2"))
+                        {
+                            drVoucher["TTien_Nt0"] = Common.SumDCValue(drAr, "Tien_Nt2");
+                        }
+                        if (tableARBan.Columns.Contains("Tien3"))
+                        {
+                            drVoucher["TTien3"] = Common.SumDCValue(drAr, "Tien3");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt3"))
+                        {
+                            drVoucher["TTien_Nt3"] = Common.SumDCValue(drAr, "Tien_Nt3");
+                        }
+                        if (tableARBan.Columns.Contains("Tien4"))
+                        {
+                            drVoucher["TTien4"] = Common.SumDCValue(drAr, "Tien4");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt4"))
+                        {
+                            drVoucher["TTien_Nt4"] = Common.SumDCValue(drAr, "Tien_Nt4");
+                        }
+                        if (tableARBan.Columns.Contains("Tien5"))
+                        {
+                            drVoucher["TTien5"] = Common.SumDCValue(drAr, "Tien5");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt5"))
+                        {
+                            drVoucher["TTien_Nt5"] = Common.SumDCValue(drAr, "Tien_Nt5");
+                        }
+                        if (tableARBan.Columns.Contains("Tien6"))
+                        {
+                            drVoucher["TTien6"] = Common.SumDCValue(drAr, "Tien6");
+                        }
+                        if (tableARBan.Columns.Contains("Tien_Nt6"))
+                        {
+                            drVoucher["TTien_Nt6"] = Common.SumDCValue(drAr, "Tien_Nt6");
+                        }
+                        SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+                        SqlTransaction ImportTrans = command.Connection.BeginTransaction("Update_Voucher_Tran");
+                        command.Transaction = ImportTrans;
+                        string strModule = string.Empty;
+                        switch (strTableName)
+                        {
+                            case "CATIEN":
+                                strModule = "01";
+                                break;
+
+                            case "APMUA":
+                            case "APPO":
+                                strModule = "02";
+                                break;
+
+                            case "ARBAN":
+                            case "ARSO":
+                                strModule = "04";
+                                break;
+
+                            case "INNHAPXUAT":
+                                strModule = "05";
+                                break;
+
+                            case "GLKETOAN":
+                                strModule = "80";
+                                break;
+                        }
+                        string newStt = Common.GetNewStt(strModule, true);
+                        while (DataTool.SQLCheckExist(strTable_Ph, "Stt", newStt))
+                        {
+                            newStt = Common.GetNewStt(strModule, true);
+                        }
+                        SQLExec.Execute(string.Concat(new object[] {
+                                                                        "DELETE FROM ", strTableName, " WHERE Ma_Ct = '", c.Ma_Ct, "' AND Ngay_Ct = '", Library.DateToStr((DateTime)c.Ngay_Ct), "' AND So_Ct = '", c.So_Ct, "' AND Ma_DvCs = '", Element.sysMa_DvCs, "';\r\n\t\t\t\t\t\t\t\t\t\t\t DELETE FROM ", strTable_Ph, " WHERE Ma_Ct = '", c.Ma_Ct, "' AND Ngay_Ct = '", Library.DateToStr((DateTime) c.Ngay_Ct),
+                                                                        "' AND So_Ct = '", c.So_Ct, "' AND Ma_DvCs = '", Element.sysMa_DvCs, "'"
+                                                                     }));
+                        if (drVoucher != null)
+                        {
+                            command.CommandText = strSp_UpdatePh;
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.Clear();
+                            string str10 = "Object_id = Object_id('" + strSp_UpdatePh + "')";
+                            DataTable dtParram = DataTool.SQLGetDataTable("Sys.Parameters", "Name", str10, null);
+                            command.Parameters.AddWithValue("@strNew_Edit", 'N');
+                            Common.SetDefaultDataRow(ref drVoucher);
+                            drVoucher["Stt"] = newStt;
+                            foreach (DataRow drPar in dtParram.Rows)
+                            {
+                                strColumnName = ((string)drPar["Name"]).Replace("@", "");
+                                this.ConvertFontImport(drVoucher, strColumnName);
+                                if (drVoucher.Table.Columns.Contains(strColumnName))
+                                {
+                                    command.Parameters.AddWithValue("@" + strColumnName, drVoucher[strColumnName]);
+                                }
+                            }
+                            try
+                            {
+                                command.ExecuteNonQuery();
+                            }
+                            catch (Exception exception1)
+                            {
+                                exception = exception1;
+                                MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
+                                ImportTrans.Rollback();
+                            }
+                        }
+                        command.Parameters.Clear();
+                        command.CommandText = strSp_UpdateCt;
+                        command.CommandType = CommandType.StoredProcedure;
+                        string strKey = "Object_id = Object_id('" + strSp_UpdateCt + "')";
+                        DataTable dtParam = DataTool.SQLGetDataTable("Sys.Parameters", "Name", strKey, null);
+                        int num = 1;
+                        foreach (DataRow dataRow in drAr)
+                        {
+                            command.Parameters.Clear();
+                            DataRow rowDetail = dataRow;
+                            Common.SetDefaultDataRow(ref rowDetail);
+                            rowDetail["Stt"] = newStt;
+                            rowDetail["Stt0"] = ++num;
+                            rowDetail["Auto_Cost"] = true;
+                            if (rowDetail.Table.Columns.Contains("Duyet"))
+                            {
+                                rowDetail["Duyet"] = true;
+                            }
+                            foreach (DataRow row6 in dtParam.Rows)
+                            {
+                                strColumnName = ((string)row6["Name"]).Replace("@", "");
+                                this.ConvertFontImport(rowDetail, strColumnName);
+                                if (rowDetail.Table.Columns.Contains(strColumnName))
+                                {
+                                    command.Parameters.AddWithValue("@" + strColumnName, rowDetail[strColumnName]);
+                                }
+                            }
+                            try
+                            {
+                                command.ExecuteNonQuery();
+                            }
+                            catch (Exception exception2)
+                            {
+                                exception = exception2;
+                                MessageBox.Show("Có lỗi xảy ra trong quá trình import  :" + exception.Message);
+                                command.Transaction.Rollback();
+                            }
+                        }
+                        ImportTrans.Commit();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                EpointMessage.MsgOk(ex.Message);
+            }
+        }
 
         public void Import_Excel()
         {
@@ -987,13 +1273,13 @@ namespace Epoint.Modules
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
                         DataRow row = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct_List);
-                        string strTableName = (string)row["Table_Ct"];
+                        string strTable_Ct = (string)row["Table_Ct"];
                         string strTable_Ph = (string)row["Table_Ph"];
                         string strSp_UpdatePh = (string)row["Sp_UpdatePh"];
                         string strSp_UpdateCt = (string)row["Sp_UpdateCt"];
                         DataTable table2 = DataTool.SQLGetDataTable(strTable_Ph, "TOP 0 * ", " 0 = 1", null);
-                        DataTable table3 = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
-                        DataTable table4 = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
+                        DataTable table3 = DataTool.SQLGetDataTable(strTable_Ct, "TOP 0 * ", " 0 = 1", null);
+                        DataTable table4 = DataTool.SQLGetDataTable(strTable_Ct, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
                         DataTable table5 = table3.Clone();
                         table5.Merge(dataTable, true, MissingSchemaAction.Ignore);
                         foreach (DataRow row2 in table5.Rows)
@@ -1104,7 +1390,7 @@ namespace Epoint.Modules
                             SqlTransaction transaction = command.Connection.BeginTransaction("Update_Voucher_Tran");
                             command.Transaction = transaction;
                             string strModule = string.Empty;
-                            switch (strTableName)
+                            switch (strTable_Ct)
                             {
                                 case "CATIEN":
                                     strModule = "01";
@@ -1134,7 +1420,7 @@ namespace Epoint.Modules
                                 newStt = Common.GetNewStt(strModule, true);
                             }
                             SQLExec.Execute(string.Concat(new object[] { 
-                                                                        "DELETE FROM ", strTableName, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "';\r\n\t\t\t\t\t\t\t\t\t\t\t DELETE FROM ", strTable_Ph, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), 
+                                                                        "DELETE FROM ", strTable_Ct, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "';\r\n\t\t\t\t\t\t\t\t\t\t\t DELETE FROM ", strTable_Ph, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), 
                                                                         "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "'"
                                                                      }));
                             if (row5 != null)
@@ -1350,7 +1636,7 @@ namespace Epoint.Modules
                             if (((e.KeyCode == Keys.F10) && Common.CheckPermission(base.Object_ID, enuPermission_Type.Allow_New)) && Common.CheckPermission(base.Object_ID, enuPermission_Type.Allow_Edit))
                             {
                                 this.Cursor = Cursors.WaitCursor;
-                                this.Import_Excel();
+                                this.Import_Excel(false);
                                 this.Cursor = Cursors.Default;
                             }
                             return;
@@ -1481,19 +1767,16 @@ namespace Epoint.Modules
         {
             if (bdsViewPh.Position < 0)
                 return;
-
-            //string a = dgvViewPh.dgvGridView..ToString();;
-            //string a = dgvViewPh.dgvAdvBandedGridView.FocusedColumn.Name;
-            string strColumnName = dgvViewPh.dgvGridView.FocusedColumn.Name;
+          
+            string strColumnName = dgvViewPh.dgvGridView.FocusedColumn.Name.ToUpper();
 
             drCurrent = ((DataRowView)bdsViewPh.Current).Row;
-
+            string strStt = drCurrent["Stt"].ToString();
             if (strColumnName == "DUYET")
             {
                 frmDuyet frm = new frmDuyet();
                 frm.Load(drCurrent);
             }
-
             else if (strColumnName == "CHON")
             {
                 if (drCurrent["So_Ct_Lap"].ToString() == "")//&& !(bool)drCurrent["Duyet"]
@@ -1503,42 +1786,34 @@ namespace Epoint.Modules
 
                 drCurrent.AcceptChanges();
             }
-
-
             else if (strColumnName == "MARK")
             {
 
                 drCurrent["MARK"] = !Convert.ToBoolean(drCurrent["MARK"]);
                 drCurrent.AcceptChanges();
             }
+            if (strColumnName == "TAX")
+            {
+                bool IsCheckTranferTax = true;
+
+                if(IsCheckTranferTax)
+                {
+                    bool IsAccept = Common.MsgYes_No("Chứng từ đã được thay đổi, bạn có muốn chuyển lại không?");
+                    if(IsAccept)
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
+
 
             GetInfoPXK();
-            //
-
-            //strStt_List = string.Empty;
-            //DataRow[] drArrStt = dtViewPh.Select("CHON = true");
-
-            //if (drArrStt.Length == 0)
-            //{
-            //    lbtStt.Text = "";
-            //    return;
-            //}
-            //for (int i = 0; i < drArrStt.Length; i++)
-            //{
-            //    strStt_List += drArrStt[i]["Stt"].ToString() + ",";
-            //}
-            ////foreach (DataRow dr in dtViewPh.Rows)
-            ////{
-            ////    if ((bool)dr["CHON"])
-            ////        strStt_List += dr["Stt"].ToString() + ",";
-            ////}
-
-            //Hashtable htPara = new Hashtable();
-            //htPara.Add("STTLIST", strStt_List);
-            //htPara.Add("MA_DVCS", Element.sysMa_DvCs);
-
-
-            //lbtStt.Text = SQLExec.ExecuteReturnValue("sp_GetPXKInfo", htPara, CommandType.StoredProcedure).ToString();
+           
 
         }
 
