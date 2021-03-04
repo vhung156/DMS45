@@ -1003,6 +1003,20 @@ namespace Epoint.Modules
                         //rowIp["Tien_Nt9"] = rowIp["Tien"];
                         //rowIp["He_So9"] = 1;
 
+                        if (dtImport.Columns.Contains("Auto_Cost"))
+                        {
+                            rowIp["Auto_Cost"] = rowIp["Auto_Cost"].ToString() == "1"? "true" : "false";
+                        }
+
+                        if (dtImport.Columns.Contains("Is_Thue_VAT"))
+                        {
+                            rowIp["Is_Thue_VAT"] = rowIp["Is_Thue_VAT"].ToString() == "1" ? "true" : "false";
+                        }
+
+                        if (dtImport.Columns.Contains("NoPosted"))
+                        {
+                            rowIp["NoPosted"] = rowIp["NoPosted"].ToString() == "1" ? "true" : "false";
+                        }
                     }
 
 
@@ -1055,18 +1069,7 @@ namespace Epoint.Modules
                                      g.Key.Ngay_Ct
                                  };                  
 
-                    //foreach (DataRow row3 in tableARBan.Rows)
-                    //{
-                        
-                    //    if (tableStructForStt.Select(string.Concat(new object[] { "Ma_Ct = '", row3["Ma_Ct"], "' AND Ngay_Ct = '", row3["Ngay_Ct"], "' AND So_Ct = '", row3["So_Ct"], "'" })).Length == 0)
-                    //    {
-                    //        DataRow row4 = tableStructForStt.NewRow();
-                    //        row4["Ma_Ct"] = row3["Ma_Ct"];
-                    //        row4["Ngay_Ct"] = row3["Ngay_Ct"];
-                    //        row4["So_Ct"] = row3["So_Ct"];
-                    //        tableStructForStt.Rows.Add(row4);
-                    //    }
-                    //}
+                    
                     foreach (var c in structStt)
                     {
 
@@ -1219,6 +1222,10 @@ namespace Epoint.Modules
                             if (rowDetail.Table.Columns.Contains("Duyet"))
                             {
                                 rowDetail["Duyet"] = true;
+                            }
+                            if (rowDetail.Table.Columns.Contains("Auto_Cost"))
+                            {
+                                rowDetail["Auto_Cost"] = true;
                             }
                             foreach (DataRow row6 in dtParam.Rows)
                             {
