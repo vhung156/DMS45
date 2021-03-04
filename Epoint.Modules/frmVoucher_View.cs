@@ -48,7 +48,7 @@ namespace Epoint.Modules
         public DataRow drDmCt;
 
         public string strFilterKey_Old = string.Empty;
-
+        private DataTable dtDataExcelImport = null;
         #endregion
 
         #region Contructor
@@ -966,19 +966,10 @@ namespace Epoint.Modules
         public void Import_Excel(bool IsAspocel)
         {
             try
-            {
-                DataTable dtImport = null;
-                OpenFileDialog dialog = new OpenFileDialog
-                {
-                    DefaultExt = "xls",
-                    Filter = "*.xls|*.xls"
-                };
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    dtImport = Common.ReadExcel(dialog.FileName);
-                }
-
-                if (dtImport != null)
+            {               
+               
+                //EpointProcessBox.AddMessage("Loading data....................");
+                if (dtDataExcelImport != null)
                 {
 
                     DataRow rowCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct_List);
@@ -991,7 +982,7 @@ namespace Epoint.Modules
                     DataTable tableStructForStt = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
                     DataTable tableARBan = tableDetail.Clone();
                     //Format dtimport
-                    foreach (DataRow rowIp in dtImport.Rows)
+                    foreach (DataRow rowIp in dtDataExcelImport.Rows)
                     {
                         rowIp["Ong_Ba"] = rowIp["Ong_Ba"].ToString().Trim() == string.Empty ? rowIp["Ten_Dt"] : rowIp["Ong_Ba"];
                         rowIp["Gia2"] = rowIp["Gia"];
@@ -1003,17 +994,17 @@ namespace Epoint.Modules
                         //rowIp["Tien_Nt9"] = rowIp["Tien"];
                         //rowIp["He_So9"] = 1;
 
-                        if (dtImport.Columns.Contains("Auto_Cost"))
+                        if (dtDataExcelImport.Columns.Contains("Auto_Cost"))
                         {
                             rowIp["Auto_Cost"] = rowIp["Auto_Cost"].ToString() == "1"? "true" : "false";
                         }
 
-                        if (dtImport.Columns.Contains("Is_Thue_VAT"))
+                        if (dtDataExcelImport.Columns.Contains("Is_Thue_VAT"))
                         {
                             rowIp["Is_Thue_VAT"] = rowIp["Is_Thue_VAT"].ToString() == "1" ? "true" : "false";
                         }
 
-                        if (dtImport.Columns.Contains("NoPosted"))
+                        if (dtDataExcelImport.Columns.Contains("NoPosted"))
                         {
                             rowIp["NoPosted"] = rowIp["NoPosted"].ToString() == "1" ? "true" : "false";
                         }
@@ -1022,11 +1013,15 @@ namespace Epoint.Modules
 
 
 
-                    tableARBan.Merge(dtImport, true, MissingSchemaAction.Ignore);
+                    tableARBan.Merge(dtDataExcelImport, true, MissingSchemaAction.Ignore);
                     foreach (DataRow rowAR in tableARBan.Rows)
                     {
                         DataRow dr = rowAR;
                         Common.SetDefaultDataRow(ref dr);
+                        if (tableARBan.Columns.Contains("Ten_DtGtGt"))
+                        {
+                            dr["Ten_DtGtGt"] = dr["Ten_Dt"];
+                        }
                         if (tableARBan.Columns.Contains("Tien_Nt2"))
                         {
                             dr["Tien_Nt9"] = dr["Tien_Nt2"];
@@ -1067,9 +1062,9 @@ namespace Epoint.Modules
                                      g.Key.Ma_Ct,
                                      g.Key.So_Ct,
                                      g.Key.Ngay_Ct
-                                 };                  
+                                 };
 
-                    
+                    //EpointProcessBox.AddMessage("Importing Invoice......................");
                     foreach (var c in structStt)
                     {
 
@@ -1217,8 +1212,7 @@ namespace Epoint.Modules
                             DataRow rowDetail = dataRow;
                             Common.SetDefaultDataRow(ref rowDetail);
                             rowDetail["Stt"] = newStt;
-                            rowDetail["Stt0"] = ++num;
-                            rowDetail["Auto_Cost"] = true;
+                            rowDetail["Stt0"] = ++num;  
                             if (rowDetail.Table.Columns.Contains("Duyet"))
                             {
                                 rowDetail["Duyet"] = true;
@@ -1226,6 +1220,10 @@ namespace Epoint.Modules
                             if (rowDetail.Table.Columns.Contains("Auto_Cost"))
                             {
                                 rowDetail["Auto_Cost"] = true;
+                            }
+                            if (rowDetail.Table.Columns.Contains("He_So9"))
+                            {
+                                rowDetail["He_So9"] = 1;
                             }
                             foreach (DataRow row6 in dtParam.Rows)
                             {
@@ -1243,17 +1241,22 @@ namespace Epoint.Modules
                             catch (Exception exception2)
                             {
                                 exception = exception2;
-                                MessageBox.Show("Có lỗi xảy ra trong quá trình import  :" + exception.Message);
+                                //MessageBox.Show("Có lỗi xảy ra trong quá trình import  :" + exception.Message); 
                                 command.Transaction.Rollback();
+                                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + exception.Message);
+                               
                             }
                         }
                         ImportTrans.Commit();
+                        
                     }
                 }
+                //EpointProcessBox.AddMessage("Kết thúc!");
             }
             catch(Exception ex)
             {
-                EpointMessage.MsgOk(ex.Message);
+                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n"+ ex.Message);
+                //EpointMessage.MsgOk(ex.Message);
             }
         }
 
@@ -1507,7 +1510,12 @@ namespace Epoint.Modules
             }
         }
 
+        public override void EpointRelease()
+        {
 
+            Import_Excel(true);
+
+        }
         #endregion
 
         /// <summary>
@@ -1643,7 +1651,18 @@ namespace Epoint.Modules
                             if (((e.KeyCode == Keys.F10) && Common.CheckPermission(base.Object_ID, enuPermission_Type.Allow_New)) && Common.CheckPermission(base.Object_ID, enuPermission_Type.Allow_Edit))
                             {
                                 this.Cursor = Cursors.WaitCursor;
-                                this.Import_Excel(false);
+                                //this.Import_Excel(false);                               
+                                OpenFileDialog dialog = new OpenFileDialog
+                                {
+                                    DefaultExt = "xls",
+                                    Filter = "*.xls|*.xls"
+                                };
+                                if (dialog.ShowDialog() == DialogResult.OK)
+                                {
+
+                                    this.dtDataExcelImport = Common.ReadExcel(dialog.FileName);
+                                }
+                                EpointProcessBox.Show(this); 
                                 this.Cursor = Cursors.Default;
                             }
                             return;
