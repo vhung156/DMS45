@@ -968,7 +968,7 @@ namespace Epoint.Modules
             try
             {               
                
-                //EpointProcessBox.AddMessage("Loading data....................");
+                EpointProcessBox.AddMessage("Loading data....................");
                 if (dtDataExcelImport != null)
                 {
 
@@ -986,11 +986,11 @@ namespace Epoint.Modules
                     {
                         rowIp["Ong_Ba"] = rowIp["Ong_Ba"].ToString().Trim() == string.Empty ? rowIp["Ten_Dt"] : rowIp["Ong_Ba"];
                         rowIp["Gia2"] = rowIp["Gia"];
-                        rowIp["Gia_Nt2"] = rowIp["Gia_Nt2"];
+                        rowIp["Gia_Nt2"] = rowIp["Gia2"];
                         rowIp["Tien_Nt"] = rowIp["Tien"];
                         rowIp["Tien2"] = rowIp["Tien"];
                         rowIp["Tien_Nt2"] = rowIp["Tien"];
-                        //rowIp["Gia_Nt9"] = rowIp["Gia"];
+                        rowIp["Gia_Nt"] = rowIp["Gia"];
                         //rowIp["Tien_Nt9"] = rowIp["Tien"];
                         //rowIp["He_So9"] = 1;
 
@@ -1064,7 +1064,7 @@ namespace Epoint.Modules
                                      g.Key.Ngay_Ct
                                  };
 
-                    //EpointProcessBox.AddMessage("Importing Invoice......................");
+                    EpointProcessBox.AddMessage("Importing Invoice......................");
                     foreach (var c in structStt)
                     {
 
@@ -1251,7 +1251,7 @@ namespace Epoint.Modules
                         
                     }
                 }
-                //EpointProcessBox.AddMessage("Kết thúc!");
+                EpointProcessBox.AddMessage("Kết thúc!");
             }
             catch(Exception ex)
             {
