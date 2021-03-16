@@ -653,6 +653,7 @@ namespace Epoint.Modules
             else 
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
+        
         public virtual bool Filter_ShowForm(DataRow drFilter)
         {
             frmFilter frm = new frmFilter();
