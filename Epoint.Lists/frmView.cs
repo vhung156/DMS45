@@ -282,6 +282,24 @@ namespace Epoint.Lists
             SaveData(dtImport, null, bIs_Overide);
 
         }
+        private void Import_Excel(bool CheckAPI, bool Aspocel)
+        {
+            OpenFileDialog ofdlg = new OpenFileDialog();
+            ofdlg.Filter = "xls files (*.xls;*.xlsx)|*.xls;*.xlsx";
+            ofdlg.RestoreDirectory = true;
+
+
+            if (ofdlg.ShowDialog() != DialogResult.OK)
+                return;
+
+            DataTable dtImport = Common.ReadExcel(ofdlg.FileName);
+            string strMsg = (Element.sysLanguage == enuLanguageType.Vietnamese ? "Bạn có muốn ghi đè lên mẫu tin đã tồn tại không ?" : "Do you want to override exists data ?");
+            bool bIs_Overide = Common.MsgYes_No(strMsg);
+            this.SaveData_Import(dtImport, null, bIs_Overide);
+            Common.MsgOk(Languages.GetLanguage("End_Process"));
+            RefeshData();
+        }
+
         private void SaveData(DataTable tbExcel, DataTable dtStruct, bool bIs_Overide)
         {
 
@@ -322,7 +340,53 @@ namespace Epoint.Lists
             }
 
         }
+        private void SaveData_Import(DataTable tbExcel, DataTable dtStruct, bool bIs_Overide)
+        {
 
+            if (!tbExcel.Columns.Contains("Ma_Data"))
+                tbExcel.Columns.Add("Ma_Data", typeof(string));
+
+            if (dtStruct == null)
+                dtStruct = tbExcel.Clone();
+
+            dtStruct = SQLExec.ExecuteReturnDt("SELECT * FROM " + this.strTableName);
+
+            foreach (DataRow drExcel in tbExcel.Rows)
+            {
+                try
+                {
+                    if (drExcel["Ma_Data"].ToString() == string.Empty)
+                        drExcel["Ma_Data"] = Element.sysMa_Data;
+                    //
+                    if (dtStruct.Select(strCode + "='" + (string)drExcel[strCode] + "'").Length > 0)
+                    {
+                        if (bIs_Overide)
+                        {
+                            //DataRow dredit = DataTool.SQLGetDataRowByID(this.strTableName, strCode, (string)drExcel[strCode]); /*dtStruct.Select(strCode + "='" + (string)drExcel[strCode] + "'")[0];*/
+                            DataRow dredit = dtStruct.Select(strCode + "='" + (string)drExcel[strCode] + "'")[0];
+                            Common.CopyDataRow(drExcel, dredit);
+                            DataTool.SQLUpdate(enuEdit.Edit, this.strTableName, ref dredit, true);
+
+                        }
+                    }
+                    else
+                    {
+                        DataRow drNewRow = dtStruct.NewRow();
+                        Common.CopyDataRow(drExcel, drNewRow);
+                        Common.SetDefaultDataRow(ref drNewRow);
+                        DataTool.SQLUpdate(enuEdit.New, this.strTableName, ref drNewRow, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi import code : " + (string)drExcel[strCode] + "\n" + ex.ToString());
+                    return;
+                }
+            }
+
+
+
+        }
         public void Export_Excel()
         {
             string strTable = SQLExec.ExecuteReturnValue("SELECT File_Import FROM SYSDMTABLE WHERE Table_Name0 = '" + strTableName + "'").ToString();
