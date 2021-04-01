@@ -576,7 +576,8 @@ namespace Epoint.Modules.AR
             {              
                 string a=  DataTool.sysConnection.ConnectionString;
                 //DataTool.sysConnection.ConnectionString = "Data Source=hcm-ngocminh.ddns.net,1448;Initial Catalog=Epoint_MNQB;Integrated Security=False;User ID=sa;Password =MinhNg0c!@#2020";
-                SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+                //SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+                SqlCommand command = DataTool.sysCommand;
                 command.CommandText = "OM_SaveOM_SalesDics";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Stt", frmEditCt.strStt);
