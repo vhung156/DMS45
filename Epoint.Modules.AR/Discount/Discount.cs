@@ -573,7 +573,9 @@ namespace Epoint.Modules.AR
         public static void OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
         {
             if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
-            {                
+            {              
+                string a=  DataTool.sysConnection.ConnectionString;
+                //DataTool.sysConnection.ConnectionString = "Data Source=hcm-ngocminh.ddns.net,1448;Initial Catalog=Epoint_MNQB;Integrated Security=False;User ID=sa;Password =MinhNg0c!@#2020";
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "OM_SaveOM_SalesDics";
                 command.CommandType = CommandType.StoredProcedure;
