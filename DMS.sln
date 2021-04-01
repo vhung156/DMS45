@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.916
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epoint.Modules.AP", "Epoint.Modules.AP\Epoint.Modules.AP.csproj", "{EF90494E-7D7C-49FA-A792-9E1836DE92F3}"
 EndProject
@@ -31,60 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epoint.Lists", "Epoint.List
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epoint.Modules.GL", "Epoint.Modules.GL\Epoint.Modules.GL.csproj", "{0C1D0789-E140-444B-998E-CA243D6DC7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epoint.Lists.Kho", "Epoint.Lists.Kho\Epoint.Lists.Kho.csproj", "{D7EBAAC7-E208-4F34-8C0D-2EF80E6980B3}"
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://epoint.ddns.info:12111/tfs/epointerp
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Epoint.Modules.AP\\Epoint.Modules.AP.csproj
-		SccProjectName1 = Epoint.Modules.AP
-		SccLocalPath1 = Epoint.Modules.AP
-		SccProjectUniqueName2 = Epoint.Modules.AR\\Epoint.Modules.AR.csproj
-		SccProjectName2 = Epoint.Modules.AR
-		SccLocalPath2 = Epoint.Modules.AR
-		SccProjectUniqueName3 = Epoint.Modules.CA\\Epoint.Modules.CA.csproj
-		SccProjectName3 = Epoint.Modules.CA
-		SccLocalPath3 = Epoint.Modules.CA
-		SccProjectUniqueName4 = Epoint.Modules.GL\\Epoint.Modules.GL.csproj
-		SccProjectName4 = Epoint.Modules.GL
-		SccLocalPath4 = Epoint.Modules.GL
-		SccProjectUniqueName5 = Epoint.Modules.IN\\Epoint.Modules.IN.csproj
-		SccProjectName5 = Epoint.Modules.IN
-		SccLocalPath5 = Epoint.Modules.IN
-		SccProjectUniqueName6 = Epoint.Modules\\Epoint.Modules.csproj
-		SccProjectName6 = Epoint.Modules
-		SccLocalPath6 = Epoint.Modules
-		SccProjectUniqueName7 = Start\\Start.csproj
-		SccProjectName7 = Start
-		SccLocalPath7 = Start
-		SccProjectUniqueName8 = Epoint.Lists.VatTu\\Epoint.Lists.VatTu.csproj
-		SccProjectName8 = Epoint.Lists.VatTu
-		SccLocalPath8 = Epoint.Lists.VatTu
-		SccProjectUniqueName9 = Epoint.Lists.NhanVien\\Epoint.Lists.NhanVien.csproj
-		SccProjectName9 = Epoint.Lists.NhanVien
-		SccLocalPath9 = Epoint.Lists.NhanVien
-		SccProjectUniqueName10 = Epoint.Lists.DoiTuong\\Epoint.Lists.DoiTuong.csproj
-		SccProjectName10 = Epoint.Lists.DoiTuong
-		SccLocalPath10 = Epoint.Lists.DoiTuong
-		SccProjectUniqueName11 = Epoint.Lists.Tuyen\\Epoint.Lists.Tuyen.csproj
-		SccProjectName11 = Epoint.Lists.Tuyen
-		SccLocalPath11 = Epoint.Lists.Tuyen
-		SccProjectUniqueName12 = Epoint.Modules.POS\\Epoint.Modules.POS.csproj
-		SccProjectName12 = Epoint.Modules.POS
-		SccLocalPath12 = Epoint.Modules.POS
-		SccProjectUniqueName13 = Epoint.Lists.NghiepVu\\Epoint.Lists.NghiepVu.csproj
-		SccProjectName13 = Epoint.Lists.NghiepVu
-		SccLocalPath13 = Epoint.Lists.NghiepVu
-		SccProjectUniqueName14 = Epoint.Lists\\Epoint.Lists.csproj
-		SccProjectName14 = Epoint.Lists
-		SccLocalPath14 = Epoint.Lists
-		SccProjectUniqueName15 = Epoint.Lists.Kho\\Epoint.Lists.Kho.csproj
-		SccProjectName15 = Epoint.Lists.Kho
-		SccLocalPath15 = Epoint.Lists.Kho
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -146,12 +93,11 @@ Global
 		{0C1D0789-E140-444B-998E-CA243D6DC7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C1D0789-E140-444B-998E-CA243D6DC7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1D0789-E140-444B-998E-CA243D6DC7A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7EBAAC7-E208-4F34-8C0D-2EF80E6980B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7EBAAC7-E208-4F34-8C0D-2EF80E6980B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7EBAAC7-E208-4F34-8C0D-2EF80E6980B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7EBAAC7-E208-4F34-8C0D-2EF80E6980B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B930D596-B6E6-4C99-8008-CDD98B76EF0A}
 	EndGlobalSection
 EndGlobal

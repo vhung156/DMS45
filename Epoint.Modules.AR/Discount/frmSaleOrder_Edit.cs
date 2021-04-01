@@ -1644,8 +1644,13 @@ namespace Epoint.Modules.AR
                             }
                             else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
                             {
-
-                                Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
+                                foreach (DataRow drBr in dtBreakBy.Rows)
+                                {
+                                    dbAmtDisc = Convert.ToDouble(drBr["Amt"]);
+                                    strSttKM = drBr["Stt"].ToString();
+                                    iDiscTime = Convert.ToInt32(drBr["DiscTime"]);
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
+                                }
                             }
                         }
                     }
@@ -2222,7 +2227,7 @@ namespace Epoint.Modules.AR
             if (strValue == "/" || strValue == @"\")
             {
                 frmDoiTuong frmLookup = new frmDoiTuong();
-                DataRow drLookup = Lookup.ShowLookup(frmLookup, "LIDOITUONG", "Ma_So_Thue", strValue, bRequire, "");
+                DataRow drLookup = Lookup.ShowLookup("Ma_So_Thue", strValue, bRequire, "");
 
                 if (bRequire && drLookup == null)
                     e.Cancel = true;
