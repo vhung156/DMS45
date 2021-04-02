@@ -1644,8 +1644,13 @@ namespace Epoint.Modules.AR
                             }
                             else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
                             {
-
-                                Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
+                                foreach (DataRow drbr in dtBreakBy.Rows)
+                                {
+                                    dbAmtDisc = Convert.ToDouble(drbr["Amt"]);
+                                    strSttKM = drbr["Stt"].ToString();
+                                    iDiscTime = Convert.ToInt32(drbr["DiscTime"]);
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
+                                }
                             }
                         }
                     }
