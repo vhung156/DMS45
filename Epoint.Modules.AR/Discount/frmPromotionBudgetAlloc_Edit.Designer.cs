@@ -199,7 +199,7 @@ namespace Epoint.Modules.AR
             this.txtMa_Cbnv.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Cbnv.Name = "txtMa_Cbnv";
             this.txtMa_Cbnv.Size = new System.Drawing.Size(159, 20);
-            this.txtMa_Cbnv.TabIndex = 152;
+            this.txtMa_Cbnv.TabIndex = 1;
             this.txtMa_Cbnv.UseAutoFilter = true;
             // 
             // lblControl1
@@ -232,7 +232,7 @@ namespace Epoint.Modules.AR
             this.numAmtSpent.Name = "numAmtSpent";
             this.numAmtSpent.Scale = 2;
             this.numAmtSpent.Size = new System.Drawing.Size(160, 20);
-            this.numAmtSpent.TabIndex = 2;
+            this.numAmtSpent.TabIndex = 4;
             this.numAmtSpent.TabStop = false;
             this.numAmtSpent.Text = "0.00";
             this.numAmtSpent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -255,7 +255,7 @@ namespace Epoint.Modules.AR
             this.numQtySpent.Name = "numQtySpent";
             this.numQtySpent.Scale = 2;
             this.numQtySpent.Size = new System.Drawing.Size(160, 20);
-            this.numQtySpent.TabIndex = 3;
+            this.numQtySpent.TabIndex = 5;
             this.numQtySpent.TabStop = false;
             this.numQtySpent.Text = "0.00";
             this.numQtySpent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
