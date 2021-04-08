@@ -123,6 +123,18 @@
     <Compile Include="Discount\frmDiscountManual.Designer.cs">
       <DependentUpon>frmDiscountManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Discount\frmPromotionBudget_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPromotionBudget_Edit.Designer.cs">
+      <DependentUpon>frmPromotionBudget_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\frmPromotionBudget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmPromotionBudget.Designer.cs">
+      <DependentUpon>frmPromotionBudget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Discount\frmSelectTypeINT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +319,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Discount\frmDiscountManual.resx">
       <DependentUpon>frmDiscountManual.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPromotionBudget_Edit.resx">
+      <DependentUpon>frmPromotionBudget_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmPromotionBudget.resx">
+      <DependentUpon>frmPromotionBudget.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Discount\frmSelectTypeINT.resx">
