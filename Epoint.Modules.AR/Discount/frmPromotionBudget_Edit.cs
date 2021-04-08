@@ -64,14 +64,14 @@ namespace Epoint.Modules.AR
             bool bvalid = true ;
             if (txtMa_Ns.Text.Trim() == string.Empty)
             {
-                Common.MsgOk(Languages.GetLanguage("Ma_PJP") + " " +
+                Common.MsgOk(Languages.GetLanguage("Ma_NS") + " " +
                         Languages.GetLanguage("Not_Null"));
                 return false;
             }
 
             if (txtTen_Ns.Text.Trim() == string.Empty)
             {
-                Common.MsgOk(Languages.GetLanguage("Ten_PJP") + " " +
+                Common.MsgOk(Languages.GetLanguage("Ten_NS") + " " +
                         Languages.GetLanguage("Not_Null"));
                 return false;
             }	
@@ -89,10 +89,8 @@ namespace Epoint.Modules.AR
             if (!FormCheckValid())
                 return false;
 
-
-
             //Luu xuong CSDL
-            if (!DataTool.SQLUpdate(enuNew_Edit, "OM_PJP", ref drEdit))
+            if (!DataTool.SQLUpdate(enuNew_Edit, "OM_Budget", ref drEdit))
                 return false;
 
             return true;

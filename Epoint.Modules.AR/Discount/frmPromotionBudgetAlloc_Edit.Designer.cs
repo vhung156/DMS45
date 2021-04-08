@@ -36,6 +36,8 @@ namespace Epoint.Modules.AR
             this.numAmtAlloc = new Epoint.Systems.Controls.numControl();
             this.txtMa_Cbnv = new Epoint.Systems.Controls.txtTextLookup();
             this.lblControl1 = new Epoint.Systems.Controls.lblControl();
+            this.numAmtSpent = new Epoint.Systems.Controls.numControl();
+            this.numQtySpent = new Epoint.Systems.Controls.numControl();
             this.tabEdit.SuspendLayout();
             this.Page1.SuspendLayout();
             this.Page2.SuspendLayout();
@@ -43,13 +45,13 @@ namespace Epoint.Modules.AR
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(415, 280);
+            this.btgAccept.Location = new System.Drawing.Point(415, 259);
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
             this.btgAccept.TabIndex = 1;
             // 
             // tabEdit
             // 
-            this.tabEdit.Size = new System.Drawing.Size(587, 264);
+            this.tabEdit.Size = new System.Drawing.Size(587, 243);
             this.tabEdit.TabIndex = 0;
             // 
             // Page1
@@ -57,16 +59,18 @@ namespace Epoint.Modules.AR
             this.Page1.Controls.Add(this.txtMa_Cbnv);
             this.Page1.Controls.Add(this.lblControl1);
             this.Page1.Controls.Add(this.lblControl5);
+            this.Page1.Controls.Add(this.numQtySpent);
             this.Page1.Controls.Add(this.numQtyAlloc);
+            this.Page1.Controls.Add(this.numAmtSpent);
             this.Page1.Controls.Add(this.lblTTien);
             this.Page1.Controls.Add(this.numAmtAlloc);
             this.Page1.Controls.Add(this.lbMa_Vt);
             this.Page1.Controls.Add(this.txtMa_Ns);
-            this.Page1.Size = new System.Drawing.Size(579, 238);
+            this.Page1.Size = new System.Drawing.Size(579, 217);
             // 
             // Page2
             // 
-            this.Page2.Size = new System.Drawing.Size(580, 173);
+            this.Page2.Size = new System.Drawing.Size(579, 217);
             // 
             // lbMa_Vt
             // 
@@ -86,7 +90,7 @@ namespace Epoint.Modules.AR
             // 
             this.txtMa_Ns.bEnabled = true;
             this.txtMa_Ns.bIsLookup = false;
-            this.txtMa_Ns.bReadOnly = false;
+            this.txtMa_Ns.bReadOnly = true;
             this.txtMa_Ns.bRequire = false;
             this.txtMa_Ns.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Ns.ColumnsView = null;
@@ -105,7 +109,6 @@ namespace Epoint.Modules.AR
             // 
             // lblControl5
             // 
-            this.lblControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblControl5.AutoEllipsis = true;
             this.lblControl5.AutoSize = true;
             this.lblControl5.BackColor = System.Drawing.Color.Transparent;
@@ -121,13 +124,11 @@ namespace Epoint.Modules.AR
             // 
             // numQtyAlloc
             // 
-            this.numQtyAlloc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numQtyAlloc.bEnabled = true;
             this.numQtyAlloc.bFormat = true;
             this.numQtyAlloc.bIsLookup = false;
             this.numQtyAlloc.bReadOnly = false;
             this.numQtyAlloc.bRequire = false;
-            this.numQtyAlloc.Enabled = false;
             this.numQtyAlloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numQtyAlloc.ForeColor = System.Drawing.Color.Blue;
             this.numQtyAlloc.KeyFilter = "";
@@ -135,7 +136,7 @@ namespace Epoint.Modules.AR
             this.numQtyAlloc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numQtyAlloc.Name = "numQtyAlloc";
             this.numQtyAlloc.Scale = 2;
-            this.numQtyAlloc.Size = new System.Drawing.Size(111, 20);
+            this.numQtyAlloc.Size = new System.Drawing.Size(160, 20);
             this.numQtyAlloc.TabIndex = 3;
             this.numQtyAlloc.TabStop = false;
             this.numQtyAlloc.Text = "0.00";
@@ -145,7 +146,6 @@ namespace Epoint.Modules.AR
             // 
             // lblTTien
             // 
-            this.lblTTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTTien.AutoEllipsis = true;
             this.lblTTien.AutoSize = true;
             this.lblTTien.BackColor = System.Drawing.Color.Transparent;
@@ -161,13 +161,11 @@ namespace Epoint.Modules.AR
             // 
             // numAmtAlloc
             // 
-            this.numAmtAlloc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numAmtAlloc.bEnabled = true;
             this.numAmtAlloc.bFormat = true;
             this.numAmtAlloc.bIsLookup = false;
             this.numAmtAlloc.bReadOnly = false;
             this.numAmtAlloc.bRequire = false;
-            this.numAmtAlloc.Enabled = false;
             this.numAmtAlloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numAmtAlloc.ForeColor = System.Drawing.Color.Blue;
             this.numAmtAlloc.KeyFilter = "";
@@ -175,7 +173,7 @@ namespace Epoint.Modules.AR
             this.numAmtAlloc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numAmtAlloc.Name = "numAmtAlloc";
             this.numAmtAlloc.Scale = 2;
-            this.numAmtAlloc.Size = new System.Drawing.Size(111, 20);
+            this.numAmtAlloc.Size = new System.Drawing.Size(160, 20);
             this.numAmtAlloc.TabIndex = 2;
             this.numAmtAlloc.TabStop = false;
             this.numAmtAlloc.Text = "0.00";
@@ -218,11 +216,57 @@ namespace Epoint.Modules.AR
             this.lblControl1.Text = "Mã nhân viên";
             this.lblControl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // numAmtSpent
+            // 
+            this.numAmtSpent.bEnabled = true;
+            this.numAmtSpent.bFormat = true;
+            this.numAmtSpent.bIsLookup = false;
+            this.numAmtSpent.bReadOnly = false;
+            this.numAmtSpent.bRequire = false;
+            this.numAmtSpent.Enabled = false;
+            this.numAmtSpent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numAmtSpent.ForeColor = System.Drawing.Color.Blue;
+            this.numAmtSpent.KeyFilter = "";
+            this.numAmtSpent.Location = new System.Drawing.Point(300, 75);
+            this.numAmtSpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.numAmtSpent.Name = "numAmtSpent";
+            this.numAmtSpent.Scale = 2;
+            this.numAmtSpent.Size = new System.Drawing.Size(160, 20);
+            this.numAmtSpent.TabIndex = 2;
+            this.numAmtSpent.TabStop = false;
+            this.numAmtSpent.Text = "0.00";
+            this.numAmtSpent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numAmtSpent.UseAutoFilter = false;
+            this.numAmtSpent.Value = 0D;
+            // 
+            // numQtySpent
+            // 
+            this.numQtySpent.bEnabled = true;
+            this.numQtySpent.bFormat = true;
+            this.numQtySpent.bIsLookup = false;
+            this.numQtySpent.bReadOnly = false;
+            this.numQtySpent.bRequire = false;
+            this.numQtySpent.Enabled = false;
+            this.numQtySpent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numQtySpent.ForeColor = System.Drawing.Color.Blue;
+            this.numQtySpent.KeyFilter = "";
+            this.numQtySpent.Location = new System.Drawing.Point(300, 97);
+            this.numQtySpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.numQtySpent.Name = "numQtySpent";
+            this.numQtySpent.Scale = 2;
+            this.numQtySpent.Size = new System.Drawing.Size(160, 20);
+            this.numQtySpent.TabIndex = 3;
+            this.numQtySpent.TabStop = false;
+            this.numQtySpent.Text = "0.00";
+            this.numQtySpent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numQtySpent.UseAutoFilter = false;
+            this.numQtySpent.Value = 0D;
+            // 
             // frmPromotionBudgetAlloc_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 313);
+            this.ClientSize = new System.Drawing.Size(611, 292);
             this.Name = "frmPromotionBudgetAlloc_Edit";
             this.Object_ID = "LITUYEN";
             this.Tag = "ESC";
@@ -245,5 +289,7 @@ namespace Epoint.Modules.AR
         private Systems.Controls.numControl numAmtAlloc;
         private Systems.Controls.txtTextLookup txtMa_Cbnv;
         private Systems.Controls.lblControl lblControl1;
+        private Systems.Controls.numControl numQtySpent;
+        private Systems.Controls.numControl numAmtSpent;
     }
 }

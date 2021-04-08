@@ -68,7 +68,7 @@ namespace Epoint.Modules.AR
             // 
             // Page2
             // 
-            this.Page2.Size = new System.Drawing.Size(580, 272);
+            this.Page2.Size = new System.Drawing.Size(580, 173);
             // 
             // chkActive
             // 
@@ -179,7 +179,6 @@ namespace Epoint.Modules.AR
             this.numQtyAlloc.bIsLookup = false;
             this.numQtyAlloc.bReadOnly = false;
             this.numQtyAlloc.bRequire = false;
-            this.numQtyAlloc.Enabled = false;
             this.numQtyAlloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numQtyAlloc.ForeColor = System.Drawing.Color.Blue;
             this.numQtyAlloc.KeyFilter = "";
@@ -219,7 +218,6 @@ namespace Epoint.Modules.AR
             this.numAmtAlloc.bIsLookup = false;
             this.numAmtAlloc.bReadOnly = false;
             this.numAmtAlloc.bRequire = false;
-            this.numAmtAlloc.Enabled = false;
             this.numAmtAlloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numAmtAlloc.ForeColor = System.Drawing.Color.Blue;
             this.numAmtAlloc.KeyFilter = "";

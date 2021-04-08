@@ -34,11 +34,10 @@ namespace Epoint.Modules.AR
         BindingSource bdsBudgetHeader = new BindingSource();
         DataRow drCurrentBudgetHeader;
 
-        DataRow drCurrentBudgetDetail;
-        DataTable dtBudgetDetail;
-        BindingSource bdsBudgetDetail = new BindingSource();
-        DataRow drCurrentDetail;
-
+        DataRow drBudgetDetailAllocate;
+        DataTable dtBudgetDetailAllocate;
+        BindingSource bdsBudgetDetailAllocate = new BindingSource();
+        
         public frmPromotionBudget()
         {
             InitializeComponent();
@@ -71,7 +70,7 @@ namespace Epoint.Modules.AR
 
             dgvBudgetDetail.strZone = "OM_BUDGETDetail";
             dgvBudgetDetail.BuildGridView(this.isLookup);
-            ExportControl = dtBudgetDetail;
+            ExportControl = dtBudgetDetailAllocate;
 
             dteNgay_BD.Text = Library.DateToStr(Epoint.Systems.Elements.Element.sysNgay_Ct1);
             dteNgay_Kt.Text = Library.DateToStr(Epoint.Systems.Elements.Element.sysNgay_Ct2);
@@ -86,7 +85,7 @@ namespace Epoint.Modules.AR
             htDisc["NGAY_CT1"] = Library.StrToDate(dteNgay_BD.Text);
             htDisc["NGAY_CT2"] = Library.StrToDate(dteNgay_Kt.Text);
             htDisc.Add("MA_DVCS", Element.sysMa_DvCs);
-            dsPromotionBudget = SQLExec.ExecuteReturnDs("sp_GetBudget", htDisc, CommandType.StoredProcedure);
+            dsPromotionBudget = SQLExec.ExecuteReturnDs("sp_OM_GetBudget", htDisc, CommandType.StoredProcedure);
 
             dtBudgetHeader = dsPromotionBudget.Tables[0];
             bdsBudgetHeader.DataSource = dtBudgetHeader;
@@ -101,9 +100,9 @@ namespace Epoint.Modules.AR
 
             //Detail
 
-            dtBudgetDetail = dsPromotionBudget.Tables[1];
-            bdsBudgetDetail.DataSource = dtBudgetDetail;
-            dgvBudgetDetail.DataSource = bdsBudgetDetail;
+            dtBudgetDetailAllocate = dsPromotionBudget.Tables[1];
+            bdsBudgetDetailAllocate.DataSource = dtBudgetDetailAllocate;
+            dgvBudgetDetail.DataSource = bdsBudgetDetailAllocate;
 
 
 
@@ -156,95 +155,55 @@ namespace Epoint.Modules.AR
         }
         private void EditBudgetDetailAddNew(enuEdit enuNew_Edit)
         {
-            if (bdsBudgetHeader.Position < 0)
-                return;
-
-            string strFilter = "Ma_Dt NOT IN (SELECT DISTINCT Ma_Dt FROM OM_PJPDETAIL)";
-
-            //Copy hang hien tai
-            if (bdsBudgetDetail.Position >= 0)
-                Common.CopyDataRow(((DataRowView)bdsBudgetDetail.Current).Row, ref drCurrentDetail);
-            else
-                drCurrentDetail = dtBudgetDetail.NewRow();
-
-            Common.CopyDataRow(((DataRowView)bdsBudgetHeader.Current).Row, ref drCurrentBudgetHeader);
-
-            this.strMa_NS = drCurrentBudgetHeader["MA_PJP"].ToString();
-            bool bRequire = true; bool bIs_Overide = true;
-            string[] KeyAr = new string[2] { "Ma_PJP", "Ma_Dt" };
-            string[] ValueAr;
-
-            DataRow drLookup = Lookup.ShowMultiLookupNew("Ma_Dt", "", bRequire, strFilter, "", "");
-
-
-            if (bRequire && drLookup == null)
-            {
-                dtBudgetDetail.RejectChanges();
-                return;
-            }
-            string strValueList = drLookup["MuiltiSelectValue"].ToString();
-
-            if (drLookup != null && strValueList != string.Empty)
-            {
-                foreach (string strMa_Dt in strValueList.Split(','))
-                {
-                    drCurrentDetail["Ma_PJP"] = strMa_NS;
-                    drCurrentDetail["Ma_Dt"] = strMa_Dt;
-
-                    drCurrentDetail["Tan_Suat"] = strTanSuat;
-                    ValueAr = new string[2] { drCurrentDetail["Ma_PJP"].ToString(), strMa_Dt };
-
-
-                    if (!DataTool.SQLCheckExist("OM_PJPDetail", KeyAr, ValueAr))
-                    {
-                        if (DataTool.SQLUpdate(enuEdit.New, "OM_PJPDetail", ref drCurrentDetail))
-                        {
-                            if (bdsBudgetDetail.Position >= 0)
-                                dtBudgetDetail.ImportRow(drCurrentDetail);
-                            else
-                                dtBudgetDetail.Rows.Add(drCurrentDetail);
-                            dtBudgetDetail.AcceptChanges();
-                        }
-                    }
-                    else
-                    {
-                        if (bIs_Overide)
-                        {
-                            if (DataTool.SQLUpdate(enuEdit.Edit, "OM_PJPDetail", ref drCurrentDetail))
-                            {
-                                dtBudgetDetail.AcceptChanges();
-                            }
-
-                        }
-                    }
-
-                }
-            }
+           
         }
         private void EditPromotionBudgetDetail(enuEdit enuNew_Edit)
         {
-            if (bdsBudgetDetail.Position < 0)
+            if (bdsBudgetHeader.Position < 0)
                 return;
 
-            if (enuNew_Edit != enuEdit.Edit)
+            //if (bdsBudgetDetailAllocate.Position < 0)
+            //    return;
+
+            
+            if (bdsBudgetDetailAllocate.Position < 0 && enuNew_Edit == enuEdit.Edit)
                 return;
 
-            if (bdsBudgetDetail.Position >= 0)
-                Common.CopyDataRow(((DataRowView)bdsBudgetDetail.Current).Row, ref drCurrentBudgetDetail);
+            if (bdsBudgetHeader.Position >= 0)
+                Common.CopyDataRow(((DataRowView)bdsBudgetHeader.Current).Row, ref drCurrentBudgetHeader);
 
-
-            frmPJPConfigDetail_Edit frmEdit = new frmPJPConfigDetail_Edit();
-            frmEdit.Load(enuNew_Edit, drCurrentBudgetDetail);
+            if (bdsBudgetDetailAllocate.Position >= 0)
+                Common.CopyDataRow(((DataRowView)bdsBudgetDetailAllocate.Current).Row, ref drBudgetDetailAllocate);
+            else
+            {
+                drBudgetDetailAllocate = dtBudgetDetailAllocate.NewRow();
+                drBudgetDetailAllocate["Ma_Ns"] = drCurrentBudgetHeader["Ma_Ns"];
+                //Common.CopyDataRow(drCurrentBudgetHeader, ref drBudgetDetailAllocate);
+                //drBudgetDetailAllocate["Ma_Dvcs"] = Element.sysMa_DvCs;
+            }
+            frmPromotionBudgetAlloc_Edit frmEdit = new frmPromotionBudgetAlloc_Edit();
+            frmEdit.Load(enuNew_Edit, drBudgetDetailAllocate);
 
             //Accept
             if (frmEdit.isAccept)
             {
-                Common.CopyDataRow(drCurrentBudgetDetail, ((DataRowView)bdsBudgetDetail.Current).Row);
-
-                dtBudgetDetail.AcceptChanges();
+                if (enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy)
+                {
+                    if (bdsBudgetDetailAllocate.Position >= 0)
+                        dtBudgetDetailAllocate.ImportRow(drBudgetDetailAllocate);
+                    else
+                        dtBudgetDetailAllocate.Rows.Add(drBudgetDetailAllocate);
+                    bdsBudgetDetailAllocate.Position = bdsBudgetDetailAllocate.Find("Ident00", drBudgetDetailAllocate["Ident00"]);
+                }
+                else
+                {
+                    Common.CopyDataRow(drBudgetDetailAllocate, ((DataRowView)bdsBudgetDetailAllocate.Current).Row);
+                    dtBudgetDetailAllocate.AcceptChanges();
+                }
+              
             }
             else
-                dtBudgetDetail.RejectChanges();
+                dtBudgetDetailAllocate.RejectChanges();
         }
         public override void Delete()
         {
@@ -282,17 +241,17 @@ namespace Epoint.Modules.AR
         }
         private void DeletePromotionBudgetDetail()
         {
-            if (bdsBudgetDetail.Position < 0)
+            if (bdsBudgetDetailAllocate.Position < 0)
                 return;
 
-            drCurrentDetail = ((DataRowView)bdsBudgetDetail.Current).Row;
+            drBudgetDetailAllocate = ((DataRowView)bdsBudgetDetailAllocate.Current).Row;
 
             if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE")))
                 return;
 
-            if (SQLExec.Execute("DELETE OM_PJPDetail WHERE Ma_PJP = '" + (string)drCurrentDetail["Ma_PJP"] + "' AND Ma_Dt = '" + (string)drCurrentDetail["Ma_Dt"] + "'", CommandType.Text))
+            if (SQLExec.Execute("DELETE OM_PJPDetail WHERE Ma_PJP = '" + (string)drBudgetDetailAllocate["Ma_PJP"] + "' AND Ma_Dt = '" + (string)drBudgetDetailAllocate["Ma_Dt"] + "'", CommandType.Text))
             {
-                bdsBudgetDetail.RemoveAt(bdsBudgetDetail.Position);
+                bdsBudgetDetailAllocate.RemoveAt(bdsBudgetDetailAllocate.Position);
             }
         }
 
@@ -304,7 +263,7 @@ namespace Epoint.Modules.AR
                 Common.CopyDataRow(((DataRowView)bdsBudgetHeader.Current).Row, ref drCurrentBudgetHeader);
 
             this.strMa_NS = drCurrentBudgetHeader["Ma_NS"].ToString();
-            bdsBudgetDetail.Filter = "Ma_NS = '" + strMa_NS + "'";
+            bdsBudgetDetailAllocate.Filter = "Ma_NS = '" + strMa_NS + "'";
 
         }
         void btPJPDetail_Click(object sender, EventArgs e)
@@ -378,7 +337,7 @@ namespace Epoint.Modules.AR
         {
 
             string strColumnName = dgvBudgetDetail.dgvGridView.FocusedColumn.Name.ToUpper();
-            if (bdsBudgetDetail.Position < 0)
+            if (bdsBudgetDetailAllocate.Position < 0)
                 return;
 
             EditPromotionBudgetDetail(enuEdit.Edit);
