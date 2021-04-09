@@ -56,6 +56,8 @@ namespace Epoint.Modules.AR
             this.dteNgay_BD = new Epoint.Systems.Controls.txtDateTime();
             this.lbNgay_Ap = new Epoint.Systems.Controls.lblControl();
             this.lbMa_Vt = new Epoint.Systems.Controls.lblControl();
+            this.lblControl8 = new Epoint.Systems.Controls.lblControl();
+            this.txtMa_Ngan_Sach = new Epoint.Systems.Controls.txtTextLookup();
             this.tabEdit.SuspendLayout();
             this.Page1.SuspendLayout();
             this.Page2.SuspendLayout();
@@ -64,23 +66,23 @@ namespace Epoint.Modules.AR
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(485, 438);
+            this.btgAccept.Location = new System.Drawing.Point(538, 525);
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
             this.btgAccept.TabIndex = 1;
             // 
             // tabEdit
             // 
-            this.tabEdit.Size = new System.Drawing.Size(657, 422);
+            this.tabEdit.Size = new System.Drawing.Size(710, 509);
             this.tabEdit.TabIndex = 0;
             // 
             // Page1
             // 
             this.Page1.Controls.Add(this.grTitle1);
-            this.Page1.Size = new System.Drawing.Size(649, 396);
+            this.Page1.Size = new System.Drawing.Size(702, 483);
             // 
             // Page2
             // 
-            this.Page2.Size = new System.Drawing.Size(751, 468);
+            this.Page2.Size = new System.Drawing.Size(649, 396);
             // 
             // grTitle1
             // 
@@ -98,6 +100,7 @@ namespace Epoint.Modules.AR
             this.grTitle1.Controls.Add(this.cbxLoai_Ap_Km);
             this.grTitle1.Controls.Add(this.cbxLoai_KM);
             this.grTitle1.Controls.Add(this.txtTen_CTKM);
+            this.grTitle1.Controls.Add(this.txtMa_Ngan_Sach);
             this.grTitle1.Controls.Add(this.txtMa_CTKM);
             this.grTitle1.Controls.Add(this.lblControl4);
             this.grTitle1.Controls.Add(this.lblControl7);
@@ -109,6 +112,7 @@ namespace Epoint.Modules.AR
             this.grTitle1.Controls.Add(this.lbGia);
             this.grTitle1.Controls.Add(this.dteNgay_Kt);
             this.grTitle1.Controls.Add(this.dteNgay_BD);
+            this.grTitle1.Controls.Add(this.lblControl8);
             this.grTitle1.Controls.Add(this.lbNgay_Ap);
             this.grTitle1.Controls.Add(this.lbMa_Vt);
             this.grTitle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -127,7 +131,7 @@ namespace Epoint.Modules.AR
             this.lblControl5.BackColor = System.Drawing.Color.Transparent;
             this.lblControl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl5.ForeColor = System.Drawing.Color.Blue;
-            this.lblControl5.Location = new System.Drawing.Point(39, 243);
+            this.lblControl5.Location = new System.Drawing.Point(39, 283);
             this.lblControl5.Name = "lblControl5";
             this.lblControl5.Size = new System.Drawing.Size(100, 13);
             this.lblControl5.TabIndex = 147;
@@ -147,12 +151,12 @@ namespace Epoint.Modules.AR
             this.numTSo_Luong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTSo_Luong.ForeColor = System.Drawing.Color.Blue;
             this.numTSo_Luong.KeyFilter = "";
-            this.numTSo_Luong.Location = new System.Drawing.Point(144, 239);
+            this.numTSo_Luong.Location = new System.Drawing.Point(144, 279);
             this.numTSo_Luong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTSo_Luong.Name = "numTSo_Luong";
             this.numTSo_Luong.Scale = 2;
-            this.numTSo_Luong.Size = new System.Drawing.Size(111, 20);
-            this.numTSo_Luong.TabIndex = 130;
+            this.numTSo_Luong.Size = new System.Drawing.Size(158, 20);
+            this.numTSo_Luong.TabIndex = 10;
             this.numTSo_Luong.TabStop = false;
             this.numTSo_Luong.Text = "0.00";
             this.numTSo_Luong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -167,7 +171,7 @@ namespace Epoint.Modules.AR
             this.lblTTien.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien.Location = new System.Drawing.Point(39, 221);
+            this.lblTTien.Location = new System.Drawing.Point(39, 261);
             this.lblTTien.Name = "lblTTien";
             this.lblTTien.Size = new System.Drawing.Size(93, 13);
             this.lblTTien.TabIndex = 146;
@@ -187,12 +191,12 @@ namespace Epoint.Modules.AR
             this.numTTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien.ForeColor = System.Drawing.Color.Blue;
             this.numTTien.KeyFilter = "";
-            this.numTTien.Location = new System.Drawing.Point(144, 217);
+            this.numTTien.Location = new System.Drawing.Point(144, 257);
             this.numTTien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien.Name = "numTTien";
             this.numTTien.Scale = 2;
-            this.numTTien.Size = new System.Drawing.Size(111, 20);
-            this.numTTien.TabIndex = 129;
+            this.numTTien.Size = new System.Drawing.Size(158, 20);
+            this.numTTien.TabIndex = 9;
             this.numTTien.TabStop = false;
             this.numTTien.Text = "0.00";
             this.numTTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -204,11 +208,11 @@ namespace Epoint.Modules.AR
             this.chkAllowEditDisc.AutoSize = true;
             this.chkAllowEditDisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAllowEditDisc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkAllowEditDisc.Location = new System.Drawing.Point(144, 341);
+            this.chkAllowEditDisc.Location = new System.Drawing.Point(144, 389);
             this.chkAllowEditDisc.Name = "chkAllowEditDisc";
             this.chkAllowEditDisc.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAllowEditDisc.Size = new System.Drawing.Size(111, 17);
-            this.chkAllowEditDisc.TabIndex = 135;
+            this.chkAllowEditDisc.TabIndex = 15;
             this.chkAllowEditDisc.Tag = "AllowEditDisc";
             this.chkAllowEditDisc.Text = "Cho phép sửa KM";
             this.chkAllowEditDisc.UseVisualStyleBackColor = true;
@@ -218,11 +222,11 @@ namespace Epoint.Modules.AR
             this.chkAutoFreeItem.AutoSize = true;
             this.chkAutoFreeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAutoFreeItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkAutoFreeItem.Location = new System.Drawing.Point(144, 318);
+            this.chkAutoFreeItem.Location = new System.Drawing.Point(144, 367);
             this.chkAutoFreeItem.Name = "chkAutoFreeItem";
             this.chkAutoFreeItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAutoFreeItem.Size = new System.Drawing.Size(118, 17);
-            this.chkAutoFreeItem.TabIndex = 134;
+            this.chkAutoFreeItem.TabIndex = 14;
             this.chkAutoFreeItem.Tag = "AutoFreeItem";
             this.chkAutoFreeItem.Text = "Tự động tặng hàng";
             this.chkAutoFreeItem.UseVisualStyleBackColor = true;
@@ -234,11 +238,11 @@ namespace Epoint.Modules.AR
             this.chkHan_Km.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkHan_Km.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkHan_Km.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkHan_Km.Location = new System.Drawing.Point(144, 295);
+            this.chkHan_Km.Location = new System.Drawing.Point(144, 329);
             this.chkHan_Km.Name = "chkHan_Km";
             this.chkHan_Km.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkHan_Km.Size = new System.Drawing.Size(65, 17);
-            this.chkHan_Km.TabIndex = 133;
+            this.chkHan_Km.TabIndex = 12;
             this.chkHan_Km.Tag = "Han_KM";
             this.chkHan_Km.Text = "Hạn KM";
             this.chkHan_Km.UseVisualStyleBackColor = true;
@@ -248,11 +252,11 @@ namespace Epoint.Modules.AR
             this.chkTra_Sau.AutoSize = true;
             this.chkTra_Sau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTra_Sau.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkTra_Sau.Location = new System.Drawing.Point(290, 243);
+            this.chkTra_Sau.Location = new System.Drawing.Point(144, 347);
             this.chkTra_Sau.Name = "chkTra_Sau";
             this.chkTra_Sau.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkTra_Sau.Size = new System.Drawing.Size(80, 17);
-            this.chkTra_Sau.TabIndex = 131;
+            this.chkTra_Sau.TabIndex = 13;
             this.chkTra_Sau.Tag = "Tra_Sau";
             this.chkTra_Sau.Text = "Km Trả sau";
             this.chkTra_Sau.UseVisualStyleBackColor = true;
@@ -264,11 +268,11 @@ namespace Epoint.Modules.AR
             this.chkActive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActive.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkActive.Location = new System.Drawing.Point(144, 272);
+            this.chkActive.Location = new System.Drawing.Point(144, 306);
             this.chkActive.Name = "chkActive";
             this.chkActive.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkActive.Size = new System.Drawing.Size(77, 17);
-            this.chkActive.TabIndex = 132;
+            this.chkActive.TabIndex = 11;
             this.chkActive.Tag = "Active";
             this.chkActive.Text = "Hoạt động";
             this.chkActive.UseVisualStyleBackColor = true;
@@ -284,7 +288,7 @@ namespace Epoint.Modules.AR
             this.cbxBreakBy.Name = "cbxBreakBy";
             this.cbxBreakBy.Size = new System.Drawing.Size(158, 21);
             this.cbxBreakBy.strValueList = null;
-            this.cbxBreakBy.TabIndex = 126;
+            this.cbxBreakBy.TabIndex = 5;
             this.cbxBreakBy.UpperCase = false;
             this.cbxBreakBy.UseAutoComplete = false;
             this.cbxBreakBy.UseBindingValue = false;
@@ -300,7 +304,7 @@ namespace Epoint.Modules.AR
             this.cbxHinh_Thuc_Km.Name = "cbxHinh_Thuc_Km";
             this.cbxHinh_Thuc_Km.Size = new System.Drawing.Size(158, 21);
             this.cbxHinh_Thuc_Km.strValueList = null;
-            this.cbxHinh_Thuc_Km.TabIndex = 125;
+            this.cbxHinh_Thuc_Km.TabIndex = 4;
             this.cbxHinh_Thuc_Km.UpperCase = false;
             this.cbxHinh_Thuc_Km.UseAutoComplete = false;
             this.cbxHinh_Thuc_Km.UseBindingValue = false;
@@ -316,7 +320,7 @@ namespace Epoint.Modules.AR
             this.cbxLoai_Ap_Km.Name = "cbxLoai_Ap_Km";
             this.cbxLoai_Ap_Km.Size = new System.Drawing.Size(158, 21);
             this.cbxLoai_Ap_Km.strValueList = null;
-            this.cbxLoai_Ap_Km.TabIndex = 124;
+            this.cbxLoai_Ap_Km.TabIndex = 3;
             this.cbxLoai_Ap_Km.UpperCase = false;
             this.cbxLoai_Ap_Km.UseAutoComplete = false;
             this.cbxLoai_Ap_Km.UseBindingValue = false;
@@ -332,7 +336,7 @@ namespace Epoint.Modules.AR
             this.cbxLoai_KM.Name = "cbxLoai_KM";
             this.cbxLoai_KM.Size = new System.Drawing.Size(223, 21);
             this.cbxLoai_KM.strValueList = null;
-            this.cbxLoai_KM.TabIndex = 123;
+            this.cbxLoai_KM.TabIndex = 2;
             this.cbxLoai_KM.UpperCase = false;
             this.cbxLoai_KM.UseAutoComplete = false;
             this.cbxLoai_KM.UseBindingValue = false;
@@ -354,7 +358,7 @@ namespace Epoint.Modules.AR
             this.txtTen_CTKM.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTen_CTKM.Name = "txtTen_CTKM";
             this.txtTen_CTKM.Size = new System.Drawing.Size(382, 20);
-            this.txtTen_CTKM.TabIndex = 122;
+            this.txtTen_CTKM.TabIndex = 1;
             this.txtTen_CTKM.UseAutoFilter = false;
             // 
             // txtMa_CTKM
@@ -375,7 +379,7 @@ namespace Epoint.Modules.AR
             this.txtMa_CTKM.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_CTKM.Name = "txtMa_CTKM";
             this.txtMa_CTKM.Size = new System.Drawing.Size(159, 20);
-            this.txtMa_CTKM.TabIndex = 121;
+            this.txtMa_CTKM.TabIndex = 0;
             this.txtMa_CTKM.UseAutoFilter = false;
             // 
             // lblControl4
@@ -505,7 +509,7 @@ namespace Epoint.Modules.AR
             this.dteNgay_Kt.Mask = "00/00/0000";
             this.dteNgay_Kt.Name = "dteNgay_Kt";
             this.dteNgay_Kt.Size = new System.Drawing.Size(111, 20);
-            this.dteNgay_Kt.TabIndex = 128;
+            this.dteNgay_Kt.TabIndex = 7;
             // 
             // dteNgay_BD
             // 
@@ -522,7 +526,7 @@ namespace Epoint.Modules.AR
             this.dteNgay_BD.Mask = "00/00/0000";
             this.dteNgay_BD.Name = "dteNgay_BD";
             this.dteNgay_BD.Size = new System.Drawing.Size(111, 20);
-            this.dteNgay_BD.TabIndex = 127;
+            this.dteNgay_BD.TabIndex = 6;
             // 
             // lbNgay_Ap
             // 
@@ -552,11 +556,46 @@ namespace Epoint.Modules.AR
             this.lbMa_Vt.Text = "Mã CTKM";
             this.lbMa_Vt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblControl8
+            // 
+            this.lblControl8.AutoEllipsis = true;
+            this.lblControl8.AutoSize = true;
+            this.lblControl8.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl8.Location = new System.Drawing.Point(38, 238);
+            this.lblControl8.Name = "lblControl8";
+            this.lblControl8.Size = new System.Drawing.Size(77, 13);
+            this.lblControl8.TabIndex = 136;
+            this.lblControl8.Tag = "Ma_Ns";
+            this.lblControl8.Text = "Mã Ngân sách";
+            this.lblControl8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMa_Ngan_Sach
+            // 
+            this.txtMa_Ngan_Sach.bEnabled = true;
+            this.txtMa_Ngan_Sach.bIsLookup = false;
+            this.txtMa_Ngan_Sach.bReadOnly = false;
+            this.txtMa_Ngan_Sach.bRequire = false;
+            this.txtMa_Ngan_Sach.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Ngan_Sach.ColumnsView = null;
+            this.txtMa_Ngan_Sach.CtrlDepend = null;
+            this.txtMa_Ngan_Sach.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Ngan_Sach.KeyFilter = "Ma_Ns";
+            this.txtMa_Ngan_Sach.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Ngan_Sach.ListFilter = new string[0];
+            this.txtMa_Ngan_Sach.Location = new System.Drawing.Point(144, 235);
+            this.txtMa_Ngan_Sach.LookupKeyFilter = "";
+            this.txtMa_Ngan_Sach.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Ngan_Sach.Name = "txtMa_Ngan_Sach";
+            this.txtMa_Ngan_Sach.Size = new System.Drawing.Size(159, 20);
+            this.txtMa_Ngan_Sach.TabIndex = 8;
+            this.txtMa_Ngan_Sach.UseAutoFilter = true;
+            // 
             // frmDiscountConfig_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 471);
+            this.ClientSize = new System.Drawing.Size(734, 558);
             this.Name = "frmDiscountConfig_Edit";
             this.Object_ID = "LITUYEN";
             this.Tag = "ESC";
@@ -601,5 +640,7 @@ namespace Epoint.Modules.AR
         private Systems.Controls.txtDateTime dteNgay_BD;
         private Systems.Controls.lblControl lbNgay_Ap;
         private Systems.Controls.lblControl lbMa_Vt;
-	}
+        private Systems.Controls.txtTextLookup txtMa_Ngan_Sach;
+        private Systems.Controls.lblControl lblControl8;
+    }
 }

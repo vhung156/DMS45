@@ -26,15 +26,18 @@ namespace Epoint.Modules.AR
         #region Phuong thuc
 
         public frmDiscountConfig_Edit()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
             this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
             this.cbxHinh_Thuc_Km.SelectedValueChanged += new EventHandler(cbxHinh_Thuc_Km_SelectedValueChanged);
             this.cbxLoai_KM.SelectedValueChanged += new EventHandler(cbxLoai_KM_SelectedValueChanged);
-		}
-		public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
+
+            txtMa_Ngan_Sach.Validating += new CancelEventHandler(txtMa_Ngan_Sach_Validating);
+
+        }
+        public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
         {
             if (Element.Is_Running)
             {
@@ -60,16 +63,16 @@ namespace Epoint.Modules.AR
 
                 this.ShowDialog();
             }
-		}
+        }
 
-		private void LoadDicName()
-		{
-
-		}
-
-		public override bool FormCheckValid()
+        private void LoadDicName()
         {
-            bool bvalid = true ;
+
+        }
+
+        public override bool FormCheckValid()
+        {
+            bool bvalid = true;
             if (txtMa_CTKM.Text.Trim() == string.Empty)
             {
                 Common.MsgOk(Languages.GetLanguage("Ma_CTKM") + " " +
@@ -82,7 +85,7 @@ namespace Epoint.Modules.AR
                 Common.MsgOk(Languages.GetLanguage("Ten_CTKM") + " " +
                         Languages.GetLanguage("Not_Null"));
                 return false;
-            }	
+            }
             return bvalid;
         }
 
@@ -121,7 +124,7 @@ namespace Epoint.Modules.AR
             }
 
             return true;
-        }	
+        }
         private void BindingCombobox()
         {
             cbxLoai_KM.DataSource = SQLExec.ExecuteReturnDt(" sp_OM_GetCombovalue @Key = 'DiscountType'", CommandType.Text);
@@ -192,7 +195,33 @@ namespace Epoint.Modules.AR
             this.isAccept = false;
             this.Close();
         }
-		
-        #endregion 
-	}
+        void txtMa_Ngan_Sach_Validating(object sender, CancelEventArgs e)
+        {
+
+            string strValue = txtMa_Ngan_Sach.Text.Trim();
+
+            bool bRequire = false;
+
+            DataRow drLookup = Lookup.ShowQuickLookup("Ma_Ns", strValue, bRequire, "", "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Ngan_Sach.Text = string.Empty;
+                numTSo_Luong.Value = 0;
+                numTTien.Value = 0;
+            }
+            else
+            {
+                txtMa_Ngan_Sach.Text = drLookup["Ma_Ns"].ToString();
+                numTSo_Luong.Value = Convert.ToDouble(drLookup["QtyAlloc"]);
+                numTTien.Value = Convert.ToDouble(drLookup["AmtAlloc"]);
+            }
+
+        }
+
+    }
+    #endregion
 }
