@@ -297,6 +297,66 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
             dtEditCtDisc.AcceptChanges();
         }
+        public static void Calc_Chiet_Khau_ForLine(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_Vt, string strMa_CtKm, string strStt_Km, bool isEditKm, ref double dbAmtAlloc)
+        {
+            DataTable dtEditCt = frmEditCt.dtEditCt;
+            DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
+
+
+            double dbTien = 0, dbTien4_Old = 0, dbTien4 = 0, dbTien_Line4 = 0, dbTien_Line4_Org = 0, dbTien_Ck = 0;
+
+            foreach (DataRow drEditCt in dtEditCt.Select("Ma_Vt = '" + strMa_Vt + "' AND Hang_Km = 0"))
+            {
+                dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
+                dbTien4_Old = Convert.ToDouble(drEditCt["Tien4"]);
+
+                dbTien_Line4_Org = Math.Round(dbTien * dbAmtPercent / 100);
+
+                if (dbAmtAlloc >= 0)
+                    dbTien_Line4 = dbAmtAlloc <= dbTien_Line4_Org ? dbAmtAlloc : dbTien_Line4_Org;
+
+                dbTien_Ck = dbTien_Line4 + Convert.ToDouble(drEditCt["Tien_Ck"]);
+                dbTien4 = dbTien_Ck + Convert.ToDouble(drEditCt["Tien_M4"]) + Convert.ToDouble(drEditCt["Tien_Ck_M4"]);
+
+                dbTien = dbTien - dbTien4;
+                //dbTien_Ck += dbTien_Line4; // tiền chiết khấu cộng dồn.
+                drEditCt["Tien_Ck"] = dbTien_Ck;
+
+                drEditCt["Chiet_Khau"] = Math.Round((dbTien_Line4 / dbTien) * 100, 7);
+                drEditCt["Tien2"] = drEditCt["Tien_Nt2"] = dbTien;
+                drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = dbTien4;
+
+                drEditCt["Tien3"] = 0;
+                drEditCt["Tien_Nt3"] = 0;
+
+                drEditCt["Ma_So"] = strStt_Km;
+
+                if (drEditCt["Ma_CtKm"].ToString() == string.Empty)
+                    drEditCt["Ma_CtKm"] = strMa_CtKm;
+                else
+                    drEditCt["Ma_CtKm1"] = strMa_CtKm;
+                drEditCt["Is_EditDisc"] = isEditKm;
+
+                //Add vào bảng disc
+
+
+
+                if (dbAmtAlloc > 0)//Cập nhật lại ngân sách sau khi add km
+                    dbAmtAlloc = dbAmtAlloc - dbTien_Line4;
+
+                DataRow drDisc = dtEditCtDisc.NewRow();
+                drDisc["Stt0"] = drEditCt["Stt0"];
+                drDisc["Ma_CTKM"] = strMa_CtKm;
+                drDisc["Stt_Km"] = strStt_Km;
+                drDisc["Tien4_Org"] = dbTien_Line4_Org;
+                drDisc["Tien4"] = dbTien_Line4;
+
+                dtEditCtDisc.Rows.Add(drDisc);
+                drEditCt.AcceptChanges();
+            }
+            dtEditCt.AcceptChanges();
+            dtEditCtDisc.AcceptChanges();
+        }
         public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
