@@ -41,7 +41,7 @@ namespace Epoint.Modules.AR
             }
 
         }
-        public static DataTable GetDiscoutProg(DateTime FromDate, string strMa_Dt,string strMa_Vt_Disc_List)
+        public static DataTable GetDiscoutProg(DateTime FromDate, string strMa_Dt, string strMa_Vt_Disc_List)
         {
             Hashtable htPara = new Hashtable();
             htPara.Add("NGAY_CT", Library.DateToStr(FromDate));
@@ -106,7 +106,7 @@ namespace Epoint.Modules.AR
             htDisc["NGAY_CT2"] = ToDate;
             htDisc.Add("MA_DVCS", Element.sysMa_DvCs);
             return SQLExec.ExecuteReturnDs("sp_GetDiscCountProgAll", htDisc, CommandType.StoredProcedure);
-           
+
         }
         public static DataSet GetDiscoutProgManual(string FromDate, string ToDate)
         {
@@ -124,7 +124,7 @@ namespace Epoint.Modules.AR
             htPara.Add("MA_CTKM", Ma_CTKM);
             htPara.Add("MA_DT", Ma_Dt);
             DataTable dt = SQLExec.ExecuteReturnDt("SP_OM_CheckCustInGroup", htPara, CommandType.StoredProcedure);
-            if(dt.Rows.Count >0)
+            if (dt.Rows.Count > 0)
                 if ((bool)(dt.Rows[0]["Value"]))
                 {
                     return true;
@@ -147,9 +147,20 @@ namespace Epoint.Modules.AR
             htParaBreaby["MA_CTKM"] = strMa_CtKm;
             htParaBreaby["MA_VT"] = strMa_Vt_Disc;
             htParaBreaby["QTYAMT"] = dbAmt; // Q: Qty, A : Amount
-            return  SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
+            return SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
 
         }
+
+        //public static DataTable GetDiscBreakForBudget(string strMa_CtKm, string strMa_Vt_Disc, double dbAmt)
+        //{
+        //    Hashtable htParaBreaby = new Hashtable();
+        //    htParaBreaby["MA_CTKM"] = strMa_CtKm;
+        //    htParaBreaby["MA_VT"] = strMa_Vt_Disc;
+        //    htParaBreaby["QTYAMT"] = dbAmt; // Q: Qty, A : Amount
+        //    return SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
+
+        //}
+
         public static DataTable GetDiscBreakInvoice(string strMa_CtKm, double dbAmt)
         {
             Hashtable htParaBreaby = new Hashtable();
@@ -159,7 +170,7 @@ namespace Epoint.Modules.AR
             return SQLExec.ExecuteReturnDt("OM_GetDiscBreakInvoice", htParaBreaby, CommandType.StoredProcedure);
 
         }
-        public static DataTable GetDiscBreakInvoice(string strMa_CtKm, DataTable dtItemSale,double dbAmt)
+        public static DataTable GetDiscBreakInvoice(string strMa_CtKm, DataTable dtItemSale, double dbAmt)
         {
             DataTable dtBreak = new DataTable();
             SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
@@ -263,7 +274,7 @@ namespace Epoint.Modules.AR
                 drEditCt["Tien3"] = 0;
                 drEditCt["Tien_Nt3"] = 0;
 
-                 drEditCt["Ma_So"] = strStt_Km;
+                drEditCt["Ma_So"] = strStt_Km;
 
                 if (drEditCt["Ma_CtKm"].ToString() == string.Empty)
                     drEditCt["Ma_CtKm"] = strMa_CtKm;
@@ -286,14 +297,14 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
             dtEditCtDisc.AcceptChanges();
         }
-        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm,string strStt_Km, bool isEditKm)
+        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
             double dbTien = 0, dbTien4 = 0, dbTien4_N = 0, dbTien_Ck = 0;
             foreach (DataRow drEditCt in dtEditCt.Rows)
-            {               
-                if(Common.Inlist(drEditCt["Ma_Vt"].ToString(),Ma_Vt_List)) // Những dòng được chiết khấu
+            {
+                if (Common.Inlist(drEditCt["Ma_Vt"].ToString(), Ma_Vt_List)) // Những dòng được chiết khấu
                 {
                     dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
                     dbTien4 = Convert.ToDouble(drEditCt["Tien4"]);
@@ -324,7 +335,7 @@ namespace Epoint.Modules.AR
 
                     DataRow drDisc = dtEditCtDisc.NewRow();
                     drDisc["Stt0"] = drEditCt["Stt0"];
-                    drDisc["Ma_CTKM"] = strMa_CtKm; 
+                    drDisc["Ma_CTKM"] = strMa_CtKm;
                     drDisc["Stt_Km"] = strStt_Km;
                     drDisc["Tien4_Org"] = dbTien4_N;
                     drDisc["Tien4"] = dbTien4_N;
@@ -332,7 +343,7 @@ namespace Epoint.Modules.AR
                     dtEditCtDisc.Rows.Add(drDisc);
                 }
                 drEditCt.AcceptChanges();
-                
+
             }
             dtEditCt.AcceptChanges();
         }
@@ -356,7 +367,7 @@ namespace Epoint.Modules.AR
                 dbTien_CkInvoice = dbTien_CkInvoice_OLD + dbTien4_N; // tiền chiết khấu invoice cộng dồn.
                 drEditCt["Tien_CkInvoice"] = dbTien_CkInvoice;
 
-                drEditCt["Chiet_Khau"] = Math.Round((dbTien4/dbTien)*100,7);
+                drEditCt["Chiet_Khau"] = Math.Round((dbTien4 / dbTien) * 100, 7);
                 drEditCt["Tien2"] = drEditCt["Tien_Nt2"] = dbTien;
                 drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = dbTien4;
 
@@ -367,7 +378,7 @@ namespace Epoint.Modules.AR
                     drEditCt["Ma_CTKM_Group"] = strMa_CtKm;
                 else
                     drEditCt["Ma_CTKM_Group1"] = strMa_CtKm;
-                
+
                 drEditCt["Is_EditDisc"] = isEditKm;
 
                 DataRow drDisc = dtEditCtDisc.NewRow();
@@ -429,8 +440,8 @@ namespace Epoint.Modules.AR
             }
             dtEditCt.AcceptChanges();
         }
-        
-        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmt,bool isManual)
+
+        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmt, bool isManual)
         {
 
             string Ma_Ct_CKHD = "CKHOADON_M";
@@ -440,14 +451,14 @@ namespace Epoint.Modules.AR
             DataTable dtEditCt = frmEditCt.dtEditCt;
             //DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
             frmEditCt.dtEditCtDisc = Common.FilterDatatable(frmEditCt.dtEditCtDisc, "MA_CTKM <> '" + Ma_Ct_CKHD + "'");
-          
-           
+
+
             foreach (DataRow drEditCt in dtEditCt.Rows)
             {
                 if ((bool)drEditCt["Hang_Km"]) // Đối với hàng KM nhập tay
                     continue;
                 dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
-                dbTien4_Old = Convert.ToDouble(drEditCt["Tien4"]);   
+                dbTien4_Old = Convert.ToDouble(drEditCt["Tien4"]);
                 dbTien4 = Convert.ToDouble(drEditCt["Tien4"]);
                 dbTien_Ck_M4 = Math.Round(dbTien * dbAmtPercent / 100); /// Tien nhap tay duoi detail
                 dbTien_CkInvoice_Old = Convert.ToDouble(drEditCt["Tien_CkInvoice"]);
@@ -485,9 +496,9 @@ namespace Epoint.Modules.AR
                 drEditCt.AcceptChanges();
             }
 
-            double dbAmt_InvoiceM = Common.SumDCValue(dtEditCt, "Tien_Ck_M4","");
+            double dbAmt_InvoiceM = Common.SumDCValue(dtEditCt, "Tien_Ck_M4", "");
             double dbChenh_Lech = dbAmt - dbAmt_InvoiceM;
-            if (dbChenh_Lech !=0)
+            if (dbChenh_Lech != 0)
             {
                 foreach (DataRow drEditCtCheck in dtEditCt.Select("Tien_Ck_M4 > 0"))
                 {
@@ -497,7 +508,7 @@ namespace Epoint.Modules.AR
                     drEditCtCheck["Tien2"] = drEditCtCheck["Tien_Nt2"] = Convert.ToDouble(drEditCtCheck["Tien_Nt9"]) - Convert.ToDouble(drEditCtCheck["Tien4"]);
                     Voucher.Calc_Tien(drEditCtCheck);
 
-                    foreach (DataRow drEditDisc in frmEditCt.dtEditCtDisc.Select("Ma_CTKM = '"+Ma_Ct_CKHD+"' AND Stt_Km = 'CKHO001' AND Stt0 = '" + drEditCtCheck["Stt0"] + "'"))
+                    foreach (DataRow drEditDisc in frmEditCt.dtEditCtDisc.Select("Ma_CTKM = '" + Ma_Ct_CKHD + "' AND Stt_Km = 'CKHO001' AND Stt0 = '" + drEditCtCheck["Stt0"] + "'"))
                     {
                         drEditDisc["Tien4"] = drEditDisc["Tien4_Org"] = Convert.ToDouble(drEditDisc["Tien4"]) + dbChenh_Lech;
                         break;
@@ -537,7 +548,7 @@ namespace Epoint.Modules.AR
                     continue;
 
                 if ((bool)drEditCt["Hang_Km"] && Convert.ToDouble(drEditCt["Tien_Nt9"]) == 0)
-                { 
+                {
                     //&& (string)drEditCt["Ma_CtKm_M"] != string.Empty
                     //if ((string)drEditCt["Ma_CtKm"] != "" || (string)drEditCt["Ma_CtKm1"] != "") // Chỉ dòng hàng KM tự động
                     if ((string)drEditCt["Ma_CtKm_M"] == string.Empty && (string)drEditCt["Ma_So"] != string.Empty) //Là km tự động
@@ -545,7 +556,7 @@ namespace Epoint.Modules.AR
                 }
 
                 drEditCt["Ma_CtKm"] = drEditCt["Ma_CTKM_Group"] = drEditCt["Ma_CTKM_Group1"] = drEditCt["Ma_CtKm1"] = drEditCt["Ma_So"] = "";
-                
+
                 if (drEditCt["Ma_So"].ToString() != "CKHOADON")
                 {
                     drEditCt["Ma_So"] = string.Empty;
@@ -557,23 +568,23 @@ namespace Epoint.Modules.AR
                 drEditCt["Tien_CkInvoice"] = drEditCt["Tien_Ck_M4"];
                 drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = Convert.ToDouble(drEditCt["Tien_M4"]) + Convert.ToDouble(drEditCt["Tien_Ck_M4"]);
                 if (Convert.ToDouble(drEditCt["Tien_Nt9"]) != 0)
-                    drEditCt["Chiet_Khau"] = Math.Round( (Convert.ToDouble(drEditCt["Tien4"]) * 100) / Convert.ToDouble(drEditCt["Tien_Nt9"]),8);
+                    drEditCt["Chiet_Khau"] = Math.Round((Convert.ToDouble(drEditCt["Tien4"]) * 100) / Convert.ToDouble(drEditCt["Tien_Nt9"]), 8);
                 else
                     drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = drEditCt["Tien_M4"] = 0;
-                
+
                 //Voucher.Calc_Chiet_Khau(drEditCt);
                 Voucher.Calc_Thue_Vat(drEditCt);
 
                 dtTemp.ImportRow(drEditCt);
             }
             dtEditCt = dtTemp;
-           
-            
+
+
         }
         public static void OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
         {
             if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
-            {                
+            {
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "OM_SaveOM_SalesDics";
                 command.CommandType = CommandType.StoredProcedure;
@@ -585,7 +596,7 @@ namespace Epoint.Modules.AR
                     SqlDbType = SqlDbType.Structured,
                     ParameterName = "@EditDisc",
                     TypeName = "TVP_DiscAmt",
-                    Value =  frmEditCt.dtEditCtDisc
+                    Value = frmEditCt.dtEditCtDisc
                 };
                 command.Parameters.Add(parameter);
                 try
@@ -600,9 +611,9 @@ namespace Epoint.Modules.AR
                     command.ExecuteNonQuery();
                     MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
                 }
-               
+
             }
-        
+
         }
 
         public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur)
@@ -657,7 +668,7 @@ namespace Epoint.Modules.AR
                 drFreeItemNewAdd["Hang_Km"] = true;
                 drFreeItemNewAdd["Auto_Cost"] = true;
                 drFreeItemNewAdd["Ma_CtKM"] = strMa_CtKm;
-                drFreeItemNewAdd["Ma_CtKM_Group"] = drFreeItemNewAdd["Ma_CtKM_Group1"]   = drFreeItemNewAdd["Ma_CtKM_M"]= "";
+                drFreeItemNewAdd["Ma_CtKM_Group"] = drFreeItemNewAdd["Ma_CtKM_Group1"] = drFreeItemNewAdd["Ma_CtKM_M"] = "";
                 drFreeItemNewAdd["Is_EditDisc"] = is_EditDisc;
                 drFreeItemNewAdd["He_So9"] = 1;
 
@@ -692,236 +703,328 @@ namespace Epoint.Modules.AR
             }
 
         }
-
-
-      
-    #region L - Loại khuyến mãi dòng
-/*
-        private void CalcDiscount(frmVoucher_Edit frmEditCt, DateTime dteNgay_Ct, string strMa_Dt, string strStt) //ref DataTable dtEditCt
+        public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur, ref double dbQtyAlloc)
         {
-
-            //Lấy các chương trình khuyến mãi / chiết khấu đang chạy
-            DataTable dtDiscCount = Discount.GetDiscoutProg(dteNgay_Ct, strMa_Dt);
-
-            DataTable dtEditCt = frmEditCt.dtEditCt;
-            DataTable dtDiscFreeItemAddNew;
-
-            Discount.ClearPromotionAuto(ref dtEditCt);
-
-            if (dtDiscCount.Rows.Count == 0)
+            double dbSo_Luong_Km = 0;
+            if (dbDiscTime == 0)
                 return;
 
-            frmEditCt.dtDiscFreeItem = dtEditCt.Clone();
+            Hashtable htFreeItem = new Hashtable();
+            htFreeItem["MA_CTKM"] = strMa_CtKm;
+            htFreeItem["STT"] = strSttKM;
+            htFreeItem["DISCTIME"] = dbDiscTime;
+            htFreeItem["QTYALLOC"] = dbQtyAlloc;
+            htFreeItem["NGAY_CT"] = Convert.ToDateTime(frmEditCt.drEditPh["Ngay_Ct"]);
+            htFreeItem["MA_DVCS"] = Element.sysMa_DvCs;
+            DataTable dtDiscFreeItem = SQLExec.ExecuteReturnDt("OM_GetDiscFreeItem", htFreeItem, CommandType.StoredProcedure);
 
-            frmEditCt.dtEditCtDisc = new DataTable("OM_SalesDics");
-            DataColumn dcStt0 = new DataColumn("Stt0", typeof(string));
-            dcStt0.DefaultValue = "";
-            frmEditCt.dtEditCtDisc.Columns.Add(dcStt0);
-            DataColumn dcMa_Vt = new DataColumn("Ma_CTKM", typeof(string));
-            dcMa_Vt.DefaultValue = "";
-            frmEditCt.dtEditCtDisc.Columns.Add(dcMa_Vt);
-
-            DataColumn dcTien4 = new DataColumn("Tien4", typeof(double));
-            dcTien4.DefaultValue = 0;
-            frmEditCt.dtEditCtDisc.Columns.Add(dcTien4);
-
-
-            string strMa_Vt = string.Empty;
-
-            //double dbDiscAmt = 0; // Tiền KM
-            //double dbDiscPer = 0; // % khuyến mãi
-
-            double dbSo_luong = 0;
-            double dbNgan_Sach = 0;
-            double dbSaleAmt = 0;
-            double dbTien = 0;
-            double dbTien4 = 0;
-            double dbTTien4 = 0;
-
-            foreach (DataRow drDisc in dtDiscCount.Rows)
+            foreach (DataRow drFreeItem in dtDiscFreeItem.Rows)
             {
-                string strMa_CtKm = drDisc["Ma_CTKM"].ToString();
-                string strLoai_CtKm = drDisc["Loai_Km"].ToString();
-                string strLoai_Ap_KM = drDisc["Loai_Ap_KM"].ToString();
-                string strHinh_Thuc_KM = drDisc["Hinh_Thuc_KM"].ToString();
-                string strBreakBy = drDisc["BreakBy"].ToString(); // Kiểm tra theo
-                bool isEditKm = Convert.ToBoolean(drDisc["AllowEditDisc"]);
-                dtDiscFreeItemAddNew = dtEditCt.Clone();
+                dbSo_Luong_Km = Convert.ToDouble(drFreeItem["So_Luong_Km"]);
+                DataRow drFreeItemNewAdd = frmEditCt.dtDiscFreeItem.NewRow();
+                Common.SetDefaultDataRow(ref drFreeItemNewAdd);
+                Common.CopyDataRow(drEditCtCur, drFreeItemNewAdd);
 
 
-                if (!Discount.CheckDtOnProgID(strMa_CtKm, strMa_Dt))
-                    continue;
 
-                dbNgan_Sach = strHinh_Thuc_KM == "IN" ? Convert.ToDouble(drDisc["TSo_Luong"]) : Convert.ToDouble(drDisc["TTien"]);
-                if (dbNgan_Sach != 0)
+                if (frmEditCt.dtDiscFreeItem.Rows.Count > 0)
+                    drFreeItemNewAdd["Stt0"] = Math.Max(Common.MaxDCValue(frmEditCt.dtEditCt, "Stt0"), Common.MaxDCValue(frmEditCt.dtDiscFreeItem, "Stt0")) + 1.0;
+                else
+                    drFreeItemNewAdd["Stt0"] = Common.MaxDCValue(frmEditCt.dtEditCt, "Stt0") + 1.0;
+                drFreeItemNewAdd["Deleted"] = false;
+                drFreeItemNewAdd["Ma_Vt"] = drFreeItem["Ma_Vt"].ToString();
+                drFreeItemNewAdd["Ten_Vt"] = drFreeItem["Ten_Vt"].ToString();
+                drFreeItemNewAdd["So_Luong9"] = dbSo_Luong_Km;
+                drFreeItemNewAdd["So_Luong"] = dbSo_Luong_Km;
+                drFreeItemNewAdd["Gia_Dft"] = drFreeItem["So_Luong_Org"];
+                drFreeItemNewAdd["Dvt"] = drFreeItem["Dvt"].ToString();
+                drFreeItemNewAdd["Ma_Kho"] = drFreeItem["Ma_Kho"].ToString() != string.Empty ? drFreeItem["Ma_Kho"] : drFreeItemNewAdd["Ma_Kho"];
+                if (dtDiscFreeItem.Columns.Contains("Ma_Lo"))
                 {
-                    Hashtable htNs = new Hashtable();
-                    htNs["MA_CTKM"] = strMa_CtKm;
-                    htNs["STT"] = strStt;
-                    DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("OM_Getbudget", htNs, CommandType.StoredProcedure);
-                    dbNgan_Sach = Convert.ToDouble(dtNgan_Sach.Rows[0]["Budget"]);
-                    dbSaleAmt = Convert.ToDouble(dtNgan_Sach.Rows[0]["SalesAmt"]);
-
+                    drFreeItemNewAdd["Ma_Lo"] = drFreeItem["Ma_Lo"];
+                    drFreeItemNewAdd["Han_Sd"] = drFreeItem["Han_Sd"];
                 }
+                drFreeItemNewAdd["Ma_So"] = strSttKM;
+                drFreeItemNewAdd["Gia_Nt9"] = 0;
+                drFreeItemNewAdd["Tien_Nt9"] = 0;
+                drFreeItemNewAdd["Gia_Nt2"] = 0;
+                drFreeItemNewAdd["Gia2"] = 0;
+                drFreeItemNewAdd["Tien_Nt2"] = 0;
+                drFreeItemNewAdd["Tien2"] = 0;
+                drFreeItemNewAdd["Tien_Nt3"] = 0;
+                drFreeItemNewAdd["Tien3"] = 0;
+                drFreeItemNewAdd["Tien_Nt4"] = 0;
+                drFreeItemNewAdd["Tien4"] = 0;
+                drFreeItemNewAdd["Tien_M4"] = drFreeItemNewAdd["Tien_Ck_M4"] = drFreeItemNewAdd["Tien_Ck"] = drFreeItemNewAdd["Tien_CkInvoice"] = 0;
+                drFreeItemNewAdd["Hang_Km"] = true;
+                drFreeItemNewAdd["Auto_Cost"] = true;
+                drFreeItemNewAdd["Ma_CtKM"] = strMa_CtKm;
+                drFreeItemNewAdd["Ma_CtKM_Group"] = drFreeItemNewAdd["Ma_CtKM_Group1"] = drFreeItemNewAdd["Ma_CtKM_M"] = "";
+                drFreeItemNewAdd["Is_EditDisc"] = is_EditDisc;
+                drFreeItemNewAdd["He_So9"] = 1;
 
-                #region L - Loại khuyến mãi dòng
-                if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
+
+                DataRow drDmVt = DataTool.SQLGetDataRowByID("LIVATTU", "Ma_Vt", dtDiscFreeItem.Rows[0]["Ma_Vt"].ToString());
+                string strDvt_Chuan = (string)drDmVt["Dvt"];
+
+                if (dtDiscFreeItem.Rows[0]["Dvt"].ToString() == strDvt_Chuan)
+                    drFreeItemNewAdd["He_So9"] = 1;
+                else
+                    for (int i = 1; i <= 3; i++)
+                        if ((string)drDmVt["Dvt" + i] == (string)drFreeItemNewAdd["Dvt"])
+                            drFreeItemNewAdd["He_So9"] = drDmVt["He_So" + i];
+
+                if (dtDiscFreeItem.Columns.Contains("He_So9"))
                 {
-
-                    double dbQty = 0, dbAmt = 0;
-
-                    string strMa_Vt_Disc = string.Empty;
-                    string strMa_Vt_Disc_List = string.Empty;
-
-                    DataTable dtItemSale = dtEditCt.DefaultView.ToTable(true, "Ma_Vt");
-                    //DataTable dtItemSale = SQLExec.ExecuteReturnDt("select * from OM_DiscItem WHERE Ma_CTKM = '" + strMa_CtKm + "'");
-                    foreach (DataRow dritem in dtItemSale.Rows)
-                    {
-                        strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
-                        strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
-                        dbQty = Common.SumDCValue(dtEditCt, "So_Luong", "MA_VT = '" + strMa_Vt_Disc + "' AND Hang_Km  <> true");
-                        dbAmt = Common.SumDCValue(dtEditCt, "Tien_Nt9", "MA_VT = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
-
-                        Hashtable htParaBreaby = new Hashtable();
-                        htParaBreaby["MA_CTKM"] = strMa_CtKm;
-                        htParaBreaby["MA_VT"] = strMa_Vt_Disc;
-                        htParaBreaby["QTYAMT"] = strBreakBy == "Q" ? dbQty : dbAmt; // Q: Qty, A : Amount
-                        DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
-                        if (dtBreakBy.Rows.Count > 0)
-                        {
-
-                            double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
-                            string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
-                            double dbBreakQty = Convert.ToDouble(dtBreakBy.Rows[0]["BreakQty"]);
-                            int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);
-
-                            if (strHinh_Thuc_KM == "PP") // áp dụng cho Chiết khấu dòng %
-                            {
-                                Discount.Calc_Chiet_Khau_ForLine(frmEditCt, dbAmtDisc, strMa_Vt_Disc, strMa_CtKm, isEditKm);
-                            }
-                            else if (strHinh_Thuc_KM == "II") // Chiết khấu tiền 
-                            {
-                                dbAmtDisc *= iDiscTime;
-                                double dbPer = Math.Round((dbAmtDisc / dbTien) * 100, 7);
-                                Discount.Calc_Chiet_Khau_ForLine(frmEditCt, dbPer, strMa_Vt_Disc, strMa_CtKm, isEditKm);
-                            }
-                            else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
-                            {
-                                Discount.CalDiscountFreeItem(frmEditCt, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
-                            }
-                        }
-                    }
+                    drFreeItemNewAdd["He_So9"] = drFreeItem["He_So9"];
                 }
-                #endregion
-                #region G - Khuyến mãi theo nhóm mặt hàng
-                else if (strLoai_CtKm == "G") // Loại khuyến mãi nhóm
-                {
-                    double dbQty = 0, dbAmt = 0;
-                    string strMa_Vt_Disc = string.Empty;
-                    string strMa_Vt_Disc_List = string.Empty;
+                frmEditCt.dtDiscFreeItem.Rows.Add(drFreeItemNewAdd);
 
-                    DataTable dtDiscItemSale = SQLExec.ExecuteReturnDt("select * from OM_DiscItem WHERE Ma_CTKM = '" + strMa_CtKm + "'");
-                    foreach (DataRow dritem in dtDiscItemSale.Rows)
-                    {
-                        strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
-                        strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
-                        dbQty += Common.SumDCValue(dtEditCt, "So_Luong", "Ma_Vt = '" + strMa_Vt_Disc + "' AND Hang_Km <> true");
-                        dbAmt += Common.SumDCValue(dtEditCt, "Tien_Nt9", "Ma_Vt = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
+                //DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
+                DataRow drDisc = frmEditCt.dtEditCtDisc.NewRow();
+                drDisc["Stt0"] = drFreeItemNewAdd["Stt0"];
+                drDisc["Ma_CTKM"] = strMa_CtKm;
+                drDisc["Stt_Km"] = strSttKM;
+                drDisc["Tien4_Org"] = drFreeItem["So_Luong_Org"];
+                drDisc["Tien4"] = dbSo_Luong_Km;
 
-                    }
+                frmEditCt.dtEditCtDisc.Rows.Add(drDisc);
 
-                    Hashtable htParaBreaby = new Hashtable();
-                    htParaBreaby["MA_CTKM"] = strMa_CtKm;
-                    htParaBreaby["QTYAMT"] = strBreakBy == "Q" ? dbQty : dbAmt; // Q: Qty, A : Amount
-                    DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
-
-                    if (dtBreakBy.Rows.Count > 0)
-                    {
-                        double dbBreakAmt = Convert.ToDouble(dtBreakBy.Rows[0]["BreakAmt"]);
-                        string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
-                        double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
-                        int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
-                        if (strHinh_Thuc_KM == "PP")
-                        {
-                            Discount.Calc_Chiet_Khau_ForGroup(frmEditCt, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, isEditKm);
-
-                        }
-                        else if (strHinh_Thuc_KM == "II")
-                        {
-                            dbAmtDisc *= iDiscTime;
-                            double dbPer = Math.Round((dbAmtDisc / dbAmt) * 100, 7);
-                            Discount.Calc_Chiet_Khau_ForGroup(frmEditCt, dbPer, strMa_Vt_Disc_List, strMa_CtKm, isEditKm);
-                        }
-                        else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
-                        {
-                            //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
-                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
-                        }
-                        dtEditCt.AcceptChanges();
-
-                    }
-
-                    Calc_Thue_Vat_All();
-
-                }
-                #endregion
-
-                #region I - Chiết khấu hóa đơn
-
-                if (strLoai_CtKm == "I") // Loại Khuyến mãi/ CK Invoice
-                {
-
-                    double dbTTien = 0;
-                    double dbTien_CkInvoice = 0;
-
-                    #region Kiểm tra theo số tiền
-                    if (strBreakBy == "A") // Kiểm tra theo số tiền
-                    {
-
-                        dbTTien = Convert.ToDouble(Common.SumDCValue(dtEditCt, "Tien_Nt9", ""));//+ Convert.ToDouble(drEditCt["Tien4"]);
-                        Hashtable htParaBreaby = new Hashtable();
-                        htParaBreaby["MA_CTKM"] = strMa_CtKm;
-                        htParaBreaby["QTYAMT"] = dbTTien;
-                        DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreakInvoice", htParaBreaby, CommandType.StoredProcedure);
-
-                        if (dtBreakBy.Rows.Count > 0)
-                        {
-                            string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
-                            double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
-                            int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
-
-                            if (strHinh_Thuc_KM == "II")
-                            {
-                                dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
-                            }
-                            Discount.Calc_Chiet_Khau_ForInvoice(frmEditCt, dbAmtDisc, strMa_CtKm, isEditKm);
-                        }
-
-                    }
-                    #endregion
-                }
-
-                #endregion
+                if (dbQtyAlloc > 0)//Cập nhật lại ngân sách sau khi add km
+                    dbQtyAlloc = dbQtyAlloc - dbSo_Luong_Km;
 
             }
 
-
-            foreach (DataRow drit in frmEditCt.dtDiscFreeItem.Rows)
-            {
-                Voucher.Calc_So_Luong(drit);
-                dtEditCt.ImportRow(drit);
-            }
-            frmEditCtdtDiscFreeItem.Rows.Clear();
-
-            dtEditCt.AcceptChanges();
-            bdsEditCt.DataSource = dtEditCt;
-            dgvEditCt1.DataSource = bdsEditCt;
-
-            Discount.OM_SaveOM_SalesDics(this);
-            EpointMessage.MsgOk("Đã tính xong KM");
         }
 
-        */
+
+        #region L - Loại khuyến mãi dòng
+        /*
+                private void CalcDiscount(frmVoucher_Edit frmEditCt, DateTime dteNgay_Ct, string strMa_Dt, string strStt) //ref DataTable dtEditCt
+                {
+
+                    //Lấy các chương trình khuyến mãi / chiết khấu đang chạy
+                    DataTable dtDiscCount = Discount.GetDiscoutProg(dteNgay_Ct, strMa_Dt);
+
+                    DataTable dtEditCt = frmEditCt.dtEditCt;
+                    DataTable dtDiscFreeItemAddNew;
+
+                    Discount.ClearPromotionAuto(ref dtEditCt);
+
+                    if (dtDiscCount.Rows.Count == 0)
+                        return;
+
+                    frmEditCt.dtDiscFreeItem = dtEditCt.Clone();
+
+                    frmEditCt.dtEditCtDisc = new DataTable("OM_SalesDics");
+                    DataColumn dcStt0 = new DataColumn("Stt0", typeof(string));
+                    dcStt0.DefaultValue = "";
+                    frmEditCt.dtEditCtDisc.Columns.Add(dcStt0);
+                    DataColumn dcMa_Vt = new DataColumn("Ma_CTKM", typeof(string));
+                    dcMa_Vt.DefaultValue = "";
+                    frmEditCt.dtEditCtDisc.Columns.Add(dcMa_Vt);
+
+                    DataColumn dcTien4 = new DataColumn("Tien4", typeof(double));
+                    dcTien4.DefaultValue = 0;
+                    frmEditCt.dtEditCtDisc.Columns.Add(dcTien4);
+
+
+                    string strMa_Vt = string.Empty;
+
+                    //double dbDiscAmt = 0; // Tiền KM
+                    //double dbDiscPer = 0; // % khuyến mãi
+
+                    double dbSo_luong = 0;
+                    double dbNgan_Sach = 0;
+                    double dbSaleAmt = 0;
+                    double dbTien = 0;
+                    double dbTien4 = 0;
+                    double dbTTien4 = 0;
+
+                    foreach (DataRow drDisc in dtDiscCount.Rows)
+                    {
+                        string strMa_CtKm = drDisc["Ma_CTKM"].ToString();
+                        string strLoai_CtKm = drDisc["Loai_Km"].ToString();
+                        string strLoai_Ap_KM = drDisc["Loai_Ap_KM"].ToString();
+                        string strHinh_Thuc_KM = drDisc["Hinh_Thuc_KM"].ToString();
+                        string strBreakBy = drDisc["BreakBy"].ToString(); // Kiểm tra theo
+                        bool isEditKm = Convert.ToBoolean(drDisc["AllowEditDisc"]);
+                        dtDiscFreeItemAddNew = dtEditCt.Clone();
+
+
+                        if (!Discount.CheckDtOnProgID(strMa_CtKm, strMa_Dt))
+                            continue;
+
+                        dbNgan_Sach = strHinh_Thuc_KM == "IN" ? Convert.ToDouble(drDisc["TSo_Luong"]) : Convert.ToDouble(drDisc["TTien"]);
+                        if (dbNgan_Sach != 0)
+                        {
+                            Hashtable htNs = new Hashtable();
+                            htNs["MA_CTKM"] = strMa_CtKm;
+                            htNs["STT"] = strStt;
+                            DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("OM_Getbudget", htNs, CommandType.StoredProcedure);
+                            dbNgan_Sach = Convert.ToDouble(dtNgan_Sach.Rows[0]["Budget"]);
+                            dbSaleAmt = Convert.ToDouble(dtNgan_Sach.Rows[0]["SalesAmt"]);
+
+                        }
+
+                        #region L - Loại khuyến mãi dòng
+                        if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
+                        {
+
+                            double dbQty = 0, dbAmt = 0;
+
+                            string strMa_Vt_Disc = string.Empty;
+                            string strMa_Vt_Disc_List = string.Empty;
+
+                            DataTable dtItemSale = dtEditCt.DefaultView.ToTable(true, "Ma_Vt");
+                            //DataTable dtItemSale = SQLExec.ExecuteReturnDt("select * from OM_DiscItem WHERE Ma_CTKM = '" + strMa_CtKm + "'");
+                            foreach (DataRow dritem in dtItemSale.Rows)
+                            {
+                                strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
+                                strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
+                                dbQty = Common.SumDCValue(dtEditCt, "So_Luong", "MA_VT = '" + strMa_Vt_Disc + "' AND Hang_Km  <> true");
+                                dbAmt = Common.SumDCValue(dtEditCt, "Tien_Nt9", "MA_VT = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
+
+                                Hashtable htParaBreaby = new Hashtable();
+                                htParaBreaby["MA_CTKM"] = strMa_CtKm;
+                                htParaBreaby["MA_VT"] = strMa_Vt_Disc;
+                                htParaBreaby["QTYAMT"] = strBreakBy == "Q" ? dbQty : dbAmt; // Q: Qty, A : Amount
+                                DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
+                                if (dtBreakBy.Rows.Count > 0)
+                                {
+
+                                    double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
+                                    string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
+                                    double dbBreakQty = Convert.ToDouble(dtBreakBy.Rows[0]["BreakQty"]);
+                                    int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);
+
+                                    if (strHinh_Thuc_KM == "PP") // áp dụng cho Chiết khấu dòng %
+                                    {
+                                        Discount.Calc_Chiet_Khau_ForLine(frmEditCt, dbAmtDisc, strMa_Vt_Disc, strMa_CtKm, isEditKm);
+                                    }
+                                    else if (strHinh_Thuc_KM == "II") // Chiết khấu tiền 
+                                    {
+                                        dbAmtDisc *= iDiscTime;
+                                        double dbPer = Math.Round((dbAmtDisc / dbTien) * 100, 7);
+                                        Discount.Calc_Chiet_Khau_ForLine(frmEditCt, dbPer, strMa_Vt_Disc, strMa_CtKm, isEditKm);
+                                    }
+                                    else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
+                                    {
+                                        Discount.CalDiscountFreeItem(frmEditCt, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
+                                    }
+                                }
+                            }
+                        }
+                        #endregion
+                        #region G - Khuyến mãi theo nhóm mặt hàng
+                        else if (strLoai_CtKm == "G") // Loại khuyến mãi nhóm
+                        {
+                            double dbQty = 0, dbAmt = 0;
+                            string strMa_Vt_Disc = string.Empty;
+                            string strMa_Vt_Disc_List = string.Empty;
+
+                            DataTable dtDiscItemSale = SQLExec.ExecuteReturnDt("select * from OM_DiscItem WHERE Ma_CTKM = '" + strMa_CtKm + "'");
+                            foreach (DataRow dritem in dtDiscItemSale.Rows)
+                            {
+                                strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
+                                strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
+                                dbQty += Common.SumDCValue(dtEditCt, "So_Luong", "Ma_Vt = '" + strMa_Vt_Disc + "' AND Hang_Km <> true");
+                                dbAmt += Common.SumDCValue(dtEditCt, "Tien_Nt9", "Ma_Vt = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
+
+                            }
+
+                            Hashtable htParaBreaby = new Hashtable();
+                            htParaBreaby["MA_CTKM"] = strMa_CtKm;
+                            htParaBreaby["QTYAMT"] = strBreakBy == "Q" ? dbQty : dbAmt; // Q: Qty, A : Amount
+                            DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreak", htParaBreaby, CommandType.StoredProcedure);
+
+                            if (dtBreakBy.Rows.Count > 0)
+                            {
+                                double dbBreakAmt = Convert.ToDouble(dtBreakBy.Rows[0]["BreakAmt"]);
+                                string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
+                                double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
+                                int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
+                                if (strHinh_Thuc_KM == "PP")
+                                {
+                                    Discount.Calc_Chiet_Khau_ForGroup(frmEditCt, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, isEditKm);
+
+                                }
+                                else if (strHinh_Thuc_KM == "II")
+                                {
+                                    dbAmtDisc *= iDiscTime;
+                                    double dbPer = Math.Round((dbAmtDisc / dbAmt) * 100, 7);
+                                    Discount.Calc_Chiet_Khau_ForGroup(frmEditCt, dbPer, strMa_Vt_Disc_List, strMa_CtKm, isEditKm);
+                                }
+                                else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
+                                {
+                                    //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
+                                }
+                                dtEditCt.AcceptChanges();
+
+                            }
+
+                            Calc_Thue_Vat_All();
+
+                        }
+                        #endregion
+
+                        #region I - Chiết khấu hóa đơn
+
+                        if (strLoai_CtKm == "I") // Loại Khuyến mãi/ CK Invoice
+                        {
+
+                            double dbTTien = 0;
+                            double dbTien_CkInvoice = 0;
+
+                            #region Kiểm tra theo số tiền
+                            if (strBreakBy == "A") // Kiểm tra theo số tiền
+                            {
+
+                                dbTTien = Convert.ToDouble(Common.SumDCValue(dtEditCt, "Tien_Nt9", ""));//+ Convert.ToDouble(drEditCt["Tien4"]);
+                                Hashtable htParaBreaby = new Hashtable();
+                                htParaBreaby["MA_CTKM"] = strMa_CtKm;
+                                htParaBreaby["QTYAMT"] = dbTTien;
+                                DataTable dtBreakBy = SQLExec.ExecuteReturnDt("OM_GetDiscBreakInvoice", htParaBreaby, CommandType.StoredProcedure);
+
+                                if (dtBreakBy.Rows.Count > 0)
+                                {
+                                    string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
+                                    double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
+                                    int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
+
+                                    if (strHinh_Thuc_KM == "II")
+                                    {
+                                        dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
+                                    }
+                                    Discount.Calc_Chiet_Khau_ForInvoice(frmEditCt, dbAmtDisc, strMa_CtKm, isEditKm);
+                                }
+
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+
+                    }
+
+
+                    foreach (DataRow drit in frmEditCt.dtDiscFreeItem.Rows)
+                    {
+                        Voucher.Calc_So_Luong(drit);
+                        dtEditCt.ImportRow(drit);
+                    }
+                    frmEditCtdtDiscFreeItem.Rows.Clear();
+
+                    dtEditCt.AcceptChanges();
+                    bdsEditCt.DataSource = dtEditCt;
+                    dgvEditCt1.DataSource = bdsEditCt;
+
+                    Discount.OM_SaveOM_SalesDics(this);
+                    EpointMessage.MsgOk("Đã tính xong KM");
+                }
+
+                */
         /*       if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
                 {
 
@@ -1007,10 +1110,10 @@ namespace Epoint.Modules.AR
                         dtDiscFreeItemAddNew.Rows.Clear();
                     }
 */
-                    #endregion
-    
+        #endregion
+
 
 
     }
 }
-    
+

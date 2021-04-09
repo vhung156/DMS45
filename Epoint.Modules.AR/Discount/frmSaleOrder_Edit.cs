@@ -310,7 +310,7 @@ namespace Epoint.Modules.AR
 
         private void Init_Ct()
         {
-          
+
             txtMa_Tte.InputMask = (string)Systems.Librarys.Parameters.GetParaValue("MA_TTE_LIST");
 
             if (dtEditPh.Rows.Count == 0)
@@ -402,11 +402,11 @@ namespace Epoint.Modules.AR
                 //drEditPh["So_Ct"] = drCurrent["So_Ct"] = strSo_Ct;
 
             }
-            
+
             Voucher.Update_Header(this);
-            
+
             Voucher.Update_Stt(this, strModule);
-            
+
             if (dgvEditCt1.Columns.Contains("DVT"))
                 dgvEditCt1.Columns["DVT"].ReadOnly = true;
 
@@ -1572,15 +1572,16 @@ namespace Epoint.Modules.AR
             //double dbDiscPer = 0; // % khuyến mãi
 
             //double dbSo_luong = 0;
-            double dbNgan_Sach = 0;
-            double dbSaleAmt = 0;
-            //double dbTien = 0;
-            //double dbTien4 = 0;
+            double dbNgan_Sach = -1;
+            double dbSaleAmt = -1;
+            double dbQtyAlloc = -1;
+            double dbAmtAlloc = -1;
             //double dbTTien4 = 0;
 
             foreach (DataRow drDisc in dtDiscCount.Rows)
             {
                 string strMa_CtKm = drDisc["Ma_CTKM"].ToString();
+                string strMa_Ns = drDisc["Ma_Ngan_Sach"].ToString();
                 string strLoai_CtKm = drDisc["Loai_Km"].ToString();
                 string strLoai_Ap_KM = drDisc["Loai_Ap_KM"].ToString();
                 string strHinh_Thuc_KM = drDisc["Hinh_Thuc_KM"].ToString();
@@ -1595,15 +1596,18 @@ namespace Epoint.Modules.AR
 
                 dbNgan_Sach = strHinh_Thuc_KM == "IN" ? Convert.ToDouble(drDisc["TSo_Luong"]) : Convert.ToDouble(drDisc["TTien"]);
 
-                if (dbNgan_Sach != 0)
+                if (strMa_Ns != string.Empty)
                 {
                     Hashtable htNs = new Hashtable();
-                    htNs["MA_CTKM"] = strMa_CtKm;
-                    htNs["STT"] = this.strStt;
-                    DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("OM_Getbudget", htNs, CommandType.StoredProcedure);
-                    dbNgan_Sach = Convert.ToDouble(dtNgan_Sach.Rows[0]["Budget"]);
-                    dbSaleAmt = Convert.ToDouble(dtNgan_Sach.Rows[0]["SalesAmt"]);
-
+                    htNs["MA_NS"] = strMa_Ns;
+                    htNs["MA_CBNV"] = txtMa_CbNV.Text;
+                    htNs["MA_DVCS"] = Element.sysMa_DvCs;
+                    DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("sp_OM_GetBudgetAlloc", htNs, CommandType.StoredProcedure);
+                    if (dtNgan_Sach.Rows.Count > 0)
+                    {
+                        dbQtyAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["QtyAlloc"]);
+                        dbAmtAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["AmtAlloc"]);
+                    }
                 }
 
 
@@ -1649,7 +1653,8 @@ namespace Epoint.Modules.AR
                                     dbAmtDisc = Convert.ToDouble(drbr["Amt"]);
                                     strSttKM = drbr["Stt"].ToString();
                                     iDiscTime = Convert.ToInt32(drbr["DiscTime"]);
-                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
+
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], ref dbQtyAlloc);
                                 }
                             }
                         }
