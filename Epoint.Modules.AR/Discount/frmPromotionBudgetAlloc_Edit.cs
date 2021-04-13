@@ -20,7 +20,7 @@ namespace Epoint.Modules.AR
     {
 
         #region Khai báo
-        //private string Ma_CtKM_Old = string.Empty;
+        private int ident00 = 0;
 
         #endregion
 
@@ -47,6 +47,8 @@ namespace Epoint.Modules.AR
                 BindingLanguage();
                 LoadDicName();
 
+                ident00 = Convert.ToInt32(drEdit["Ident00"]);
+
                 if (this.enuNew_Edit == enuEdit.Edit)
                 {
                     txtMa_Ns.Enabled = false;
@@ -71,7 +73,25 @@ namespace Epoint.Modules.AR
             }
             return bvalid;
         }
+        private bool FormCheckBudgetAllocated()
+        {
+            bool bvalid = true;
 
+            Hashtable ht = new Hashtable();
+            ht.Add("MA_NS", txtMa_Ns.Text);
+            ht.Add("IDENT00", ident00);
+            ht.Add("QTYALLOC", numQtyAlloc.Value);
+            ht.Add("AMTALLOC", numAmtAlloc.Value);
+            ht.Add("MA_DVCS", Element.sysMa_DvCs);
+
+            int iCheck = Convert.ToInt32(SQLExec.ExecuteReturnValue("sp_OM_CheckBudgetAllocated", ht, CommandType.StoredProcedure));
+            if (iCheck == 1)
+            {
+                Common.MsgOk("Ngân sách phân bổ vượt  quá ngân sách tổng!");
+                return false;
+            }
+            return bvalid;
+        }
         private bool Save()
         {
 
@@ -81,6 +101,9 @@ namespace Epoint.Modules.AR
 
             //Kiem tra Valid tren Form
             if (!FormCheckValid())
+                return false;
+
+            if (!FormCheckBudgetAllocated())
                 return false;
 
 

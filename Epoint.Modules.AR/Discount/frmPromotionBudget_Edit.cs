@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +18,7 @@ namespace Epoint.Modules.AR
     public partial class frmPromotionBudget_Edit : Epoint.Lists.frmEdit
     {
 
-        #region Khai b�o
+        #region Khai báo
         //private string Ma_CtKM_Old = string.Empty;
 
         #endregion
@@ -26,20 +26,20 @@ namespace Epoint.Modules.AR
         #region Phuong thuc
 
         public frmPromotionBudget_Edit()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
             this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
-		}
-		public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
+        }
+        public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
         {
             if (Element.Is_Running)
             {
                 this.drEdit = drEdit;
                 this.enuNew_Edit = enuNew_Edit;
                 this.Tag = (char)enuNew_Edit + "," + this.Tag;
-                
+
                 this.BindingCombobox();
                 Common.ScaterMemvar(this, ref drEdit);
 
@@ -52,16 +52,16 @@ namespace Epoint.Modules.AR
                 }
                 this.ShowDialog();
             }
-		}
+        }
 
-		private void LoadDicName()
-		{
-
-		}
-
-		public override bool FormCheckValid()
+        private void LoadDicName()
         {
-            bool bvalid = true ;
+
+        }
+
+        public override bool FormCheckValid()
+        {
+            bool bvalid = true;
             if (txtMa_Ns.Text.Trim() == string.Empty)
             {
                 Common.MsgOk(Languages.GetLanguage("Ma_NS") + " " +
@@ -74,13 +74,21 @@ namespace Epoint.Modules.AR
                 Common.MsgOk(Languages.GetLanguage("Ten_NS") + " " +
                         Languages.GetLanguage("Not_Null"));
                 return false;
-            }	
+            }
+
+            if (numAmtAlloc.Value > 0 && numQtyAlloc.Value > 0)
+            {
+                Common.MsgOk("Chỉ tồn tại ngân sách tiền hoặc hàng !");
+                return false;
+            }
+
+
             return bvalid;
         }
 
         private bool Save()
         {
-            
+
 
             Common.GatherMemvar(this, ref drEdit);
 
@@ -94,14 +102,14 @@ namespace Epoint.Modules.AR
                 return false;
 
             return true;
-        }	
+        }
         private void BindingCombobox()
         {
         }
         #endregion
 
         #region Su kien
-       
+
         void btAccept_Click(object sender, EventArgs e)
         {
             if (this.Save())
@@ -115,7 +123,7 @@ namespace Epoint.Modules.AR
             this.isAccept = false;
             this.Close();
         }
-		
-        #endregion 
-	}
+
+        #endregion
+    }
 }

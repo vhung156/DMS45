@@ -607,7 +607,7 @@ namespace Epoint.Modules
 
             string strKey = (string)SQLExec.ExecuteReturnValue("sp_GetVoucherFilterKey", drFilter, CommandType.StoredProcedure);
 
-            string strKey_Ph, strKey_Ct;
+            string strKey_Ph, strKey_Ct, strUserFilter_Ph = string.Empty, strUserFilter_Ct = string.Empty;
             if (drFilter["Is_Thue_Vat"].ToString() != string.Empty)
             {
                 if ((bool)drFilter["Is_Thue_Vat"])
@@ -626,8 +626,11 @@ namespace Epoint.Modules
             {
                 if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
                 {
-                    strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
-                    strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+                    strUserFilter_Ph = "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                    strUserFilter_Ct = " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+
+                    //strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                    //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
                 }
             }
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
@@ -635,12 +638,14 @@ namespace Epoint.Modules
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
             {
                 strKey_Ph = "h." + strKey_Ph;
-                //strKey_Ct = strKey_Ct.Replace("Stt", "h.Stt");
                 this.FillDataIN(strKey_Ph, strKey_Ct);
             }
             else
+            {
+                strKey_Ph += strUserFilter_Ph;
+                strKey_Ct += strUserFilter_Ct;
                 this.FillData(strKey_Ph, strKey_Ct);
-
+            }
             Element.sysNgay_Ct1 = Convert.ToDateTime(drFilter["Ngay_Ct1"]);
             Element.sysNgay_Ct2 = Convert.ToDateTime(drFilter["Ngay_Ct2"]);
         }
