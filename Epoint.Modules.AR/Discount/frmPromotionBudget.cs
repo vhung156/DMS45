@@ -251,13 +251,13 @@ namespace Epoint.Modules.AR
             if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE")))
                 return;
             Hashtable htPara = new Hashtable();
-            htPara["Ident00"] = drBudgetDetailAllocate["Ident00"].ToString();
+            htPara["IDENT00"] = drBudgetDetailAllocate["Ident00"].ToString();
             //htPara["Ma_CbNv"] = drBudgetDetailAllocate["Ma_CbNv"].ToString();
             bool isCheck = Convert.ToBoolean(SQLExec.ExecuteReturnValue("sp_OM_DeleteBugdetDetail", htPara, CommandType.StoredProcedure));
             if (isCheck)
             {
-                bdsBudgetHeader.RemoveAt(bdsBudgetHeader.Position);
-                dtBudgetHeader.AcceptChanges();
+                bdsBudgetDetailAllocate.RemoveAt(bdsBudgetDetailAllocate.Position);
+                dtBudgetDetailAllocate.AcceptChanges();
             }
             else
             {
