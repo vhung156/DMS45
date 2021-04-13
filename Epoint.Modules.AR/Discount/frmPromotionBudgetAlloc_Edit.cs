@@ -47,7 +47,10 @@ namespace Epoint.Modules.AR
                 BindingLanguage();
                 LoadDicName();
 
-                ident00 = Convert.ToInt32(drEdit["Ident00"]);
+                if (this.drEdit["Ident00"] == DBNull.Value)
+                    this.drEdit["Ident00"] = 0;
+
+                ident00 = Convert.ToInt32(this.drEdit["Ident00"]);
 
                 if (this.enuNew_Edit == enuEdit.Edit)
                 {

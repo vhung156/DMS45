@@ -1572,7 +1572,7 @@ namespace Epoint.Modules.AR
             //double dbDiscPer = 0; // % khuyến mãi
 
             //double dbSo_luong = 0;
-            double dbNgan_Sach, dbSaleAmt, dbQtyAlloc, dbAmtAlloc;
+            double dbNgan_Sach, dbSaleAmt, dbQtyAlloc, dbAmtAlloc, dbQtyAllocated, dbAmtAllocated;
             //double dbTTien4 = 0;
 
             foreach (DataRow drDisc in dtDiscCount.Rows)
@@ -1717,7 +1717,8 @@ namespace Epoint.Modules.AR
                         else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
                         {
                             //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
-                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
+                            //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
+                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0],ref dbQtyAlloc);
                         }
                         dtEditCt.AcceptChanges();
 
