@@ -178,6 +178,8 @@ namespace Epoint.Modules.AR
             {
                 drBudgetDetailAllocate = dtBudgetDetailAllocate.NewRow();
                 drBudgetDetailAllocate["Ma_Ns"] = drCurrentBudgetHeader["Ma_Ns"];
+                drBudgetDetailAllocate["AmtAlloc"] = drCurrentBudgetHeader["AmtAlloc"];
+                drBudgetDetailAllocate["QtyAlloc"] = drCurrentBudgetHeader["QtyAlloc"];
                 //Common.CopyDataRow(drCurrentBudgetHeader, ref drBudgetDetailAllocate);
                 //drBudgetDetailAllocate["Ma_Dvcs"] = Element.sysMa_DvCs;
             }
@@ -227,8 +229,8 @@ namespace Epoint.Modules.AR
 
 
             Hashtable htPara = new Hashtable();
-            htPara["MA_PJP"] = drCurrent["MA_PJP"].ToString();
-            bool isCheck = Convert.ToBoolean(SQLExec.ExecuteReturnValue("sp_DELETE_PJP", htPara, CommandType.StoredProcedure));
+            htPara["Ma_Ns"] = drCurrent["Ma_Ns"].ToString();
+            bool isCheck = Convert.ToBoolean(SQLExec.ExecuteReturnValue("sp_OM_DeleteBugdet", htPara, CommandType.StoredProcedure));
             if (isCheck)
             {
                 bdsBudgetHeader.RemoveAt(bdsBudgetHeader.Position);
@@ -236,7 +238,7 @@ namespace Epoint.Modules.AR
             }
             else
             {
-                EpointMessage.MsgOk("Khong xoa duoc");
+                EpointMessage.MsgOk("Ngân sách đã dử dụng, không xóa được.");
             }
         }
         private void DeletePromotionBudgetDetail()
@@ -248,10 +250,18 @@ namespace Epoint.Modules.AR
 
             if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE")))
                 return;
-
-            if (SQLExec.Execute("DELETE OM_PJPDetail WHERE Ma_PJP = '" + (string)drBudgetDetailAllocate["Ma_PJP"] + "' AND Ma_Dt = '" + (string)drBudgetDetailAllocate["Ma_Dt"] + "'", CommandType.Text))
+            Hashtable htPara = new Hashtable();
+            htPara["Ident00"] = drBudgetDetailAllocate["Ident00"].ToString();
+            //htPara["Ma_CbNv"] = drBudgetDetailAllocate["Ma_CbNv"].ToString();
+            bool isCheck = Convert.ToBoolean(SQLExec.ExecuteReturnValue("sp_OM_DeleteBugdetDetail", htPara, CommandType.StoredProcedure));
+            if (isCheck)
             {
-                bdsBudgetDetailAllocate.RemoveAt(bdsBudgetDetailAllocate.Position);
+                bdsBudgetHeader.RemoveAt(bdsBudgetHeader.Position);
+                dtBudgetHeader.AcceptChanges();
+            }
+            else
+            {
+                EpointMessage.MsgOk("Ngân sách đã dử dụng, không xóa được.");
             }
         }
 

@@ -21,6 +21,7 @@ namespace Epoint.Modules.AR
 
         #region Khai báo
         private int ident00 = 0;
+        private double dbAmtAlloc = 0, dbQtyAlloc = 0;
 
         #endregion
 
@@ -56,6 +57,14 @@ namespace Epoint.Modules.AR
                 {
                     txtMa_Ns.Enabled = false;
                 }
+
+                dbAmtAlloc = Convert.ToDouble(this.drEdit["AmtAlloc"]);
+                dbQtyAlloc = Convert.ToDouble(this.drEdit["QtyAlloc"]);
+
+                if (dbQtyAlloc > 0)
+                    numAmtAlloc.Enabled = false;
+                else
+                    numQtyAlloc.Enabled = false;
                 this.ShowDialog();
             }
         }
