@@ -290,7 +290,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strStt_Km;
                 drDisc["Tien4_Org"] = dbTien_Line4;
                 drDisc["Tien4"] = dbTien_Line4;
-
+                drDisc["Ma_Ns"] = string.Empty;
                 dtEditCtDisc.Rows.Add(drDisc);
                 drEditCt.AcceptChanges();
             }
@@ -763,7 +763,7 @@ namespace Epoint.Modules.AR
             }
 
         }
-        public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur, ref double dbQtyAlloc)
+        public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur, ref double dbQtyAlloc,string strMa_Ns)
         {
             double dbSo_Luong_Km = 0;
             if (dbDiscTime == 0)
@@ -847,7 +847,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strSttKM;
                 drDisc["Tien4_Org"] = drFreeItem["So_Luong_Org"];
                 drDisc["Tien4"] = dbSo_Luong_Km;
-
+                drDisc["Ma_Ns"] = strMa_Ns;
                 frmEditCt.dtEditCtDisc.Rows.Add(drDisc);
 
                 if (dbQtyAlloc > 0)//Cập nhật lại ngân sách sau khi add km

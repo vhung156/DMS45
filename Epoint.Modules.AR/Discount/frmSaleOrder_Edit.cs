@@ -468,24 +468,24 @@ namespace Epoint.Modules.AR
             Discount.CopyDataTable(this.dtEditDisc, this.dtEditCtDisc, string.Empty);
 
             /*
-            this.dtEditCtDisc = new DataTable("OM_SalesDics");
-            DataColumn dcStt0 = new DataColumn("Stt0", typeof(string));
-            dcStt0.DefaultValue = "";
-            dtEditCtDisc.Columns.Add(dcStt0);
-            DataColumn dcMa_CTKM = new DataColumn("Ma_CTKM", typeof(string));
-            dcMa_CTKM.DefaultValue = "";
-            dtEditCtDisc.Columns.Add(dcMa_CTKM);
-            DataColumn dcStt_Km = new DataColumn("Stt_Km", typeof(string));
-            dcStt_Km.DefaultValue = "";
-            dtEditCtDisc.Columns.Add(dcStt_Km);
+                this.dtEditCtDisc = new DataTable("OM_SalesDics");
+                DataColumn dcStt0 = new DataColumn("Stt0", typeof(string));
+                dcStt0.DefaultValue = "";
+                dtEditCtDisc.Columns.Add(dcStt0);
+                DataColumn dcMa_CTKM = new DataColumn("Ma_CTKM", typeof(string));
+                dcMa_CTKM.DefaultValue = "";
+                dtEditCtDisc.Columns.Add(dcMa_CTKM);
+                DataColumn dcStt_Km = new DataColumn("Stt_Km", typeof(string));
+                dcStt_Km.DefaultValue = "";
+                dtEditCtDisc.Columns.Add(dcStt_Km);
 
-            DataColumn dcTien4_Org = new DataColumn("Tien4_Org", typeof(string));
-            dcTien4_Org.DefaultValue = 0;
-            dtEditCtDisc.Columns.Add(dcTien4_Org);
+                DataColumn dcTien4_Org = new DataColumn("Tien4_Org", typeof(string));
+                dcTien4_Org.DefaultValue = 0;
+                dtEditCtDisc.Columns.Add(dcTien4_Org);
 
-            DataColumn dcTien4 = new DataColumn("Tien4", typeof(double));
-            dcTien4.DefaultValue = 0;
-            dtEditCtDisc.Columns.Add(dcTien4);
+                DataColumn dcTien4 = new DataColumn("Tien4", typeof(double));
+                dcTien4.DefaultValue = 0;
+                dtEditCtDisc.Columns.Add(dcTien4);
              */
 
         }
@@ -1659,7 +1659,7 @@ namespace Epoint.Modules.AR
                                     strSttKM = drbr["Stt"].ToString();
                                     iDiscTime = Convert.ToInt32(drbr["DiscTime"]);
                                     //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
-                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], ref dbQtyAlloc);
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], ref dbQtyAlloc,strMa_Ns);
                                 }
                             }
                         }
@@ -1718,7 +1718,7 @@ namespace Epoint.Modules.AR
                         {
                             //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
                             //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
-                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0],ref dbQtyAlloc);
+                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0],ref dbQtyAlloc,strMa_Ns);
                         }
                         dtEditCt.AcceptChanges();
 

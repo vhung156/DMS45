@@ -13,91 +13,91 @@ using Epoint.Systems.Librarys;
 
 namespace Epoint.Modules
 {
-	public partial class frmVoucher_Edit : Epoint.Systems.Customizes.frmEdit
-	{
-		public DataSet dsVoucher;
-		public BindingSource bdsEditCt = new BindingSource();
+    public partial class frmVoucher_Edit : Epoint.Systems.Customizes.frmEdit
+    {
+        public DataSet dsVoucher;
+        public BindingSource bdsEditCt = new BindingSource();
 
-		public DataTable dtEditPh;
-        public DataRow drEditPh; 
+        public DataTable dtEditPh;
+        public DataRow drEditPh;
         public DataRow drDmNvu;
         public DataRow drEditPhOrg;
 
-		public DataTable dtEditCt;
+        public DataTable dtEditCt;
         public DataTable dtEditCtDisc;
         public DataTable dtEditDisc;
         public DataTable dtDiscFreeItem;
-		public DataRow drCurrent;
+        public DataRow drCurrent;
         public DataTable dtEditCtOrg;
 
-		public DataRow drDmCt;
+        public DataRow drDmCt;
 
         public DataTable dtCtVt;
 
-		public string strStt = string.Empty;
-		public string strMa_Ct = string.Empty;
+        public string strStt = string.Empty;
+        public string strMa_Ct = string.Empty;
         public string strSo_Ct = string.Empty;
-		public bool bDgvEditCtFocusing = false;
+        public bool bDgvEditCtFocusing = false;
 
         public bool Is_Cancel = false;
         public bool Is_CtEdit = true;
 
-		public DataTable dtHanTt0;
+        public DataTable dtHanTt0;
 
-		public frmVoucher_Edit()
-		{
-			InitializeComponent();
+        public frmVoucher_Edit()
+        {
+            InitializeComponent();
 
-			this.bdsEditCt.PositionChanged += new EventHandler(bdsEditCt_PositionChanged);
-			this.bdsEditCt.DataSourceChanged += new EventHandler(bdsEditCt_DataSourceChanged);
-			this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-			this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
+            this.bdsEditCt.PositionChanged += new EventHandler(bdsEditCt_PositionChanged);
+            this.bdsEditCt.DataSourceChanged += new EventHandler(bdsEditCt_DataSourceChanged);
+            this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
 
-			this.KeyDown += new KeyEventHandler(frmVoucher_Edit_KeyDown);
-		}
+            this.KeyDown += new KeyEventHandler(frmVoucher_Edit_KeyDown);
+        }
 
-		public virtual void Load(enuEdit enuNew_Edit, DataRow drEdit, DataSet dsVoucher)
-		{
+        public virtual void Load(enuEdit enuNew_Edit, DataRow drEdit, DataSet dsVoucher)
+        {
 
-		}
+        }
 
-		public virtual bool Save()
-		{
-			return true;
-		}
+        public virtual bool Save()
+        {
+            return true;
+        }
 
-		void btAccept_Click(object sender, EventArgs e)
-		{
-			if (this.Save())
-			{
-				isAccept = true;
+        void btAccept_Click(object sender, EventArgs e)
+        {
+            if (this.Save())
+            {
+                isAccept = true;
 
-				if ((enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy) && drDmCt.Table.Columns.Contains("Auto_New_Voucher") && (bool)drDmCt["Auto_New_Voucher"])
-				{
-					this.Load(enuEdit.New, drEdit, dsVoucher);
-				}
-				else
-					this.Close();
+                if ((enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy) && drDmCt.Table.Columns.Contains("Auto_New_Voucher") && (bool)drDmCt["Auto_New_Voucher"])
+                {
+                    this.Load(enuEdit.New, drEdit, dsVoucher);
+                }
+                else
+                    this.Close();
                 base.ShowSuccessMessage("Thành công !");
-			}
-		}
+            }
+        }
 
-		void btCancel_Click(object sender, EventArgs e)
-		{
-			isAccept = false;
+        void btCancel_Click(object sender, EventArgs e)
+        {
+            isAccept = false;
             Is_Cancel = true;
-			this.Close();
-		}
+            this.Close();
+        }
 
-		void bdsEditCt_PositionChanged(object sender, EventArgs e)
-		{
-			this.ucNotice.lblRecord.Text = (bdsEditCt.Position + 1).ToString() + "/" + bdsEditCt.Count.ToString();
-		}
+        void bdsEditCt_PositionChanged(object sender, EventArgs e)
+        {
+            this.ucNotice.lblRecord.Text = (bdsEditCt.Position + 1).ToString() + "/" + bdsEditCt.Count.ToString();
+        }
 
-		void bdsEditCt_DataSourceChanged(object sender, EventArgs e)
-		{
-			this.ucNotice.lblRecord.Text = (bdsEditCt.Position + 1).ToString() + "/" + bdsEditCt.Count.ToString();
-		}
+        void bdsEditCt_DataSourceChanged(object sender, EventArgs e)
+        {
+            this.ucNotice.lblRecord.Text = (bdsEditCt.Position + 1).ToString() + "/" + bdsEditCt.Count.ToString();
+        }
 
         void frmVoucher_Edit_KeyDown(object sender, KeyEventArgs e)
         {
@@ -150,11 +150,11 @@ namespace Epoint.Modules
                 case Keys.S:
                     if (e.Control)
                     {
-                        if(!btgAccept.btAccept.Enabled)
+                        if (!btgAccept.btAccept.Enabled)
                         {
                             this.Close();
                             base.ShowSuccessMessage("Không lưu được thay đổi !");
-                        }                        
+                        }
                         else if (this.Save())
                         {
                             isAccept = true;
@@ -172,42 +172,42 @@ namespace Epoint.Modules
             }
         }
 
-		protected override void OnShown(EventArgs e)
-		{
-			base.OnShown(e);
-            
-			//Kiem tra Permission
-			if (Element.Is_Running)
-			{
-				switch (this.enuNew_Edit)
-				{
-					case enuEdit.New:
-					case enuEdit.Copy:
-						this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_New);
-						break;
-					case enuEdit.Edit:
-						this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_Edit);
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            //Kiem tra Permission
+            if (Element.Is_Running)
+            {
+                switch (this.enuNew_Edit)
+                {
+                    case enuEdit.New:
+                    case enuEdit.Copy:
+                        this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_New);
+                        break;
+                    case enuEdit.Edit:
+                        this.btgAccept.btAccept.Enabled = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_Edit);
                         this.Is_CtEdit = Common.CheckPermission((string)drDmCt["Object_ID"], enuPermission_Type.Allow_Edit);
-						break;
-					default:
-						break;
-				}
-			}
-		}
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
-		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-		{
-			if (keyData == Keys.F4)
-			{
-				if (this.ActiveControl.GetType().Name == "dgvVoucher")
-					bDgvEditCtFocusing = true;
-				else
-					if (bDgvEditCtFocusing)
-						bDgvEditCtFocusing = false;
-			}
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F4)
+            {
+                if (this.ActiveControl.GetType().Name == "dgvVoucher")
+                    bDgvEditCtFocusing = true;
+                else
+                     if (bDgvEditCtFocusing)
+                    bDgvEditCtFocusing = false;
+            }
 
-			return base.ProcessCmdKey(ref msg, keyData);
-		}
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
         bool CheckHeaderChange()
         {
@@ -216,7 +216,7 @@ namespace Epoint.Modules
             if (drEditPh == null || drEditPhOrg == null)
                 return false;
 
-            Common.SetDefaultDataRow(ref drEditPh);            
+            Common.SetDefaultDataRow(ref drEditPh);
             Common.SetDefaultDataRow(ref drEditPhOrg);
             for (int i = 0; i < drEditPh.Table.Columns.Count; i++)
             {
@@ -242,7 +242,7 @@ namespace Epoint.Modules
                             break;
                         }
                         break;
-                    default:                       
+                    default:
                         if (drEditPh[strColName].ToString() != drEditPhOrg[strColName].ToString())
                         {
                             //MessageBox.Show(drEditPh.Table.Columns[i].ColumnName.ToString()+ " " + drEditPh[i].ToString() + "\n" + drEditPhOrg[i].ToString());
@@ -331,13 +331,13 @@ namespace Epoint.Modules
                 else
                     e.Cancel = true;
         }
-	}
+    }
 
     public interface IEditCtLR
-	{
-		DataTable dtEdiCtLR
-		{
-			get;
-		}
-	}
+    {
+        DataTable dtEdiCtLR
+        {
+            get;
+        }
+    }
 }
