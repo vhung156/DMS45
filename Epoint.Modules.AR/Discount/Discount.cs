@@ -297,7 +297,7 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
             dtEditCtDisc.AcceptChanges();
         }
-        public static void Calc_Chiet_Khau_ForLine(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_Vt, string strMa_CtKm, string strStt_Km, bool isEditKm, ref double dbAmtAlloc)
+        public static void Calc_Chiet_Khau_ForLine(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_Vt, string strMa_CtKm, string strStt_Km, bool isEditKm,string strMa_Ns, ref double dbAmtAlloc)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
@@ -350,7 +350,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strStt_Km;
                 drDisc["Tien4_Org"] = dbTien_Line4_Org;
                 drDisc["Tien4"] = dbTien_Line4;
-
+                drDisc["Ma_Ns"] = strMa_Ns;
                 dtEditCtDisc.Rows.Add(drDisc);
                 drEditCt.AcceptChanges();
             }
@@ -756,14 +756,14 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strSttKM;
                 drDisc["Tien4_Org"] = drFreeItem["So_Luong_Org"];
                 drDisc["Tien4"] = drFreeItem["So_Luong_Km"];
-
+                drDisc["Ma_Ns"] = string.Empty;
                 frmEditCt.dtEditCtDisc.Rows.Add(drDisc);
 
 
             }
 
         }
-        public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur, ref double dbQtyAlloc,string strMa_Ns)
+        public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur,string strMa_Ns, ref double dbQtyAlloc)
         {
             double dbSo_Luong_Km = 0;
             if (dbDiscTime == 0)
