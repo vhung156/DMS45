@@ -1605,6 +1605,7 @@ namespace Epoint.Modules.AR
                     htNs["MA_NS"] = strMa_Ns;
                     htNs["MA_CBNV"] = txtMa_CbNV.Text;
                     htNs["MA_DVCS"] = Element.sysMa_DvCs;
+                    htNs["STT"] = this.strStt;
                     DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("sp_OM_GetBudgetAlloc", htNs, CommandType.StoredProcedure);
                     if (dtNgan_Sach.Rows.Count > 0)
                     {
