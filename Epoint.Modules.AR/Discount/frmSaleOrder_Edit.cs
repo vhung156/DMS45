@@ -715,7 +715,7 @@ namespace Epoint.Modules.AR
 
                 drEdit = drEditPh;
             }
-            Discount.OM_SaveOM_SalesDics(this);
+            
 
             if (Parameters.GetParaValue("DMS_CHECKSDHD") != null && Parameters.GetParaValue("DMS_CHECKSDHD").ToString() == "Y")
                 if (this.drEditPh["Stt_Org"].ToString() != string.Empty) // Check hóa đơn bán hàng còn dư nợ hay không
@@ -738,7 +738,7 @@ namespace Epoint.Modules.AR
                     }
                 }
 
-
+            Discount.OM_SaveOM_SalesDics(this);
             return Voucher.SQLUpdateCt(this);
 
         }
@@ -1608,8 +1608,8 @@ namespace Epoint.Modules.AR
                     DataTable dtNgan_Sach = SQLExec.ExecuteReturnDt("sp_OM_GetBudgetAlloc", htNs, CommandType.StoredProcedure);
                     if (dtNgan_Sach.Rows.Count > 0)
                     {
-                        dbQtyAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["QtyAlloc"]);
-                        dbAmtAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["AmtAlloc"]);
+                        dbQtyAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["QtyAlloc_Avail"]);
+                        dbAmtAlloc = Convert.ToDouble(dtNgan_Sach.Rows[0]["AmtAlloc_Avail"]);
                     }
                 }
 

@@ -91,12 +91,12 @@ namespace Epoint.Modules.AR
 				return false;
 			}
 
-			if (txtMa_Kho.Text.Trim() == string.Empty)
-			{
-				Common.MsgOk(Languages.GetLanguage("Ma_Kho") + " " +
-						Languages.GetLanguage("Not_Null"));
-				return false;
-			}			
+			//if (txtMa_Kho.Text.Trim() == string.Empty)
+			//{
+			//	Common.MsgOk(Languages.GetLanguage("Ma_Kho") + " " +
+			//			Languages.GetLanguage("Not_Null"));
+			//	return false;
+			//}			
 
 			return true;
 		}

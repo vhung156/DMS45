@@ -621,7 +621,7 @@ namespace Epoint.Modules.AR
 
 
         }
-        public static void OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
+        public static bool OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
         {
             if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
             {
@@ -650,10 +650,11 @@ namespace Epoint.Modules.AR
                     command.Parameters.Clear();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
+                    return false;
                 }
 
             }
-
+            return true;
         }
 
         public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur)
