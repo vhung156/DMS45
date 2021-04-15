@@ -357,7 +357,7 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
             dtEditCtDisc.AcceptChanges();
         }
-        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm)
+        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm, string strMa_Ns)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
@@ -399,7 +399,7 @@ namespace Epoint.Modules.AR
                     drDisc["Stt_Km"] = strStt_Km;
                     drDisc["Tien4_Org"] = dbTien4_N;
                     drDisc["Tien4"] = dbTien4_N;
-
+                    drDisc["Ma_Ns"] = strMa_Ns;
                     dtEditCtDisc.Rows.Add(drDisc);
                 }
                 drEditCt.AcceptChanges();
@@ -447,7 +447,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strStt_Km;
                 drDisc["Tien4_Org"] = dbTien4_N;
                 drDisc["Tien4"] = dbTien4_N;
-
+                drDisc["Ma_Ns"] = strMa_CtKm;
                 dtEditCtDisc.Rows.Add(drDisc);
 
                 drEditCt.AcceptChanges();
@@ -479,23 +479,7 @@ namespace Epoint.Modules.AR
 
                 drEditCt["Tien3"] = 0;
                 drEditCt["Tien_Nt3"] = 0;
-                drEditCt["Ma_So"] = "CKHOADON";
-                //if (drEditCt["Ma_CTKM_Group"].ToString() == string.Empty)
-                //    drEditCt["Ma_CTKM_Group"] = "CKHD";
-                //else
-                //    drEditCt["Ma_CTKM_Group1"] = "CKHD";
-
-                //drEditCt["Is_EditDisc"] = isEditKm;
-
-                //DataRow drDisc = dtEditCtDisc.NewRow();
-                //drDisc["Stt0"] = drEditCt["Stt0"];
-                //drDisc["Ma_CTKM"] = "CKHD";
-                //drDisc["Stt_Km"] = "CKHO001";
-                //drDisc["Tien4_Org"] = dbTien_CkInvoice;
-                //drDisc["Tien4"] = dbTien_CkInvoice;
-
-                //dtEditCtDisc.Rows.Add(drDisc);
-
+                drEditCt["Ma_So"] = "CKHOADON";             
                 drEditCt.AcceptChanges();
             }
             dtEditCt.AcceptChanges();
@@ -509,7 +493,6 @@ namespace Epoint.Modules.AR
             double dbTTien = Convert.ToDouble(Common.SumDCValue(frmEditCt.dtEditCt, "Tien_Nt9", ""));
             double dbAmtPercent = Math.Round((dbAmt / dbTTien) * 100, 7);
             DataTable dtEditCt = frmEditCt.dtEditCt;
-            //DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
             frmEditCt.dtEditCtDisc = Common.FilterDatatable(frmEditCt.dtEditCtDisc, "MA_CTKM <> '" + Ma_Ct_CKHD + "'");
 
 
@@ -550,7 +533,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = "CKHO001";
                 drDisc["Tien4_Org"] = dbTien_Ck_M4;
                 drDisc["Tien4"] = dbTien_Ck_M4;
-
+                drDisc["Ma_Ns"] = Ma_Ct_CKHD;
                 frmEditCt.dtEditCtDisc.Rows.Add(drDisc);
 
                 drEditCt.AcceptChanges();
@@ -573,7 +556,6 @@ namespace Epoint.Modules.AR
                         drEditDisc["Tien4"] = drEditDisc["Tien4_Org"] = Convert.ToDouble(drEditDisc["Tien4"]) + dbChenh_Lech;
                         break;
                     }
-
                     //frmEditCt.dtEditCtDisc.Select("Ma_CTKM = 'Ma_Ct_CKHD' AND Stt_Km = 'CKHO001' AND Stt0 = '" + drEditCtCheck["Stt0"] + "'")[0]["Tien4"] = drEditCtCheck["Tien_Ck_M4"];
                     break;
                 }
@@ -756,7 +738,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strSttKM;
                 drDisc["Tien4_Org"] = drFreeItem["So_Luong_Org"];
                 drDisc["Tien4"] = drFreeItem["So_Luong_Km"];
-                drDisc["Ma_Ns"] = string.Empty;
+                drDisc["Ma_Ns"] = strMa_CtKm;
                 frmEditCt.dtEditCtDisc.Rows.Add(drDisc);
 
 

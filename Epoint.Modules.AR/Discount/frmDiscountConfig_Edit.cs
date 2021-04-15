@@ -29,8 +29,8 @@ namespace Epoint.Modules.AR
         {
             InitializeComponent();
 
-            this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-            this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
+            //this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            //this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
             this.cbxHinh_Thuc_Km.SelectedValueChanged += new EventHandler(cbxHinh_Thuc_Km_SelectedValueChanged);
             this.cbxLoai_KM.SelectedValueChanged += new EventHandler(cbxLoai_KM_SelectedValueChanged);
 
@@ -89,7 +89,7 @@ namespace Epoint.Modules.AR
             return bvalid;
         }
 
-        private bool Save()
+        public override bool Save()
         {
             if (cbxHinh_Thuc_Km.SelectedValue.ToString() == "IN")
                 numTTien.Value = 0;
@@ -174,11 +174,15 @@ namespace Epoint.Modules.AR
             {
                 numTSo_Luong.Enabled = true;
                 numTTien.Enabled = false;
+
+                txtFilterNs.Text = "QtyAlloc";
             }
             else
             {
                 numTSo_Luong.Enabled = false;
                 numTTien.Enabled = true;
+
+                txtFilterNs.Text = "AmtAlloc";
             }
 
         }

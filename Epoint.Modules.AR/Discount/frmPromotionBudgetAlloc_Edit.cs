@@ -31,8 +31,8 @@ namespace Epoint.Modules.AR
         {
             InitializeComponent();
 
-            this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-            this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
+            //this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            //this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
         }
         public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
         {
@@ -48,7 +48,7 @@ namespace Epoint.Modules.AR
                 BindingLanguage();
                 LoadDicName();
 
-                if (this.drEdit["Ident00"] == DBNull.Value)
+                if (this.drEdit["Ident00"] == DBNull.Value || this.enuNew_Edit == enuEdit.New)
                     this.drEdit["Ident00"] = 0;
 
                 ident00 = Convert.ToInt32(this.drEdit["Ident00"]);
@@ -97,19 +97,17 @@ namespace Epoint.Modules.AR
             ht.Add("MA_DVCS", Element.sysMa_DvCs);
 
             int iCheck = Convert.ToInt32(SQLExec.ExecuteReturnValue("sp_OM_CheckBudgetAllocated", ht, CommandType.StoredProcedure));
-            if (iCheck == 1)
+            if (iCheck == 0)
             {
                 Common.MsgOk("Ngân sách phân bổ vượt  quá ngân sách tổng!");
                 return false;
             }
             return bvalid;
         }
-        private bool Save()
+        public override bool Save()
         {
 
-
             Common.GatherMemvar(this, ref drEdit);
-
 
             //Kiem tra Valid tren Form
             if (!FormCheckValid())

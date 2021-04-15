@@ -43,6 +43,7 @@ namespace Epoint.Modules.AR
             this.cbxLoai_Ap_Km = new Epoint.Systems.Controls.cboControl();
             this.cbxLoai_KM = new Epoint.Systems.Controls.cboControl();
             this.txtTen_CTKM = new Epoint.Systems.Controls.txtTextLookup();
+            this.txtMa_Ngan_Sach = new Epoint.Systems.Controls.txtTextLookup();
             this.txtMa_CTKM = new Epoint.Systems.Controls.txtTextLookup();
             this.lblControl4 = new Epoint.Systems.Controls.lblControl();
             this.lblControl7 = new Epoint.Systems.Controls.lblControl();
@@ -54,10 +55,12 @@ namespace Epoint.Modules.AR
             this.lbGia = new Epoint.Systems.Controls.lblControl();
             this.dteNgay_Kt = new Epoint.Systems.Controls.txtDateTime();
             this.dteNgay_BD = new Epoint.Systems.Controls.txtDateTime();
+            this.lblControl8 = new Epoint.Systems.Controls.lblControl();
             this.lbNgay_Ap = new Epoint.Systems.Controls.lblControl();
             this.lbMa_Vt = new Epoint.Systems.Controls.lblControl();
-            this.lblControl8 = new Epoint.Systems.Controls.lblControl();
-            this.txtMa_Ngan_Sach = new Epoint.Systems.Controls.txtTextLookup();
+            this.control1 = new System.Windows.Forms.Control();
+            this.txtFilterNs = new Epoint.Systems.Controls.txtTextLookup();
+            this.txtValueFilter = new Epoint.Systems.Controls.txtTextLookup();
             this.tabEdit.SuspendLayout();
             this.Page1.SuspendLayout();
             this.Page2.SuspendLayout();
@@ -82,7 +85,7 @@ namespace Epoint.Modules.AR
             // 
             // Page2
             // 
-            this.Page2.Size = new System.Drawing.Size(649, 396);
+            this.Page2.Size = new System.Drawing.Size(702, 483);
             // 
             // grTitle1
             // 
@@ -101,6 +104,8 @@ namespace Epoint.Modules.AR
             this.grTitle1.Controls.Add(this.cbxLoai_KM);
             this.grTitle1.Controls.Add(this.txtTen_CTKM);
             this.grTitle1.Controls.Add(this.txtMa_Ngan_Sach);
+            this.grTitle1.Controls.Add(this.txtValueFilter);
+            this.grTitle1.Controls.Add(this.txtFilterNs);
             this.grTitle1.Controls.Add(this.txtMa_CTKM);
             this.grTitle1.Controls.Add(this.lblControl4);
             this.grTitle1.Controls.Add(this.lblControl7);
@@ -119,7 +124,7 @@ namespace Epoint.Modules.AR
             this.grTitle1.Location = new System.Drawing.Point(19, 11);
             this.grTitle1.Name = "grTitle1";
             this.grTitle1.Size = new System.Drawing.Size(697, 451);
-            this.grTitle1.TabIndex = 64;
+            this.grTitle1.TabIndex = 0;
             this.grTitle1.TabStop = false;
             this.grTitle1.Text = "Thông tin chương trình khuyến mãi";
             // 
@@ -361,6 +366,28 @@ namespace Epoint.Modules.AR
             this.txtTen_CTKM.TabIndex = 1;
             this.txtTen_CTKM.UseAutoFilter = false;
             // 
+            // txtMa_Ngan_Sach
+            // 
+            this.txtMa_Ngan_Sach.bEnabled = true;
+            this.txtMa_Ngan_Sach.bIsLookup = false;
+            this.txtMa_Ngan_Sach.bReadOnly = false;
+            this.txtMa_Ngan_Sach.bRequire = false;
+            this.txtMa_Ngan_Sach.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Ngan_Sach.ColumnsView = null;
+            this.txtMa_Ngan_Sach.CtrlDepend = null;
+            this.txtMa_Ngan_Sach.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Ngan_Sach.KeyFilter = "Ma_Ns";
+            this.txtMa_Ngan_Sach.ListControlFilter = new System.Windows.Forms.Control[] {
+        ((System.Windows.Forms.Control)(this.txtFilterNs))};
+            this.txtMa_Ngan_Sach.ListFilter = new string[0];
+            this.txtMa_Ngan_Sach.Location = new System.Drawing.Point(144, 235);
+            this.txtMa_Ngan_Sach.LookupKeyFilter = "@v0 > 0";
+            this.txtMa_Ngan_Sach.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Ngan_Sach.Name = "txtMa_Ngan_Sach";
+            this.txtMa_Ngan_Sach.Size = new System.Drawing.Size(159, 20);
+            this.txtMa_Ngan_Sach.TabIndex = 8;
+            this.txtMa_Ngan_Sach.UseAutoFilter = true;
+            // 
             // txtMa_CTKM
             // 
             this.txtMa_CTKM.bEnabled = true;
@@ -528,6 +555,20 @@ namespace Epoint.Modules.AR
             this.dteNgay_BD.Size = new System.Drawing.Size(111, 20);
             this.dteNgay_BD.TabIndex = 6;
             // 
+            // lblControl8
+            // 
+            this.lblControl8.AutoEllipsis = true;
+            this.lblControl8.AutoSize = true;
+            this.lblControl8.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl8.Location = new System.Drawing.Point(38, 238);
+            this.lblControl8.Name = "lblControl8";
+            this.lblControl8.Size = new System.Drawing.Size(77, 13);
+            this.lblControl8.TabIndex = 136;
+            this.lblControl8.Tag = "Ma_Ns";
+            this.lblControl8.Text = "Mã Ngân sách";
+            this.lblControl8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lbNgay_Ap
             // 
             this.lbNgay_Ap.AutoEllipsis = true;
@@ -556,40 +597,56 @@ namespace Epoint.Modules.AR
             this.lbMa_Vt.Text = "Mã CTKM";
             this.lbMa_Vt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblControl8
+            // control1
             // 
-            this.lblControl8.AutoEllipsis = true;
-            this.lblControl8.AutoSize = true;
-            this.lblControl8.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblControl8.Location = new System.Drawing.Point(38, 238);
-            this.lblControl8.Name = "lblControl8";
-            this.lblControl8.Size = new System.Drawing.Size(77, 13);
-            this.lblControl8.TabIndex = 136;
-            this.lblControl8.Tag = "Ma_Ns";
-            this.lblControl8.Text = "Mã Ngân sách";
-            this.lblControl8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.control1.Location = new System.Drawing.Point(0, 0);
+            this.control1.Name = "control1";
+            this.control1.Size = new System.Drawing.Size(0, 0);
+            this.control1.TabIndex = 0;
+            this.control1.Text = "control1";
             // 
-            // txtMa_Ngan_Sach
+            // txtFilterNs
             // 
-            this.txtMa_Ngan_Sach.bEnabled = true;
-            this.txtMa_Ngan_Sach.bIsLookup = false;
-            this.txtMa_Ngan_Sach.bReadOnly = false;
-            this.txtMa_Ngan_Sach.bRequire = false;
-            this.txtMa_Ngan_Sach.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_Ngan_Sach.ColumnsView = null;
-            this.txtMa_Ngan_Sach.CtrlDepend = null;
-            this.txtMa_Ngan_Sach.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMa_Ngan_Sach.KeyFilter = "Ma_Ns";
-            this.txtMa_Ngan_Sach.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtMa_Ngan_Sach.ListFilter = new string[0];
-            this.txtMa_Ngan_Sach.Location = new System.Drawing.Point(144, 235);
-            this.txtMa_Ngan_Sach.LookupKeyFilter = "";
-            this.txtMa_Ngan_Sach.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.txtMa_Ngan_Sach.Name = "txtMa_Ngan_Sach";
-            this.txtMa_Ngan_Sach.Size = new System.Drawing.Size(159, 20);
-            this.txtMa_Ngan_Sach.TabIndex = 8;
-            this.txtMa_Ngan_Sach.UseAutoFilter = true;
+            this.txtFilterNs.bEnabled = true;
+            this.txtFilterNs.bIsLookup = false;
+            this.txtFilterNs.bReadOnly = false;
+            this.txtFilterNs.bRequire = false;
+            this.txtFilterNs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFilterNs.ColumnsView = null;
+            this.txtFilterNs.CtrlDepend = null;
+            this.txtFilterNs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilterNs.KeyFilter = "";
+            this.txtFilterNs.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtFilterNs.ListFilter = new string[0];
+            this.txtFilterNs.Location = new System.Drawing.Point(503, 120);
+            this.txtFilterNs.LookupKeyFilter = "";
+            this.txtFilterNs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtFilterNs.Name = "txtFilterNs";
+            this.txtFilterNs.Size = new System.Drawing.Size(50, 20);
+            this.txtFilterNs.TabIndex = 0;
+            this.txtFilterNs.UseAutoFilter = false;
+            // 
+            // txtValueFilter
+            // 
+            this.txtValueFilter.bEnabled = true;
+            this.txtValueFilter.bIsLookup = false;
+            this.txtValueFilter.bReadOnly = false;
+            this.txtValueFilter.bRequire = false;
+            this.txtValueFilter.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtValueFilter.ColumnsView = null;
+            this.txtValueFilter.CtrlDepend = null;
+            this.txtValueFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValueFilter.KeyFilter = "";
+            this.txtValueFilter.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtValueFilter.ListFilter = new string[0];
+            this.txtValueFilter.Location = new System.Drawing.Point(568, 120);
+            this.txtValueFilter.LookupKeyFilter = "";
+            this.txtValueFilter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtValueFilter.Name = "txtValueFilter";
+            this.txtValueFilter.Size = new System.Drawing.Size(50, 20);
+            this.txtValueFilter.TabIndex = 0;
+            this.txtValueFilter.Text = "0";
+            this.txtValueFilter.UseAutoFilter = false;
             // 
             // frmDiscountConfig_Edit
             // 
@@ -642,5 +699,8 @@ namespace Epoint.Modules.AR
         private Systems.Controls.lblControl lbMa_Vt;
         private Systems.Controls.txtTextLookup txtMa_Ngan_Sach;
         private Systems.Controls.lblControl lblControl8;
+        private Systems.Controls.txtTextLookup txtFilterNs;
+        private System.Windows.Forms.Control control1;
+        private Systems.Controls.txtTextLookup txtValueFilter;
     }
 }

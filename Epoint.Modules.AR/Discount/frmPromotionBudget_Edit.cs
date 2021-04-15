@@ -29,8 +29,8 @@ namespace Epoint.Modules.AR
         {
             InitializeComponent();
 
-            this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-            this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
+            //this.btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            //this.btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
         }
         public override void Load(enuEdit enuNew_Edit, DataRow drEdit)
         {
@@ -86,13 +86,9 @@ namespace Epoint.Modules.AR
             return bvalid;
         }
 
-        private bool Save()
+        public override bool Save()
         {
-
-
             Common.GatherMemvar(this, ref drEdit);
-
-
             //Kiem tra Valid tren Form
             if (!FormCheckValid())
                 return false;
