@@ -22,71 +22,71 @@ using DevExpress.XtraGrid;
 
 namespace Epoint.Modules.AR
 {
-	public partial class frmDiscountDetail_View : Epoint.Systems.Customizes.frmView
-	{
+    public partial class frmDiscountDetail_View : Epoint.Systems.Customizes.frmView
+    {
 
-		#region Khai bao bien
-		public DataTable dtViewHD;
+        #region Khai bao bien
+        public DataTable dtViewHD;
         private dgvGridControl dgvViewHD = new dgvGridControl();
         public string strMa_Ct = string.Empty;
-        public string strStt= string.Empty;
-		BindingSource bdsViewHD = new BindingSource();
-        public DataTable dtVoucherSelect ;
-		//dgvControl dgvViewHD = new dgvControl();
+        public string strStt = string.Empty;
+        BindingSource bdsViewHD = new BindingSource();
+        public DataTable dtVoucherSelect;
+        //dgvControl dgvViewHD = new dgvControl();
 
         //string strMa_Ct = string.Empty;
         //string strKey = string.Empty;
-	
-		#endregion
 
-		#region Contructor
+        #endregion
+
+        #region Contructor
 
         public frmDiscountDetail_View()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
-			btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-			btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
-         
-		}       
+            btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
 
-        
+        }
 
-		public void Load(string strMa_Ct, string strStt)
-		{
-			
-			this.strMa_Ct = strMa_Ct;
+
+
+        public void Load(string strMa_Ct, string strStt)
+        {
+
+            this.strMa_Ct = strMa_Ct;
             this.strStt = strStt;
-			Build();
-			FillData();
-			BindingLanguage();
+            Build();
+            FillData();
+            BindingLanguage();
 
-			ShowDialog();
-		}
-       
-		#endregion
+            ShowDialog();
+        }
 
-		#region Build, FillData
+        #endregion
 
-		private void Build()
-		{
+        #region Build, FillData
+
+        private void Build()
+        {
             dgvViewHD.strZone = "OM_DISCOUTDETAIL";
-			dgvViewHD.ReadOnly = true;
+            dgvViewHD.ReadOnly = true;
 
-   
-			dgvViewHD.BuildGridView(this.isLookup);
+
+            dgvViewHD.BuildGridView(this.isLookup);
             dgvViewHD.Dock = DockStyle.Fill;
 
 
 
-            
+
 
             //cl.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             //dgvViewHD.dgvGridView.CustomDrawGroupRow += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(gridView1_CustomDrawGroupRow);
-            
-            
+
+
             this.ListOrder.Controls.Add(dgvViewHD);
-		}
+        }
         private void gridView1_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
         {
             GridColumn cl = (GridColumn)dgvViewHD.dgvGridView.Columns["MA_CTKM"];
@@ -140,50 +140,50 @@ namespace Epoint.Modules.AR
 
 
         }
-		
-       
-		
-       
-		#endregion
 
-		#region Su kien
 
-		protected override void OnKeyDown(KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
+
+
+        #endregion
+
+        #region Su kien
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
                 case Keys.Space:
                     DataRow drCurrent = ((DataRowView)bdsViewHD.Current).Row;
-                //    drCurrent["Chon"] = !(bool)drCurrent["Chon"];
+                    //    drCurrent["Chon"] = !(bool)drCurrent["Chon"];
                     break;
-			}
+            }
 
-			
-			base.OnKeyDown(e);
-		}
+
+            base.OnKeyDown(e);
+        }
         void dgvViewHD_CellMouseClick(object sender, EventArgs e)
         {
-            
+
             if (bdsViewHD.Position < 0)
                 return;
 
-            
+
         }
 
         void txtSo_Ct_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
         void btAccept_Click(object sender, EventArgs e)
-        {            
+        {
             this.Close();
         }
 
-		void btCancel_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
+        void btCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

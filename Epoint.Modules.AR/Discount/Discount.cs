@@ -591,8 +591,7 @@ namespace Epoint.Modules.AR
 
                 if ((bool)drEditCt["Hang_Km"] && Convert.ToDouble(drEditCt["Tien_Nt9"]) == 0)
                 {
-                    //&& (string)drEditCt["Ma_CtKm_M"] != string.Empty
-                    //if ((string)drEditCt["Ma_CtKm"] != "" || (string)drEditCt["Ma_CtKm1"] != "") // Chỉ dòng hàng KM tự động
+                    
                     if ((string)drEditCt["Ma_CtKm_M"] == string.Empty && (string)drEditCt["Ma_So"] != string.Empty) //Là km tự động
                         continue;
                 }
@@ -614,7 +613,6 @@ namespace Epoint.Modules.AR
                 else
                     drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = drEditCt["Tien_M4"] = 0;
 
-                //Voucher.Calc_Chiet_Khau(drEditCt);
                 Voucher.Calc_Thue_Vat(drEditCt);
 
                 dtTemp.ImportRow(drEditCt);

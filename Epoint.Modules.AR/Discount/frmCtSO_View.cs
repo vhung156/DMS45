@@ -18,18 +18,18 @@ using Epoint.Systems.Commons;
 
 namespace Epoint.Modules.AR
 {
-	public partial class frmCtSO_View : frmVoucher_View
-	{
-		#region Contructor
+    public partial class frmCtSO_View : frmVoucher_View
+    {
+        #region Contructor
 
         public frmCtSO_View()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
             this.btnPXK.Click += new EventHandler(btnPXK_Click);
             this.btDiscoutDetail.Click += new EventHandler(btDiscoutDetail_Click);
-		}	
+        }
 
-		#endregion		
+        #endregion
         #region Update
 
         public override void Edit(enuEdit enuNew_Edit)
