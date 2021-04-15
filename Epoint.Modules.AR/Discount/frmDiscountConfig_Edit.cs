@@ -206,7 +206,7 @@ namespace Epoint.Modules.AR
 
             bool bRequire = false;
 
-            DataRow drLookup = Lookup.ShowQuickLookup("Ma_Ns", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowQuickLookup("Ma_Ns", strValue, bRequire, txtFilterNs.Text + ">0", "");
 
             if (bRequire && drLookup == null)
                 e.Cancel = true;

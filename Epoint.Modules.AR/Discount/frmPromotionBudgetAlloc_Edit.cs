@@ -88,16 +88,29 @@ namespace Epoint.Modules.AR
         private bool FormCheckBudgetAllocated()
         {
             bool bvalid = true;
-
             Hashtable ht = new Hashtable();
+            //Check Saleman allocated
+            ht.Add("MA_NS", txtMa_Ns.Text);
+            ht.Add("IDENT00", ident00);
+            ht.Add("MA_DVCS", Element.sysMa_DvCs);
+
+            int iCheck0 = Convert.ToInt32(SQLExec.ExecuteReturnValue("sp_OM_CheckBudgetAllocatedForSaleMan", ht, CommandType.StoredProcedure));
+            if (iCheck0 == 0)
+            {
+                Common.MsgOk("Nhân viên " +txtMa_Cbnv.Text+ " đã được phân bổ ngân sách!");
+                return false;
+            }
+
+            //Check sum allocated
+            ht.Clear();
             ht.Add("MA_NS", txtMa_Ns.Text);
             ht.Add("IDENT00", ident00);
             ht.Add("QTYALLOC", numQtyAlloc.Value);
             ht.Add("AMTALLOC", numAmtAlloc.Value);
             ht.Add("MA_DVCS", Element.sysMa_DvCs);
 
-            int iCheck = Convert.ToInt32(SQLExec.ExecuteReturnValue("sp_OM_CheckBudgetAllocated", ht, CommandType.StoredProcedure));
-            if (iCheck == 0)
+            int iCheck1 = Convert.ToInt32(SQLExec.ExecuteReturnValue("sp_OM_CheckBudgetAllocated", ht, CommandType.StoredProcedure));
+            if (iCheck1 == 0)
             {
                 Common.MsgOk("Ngân sách phân bổ vượt  quá ngân sách tổng!");
                 return false;

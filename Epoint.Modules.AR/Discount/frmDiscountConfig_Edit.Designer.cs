@@ -625,6 +625,7 @@ namespace Epoint.Modules.AR
             this.txtFilterNs.Size = new System.Drawing.Size(50, 20);
             this.txtFilterNs.TabIndex = 0;
             this.txtFilterNs.UseAutoFilter = false;
+            this.txtFilterNs.Visible = false;
             // 
             // txtValueFilter
             // 
@@ -647,6 +648,7 @@ namespace Epoint.Modules.AR
             this.txtValueFilter.TabIndex = 0;
             this.txtValueFilter.Text = "0";
             this.txtValueFilter.UseAutoFilter = false;
+            this.txtValueFilter.Visible = false;
             // 
             // frmDiscountConfig_Edit
             // 
