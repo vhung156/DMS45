@@ -738,7 +738,7 @@ namespace Epoint.Modules.AR
                     }
                 }
 
-            Discount.OM_SaveOM_SalesDics(this);
+            //Discount.OM_SaveOM_SalesDics(this);
             return Voucher.SQLUpdateCt(this);
 
         }
