@@ -357,21 +357,24 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
             dtEditCtDisc.AcceptChanges();
         }
-        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm, string strMa_Ns)
+        public static void Calc_Chiet_Khau_ForGroup(frmVoucher_Edit frmEditCt, double dbAmtPercent, string Ma_Vt_List, string strMa_CtKm, string strStt_Km, bool isEditKm, string strMa_Ns, ref double dbAmtAlloc)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
-            double dbTien = 0, dbTien4 = 0, dbTien4_N = 0, dbTien_Ck = 0;
+            double dbTien = 0, dbTien4 = 0, dbTien4_N = 0, dbTien4_Org_N =0, dbTien_Ck = 0;
             foreach (DataRow drEditCt in dtEditCt.Rows)
             {
                 if (Common.Inlist(drEditCt["Ma_Vt"].ToString(), Ma_Vt_List)) // Những dòng được chiết khấu
                 {
                     dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
                     dbTien4 = Convert.ToDouble(drEditCt["Tien4"]);
-                    dbTien4_N = Math.Round(dbTien * dbAmtPercent / 100);
-                    dbTien_Ck = Convert.ToDouble(drEditCt["Tien_Ck"]);
-                    dbTien4 += dbTien4_N;
+                    dbTien4_Org_N = Math.Round(dbTien * dbAmtPercent / 100);//Tiên áp dụng
+                    if (dbAmtAlloc >= 0)
+                        dbTien4_N = dbAmtAlloc <= dbTien4_Org_N ? dbAmtAlloc : dbTien4_Org_N; // nếu ns > ck thì lấy ck
 
+
+                    dbTien_Ck = Convert.ToDouble(drEditCt["Tien_Ck"]);         
+                    dbTien4 += dbTien4_N;
                     dbTien = dbTien - dbTien4;
                     drEditCt["Chiet_Khau"] = Math.Round((dbTien4 / dbTien) * 100, 7);
 
@@ -397,7 +400,7 @@ namespace Epoint.Modules.AR
                     drDisc["Stt0"] = drEditCt["Stt0"];
                     drDisc["Ma_CTKM"] = strMa_CtKm;
                     drDisc["Stt_Km"] = strStt_Km;
-                    drDisc["Tien4_Org"] = dbTien4_N;
+                    drDisc["Tien4_Org"] = dbTien4_Org_N;
                     drDisc["Tien4"] = dbTien4_N;
                     drDisc["Ma_Ns"] = strMa_Ns;
                     dtEditCtDisc.Rows.Add(drDisc);
@@ -408,18 +411,22 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
         }
 
-        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_CtKm, string strStt_Km, bool isEditKm,string strMa_Ns)
+        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_CtKm, string strStt_Km, bool isEditKm,string strMa_Ns, ref double dbAmtAlloc)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
-            double dbTien = 0, dbTien4 = 0, dbTien4_N = 0, dbTien_CkInvoice = 0, dbTien_CkInvoice_OLD = 0; ;
+            double dbTien = 0, dbTien4 = 0, dbTien4_N = 0, dbTien4_Org_N = 0, dbTien_CkInvoice = 0, dbTien_CkInvoice_OLD = 0; ;
             foreach (DataRow drEditCt in dtEditCt.Rows)
             {
                 if ((bool)drEditCt["Hang_Km"]) // Đối với hàng KM nhập tay
                     continue;
                 dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
                 dbTien4 = Convert.ToDouble(drEditCt["Tien4"]);
-                dbTien4_N = Math.Round(dbTien * dbAmtPercent / 100);
+                dbTien4_Org_N = Math.Round(dbTien * dbAmtPercent / 100);
+                if (dbAmtAlloc >= 0)
+                    dbTien4_N = dbAmtAlloc <= dbTien4_Org_N ? dbAmtAlloc : dbTien4_Org_N; // nếu ns > ck thì lấy ck
+
+
                 dbTien4 = dbTien4_N + Convert.ToDouble(drEditCt["Tien_M4"]) + Convert.ToDouble(drEditCt["Tien_Ck_M4"]);
                 dbTien_CkInvoice_OLD = Convert.ToDouble(drEditCt["Tien_CkInvoice"]);
 

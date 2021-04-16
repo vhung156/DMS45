@@ -1706,14 +1706,14 @@ namespace Epoint.Modules.AR
                         int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
                         if (strHinh_Thuc_KM == "PP")
                         {
-                            Discount.Calc_Chiet_Khau_ForGroup(this, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns);
+                            Discount.Calc_Chiet_Khau_ForGroup(this, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
 
                         }
                         else if (strHinh_Thuc_KM == "II")
                         {
                             dbAmtDisc *= iDiscTime;
                             double dbPer = Math.Round((dbAmtDisc / dbAmt) * 100, 7);
-                            Discount.Calc_Chiet_Khau_ForGroup(this, dbPer, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns);
+                            Discount.Calc_Chiet_Khau_ForGroup(this, dbPer, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
                         }
                         else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
                         {
@@ -1764,24 +1764,23 @@ namespace Epoint.Modules.AR
 
                     if (dtBreakBy.Rows.Count > 0)
                     {
-                        //double dbBreakAmt = strBreakBy == "Q" ? Convert.ToDouble(dtBreakBy.Rows[0]["BreakQty"]):Convert.ToDouble(dtBreakBy.Rows[0]["BreakAmt"]);
+                        
                         string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
                         double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
                         int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
                         if (strHinh_Thuc_KM == "PP")
                         {
-                            Discount.Calc_Chiet_Khau_ForGroup(this, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns);
+                            Discount.Calc_Chiet_Khau_ForGroup(this, dbAmtDisc, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
 
                         }
                         else if (strHinh_Thuc_KM == "II")
                         {
                             dbAmtDisc *= iDiscTime;
                             double dbPer = Math.Round((dbAmtDisc / dbAmt) * 100, 7);
-                            Discount.Calc_Chiet_Khau_ForGroup(this, dbPer, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns);
+                            Discount.Calc_Chiet_Khau_ForGroup(this, dbPer, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
                         }
                         else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
-                        {
-                            //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
+                        {                            
                             Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0], strMa_Ns,ref dbQtyAlloc);
                         }
                         dtEditCt.AcceptChanges();
@@ -1844,7 +1843,7 @@ namespace Epoint.Modules.AR
                             {
                                 dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
                             }
-                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm,strMa_Ns);
+                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm,strMa_Ns, ref dbAmtAlloc);
                         }
 
                     }
