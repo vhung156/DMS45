@@ -1844,7 +1844,7 @@ namespace Epoint.Modules.AR
                             {
                                 dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
                             }
-                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm);
+                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm,strMa_Ns);
                         }
 
                     }

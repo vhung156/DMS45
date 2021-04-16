@@ -408,7 +408,7 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
         }
 
-        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_CtKm, string strStt_Km, bool isEditKm)
+        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmtPercent, string strMa_CtKm, string strStt_Km, bool isEditKm,string strMa_Ns)
         {
             DataTable dtEditCt = frmEditCt.dtEditCt;
             DataTable dtEditCtDisc = frmEditCt.dtEditCtDisc;
@@ -447,7 +447,7 @@ namespace Epoint.Modules.AR
                 drDisc["Stt_Km"] = strStt_Km;
                 drDisc["Tien4_Org"] = dbTien4_N;
                 drDisc["Tien4"] = dbTien4_N;
-                drDisc["Ma_Ns"] = strMa_CtKm;
+                drDisc["Ma_Ns"] = strMa_Ns;
                 dtEditCtDisc.Rows.Add(drDisc);
 
                 drEditCt.AcceptChanges();
@@ -621,41 +621,7 @@ namespace Epoint.Modules.AR
 
 
         }
-        public static bool OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
-        {
-            if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
-            {
-                SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
-                command.CommandText = "OM_SaveOM_SalesDics";
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Stt", frmEditCt.strStt);
-                command.Parameters.AddWithValue("@Ma_Ct", frmEditCt.strMa_Ct);
-                command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
-                SqlParameter parameter = new SqlParameter
-                {
-                    SqlDbType = SqlDbType.Structured,
-                    ParameterName = "@EditDisc",
-                    TypeName = "TVP_DiscAmt",
-                    Value = frmEditCt.dtEditCtDisc
-                };
-                command.Parameters.Add(parameter);
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception exception)
-                {
-                    command.CommandText = "WHILE @@TRANCOUNT > 0 ROLLBACK TRANSACTION";
-                    command.CommandType = CommandType.Text;
-                    command.Parameters.Clear();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
-                    return false;
-                }
-
-            }
-            return true;
-        }
+        
 
         public static void CalDiscountFreeItem(frmVoucher_Edit frmEditCt, string strMa_CtKm, string strSttKM, bool is_EditDisc, double dbDiscTime, DataRow drEditCtCur)
         {
@@ -838,7 +804,44 @@ namespace Epoint.Modules.AR
 
         }
 
+        #region OM_SaveOM_SalesDics
 
+        /*public static bool OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
+        {
+            if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
+            {
+                SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+                command.CommandText = "OM_SaveOM_SalesDics";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Stt", frmEditCt.strStt);
+                command.Parameters.AddWithValue("@Ma_Ct", frmEditCt.strMa_Ct);
+                command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
+                SqlParameter parameter = new SqlParameter
+                {
+                    SqlDbType = SqlDbType.Structured,
+                    ParameterName = "@EditDisc",
+                    TypeName = "TVP_DiscAmt",
+                    Value = frmEditCt.dtEditCtDisc
+                };
+                command.Parameters.Add(parameter);
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception exception)
+                {
+                    command.CommandText = "WHILE @@TRANCOUNT > 0 ROLLBACK TRANSACTION";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Clear();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
+                    return false;
+                }
+
+            }
+            return true;
+        }*/
+        #endregion
         #region L - Loại khuyến mãi dòng
         /*
                 private void CalcDiscount(frmVoucher_Edit frmEditCt, DateTime dteNgay_Ct, string strMa_Dt, string strStt) //ref DataTable dtEditCt
