@@ -20,72 +20,72 @@ using DevExpress.XtraGrid.Columns;
 
 namespace Epoint.Modules.AR
 {
-	public partial class frmChonHD_View : Epoint.Systems.Customizes.frmView
-	{
+    public partial class frmChonHD_View : Epoint.Systems.Customizes.frmView
+    {
 
-		#region Khai bao bien
+        #region Khai bao bien
         public DataTable dtViewCur;
-		public DataTable dtViewHD;
-        
+        public DataTable dtViewHD;
+
         public bool is_Accept = false;
         private DataRow drDmCt;
         private dgvGridControl dgvViewHD = new dgvGridControl();
         public string strMa_Px = string.Empty;
         public string strMa_CbNv_GH = string.Empty;
-		BindingSource bdsViewHD = new BindingSource();
-        public DataTable dtVoucherSelect ;
-		//dgvControl dgvViewHD = new dgvControl();
+        BindingSource bdsViewHD = new BindingSource();
+        public DataTable dtVoucherSelect;
+        //dgvControl dgvViewHD = new dgvControl();
 
-		string strMa_Ct = string.Empty;
-		string strKey = string.Empty;
-		frmVoucher_Edit frmEditCtHD;
+        string strMa_Ct = string.Empty;
+        string strKey = string.Empty;
+        frmVoucher_Edit frmEditCtHD;
         enuEdit enuNew_Edit;
 
-		#endregion
+        #endregion
 
-		#region Contructor
+        #region Contructor
 
-		public frmChonHD_View()
-		{
-			InitializeComponent();
+        public frmChonHD_View()
+        {
+            InitializeComponent();
 
-			btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
-			btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
+            btgAccept.btAccept.Click += new EventHandler(btAccept_Click);
+            btgAccept.btCancel.Click += new EventHandler(btCancel_Click);
             //txtSo_Ct.TextChanged += new EventHandler(txtSo_Ct_TextChanged);
             dgvViewHD.dgvGridView.Click += new EventHandler(dgvViewHD_CellMouseClick);
-		}
+        }
 
-        
 
-        
 
-		public void Load(frmVoucher_Edit frmEditCtHD, string strMa_Ct, string strKey)
-		{
-			this.frmEditCtHD = frmEditCtHD;
-			this.strMa_Ct = strMa_Ct;
-			this.strKey = strKey;
 
-			Build();
-			FillData();
-			BindingLanguage();
 
-			ShowDialog();
-		}
+        public void Load(frmVoucher_Edit frmEditCtHD, string strMa_Ct, string strKey)
+        {
+            this.frmEditCtHD = frmEditCtHD;
+            this.strMa_Ct = strMa_Ct;
+            this.strKey = strKey;
+
+            Build();
+            FillData();
+            BindingLanguage();
+
+            ShowDialog();
+        }
         public void LoadCheckPXK(enuEdit enuNew_Edit, string Ma_Px, string strMa_CbNv_GH)
-		{
+        {
             //this.frmEditCtHD = frmEditCtHD;
-           
-            this.strMa_Px = Ma_Px; 
+
+            this.strMa_Px = Ma_Px;
             this.strMa_CbNv_GH = strMa_CbNv_GH;
             this.enuNew_Edit = enuNew_Edit;
 
-			BuildCheckPXK();
-			FillDataPXK();
-			BindingLanguage();
+            BuildCheckPXK();
+            FillDataPXK();
+            BindingLanguage();
 
-			ShowDialog();
-		}
-        public void LoadCheckPXK(enuEdit enuNew_Edit, string Ma_Px, string strMa_CbNv_GH,string Ma_Ct)
+            ShowDialog();
+        }
+        public void LoadCheckPXK(enuEdit enuNew_Edit, string Ma_Px, string strMa_CbNv_GH, string Ma_Ct)
         {
             //this.frmEditCtHD = frmEditCtHD;
             this.drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", Ma_Ct);
@@ -98,21 +98,21 @@ namespace Epoint.Modules.AR
             BuildCheckPXK();
             FillDataPXK();
             BindingLanguage();
-            
+
             ShowDialog();
         }
-		#endregion
+        #endregion
 
-		#region Build, FillData
+        #region Build, FillData
 
-		private void Build()
-		{
+        private void Build()
+        {
             dgvViewHD.strZone = "TL_ViewHD";
-			dgvViewHD.ReadOnly = false;
-			dgvViewHD.BuildGridView(this.isLookup);
+            dgvViewHD.ReadOnly = false;
+            dgvViewHD.BuildGridView(this.isLookup);
             dgvViewHD.Dock = DockStyle.Fill;
             //this.ListOrder.Controls.Add(dgvViewHD);
-		}
+        }
         private void BuildCheckPXK()
         {
             dgvViewHD.strZone = "OM_PXKDETAIL_EDIT";
@@ -135,32 +135,32 @@ namespace Epoint.Modules.AR
             //dgvViewHD.dgvAdvBandedGridView.Columns.Add(dgvcChkb);
 
             this.ListOrder.Controls.Add(dgvViewHD);
-        
+
         }
-		private void FillData()
-		{
-			bdsViewHD = new BindingSource();
+        private void FillData()
+        {
+            bdsViewHD = new BindingSource();
 
-			DataRow drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", strMa_Ct);
-			string strTable_Ct = (string)drDmCt["Table_Ct"];
+            DataRow drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", strMa_Ct);
+            string strTable_Ct = (string)drDmCt["Table_Ct"];
 
-			string strSelect = " Stt , Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ma_Nx, Ma_Kho, Ma_Vt, Ten_Vt, Dvt, So_Luong9, Gia_Nt9, Tien_Nt9, Ma_TTe,Tk_No, Tk_Co, Gia_Nt, Gia, Tien_Nt, Tien, CAST(0 AS BIT) AS Chon ";
+            string strSelect = " Stt , Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ma_Nx, Ma_Kho, Ma_Vt, Ten_Vt, Dvt, So_Luong9, Gia_Nt9, Tien_Nt9, Ma_TTe,Tk_No, Tk_Co, Gia_Nt, Gia, Tien_Nt, Tien, CAST(0 AS BIT) AS Chon ";
 
-			dtViewHD = DataTool.SQLGetDataTable(strTable_Ct, strSelect, strKey, "Ngay_Ct, So_Ct");
+            dtViewHD = DataTool.SQLGetDataTable(strTable_Ct, strSelect, strKey, "Ngay_Ct, So_Ct");
 
-			bdsViewHD.DataSource = dtViewHD;
-			dgvViewHD.DataSource = bdsViewHD;
+            bdsViewHD.DataSource = dtViewHD;
+            dgvViewHD.DataSource = bdsViewHD;
 
-			bdsViewHD.Position = 0;
+            bdsViewHD.Position = 0;
 
-			//Uy quyen cho lop co so tim kiem           
-			bdsSearch = bdsViewHD;
+            //Uy quyen cho lop co so tim kiem           
+            bdsSearch = bdsViewHD;
 
             //foreach (BandedGridColumn dgvc in dgvViewHD.dgvAdvBandedGridView.Columns)
             //    dgvc.ReadOnly = true;
 
             //dgvViewHD.Columns["CHON"].ReadOnly = false;
-		}
+        }
         private void FillDataPXK()
         {
             bdsViewHD = new BindingSource();
@@ -171,12 +171,12 @@ namespace Epoint.Modules.AR
             ht.Add("MA_DVCS", Element.sysMa_DvCs);
             DataTable dtHD = new DataTable();
             // Điêu kiện khuyến mãi
-//            dtHD = SQLExec.ExecuteReturnDt(@"SELECT ph.stt, ph.TTien0 + ph.TTien3 AS TTien,Ph.So_Ct,Ph.Ma_Dt,dt.Ten_Dt,Ma_Px  = '" + strMa_Px + @"' ,
-//                                                        Ma_Dvcs = '" + Element.sysMa_DvCs + @"',
-//                                                        CAST(0 AS BIT) AS Chon 						                           
-//						                            FROM GLVOUCHER ph
-//						                            INNER JOIN LIDOITUONG dt ON ph.Ma_Dt =  dt.Ma_Dt
-//                                                    WHERE ph.Duyet =0 AND So_Ct_Lap = ''  AND ph.Ma_Ct IN ('" + this.strMa_Ct + "') ", "", "", CommandType.Text);
+            //            dtHD = SQLExec.ExecuteReturnDt(@"SELECT ph.stt, ph.TTien0 + ph.TTien3 AS TTien,Ph.So_Ct,Ph.Ma_Dt,dt.Ten_Dt,Ma_Px  = '" + strMa_Px + @"' ,
+            //                                                        Ma_Dvcs = '" + Element.sysMa_DvCs + @"',
+            //                                                        CAST(0 AS BIT) AS Chon 						                           
+            //						                            FROM GLVOUCHER ph
+            //						                            INNER JOIN LIDOITUONG dt ON ph.Ma_Dt =  dt.Ma_Dt
+            //                                                    WHERE ph.Duyet =0 AND So_Ct_Lap = ''  AND ph.Ma_Ct IN ('" + this.strMa_Ct + "') ", "", "", CommandType.Text);
 
             dtHD = SQLExec.ExecuteReturnDt("Sp_OM_GetVoucher", ht, CommandType.StoredProcedure);
             dtViewHD = dtHD.Clone();
@@ -206,55 +206,55 @@ namespace Epoint.Modules.AR
 
             //dgvViewHD.Columns["Chon"].ReadOnly = false;
         }
-		private void UpdatefrmEditCtHD()
-		{
-			DataTable dtEditCt = frmEditCtHD.dtEditCt;
+        private void UpdatefrmEditCtHD()
+        {
+            DataTable dtEditCt = frmEditCtHD.dtEditCt;
 
-			DataRow drEditCt = dtEditCt.Rows[0];
+            DataRow drEditCt = dtEditCt.Rows[0];
 
-			//dtEditCt.Clear();
-			DataRow[] drChonHD = dtViewHD.Select("Chon = true");
+            //dtEditCt.Clear();
+            DataRow[] drChonHD = dtViewHD.Select("Chon = true");
 
-			foreach (DataRow drViewHD in drChonHD)
-			{
-				//if ((bool)drViewHD["DELETED"])
-				//    continue;
+            foreach (DataRow drViewHD in drChonHD)
+            {
+                //if ((bool)drViewHD["DELETED"])
+                //    continue;
 
-				DataRow drEditCtNew = dtEditCt.NewRow();
-				Common.CopyDataRow(drEditCt, drEditCtNew);
+                DataRow drEditCtNew = dtEditCt.NewRow();
+                Common.CopyDataRow(drEditCt, drEditCtNew);
 
-				drEditCtNew["Ma_Vt"] = drViewHD["Ma_Vt"];
-				drEditCtNew["Ten_Vt"] = drViewHD["Ten_Vt"];
-				drEditCtNew["Ma_Kho"] = drViewHD["Ma_Kho"];
-				drEditCtNew["Dvt"] = drViewHD["Dvt"];
+                drEditCtNew["Ma_Vt"] = drViewHD["Ma_Vt"];
+                drEditCtNew["Ten_Vt"] = drViewHD["Ten_Vt"];
+                drEditCtNew["Ma_Kho"] = drViewHD["Ma_Kho"];
+                drEditCtNew["Dvt"] = drViewHD["Dvt"];
 
-				drEditCtNew["So_Luong9"] = drViewHD["So_Luong9"];
-				drEditCtNew["Gia_Nt9"] = drViewHD["Gia_Nt9"];
-				drEditCtNew["Tien_Nt9"] = drViewHD["Tien_Nt9"];
+                drEditCtNew["So_Luong9"] = drViewHD["So_Luong9"];
+                drEditCtNew["Gia_Nt9"] = drViewHD["Gia_Nt9"];
+                drEditCtNew["Tien_Nt9"] = drViewHD["Tien_Nt9"];
 
-				drEditCtNew["Tk_No"] = drViewHD["Tk_Co"];
-				drEditCtNew["Tk_Co"] = drViewHD["Tk_No"];
-				drEditCtNew["Gia_Nt"] = drViewHD["Gia_Nt"];
-				drEditCtNew["Gia"] = drViewHD["Gia"];
-				drEditCtNew["Tien_Nt"] = drViewHD["Tien_Nt"];
-				drEditCtNew["Tien"] = drViewHD["Tien"];
+                drEditCtNew["Tk_No"] = drViewHD["Tk_Co"];
+                drEditCtNew["Tk_Co"] = drViewHD["Tk_No"];
+                drEditCtNew["Gia_Nt"] = drViewHD["Gia_Nt"];
+                drEditCtNew["Gia"] = drViewHD["Gia"];
+                drEditCtNew["Tien_Nt"] = drViewHD["Tien_Nt"];
+                drEditCtNew["Tien"] = drViewHD["Tien"];
 
-				drEditCtNew["Stt_Org"] = drViewHD["Stt"];
-				drEditCtNew["Stt0"] = Common.MaxDCValue(dtEditCt, "Stt0") + 1;
+                drEditCtNew["Stt_Org"] = drViewHD["Stt"];
+                drEditCtNew["Stt0"] = Common.MaxDCValue(dtEditCt, "Stt0") + 1;
 
-				dtEditCt.Rows.Add(drEditCtNew);
-			}
+                dtEditCt.Rows.Add(drEditCtNew);
+            }
 
-			if (dtEditCt.Rows.Count > 1)
-				dtEditCt.Rows.Remove(drEditCt);
+            if (dtEditCt.Rows.Count > 1)
+                dtEditCt.Rows.Remove(drEditCt);
 
-			//Cập nhật Tk_No2 = Tk hàng bán trả lại	
-			foreach (DataRow dr in dtEditCt.Rows)
-			{
-				string strMa_Vt = (string)dr["Ma_Vt"];
-				dr["Tk_No2"] = DataTool.SQLGetNameByCode("LIVATTU", "Ma_Vt", "Tk_Hbtl", strMa_Vt);
-			}
-		}
+            //Cập nhật Tk_No2 = Tk hàng bán trả lại	
+            foreach (DataRow dr in dtEditCt.Rows)
+            {
+                string strMa_Vt = (string)dr["Ma_Vt"];
+                dr["Tk_No2"] = DataTool.SQLGetNameByCode("LIVATTU", "Ma_Vt", "Tk_Hbtl", strMa_Vt);
+            }
+        }
         public bool UpdateCt(DataTable dtEditCt)
         {
             #region UpdateCt: Cap nhat tung dong trong dtEditCt
@@ -324,7 +324,7 @@ namespace Epoint.Modules.AR
 
                 try
                 {
-                    int iSuc =  sqlCom.ExecuteNonQuery();
+                    int iSuc = sqlCom.ExecuteNonQuery();
                     if (iSuc > 0)
                     {
                         SQLExec.Execute("Update GLVoucher SET So_Ct_Lap = '" + strMa_Px + "'" +
@@ -357,7 +357,7 @@ namespace Epoint.Modules.AR
                 command.CommandText = "Sp_Update_PXKDetail";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Ma_PX", strMa_Px);
-                command.Parameters.AddWithValue("@Ma_CBNV_GH",strMa_CbNv_GH);
+                command.Parameters.AddWithValue("@Ma_CBNV_GH", strMa_CbNv_GH);
                 command.Parameters.AddWithValue("@IS_UPDATE", "1");
                 command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
                 SqlParameter parameter = new SqlParameter
@@ -382,37 +382,37 @@ namespace Epoint.Modules.AR
                 }
             }
         }
-		#endregion
+        #endregion
 
-		#region Su kien
+        #region Su kien
 
-		protected override void OnKeyDown(KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
                 case Keys.Space:
                     DataRow drCurrent = ((DataRowView)bdsViewHD.Current).Row;
-                //    drCurrent["Chon"] = !(bool)drCurrent["Chon"];
+                    //    drCurrent["Chon"] = !(bool)drCurrent["Chon"];
                     break;
-			}
+            }
 
-			if (e.Control)
-			{
-				switch (e.KeyCode)
-				{
-					case Keys.A:
-						foreach (DataRow dr in dtViewHD.Rows)
-							dr["Chon"] = true;
-						break;
-					case Keys.U:
-						foreach (DataRow dr in dtViewHD.Rows)
-							dr["Chon"] = false;
-						break;
-				}
-			}
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        foreach (DataRow dr in dtViewHD.Rows)
+                            dr["Chon"] = true;
+                        break;
+                    case Keys.U:
+                        foreach (DataRow dr in dtViewHD.Rows)
+                            dr["Chon"] = false;
+                        break;
+                }
+            }
 
-			base.OnKeyDown(e);
-		}
+            base.OnKeyDown(e);
+        }
         void dgvViewHD_CellMouseClick(object sender, EventArgs e)
         {
             //if (e.ColumnIndex < 0 || e.RowIndex < 0)
@@ -450,17 +450,17 @@ namespace Epoint.Modules.AR
 
         void txtSo_Ct_TextChanged(object sender, EventArgs e)
         {
-           // string strKey = "(1 = 1) ";
+            // string strKey = "(1 = 1) ";
 
-           //if(txtSo_Ct.Text == "")
-           //{
-           //    this.bdsViewHD.RemoveFilter();
-           //}
-           // else
-           //{
-           //    strKey = strKey + " AND (So_Ct LIKE '%" + txtSo_Ct.Text + "%')";
-           //    this.bdsViewHD.Filter = strKey;
-           //}
+            //if(txtSo_Ct.Text == "")
+            //{
+            //    this.bdsViewHD.RemoveFilter();
+            //}
+            // else
+            //{
+            //    strKey = strKey + " AND (So_Ct LIKE '%" + txtSo_Ct.Text + "%')";
+            //    this.bdsViewHD.Filter = strKey;
+            //}
         }
         void btAccept_Click(object sender, EventArgs e)
         {
@@ -516,23 +516,23 @@ namespace Epoint.Modules.AR
                 if (this.enuNew_Edit == enuEdit.Edit)
                 {
                     this.Save_PXKDetail(dtVoucherSelect);
-//                    this.UpdateCt(dtViewHD);
+                    //                    this.UpdateCt(dtViewHD);
 
-//                    string strSQL = @"UPDATE  OM_PXK SET TTien = ISNULL( px.TTien0,0)
-//						            FROM OM_PXK xk
-//						            INNER JOIN (
-//						
-//										SELECT px.Ma_PX , TTien0 = SUM(ph.TTien0) FROM OM_PXKDetail px 					
-//										INNER JOIN GLVOUCHER ph ON Px.Stt = Ph.Stt 
-//										WHERE px.Ma_Px = '" + strMa_Px + @"'
-//										GROUP BY px.Ma_PX)px     	on Px.Ma_PX = xk.Ma_PX";
-//                    //if (DataTool.SQLDelete("OM_PXKDetail", drCurrent))
-//                        if (SQLExec.Execute(strSQL))
-//                        { }
+                    //                    string strSQL = @"UPDATE  OM_PXK SET TTien = ISNULL( px.TTien0,0)
+                    //						            FROM OM_PXK xk
+                    //						            INNER JOIN (
+                    //						
+                    //										SELECT px.Ma_PX , TTien0 = SUM(ph.TTien0) FROM OM_PXKDetail px 					
+                    //										INNER JOIN GLVOUCHER ph ON Px.Stt = Ph.Stt 
+                    //										WHERE px.Ma_Px = '" + strMa_Px + @"'
+                    //										GROUP BY px.Ma_PX)px     	on Px.Ma_PX = xk.Ma_PX";
+                    //                    //if (DataTool.SQLDelete("OM_PXKDetail", drCurrent))
+                    //                        if (SQLExec.Execute(strSQL))
+                    //                        { }
                 }
                 else if (this.enuNew_Edit == enuEdit.New)
                 {
-                   
+
                 }
 
                 this.is_Accept = true;
@@ -540,12 +540,12 @@ namespace Epoint.Modules.AR
             this.Close();
         }
 
-		void btCancel_Click(object sender, EventArgs e)
-		{
+        void btCancel_Click(object sender, EventArgs e)
+        {
             this.is_Accept = false;
-			this.Close();
-		}
+            this.Close();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
