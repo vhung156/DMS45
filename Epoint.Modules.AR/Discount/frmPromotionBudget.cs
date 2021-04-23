@@ -49,21 +49,11 @@ namespace Epoint.Modules.AR
             this.KeyDown += new KeyEventHandler(KeyDownEvent);
             this.dgvBudgetDetail.dgvGridView.DoubleClick += new EventHandler(dgvDetail_CellMouseDoubleClick);
             //this.dgvBudgetDetail.dgvGridView.MouseDown += new MouseEventHandler(dgvDetail_MouseDoubleClick);
-            this.dgvBudgetDetail.dgvGridView.RowCellClick += new RowCellClickEventHandler(DgvGridView_RowCellClick);
-            this.dgvBudgetDetail.dgvGridView.EditFormShowing += DgvGridView_EditFormShowing;
+        //    this.dgvBudgetDetail.dgvGridView.RowCellClick += new RowCellClickEventHandler(DgvGridView_RowCellClick);
+        //    this.dgvBudgetDetail.dgvGridView.EditFormShowing += DgvGridView_EditFormShowing;
         }
 
-        private void DgvGridView_EditFormShowing(object sender, EditFormShowingEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (view == null)
-                return;
-            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "QTYALLOC")) > 0)
-                e.Allow = false;
-
-            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "AMTALLOC")) > 0)
-                e.Allow = false;
-        }
+       
 
         public override void Load()
         {
@@ -388,8 +378,7 @@ namespace Epoint.Modules.AR
             string strColumnName = dgvBudgetDetail.dgvGridView.FocusedColumn.Name.ToUpper();
             GridHitInfo hitInfo = dgvBudgetDetail.dgvGridView.CalcHitInfo(e.Location);
             if (strColumnName == "QTYALLOC" || strColumnName == "AMTALLOC")
-            {
-
+            {              
                 if (hitInfo.InRowCell)
                 {
                     dgvBudgetDetail.dgvGridView.FocusedRowHandle = hitInfo.RowHandle;
@@ -404,6 +393,17 @@ namespace Epoint.Modules.AR
                 return;
             }
 
+        }
+        private void DgvGridView_EditFormShowing(object sender, EditFormShowingEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view == null)
+                return;
+            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "QTYALLOC")) > 0)
+                e.Allow = false;
+
+            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "AMTALLOC")) > 0)
+                e.Allow = false;
         }
         public override void EpointRelease()
         {
