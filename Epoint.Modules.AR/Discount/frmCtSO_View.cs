@@ -68,19 +68,23 @@ namespace Epoint.Modules.AR
                 return;
 
             DataRow drCurrent = ((DataRowView)bdsViewPh.Current).Row;
+            string strMa_Ct = ((string)drCurrent["Ma_Ct"]).Trim();
+            string strStt = ((string)drCurrent["Stt"]).Trim();
+
+
 
             if (!Common.CheckDataLocked((DateTime)drCurrent["Ngay_Ct"]))
             {
                 Common.MsgCancel("Đã khóa chứng từ không được xóa !");
                 return;
             }
-            if (Voucher.CheckDataLockedCtHanTtHD((string)drCurrent["Stt"]))
+            if (Voucher.CheckDataLockedCtHanTtHD(strStt))
             {
                 Common.MsgCancel("Chứng từ đã được thanh toán không được xóa !");
                 return;
 
             }
-            if (Voucher.CheckDataLockedPXK((string)drCurrent["Stt"]))
+            if (Voucher.CheckDataLockedPXK(strStt))
             {
                 Common.MsgCancel("Chứng từ đã được tạo phiếu xuất kho: " + (string)drCurrent["So_Ct_Lap"] + " không được xóa !");
                 return;
@@ -108,14 +112,66 @@ namespace Epoint.Modules.AR
             if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE"), "N"))
                 return;
 
-            string strMa_Ct = ((string)drCurrent["Ma_Ct"]).Trim();
-            string strStt = ((string)drCurrent["Stt"]).Trim();
 
-            if (Voucher.SQLDeleteCt(strStt, strMa_Ct))
+            //if (Voucher.SQLDeleteCt(strStt, strMa_Ct))
+            //{
+            //    bdsViewPh.RemoveAt(bdsViewPh.Position);
+            //    dtViewPh.AcceptChanges();
+            //}
+
+            if (dgvViewPh.dgvGridView.IsMultiSelect)// Chọn nhiều đơn hàng để xóa
             {
-                bdsViewPh.RemoveAt(bdsViewPh.Position);
-                dtViewPh.AcceptChanges();
+                int ivoucher = dgvViewPh.dgvGridView.SelectedRowsCount;
+
+                //if (ivoucher == 1)
+                //    if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE"), "N"))
+                //        return;
+
+                if (ivoucher > 1)
+                    if (!Common.MsgYes_No("Bạn có chắc chắn xóa " + ivoucher.ToString() + " hóa đơn?", "N"))
+                        return;
+
+                int[] a = dgvViewPh.dgvGridView.GetSelectedRows();
+                for (int i = (a.Length - 1); i >= 0; i--)
+                {
+                    int istt = a[i];
+                    string stt = dgvViewPh.dgvGridView.GetRowCellValue(istt, "STT").ToString();
+
+
+                    if (Voucher.CheckDataLockedCtHanTtHD(stt))
+                    {
+                        Common.MsgCancel("Chứng từ đã được thanh toán không được xóa !");
+                        continue;
+
+                    }
+                    else if (Voucher.CheckDataLockedPXK(strStt))
+                    {
+                        Common.MsgCancel("Chứng từ đã được tạo phiếu xuất kho: " + (string)drCurrent["So_Ct_Lap"] + " không được xóa !");
+                        continue;
+                    }
+
+                    if (Voucher.SQLDeleteCt(stt, strMa_Ct))
+                    {
+                        bdsViewPh.RemoveAt(bdsViewPh.Position);
+                        dtViewPh.AcceptChanges();
+                    }
+                }
+                this.FillDataNew();
+
             }
+            else // Chỉ xóa 1 đơn hàng
+            {
+                if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE"), "N"))
+                    return;
+                //--------------------------------------------------------------------
+
+                if (Voucher.SQLDeleteCt(strStt, strMa_Ct))
+                {
+                    bdsViewPh.RemoveAt(bdsViewPh.Position);
+                    dtViewPh.AcceptChanges();
+                }
+            }
+
         }
 
         public override void EditHanTt()

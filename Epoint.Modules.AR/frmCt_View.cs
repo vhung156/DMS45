@@ -117,9 +117,9 @@ namespace Epoint.Modules.AR
             {
                 int ivoucher = dgvViewPh.dgvGridView.SelectedRowsCount;
 
-                if (ivoucher == 1)
-                    if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE"), "N"))
-                        return;
+                //if (ivoucher == 1)
+                //    if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE"), "N"))
+                //        return;
 
                 if (ivoucher > 1)
                     if (!Common.MsgYes_No("Bạn có chắc chắn xóa " + ivoucher.ToString() + " hóa đơn?", "N"))
@@ -132,8 +132,8 @@ namespace Epoint.Modules.AR
                     string stt = dgvViewPh.dgvGridView.GetRowCellValue(istt, "STT").ToString();
                     if (Voucher.SQLDeleteCt(stt, strMa_Ct))
                     {
-                        bdsViewPh.RemoveAt(bdsViewPh.Position);
-                        dtViewPh.AcceptChanges();
+                        //bdsViewPh.RemoveAt(bdsViewPh.Position);
+                        //dtViewPh.AcceptChanges();
                     }
                 }
 

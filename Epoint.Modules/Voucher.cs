@@ -92,7 +92,7 @@ namespace Epoint.Modules
 
             #region Update Discount and promotion
             if (!OM_SaveOM_SalesDics(frmEditCt))
-                return false;          
+                return false;
             #endregion
 
 
@@ -2514,7 +2514,7 @@ namespace Epoint.Modules
         }
         public static bool OM_SaveOM_SalesDics(frmVoucher_Edit frmEditCt)
         {
-            if (frmEditCt.dtEditCtDisc.Rows.Count > 0)
+            if (frmEditCt.dtEditCtDisc != null && frmEditCt.dtEditCtDisc.Rows.Count > 0)
             {
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "OM_SaveOM_SalesDics";

@@ -37,7 +37,7 @@ namespace Epoint.Modules.AR
         DataRow drBudgetDetailAllocate;
         DataTable dtBudgetDetailAllocate;
         BindingSource bdsBudgetDetailAllocate = new BindingSource();
-        
+
         public frmPromotionBudget()
         {
             InitializeComponent();
@@ -49,11 +49,11 @@ namespace Epoint.Modules.AR
             this.KeyDown += new KeyEventHandler(KeyDownEvent);
             this.dgvBudgetDetail.dgvGridView.DoubleClick += new EventHandler(dgvDetail_CellMouseDoubleClick);
             //this.dgvBudgetDetail.dgvGridView.MouseDown += new MouseEventHandler(dgvDetail_MouseDoubleClick);
+        //    this.dgvBudgetDetail.dgvGridView.RowCellClick += new RowCellClickEventHandler(DgvGridView_RowCellClick);
+        //    this.dgvBudgetDetail.dgvGridView.EditFormShowing += DgvGridView_EditFormShowing;
         }
 
-
-
-
+       
 
         public override void Load()
         {
@@ -155,7 +155,7 @@ namespace Epoint.Modules.AR
         }
         private void EditBudgetDetailAddNew(enuEdit enuNew_Edit)
         {
-           
+
         }
         private void EditPromotionBudgetDetail(enuEdit enuNew_Edit)
         {
@@ -165,7 +165,7 @@ namespace Epoint.Modules.AR
             //if (bdsBudgetDetailAllocate.Position < 0)
             //    return;
 
-            
+
             if (bdsBudgetDetailAllocate.Position < 0 && enuNew_Edit == enuEdit.Edit)
                 return;
 
@@ -180,8 +180,6 @@ namespace Epoint.Modules.AR
                 drBudgetDetailAllocate["Ma_Ns"] = drCurrentBudgetHeader["Ma_Ns"];
                 drBudgetDetailAllocate["AmtAlloc"] = drCurrentBudgetHeader["AmtAlloc"];
                 drBudgetDetailAllocate["QtyAlloc"] = drCurrentBudgetHeader["QtyAlloc"];
-                //Common.CopyDataRow(drCurrentBudgetHeader, ref drBudgetDetailAllocate);
-                //drBudgetDetailAllocate["Ma_Dvcs"] = Element.sysMa_DvCs;
             }
             frmPromotionBudgetAlloc_Edit frmEdit = new frmPromotionBudgetAlloc_Edit();
             frmEdit.Load(enuNew_Edit, drBudgetDetailAllocate);
@@ -202,7 +200,7 @@ namespace Epoint.Modules.AR
                     Common.CopyDataRow(drBudgetDetailAllocate, ((DataRowView)bdsBudgetDetailAllocate.Current).Row);
                     dtBudgetDetailAllocate.AcceptChanges();
                 }
-              
+
             }
             else
                 dtBudgetDetailAllocate.RejectChanges();
@@ -357,12 +355,10 @@ namespace Epoint.Modules.AR
         {
 
             string strColumnName = dgvBudgetDetail.dgvGridView.FocusedColumn.Name.ToUpper();
-            //GridHitInfo hinfo = dgvBudgetDetail.dgvGridView.CalcHitInfo(e.Location);
-
+            GridHitInfo hitInfo = dgvBudgetDetail.dgvGridView.CalcHitInfo(e.Location);
             if (strColumnName == "QTYALLOC" || strColumnName == "AMTALLOC")
             {
-                //GridView view = sender as GridView;
-                GridHitInfo hitInfo = dgvBudgetDetail.dgvGridView.CalcHitInfo(e.Location);
+
                 if (hitInfo.InRowCell)
                 {
                     dgvBudgetDetail.dgvGridView.FocusedRowHandle = hitInfo.RowHandle;
@@ -377,7 +373,38 @@ namespace Epoint.Modules.AR
                 return;
             }
         }
+        private void DgvGridView_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            string strColumnName = dgvBudgetDetail.dgvGridView.FocusedColumn.Name.ToUpper();
+            GridHitInfo hitInfo = dgvBudgetDetail.dgvGridView.CalcHitInfo(e.Location);
+            if (strColumnName == "QTYALLOC" || strColumnName == "AMTALLOC")
+            {              
+                if (hitInfo.InRowCell)
+                {
+                    dgvBudgetDetail.dgvGridView.FocusedRowHandle = hitInfo.RowHandle;
+                    dgvBudgetDetail.dgvGridView.FocusedColumn = hitInfo.Column;
+                    DXMouseEventArgs.GetMouseArgs(e).Handled = true;
+                    if (e.Clicks == 1 && e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        dgvBudgetDetail.AllowEdit = true;
+                        dgvBudgetDetail.dgvGridView.ShowEditor();
+                    }
+                }
+                return;
+            }
 
+        }
+        private void DgvGridView_EditFormShowing(object sender, EditFormShowingEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view == null)
+                return;
+            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "QTYALLOC")) > 0)
+                e.Allow = false;
+
+            if (Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "AMTALLOC")) > 0)
+                e.Allow = false;
+        }
         public override void EpointRelease()
         {
 
