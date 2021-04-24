@@ -62,9 +62,9 @@
             // btgAccept
             // 
             this.btgAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btgAccept.Location = new System.Drawing.Point(307, 141);
+            this.btgAccept.Location = new System.Drawing.Point(304, 135);
             this.btgAccept.Name = "btgAccept";
-            this.btgAccept.Size = new System.Drawing.Size(181, 29);
+            this.btgAccept.Size = new System.Drawing.Size(171, 33);
             this.btgAccept.TabIndex = 2;
             // 
             // lblTien_Pb_Nt

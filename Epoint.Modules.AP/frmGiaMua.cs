@@ -11,9 +11,6 @@ using Epoint.Systems.Customizes;
 using Epoint.Systems.Commons;
 using Epoint.Systems.Librarys;
 using Epoint.Systems.Data;
-using Epoint.Systems.Elements;
-using System.Data.OleDb;
-using System.Data.Odbc;
 
 namespace Epoint.Modules.AP
 {
@@ -94,67 +91,7 @@ namespace Epoint.Modules.AP
 			else
 				dtGiaMua.RejectChanges();
 		}
-        public virtual void Import_Excel()
-        {
-            string strTableName = "APGIAMUA";
-            OpenFileDialog ofdlg = new OpenFileDialog();
 
-            ofdlg.DefaultExt = "xls";
-            ofdlg.Filter = "*.xls|*.xls";
-
-            if (ofdlg.ShowDialog() != DialogResult.OK)
-                return;
-
-//            string probeConnStr = @"Provider=Microsoft.Jet.OLEDB.4.0;
-//						Data Source= " + ofdlg.FileName + ";" +
-//                        "Extended Properties=\"Excel 8.0;HDR=YES\"";
-            //string strConnectString =
-            //            "Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};DBQ=" + ofdlg.FileName;
-            
-            String strConnectString = "Provider=Microsoft.ACE.OLEDB.12.0;" +
-                 "Data Source=" + ofdlg.FileName + ";Extended Properties=Excel 8.0;";
-
-            using (OleDbConnection connection = new OleDbConnection(strConnectString))
-                {
-                    connection.Open();
-
-                    string selectCommandText = "SELECT * FROM [Sheet1$] Where Ma_Vt IS NOT NULL ";
-                    using (OleDbDataAdapter oleDbDapter = new OleDbDataAdapter(selectCommandText, connection))
-                    {
-
-                        DataTable tbExcel = new DataTable();
-                        oleDbDapter.Fill(tbExcel);
-
-                        DataTable dtStruct = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
-                        DataTable dtStruct2 = dtStruct.Clone();
-                        DataRow drNewRow = dtStruct.NewRow();
-                        dtStruct.Rows.Add(drNewRow);
-
-                        foreach (DataColumn dc in dtStruct2.Columns)
-                            if (dc.DataType.ToString() == "System.Byte[]")
-                            {
-                                dtStruct.Columns.Remove(dc.ColumnName);
-                                dtStruct.AcceptChanges();
-                            }
-
-
-
-                        Common.SetDefaultDataRow(ref drNewRow);
-
-                        string strMsg = (Element.sysLanguage == enuLanguageType.Vietnamese ? "Bạn có muốn ghi đè lên mẫu tin đã tồn tại không ?" : "Do you want to override exists data ?");
-                        bool bIs_Overide = Common.MsgYes_No(strMsg);
-
-                        foreach (DataRow drExcel in tbExcel.Rows)
-                        {
-                            Common.CopyDataRow(drExcel, drNewRow);
-                            drNewRow.AcceptChanges();
-                            DataTool.SQLUpdate(enuEdit.New, strTableName, ref drNewRow);
-                        }
-                    }
-            }
-
-            Common.MsgOk(Languages.GetLanguage("End_Process"));
-        }
 		public override void Delete()
 		{
 			if (bdsGiaMua.Position < 0)
@@ -171,15 +108,5 @@ namespace Epoint.Modules.AP
 				dtGiaMua.AcceptChanges();
 			}
 		}
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-
-            if (e.KeyCode == Keys.F10 && Common.CheckPermission(this.Object_ID, enuPermission_Type.Allow_New) && Common.CheckPermission(this.Object_ID, enuPermission_Type.Allow_Edit))
-                Import_Excel();
-            else
-            {
-                base.OnKeyDown(e);
-            }
-        }
 	}
 }

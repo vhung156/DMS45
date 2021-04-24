@@ -98,7 +98,7 @@ namespace Epoint.Modules.AP
 			string strValue = txtMa_Vt.Text.Trim();
 			bool bRequire = true;
 
-            //frmVatTu frmLookup = new frmVatTu();
+			//frmVatTu frmLookup = new frmVatTu();
 			DataRow drLookup = Lookup.ShowLookup("Ma_Vt", strValue, bRequire, "", "");
 
 			if (bRequire && drLookup == null)
@@ -113,22 +113,6 @@ namespace Epoint.Modules.AP
 			{
 				txtMa_Vt.Text = ((string)drLookup["Ma_Vt"]).Trim();
 				lbtTen_Vt.Text = ((string)drLookup["Ten_Vt"]).Trim();
-                if (this.enuNew_Edit == enuEdit.New)
-                    txtDvt.Text = (string)drLookup["Dvt"];
-
-                string strDvt_Chuan = (string)drLookup["Dvt"];
-
-                string inputMask = (string)drLookup["Dvt"];
-
-                for (int i = 1; i <= 3; i++)
-                    inputMask += (string)drLookup["Dvt" + i] == string.Empty ? string.Empty : "," + (string)drLookup["Dvt" + i];
-
-                if (inputMask != string.Empty)
-                    inputMask += "," + inputMask;
-
-                lbtDvt.Text = inputMask;
-                txtDvt.InputMask = inputMask;
-
 			}
 
 			dicName.SetValue(lbtTen_Vt.Name, lbtTen_Vt.Text);
@@ -145,7 +129,7 @@ namespace Epoint.Modules.AP
 			string strValue = txtMa_Dt.Text.Trim();
 			bool bRequire = false;
 
-            //frmDoiTuong frmLookup = new frmDoiTuong();
+			//
 			DataRow drLookup = Lookup.ShowLookup("Ma_Dt", strValue, bRequire, "", "");
 
 			if (bRequire && drLookup == null)

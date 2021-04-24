@@ -44,40 +44,48 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.Data.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.Data.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Tutorials.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.Tutorials.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.Utils.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.Utils.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.XtraBars.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.XtraEditors.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.XtraEditors.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.XtraNavBar.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.XtraGrid.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.XtraTreeList.v11.2.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.XtraNavBar.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v11.2.Design, Version=11.2.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Epoint\DevExpress.XtraTreeList.v11.2.Design.dll</HintPath>
+      <HintPath>..\..\..\0-EpointERP\DevExpress.XtraTreeList.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="Epoint.Lists">
       <HintPath>..\..\..\Epoint\Epoint.Lists.dll</HintPath>
     </Reference>
+    <Reference Include="Epoint.Lists.DoiTuong, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\0-EpointERP\Epoint.Lists.DoiTuong.dll</HintPath>
+    </Reference>
     <Reference Include="Epoint.Modules, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Epoint\Epoint.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Epoint.Modules.AS, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\0-Accounting\Epoint.Modules.AS.dll</HintPath>
     </Reference>
     <Reference Include="Epoint.Systems, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -103,6 +111,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCreate_TSCD_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreate_TSCD_Edit.Designer.cs">
+      <DependentUpon>frmCreate_TSCD_Edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCtPO_Edit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +179,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCreate_TSCD_Edit.resx">
+      <DependentUpon>frmCreate_TSCD_Edit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCtPO_Edit.resx">
       <DependentUpon>frmCtPO_Edit.cs</DependentUpon>
     </EmbeddedResource>

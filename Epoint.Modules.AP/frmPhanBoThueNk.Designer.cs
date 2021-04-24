@@ -111,9 +111,9 @@
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(164, 102);
+            this.btgAccept.Location = new System.Drawing.Point(164, 98);
             this.btgAccept.Name = "btgAccept";
-            this.btgAccept.Size = new System.Drawing.Size(181, 29);
+            this.btgAccept.Size = new System.Drawing.Size(172, 33);
             this.btgAccept.TabIndex = 2;
             // 
             // frmPhanBoThueNk

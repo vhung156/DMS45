@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVoucher_Edit));
             this.btgAccept = new Epoint.Systems.Customizes.btgAccept();
             this.ucNotice = new Epoint.Modules.ucNotice();
+            this.lineControl1 = new Epoint.Systems.Controls.lineControl();
             this.SuspendLayout();
             // 
             // btgAccept
@@ -44,8 +45,8 @@
             // 
             // ucNotice
             // 
-            this.ucNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ucNotice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(228)))), ((int)(((byte)(248)))));
             this.ucNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucNotice.Location = new System.Drawing.Point(12, 529);
@@ -53,11 +54,25 @@
             this.ucNotice.Size = new System.Drawing.Size(486, 30);
             this.ucNotice.TabIndex = 108;
             // 
+            // lineControl1
+            // 
+            this.lineControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lineControl1.AutoEllipsis = true;
+            this.lineControl1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lineControl1.Location = new System.Drawing.Point(0, 525);
+            this.lineControl1.Name = "lineControl1";
+            this.lineControl1.Size = new System.Drawing.Size(773, 1);
+            this.lineControl1.TabIndex = 110;
+            this.lineControl1.Text = "lineControl1";
+            this.lineControl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmVoucher_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 569);
+            this.Controls.Add(this.lineControl1);
             this.Controls.Add(this.ucNotice);
             this.Controls.Add(this.btgAccept);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -72,5 +87,6 @@
 
 		public Epoint.Systems.Customizes.btgAccept btgAccept;
 		public ucNotice ucNotice;
-	}
+        public Systems.Controls.lineControl lineControl1;
+    }
 }

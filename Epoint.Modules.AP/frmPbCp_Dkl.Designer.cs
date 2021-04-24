@@ -115,9 +115,9 @@
             // btgAccept
             // 
             this.btgAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btgAccept.Location = new System.Drawing.Point(307, 306);
+            this.btgAccept.Location = new System.Drawing.Point(304, 303);
             this.btgAccept.Name = "btgAccept";
-            this.btgAccept.Size = new System.Drawing.Size(181, 29);
+            this.btgAccept.Size = new System.Drawing.Size(172, 33);
             this.btgAccept.TabIndex = 2;
             // 
             // lblTien_Pb_Nt
@@ -341,6 +341,7 @@
             this.txtMa_Vt.bIsLookup = false;
             this.txtMa_Vt.bReadOnly = false;
             this.txtMa_Vt.bRequire = false;
+            this.txtMa_Vt.ColumnsView = null;
             this.txtMa_Vt.KeyFilter = "Ma_Vt";
             this.txtMa_Vt.Location = new System.Drawing.Point(134, 142);
             this.txtMa_Vt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
@@ -355,6 +356,7 @@
             this.txtMa_Nh_Vt.bIsLookup = false;
             this.txtMa_Nh_Vt.bReadOnly = false;
             this.txtMa_Nh_Vt.bRequire = false;
+            this.txtMa_Nh_Vt.ColumnsView = null;
             this.txtMa_Nh_Vt.KeyFilter = "Ma_Nh_Vt";
             this.txtMa_Nh_Vt.Location = new System.Drawing.Point(134, 119);
             this.txtMa_Nh_Vt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
@@ -369,6 +371,7 @@
             this.txtMa_Kho.bIsLookup = false;
             this.txtMa_Kho.bReadOnly = false;
             this.txtMa_Kho.bRequire = false;
+            this.txtMa_Kho.ColumnsView = null;
             this.txtMa_Kho.KeyFilter = "Ma_Kho";
             this.txtMa_Kho.Location = new System.Drawing.Point(134, 96);
             this.txtMa_Kho.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);

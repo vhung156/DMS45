@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.Odbc;
 using System.Drawing;
 using System.Text;
@@ -62,8 +63,8 @@ namespace Epoint.Modules.AP
             txtMa_Ct.TextChanged += new EventHandler(txtMa_Ct_TextChanged);
                         
             txtSo_Ct.Validating += new CancelEventHandler(txtSo_Ct_Validating);
-
             dteNgay_Ct.Validating += new CancelEventHandler(dteNgay_Ct_Validating);
+            txtMa_Quyen.Validating += new CancelEventHandler(txtMa_Quyen_Validating);
 
             txtMa_Tte.Validating += new CancelEventHandler(txtMa_Tte_Validating);
             numTy_Gia.Leave += new EventHandler(numTy_Gia_Leave);
@@ -92,6 +93,7 @@ namespace Epoint.Modules.AP
             dgvEditCt1.CellEnter += new DataGridViewCellEventHandler(dgvEditCt_CellEnter);
             dgvEditCt1.CellLeave += new DataGridViewCellEventHandler(dgvEditCt_CellLeave);
             dgvEditCt1.KeyDown += new KeyEventHandler(dgvEditCt_KeyDown);
+            dgvEditCt1.CellClick += new DataGridViewCellEventHandler(dgvEditCt1_CellClick);
 
             dgvEditCt2.CellValidating += new DataGridViewCellValidatingEventHandler(dgvEditCt2_CellValidating);
             dgvEditCt2.CellValidated += new DataGridViewCellEventHandler(dgvEditCt2_CellValidated);
@@ -109,8 +111,8 @@ namespace Epoint.Modules.AP
 
             this.strMa_Ct = ((string)drEdit["Ma_Ct"]).Trim();
             this.drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct);
-            this.Object_ID = strMa_Ct;
-
+            this.Object_ID = (string)SQLExec.ExecuteReturnValue("SELECT MAX(Object_ID) FROM SYSDMCT WHERE Ma_Ct LIKE '" + this.strMa_Ct + "'");
+                
             if (strMa_Ct == "NK")
                 this.pnlVAT.Visible = false;
 
@@ -124,6 +126,22 @@ namespace Epoint.Modules.AP
             this.Init_Ct();
 
             Common.ScaterMemvar(this, ref drEditPh);
+
+            //Mac dinh
+            if (enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy)
+            {
+                string strSQL = "SELECT TOP 1 Ma_Quyen FROM LIQUYENSO WHERE Month(Ngay_BatDau) <= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() +
+                                "') AND Month(Ngay_KetThuc) >= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_KetThuc) = Year ('"
+                                + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Ma_Ct = '" + strMa_Ct + "'";
+                DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
+                foreach (DataRow drQuyen in dtQuyen_So.Rows)
+                {
+                    txtMa_Quyen.Text = drQuyen["Ma_Quyen"].ToString();
+                }
+
+                //Mac dinh co dua vao so sach
+                chkNoPosted.Checked = (bool)drDmCt["Default_Not_Dkhoan"];
+            }
 
             txtMa_Tte.bTextChange = false;
             numTy_Gia.bTextChange = false;
@@ -159,6 +177,7 @@ namespace Epoint.Modules.AP
             dgvEditCt2.Location = dgvEditCt1.Location;
             dgvEditCt2.Anchor = dgvEditCt1.Anchor;
             //dgvEditCt2.Visible = false;
+
             //string strMa_Ct_Access = SQLExec.ExecuteReturnValue("SELECT Ma_Ct_Access FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "' AND MEMBER_TYPE = 'U'").ToString();
             //if (!Element.sysIs_Admin)
             //    if (Common.Inlist(strMa_Ct, strMa_Ct_Access))
@@ -170,6 +189,17 @@ namespace Epoint.Modules.AP
 
             //            dgvEditCt1.Columns["GIA_NT9"].Visible = false;
             //            dgvEditCt1.Columns["TIEN_NT9"].Visible = false;
+
+            //            numTTien0.Visible = false;
+            //            numTTien_Nt0.Visible = false;
+            //            numTTien.Visible = false;
+            //            numTTien_Nt.Visible = false;
+            //            numTTien3.Visible = false;
+            //            numTTien_Nt3.Visible = false;
+            //            numTTien5.Visible = false;
+            //            numTTien_Nt5.Visible = false;
+            //            numTTien6.Visible = false;
+            //            numTTien_Nt6.Visible = false;
             //        }
             //    }
         }
@@ -252,15 +282,25 @@ namespace Epoint.Modules.AP
                 }
 
                 //Tinh so chung tu
-                string strLoai_Ma_Ct = ((DateTime)drCurrent["Ngay_Ct"]).Month.ToString().Trim();
-                string strSQLExec = "EXEC Sp_Cong_So_Ct '" + strMa_Ct + "', '" + strLoai_Ma_Ct + "'";
+                if ((bool)SQLExec.ExecuteReturnValue("SELECT Is_So_Ct FROM SYSDMCT WHERE Ma_Ct = '" + strMa_Ct + "'") == true)//1: Tính tự động, 0-Tính theo thủ công từng tháng
+                    Cong_So_Ct_Auto();
+                else
+                {
+                    string strLoai_Ma_Ct = ((DateTime)drCurrent["Ngay_Ct"]).Month.ToString().Trim();
+                    string strSQLExec = "EXEC Sp_Cong_So_Ct '" + strMa_Ct + "', '" + strLoai_Ma_Ct + "'";
 
-                DataTable dtSo_Ct = SQLExec.ExecuteReturnDt(strSQLExec);
+                    DataTable dtSo_Ct = SQLExec.ExecuteReturnDt(strSQLExec);
 
-                if (dtSo_Ct.Rows.Count > 0)
-                    drEditPh["So_Ct"] = drCurrent["So_Ct"] = (string)dtSo_Ct.Rows[0][0];
+                    if (dtSo_Ct.Rows.Count > 0)
+                        drEditPh["So_Ct"] = drCurrent["So_Ct"] = (string)dtSo_Ct.Rows[0][0];
+                }
+
                 if (drEditPh.Table.Columns.Contains("Duyet"))
+                {
                     drEditPh["Duyet"] = (bool)drDmCt["Default_Duyet"];
+                    drEditPh["Duyet_Log"] = Common.GetCurrent_Log();
+                    drEditPh["So_Ct_Lap"] = drCurrent["So_Ct"].ToString();
+                }
                 if (drEditPh.Table.Columns.Contains("Is_Thue_Vat"))
                     drEditPh["Is_Thue_Vat"] = (bool)drDmCt["Default_VAT"];
             }
@@ -273,7 +313,8 @@ namespace Epoint.Modules.AP
             //    lblTk_Co.Name = "lblTk_No";
             //    lblTk_Co.Tag = "Tk_No";
             //    txtTk_Co.Name = "txtTk_No";
-            //}
+            //}            
+
             // Neu la phieu chi phi
             if (strMa_Ct == "CP")
             {
@@ -292,7 +333,7 @@ namespace Epoint.Modules.AP
                 if (dgvEditCt1.Columns.Contains("TK_CO6"))
                     dgvEditCt1.Columns["TK_CO6"].ReadOnly = true;
 
-                btPb_Cp.Visible = true;                
+                btPb_Cp.Visible = true;                                
             }
             else if (strMa_Ct == "NM")
                 btPb_Cp.Visible = true;
@@ -352,24 +393,28 @@ namespace Epoint.Modules.AP
             numTTien_Nt6.DataBindings.Add("Value", dtEditPh, "TTien_Nt6");
 
             numTSo_Luong.DataBindings.Add("Value", dtEditPh, "TSo_Luong");
-
-            //Quyen so
-            string strSQL = "SELECT Quyen_So FROM LIQUYENSO WHERE Month(Ngay_Begin) <= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Month(Ngay_End) >= Month('"
-                         + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_End) = Year ('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "')";
-            DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
-
-            cboQuyen_So.lstItem.BuildListView("Quyen_So:80");
-            cboQuyen_So.lstItem.DataSource = dtQuyen_So;
-            cboQuyen_So.lstItem.Size = new Size(80, cboQuyen_So.lstItem.Items.Count * 60);
-            cboQuyen_So.lstItem.GridLines = true;
         }
 
+        private void Cong_So_Ct_Auto()
+        {
+            if (enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy)
+            {
+                Hashtable htSo_Ct = new Hashtable();
+                htSo_Ct.Add("MA_CT", strMa_Ct);
+                htSo_Ct.Add("NGAY_CT", Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString());
+                htSo_Ct.Add("MA_TTE", drCurrent["Ma_TTe"].ToString());
+                htSo_Ct.Add("MA_DVCS", Element.sysMa_DvCs);
+                drEditPh["So_Ct"] = drCurrent["So_Ct"] = Convert.ToString(SQLExec.ExecuteReturnValue("sp_Cong_So_Ct_Auto", htSo_Ct, CommandType.StoredProcedure));
+                txtSo_Ct.Text = drCurrent["So_Ct"].ToString();
+            }
+        }
         private void LoadDicName()
         {
             if (txtMa_Ct.Text.Trim() != string.Empty && drDmCt != null)
             {
                 dicName.SetValue("Ten_Ct", (string)drDmCt["Ten_Ct"]);
             }
+
             //txtMa_Dt
             if (txtMa_Dt.Text.Trim() != string.Empty)
             {
@@ -413,6 +458,14 @@ namespace Epoint.Modules.AP
                 if ((bool)dr["Deleted"])
                     continue;
 
+                //Kiem tra Ma_Kho -> null thi khong cho luu
+                if (dtEditCt.Columns.Contains("Ma_Kho") && Convert.ToString(dr["Ma_Kho"]) == "")
+                {
+                    string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Mã kho không được bỏ trống !" : "Warehouse code must not be empty";
+                    Common.MsgCancel(strMsg);
+                    return false;
+                }
+
                 if (dtEditCt.Columns.Contains("Tien") && Convert.ToDouble(dr["Tien"]) != 0 && ((string)dr["Tk_No"] == string.Empty || (string)dr["Tk_Co"] == string.Empty))
                 {
                     string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Hạch toán không hợp lệ" : "Transaction invalid";
@@ -431,17 +484,6 @@ namespace Epoint.Modules.AP
                     Common.MsgCancel(strMsg);
                     return false;
                 }
-
-                if (dtEditCt.Columns.Contains("Ma_Lo") && ( (string)dr["Ma_Vt"] != string.Empty ))
-                {
-                    DataRow drvt = DataTool.SQLGetDataRowByID("LIVATTU", "Ma_Vt", (string)dr["Ma_Vt"]);
-                    if ((bool)drvt["LotSerial"] && (string)dr["Ma_Lo"] == string.Empty)
-                    {
-                        string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Mã hàng " + (string)dr["Ma_Vt"] + " Có quản lý theo Lô!" : (string)dr["Ma_Vt"] + " of stock lotserial!";
-                        Common.MsgCancel(strMsg);
-                        return false;
-                    }
-                }
             }
 
             if (!Voucher.CheckDuplicateInvoice(this))
@@ -451,7 +493,11 @@ namespace Epoint.Modules.AP
         }
 
         public override bool Save()
-        {   
+        {
+            //Nếu các dòng bị xóa hết thì ko cho lưu --> do là chứng từ rỗng
+            if (dtEditCt.Select("Deleted = false").Length == 0)
+                return false;
+
             Common.GatherMemvar(this, ref this.drEditPh);
             Voucher.Update_Detail(this);
 
@@ -481,6 +527,31 @@ namespace Epoint.Modules.AP
 
                 drEdit = drEditPh;
             }
+
+            ////Sync data-------------
+            /*string Is_Sync = Convert.ToString(SQLExec.ExecuteReturnValue("SELECT Parameter_Value FROM SYSPARAMETER WHERE Parameter_ID = 'SYNC_BEGIN'"));
+            if (Is_Sync == "1")
+            {
+                SqlConnection sqlCon = SQLExecSync1.GetNewSQLConnectionSync1();
+                if (sqlCon.State != ConnectionState.Open)
+                {
+                    SQLExec.Execute("UPDATE SYSPARAMETER SET Parameter_Value = 0 WHERE Parameter_ID = 'SYNC_BEGIN'");
+                }
+                else
+                {
+                    VoucherSync1.Update_Header(this);
+                    VoucherSync1.SQLUpdateCt(this);
+                }
+            }
+            //Update lai Ma_Dvcs
+            this.drEditPh["Ma_Dvcs"] = Element.sysMa_DvCs;
+            foreach (DataRow drEditCt in dtEditCt.Rows)
+            {
+                drEditCt["Ma_DvCs"] = Element.sysMa_DvCs;
+            }
+
+            dtEditCt.AcceptChanges();
+            ////----------------------*/
 
             return Voucher.SQLUpdateCt(this);
         }
@@ -527,7 +598,7 @@ namespace Epoint.Modules.AP
                     ht.Add("NGAY_CT", Library.StrToDate(dteNgay_Ct.Text));
                     ht.Add("MA_TTE", strMa_Tte);
 
-                    numTy_Gia.Value = Convert.ToDouble(SQLExec.ExecuteReturnValue("sp_GetTyGia", ht, CommandType.StoredProcedure));
+                    //numTy_Gia.Value = Convert.ToDouble(SQLExec.ExecuteReturnValue("sp_GetTyGia", ht, CommandType.StoredProcedure));
                 }
 
                 this.pnlTTien.Visible = true;
@@ -561,7 +632,7 @@ namespace Epoint.Modules.AP
 
             numTTien_Nt.Scale = numTTien_Nt0.Scale = numTTien_Nt3.Scale = strMa_Tte == Element.sysMa_Tte ? 0 : 2;
 
-            //Voucher.FormatTien_Nt(dgvEditCt1, strMa_Tte);
+            Voucher.FormatTien_Nt(dgvEditCt1, strMa_Tte);
             Voucher.FormatTien_Nt(dgvEditCt2, strMa_Tte);
 
             dgvEditCt1.ResizeGridView();
@@ -844,26 +915,15 @@ namespace Epoint.Modules.AP
                     {
                         // Cap nhat tien TIEN_NT9 truoc khi xuong dong
                         double dbTien_Nt9 = 0;
-                        //dbTien_Nt9 = double.TryParse(dgvEditCt1.CurrentCell.FormattedValue.ToString().Trim(), out dbTien_Nt9);
-
                         if (double.TryParse(dgvEditCt1.CurrentCell.FormattedValue.ToString().Trim(), out dbTien_Nt9))
                         {
                             dgvEditCt1.CancelEdit();
                             drCurrent = ((DataRowView)bdsEditCt.Current).Row;
                             drCurrent["TIEN_NT9"] = dbTien_Nt9;
-                            //if (dbTien_Nt9 == 0)
-                            //    drCurrent["GIA_NT9"] = 0;
                             Voucher.Calc_So_Luong(drCurrent);
                             Voucher.Update_TTien(this);
                         }
 
-                        else if (dbTien_Nt9 == 0)
-                        {
-                            drCurrent["GIA_NT9"] = 0;
-                            Voucher.Calc_So_Luong(drCurrent);
-                            Voucher.Update_TTien(this);
-                        
-                        }
                         if (dgvEditCt1.bIsCurrentLastRow)
                         {
                             if (!Voucher.AddRow(this))
@@ -888,6 +948,55 @@ namespace Epoint.Modules.AP
                 }
 
                 #endregion
+
+                //#region Enter tai SO_LUONG9 --> Phan quyen truy cap gia, tien
+                //string strMa_Ct_Access = SQLExec.ExecuteReturnValue("SELECT Ma_Ct_Access FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "' AND MEMBER_TYPE = 'U'").ToString();
+                //if (!Element.sysIs_Admin)
+                //    if (Common.Inlist(strMa_Ct, strMa_Ct_Access))
+                //    {
+                //        if (!Common.CheckPermission("ACCESS_PRICE", enuPermission_Type.Allow_Access))
+                //        {
+                //            if (Common.Inlist(strCurrentColumn, "SO_LUONG9"))
+                //            {
+                //                if (txtMa_Tte.Text.Trim() == Element.sysMa_Tte)
+                //                {
+                //                    // Cap nhat tien SO_LUONG9 truoc khi xuong dong
+                //                    double dbSo_Luong9 = 0;
+                //                    if (double.TryParse(dgvEditCt1.CurrentCell.FormattedValue.ToString().Trim(), out dbSo_Luong9))
+                //                    {
+                //                        dgvEditCt1.CancelEdit();
+                //                        drCurrent = ((DataRowView)bdsEditCt.Current).Row;
+                //                        drCurrent["SO_LUONG9"] = dbSo_Luong9;
+                //                        Voucher.Calc_So_Luong(drCurrent);
+                //                        Voucher.Update_TTien(this);
+                //                    }
+
+                //                    if (dgvEditCt1.bIsCurrentLastRow)
+                //                    {
+                //                        if (!Voucher.AddRow(this))
+                //                        {
+                //                            this.dgvEditCt1.ClearSelection();
+                //                            this.SelectNextControl(dgvEditCt1, true, true, true, true);
+                //                        }
+                //                        else
+                //                        {
+                //                            strColumnNameBeforeAddRow = strCurrentColumn;
+                //                            dgvEditCt1.FocusNextFirstCell();
+                //                            return true;
+                //                        }
+                //                    }
+                //                    else
+                //                    {
+                //                        strColumnNameBeforeAddRow = strCurrentColumn;
+                //                        dgvEditCt1.FocusNextFirstCell();
+                //                    }
+                //                }
+                //                return false;
+                //            }
+                //        }
+                //    }
+
+                //#endregion
 
                 #region Enter TIEN
                 if (Common.Inlist(strCurrentColumn, "TIEN"))
@@ -946,6 +1055,7 @@ namespace Epoint.Modules.AP
             if (strMa_Ct == "NM")
             {
                 double dbTTien_Nt = Common.SumDCValue(dtEditCt, "Tien_Nt", "");
+                double dbTSo_Luong = Common.SumDCValue(dtEditCt, "So_Luong9", "");
 
                 frmPbCp frmPb = new frmPbCp();
                 frmPb.Load(this);
@@ -982,9 +1092,9 @@ namespace Epoint.Modules.AP
                         }
                         else //Phan bo theo so luong
                         {
-                            drEditCtNew["Tien_Nt9"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTTien_Nt, 0);
-                            drEditCtNew["Tien_Nt"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTTien_Nt, 0);
-                            drEditCtNew["Tien"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTTien_Nt, 0);
+                            drEditCtNew["Tien_Nt9"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTSo_Luong, 0);
+                            drEditCtNew["Tien_Nt"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTSo_Luong, 0);
+                            drEditCtNew["Tien"] = Math.Round((Convert.ToDouble(dgvEditCt1.Rows[i].Cells["So_Luong9"].Value) * dbTien_Pb) / dbTSo_Luong, 0);
                         }
                         drEditCtNew["Stt0"] = Common.MaxDCValue(dtEditCt, "Stt0") + 1;
 
@@ -1060,7 +1170,6 @@ namespace Epoint.Modules.AP
                 Hashtable htParameter = new Hashtable();
                 htParameter.Add("MA_VT", (string)drEditCt["Ma_Vt"]);
                 htParameter.Add("MA_DT", (string)drEditCt["Ma_Dt"]);
-                htParameter.Add("DVT", (string)drEditCt["Dvt"]);
                 htParameter.Add("NGAY_CT", this.dteNgay_Ct.Text);
 
                 drEditCt["Gia_Nt9"] = SQLExec.ExecuteReturnValue("sp_GetGiaMua", htParameter, CommandType.StoredProcedure);
@@ -1148,6 +1257,12 @@ namespace Epoint.Modules.AP
         void btInherit_Click(object sender, EventArgs e)
         {
             this.InheritVoucher();
+
+            txtMa_Tte.Text = this.strMa_Tte;
+            numTy_Gia.Value = this.dbTy_Gia;
+
+            this.Ma_Tte_Valid();
+            dgvEditCt1.Select();
         }
 
         void btPb_Cp_Click(object sender, EventArgs e)
@@ -1235,14 +1350,21 @@ namespace Epoint.Modules.AP
         void dteNgay_Ct_Validating(object sender, CancelEventArgs e)
         {
             //Quyen so
-            string strSQL = "SELECT Quyen_So FROM LIQUYENSO WHERE Month(Ngay_Begin) <= Month('" + dteNgay_Ct.Text + "') AND Month(Ngay_End) >= Month('"
-                                    + dteNgay_Ct.Text + "') AND Year(Ngay_End) = Year ('" + dteNgay_Ct.Text + "')";
-            DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
+            if (txtMa_Quyen.Text == "")
+            {
+                string strSQL = "SELECT TOP 1 Ma_Quyen FROM LIQUYENSO WHERE Month(Ngay_BatDau) <= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() +
+                                "') AND Month(Ngay_KetThuc) >= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_KetThuc) = Year ('"
+                                + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Ma_Ct = '" + strMa_Ct + "'";
+                DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
+                foreach (DataRow drQuyen in dtQuyen_So.Rows)
+                {
+                    txtMa_Quyen.Text = drQuyen["Ma_Quyen"].ToString();
+                }
+            }
 
-            cboQuyen_So.lstItem.BuildListView("Quyen_So:80");
-            cboQuyen_So.lstItem.DataSource = dtQuyen_So;
-            cboQuyen_So.lstItem.Size = new Size(80, cboQuyen_So.lstItem.Items.Count * 60);
-            cboQuyen_So.lstItem.GridLines = true;
+            //Tu dong tao so chung tu
+            if ((bool)SQLExec.ExecuteReturnValue("SELECT Is_So_Ct FROM SYSDMCT WHERE Ma_Ct = '" + strMa_Ct + "'") == true)//1: Tính tự động, 0-Tính theo thủ công từng tháng
+                Cong_So_Ct_Auto();
 
             this.Ma_Tte_Valid();
             Common.GatherMemvar(this, ref drEditPh);
@@ -1250,6 +1372,34 @@ namespace Epoint.Modules.AP
             //Cap nhat Ngay hoa don            
             //dteNgay_Ct0.Text = dteNgay_Ct.Text;
         }
+
+        void txtMa_Quyen_Validating(object sender, CancelEventArgs e)
+        {
+            string strValue = txtMa_Quyen.Text.Trim();
+            bool bRequire = false;
+
+            //frmQuyenSo frmLookup = new frmQuyenSo();
+            DataRow drLookup = Lookup.ShowLookup("Ma_Quyen", strValue, bRequire, "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Quyen.Text = string.Empty;
+            }
+            else
+            {
+                txtMa_Quyen.Text = drLookup["Ma_Quyen"].ToString();
+            }
+
+            if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
+            {
+                ((txtTextLookup)sender).AutoFilter.Visible = false;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
+
         void txtMa_Tte_Validating(object sender, CancelEventArgs e)
         {
             this.Ma_Tte_Valid();
@@ -1264,7 +1414,7 @@ namespace Epoint.Modules.AP
             string strValue = txtMa_Dt.Text.Trim();
             bool bRequire = true;
 
-            //frmDoiTuong frmLookup = new frmDoiTuong();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Dt", strValue, bRequire, "");
 
             if (bRequire && drLookup == null)
@@ -1278,12 +1428,19 @@ namespace Epoint.Modules.AP
             else
             {
                 txtMa_Dt.Text = drLookup["Ma_Dt"].ToString();
+                txtTen_Dt.Text = drLookup["Ten_Dt"].ToString();
 
-                if (txtMa_Dt.bTextChange)
+                if (txtMa_Dt.bTextChange && this.enuNew_Edit == enuEdit.New)//Khi them moi thi cap nhat Ong_Ba, Dia_Chi theo Ma_Dt
                 {
-                    txtTen_Dt.Text = drLookup["Ten_Dt"].ToString();
                     txtOng_Ba.Text = drLookup["Ong_Ba"].ToString() == string.Empty ? drLookup["Ten_Dt"].ToString() : drLookup["Ong_Ba"].ToString();
                     txtDia_Chi.Text = drLookup["Dia_Chi"].ToString();
+                }
+                if (txtMa_Dt.bTextChange && this.enuNew_Edit == enuEdit.Edit)//Khi sua chung tu
+                {
+                    if (txtOng_Ba.Text == "")
+                        txtOng_Ba.Text = drLookup["Ong_Ba"].ToString() == string.Empty ? drLookup["Ten_Dt"].ToString() : drLookup["Ong_Ba"].ToString();
+                    if (txtDia_Chi.Text == "")
+                        txtDia_Chi.Text = drLookup["Dia_Chi"].ToString();
                 }
             }
 
@@ -1296,10 +1453,7 @@ namespace Epoint.Modules.AP
                 ((txtTextLookup)sender).AutoFilter.Visible = false;
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-
-
-        }
-
+        }      
         void txtMa_Hd_Enter(object sender, EventArgs e)
         {
             txtTen_Hd.Text = dicName.GetValue(txtTen_Hd.Name);
@@ -1310,7 +1464,7 @@ namespace Epoint.Modules.AP
             bool bRequire = false;
             string strKeyValid = "";
 
-            //frmHopDong frmLookup = new frmHopDong();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Hd", strValue, bRequire, "", strKeyValid);
 
             if (bRequire && drLookup == null)
@@ -1375,8 +1529,8 @@ namespace Epoint.Modules.AP
         //            bRequire = true;
         //    }
 
-        //    frmKhoanMuc frmLookup = new frmKhoanMuc();
-        //    DataRow drLookup = Lookup.ShowLookup(frmLookup, "LIKHOANMUC", "Ma_Km", strValue, bRequire, "");
+        //    //
+        //    DataRow drLookup = Lookup.ShowLookup("Ma_Km", strValue, bRequire, "");
 
         //    if (bRequire && drLookup == null)
         //        e.Cancel = true;
@@ -1412,7 +1566,7 @@ namespace Epoint.Modules.AP
 
             string strMa_Thue_Old = drEditPh["Ma_Thue"] == DBNull.Value ? string.Empty : (string)drEditPh["Ma_Thue"];
 
-            //frmThue frmLookup = new frmThue();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Thue", strValue, bRequire, "");
 
             if (bRequire && drLookup == null)
@@ -1422,8 +1576,8 @@ namespace Epoint.Modules.AP
             {
                 txtMa_Thue.Text = (string)drLookup["Ma_Thue"];
                 dicName.SetValue("Ten_Thue", drLookup["Ten_Thue"].ToString());
-                //txtMa_HoaDon.Text = (string)drLookup["Ma_HoaDon"];
-                //txtKh_HoaDon.Text = (string)drLookup["Kh_HoaDon"];
+                txtMa_HoaDon.Text = (string)drLookup["Ma_HoaDon"];
+                txtKh_HoaDon.Text = (string)drLookup["Kh_HoaDon"];
 
                 this.drEditPh["Thue_Gtgt"] = drLookup["Thue_Suat"];
             }
@@ -1451,7 +1605,7 @@ namespace Epoint.Modules.AP
 
             if (strValue == "/" || strValue == @"\")
             {
-                //frmDoiTuong frmLookup = new frmDoiTuong();
+                //
                 DataRow drLookup = Lookup.ShowLookup("Ma_So_Thue", strValue, bRequire, "");
 
                 if (bRequire && drLookup == null)
@@ -1484,7 +1638,7 @@ namespace Epoint.Modules.AP
 
                         if (dtLookup.Rows.Count >= 1)
                         {
-                            //frmDoiTuong frmLookup = new frmDoiTuong();
+                            //
                             DataRow drLookup = Lookup.ShowLookup("Ma_So_Thue", strValue, bRequire, "");
 
                             if (bRequire && drLookup == null)
@@ -1517,13 +1671,6 @@ namespace Epoint.Modules.AP
                             //        txtTen_DtGtgt.Text = (string)drNew["Ten_Dt"];
                             //    }
                             //}
-
-                            if (Common.MsgYes_No("Bạn có muốn cập nhật mã số thuế cho đối tượng này?"))
-                            {
-                                DataRow drDt = DataTool.SQLGetDataRowByID("LIDOITUONG", "Ma_Dt", txtMa_Dt.Text);
-                                drDt["Ma_So_Thue"] = txtMa_So_Thue.Text;
-                                DataTool.SQLUpdate(enuEdit.Edit, "LIDOITUONG",ref drDt);
-                            }
                         }
                     }
                 }
@@ -1544,7 +1691,7 @@ namespace Epoint.Modules.AP
             string strValue = txtTk_No3.Text.Trim();
             bool bRequire = txtMa_Thue.Text.Trim() == string.Empty ? false : true;
 
-            //frmTaiKhoan frmLookup = new frmTaiKhoan();
+            //
             DataRow drLookup = Lookup.ShowLookup("Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
 
             if (bRequire && drLookup == null)
@@ -1583,7 +1730,7 @@ namespace Epoint.Modules.AP
             string strValue = txtTk_Co3.Text.Trim();
             bool bRequire = txtMa_Thue.Text.Trim() == string.Empty ? false : true;
 
-            //frmTaiKhoan frmLookup = new frmTaiKhoan();
+            //
             DataRow drLookup = Lookup.ShowLookup("Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
 
             if (bRequire && drLookup == null)
@@ -1621,8 +1768,8 @@ namespace Epoint.Modules.AP
         //    string strValue = txtTk_Co.Text.Trim();
         //    bool bRequire = true;
 
-        //    frmTaiKhoan frmLookup = new frmTaiKhoan();
-        //    DataRow drLookup = Lookup.ShowLookup(frmLookup, "LITAIKHOAN", "Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
+        //    //
+        //    DataRow drLookup = Lookup.ShowLookup("Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
 
         //    if (bRequire && drLookup == null)
         //        e.Cancel = true;
@@ -1758,7 +1905,10 @@ namespace Epoint.Modules.AP
             if (Common.Inlist(strColumnName, "MA_VT,MA_KHO"))
             {
                 if ((string)drCurrent["Ma_Vt"] != string.Empty)
+                {
+                    drCurrent["Ngay_Ct"] = dteNgay_Ct.Text;
                     ucNotice.Text = Voucher.GetTonCuoi(drCurrent);
+                }
 
                 dicName.SetValue("TON_CUOI", ucNotice.Text);
             }
@@ -1859,49 +2009,21 @@ namespace Epoint.Modules.AP
             //Cập nhật giá từ chính sách giá
             if (Common.Inlist(strColumnName, "SO_LUONG9"))
             {
-                if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
-                {
-                    //drCurrent["GIA_NT9"] = 0;
-                    //drCurrent["TIEN_NT9"] = 0;
-                    Update_Gia_Vt(drCurrent);
-                }
+                Update_Gia_Vt(drCurrent);
             }
-            if (Common.Inlist(strColumnName, "DVT"))
-            {
-                if (drCurrent.RowState == DataRowState.Added || drCurrent[strColumnName] != drCurrent[strColumnName, DataRowVersion.Original])
-                {
-                    drCurrent["GIA_NT9"] = 0;
-                    drCurrent["TIEN_NT9"] = 0;
-                    Update_Gia_Vt(drCurrent);
-                }
-
-               
-            }
-
-            if (Common.Inlist(strColumnName, "GIA_NT9"))
-            {
-                if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
-                {
-                    double dbGIA_NT9 = 0;
-                    if (double.TryParse(drCurrent["GIA_NT9"].ToString(), out dbGIA_NT9))
-                     {
-                         if (dbGIA_NT9 == 0)
-                             drCurrent["TIEN_NT9"] = 0;
-                     }
-                    else if (dbGIA_NT9 == 0)
-                        drCurrent["TIEN_NT9"] = 0;
-                }
-            }
-
-          
-
 
             if (Common.Inlist(strColumnName, "SO_LUONG9,GIA_NT9,TIEN_NT9,TIEN"))
             {
                 if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
                 {
-                    
+                    Voucher.Calc_So_Luong(drCurrent);
+                    Voucher.Update_TTien(this);
+                    Voucher.Adjust_TThue_Vat(this, true);
+                }
 
+                //Nếu Sl <> 0, Gia <> 0 nhưng Thanh tien = 0
+                if (Convert.ToDouble(drCurrent["SO_LUONG9"]) != 0 && Convert.ToDouble(drCurrent["GIA_NT9"]) != 0 && Convert.ToDouble(drCurrent["TIEN_NT9"]) == 0)
+                {
                     Voucher.Calc_So_Luong(drCurrent);
                     Voucher.Update_TTien(this);
                     Voucher.Adjust_TThue_Vat(this, true);
@@ -2020,6 +2142,40 @@ namespace Epoint.Modules.AP
                 }
         }
 
+        void dgvEditCt1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell dgvCell = ((dgvVoucher)sender).CurrentCell;
+            drCurrent = ((DataRowView)bdsEditCt.Current).Row;
+            string strColumnName = dgvCell.OwningColumn.Name.ToUpper();
+
+            if (dgvEditCt1.CurrentCell.OwningColumn.DataPropertyName == "IS_TAISAN")
+            {
+                frmCreate_TSCD_Edit Create_TSCD = new frmCreate_TSCD_Edit();
+
+                Create_TSCD.txtMa_Ts.Text = dgvEditCt1.CurrentRow.Cells["Ma_Vt"].Value.ToString();
+                Create_TSCD.txtTen_Ts.Text = dgvEditCt1.CurrentRow.Cells["Ten_Vt"].Value.ToString();
+                Create_TSCD.dteNgay_Ps.Text = dteNgay_Ct.Text;
+                Create_TSCD.txtSo_Ct.Text = txtSo_Ct.Text;
+                Create_TSCD.txtMa_Tte.Text = txtMa_Tte.Text;
+                Create_TSCD.numTy_Gia.Value = 1;
+                Create_TSCD.txtDien_Giai.Text = txtDien_Giai.Text;
+                Create_TSCD.txtMa_Bp.Text = "";
+                Create_TSCD.txtMa_Km.Text = "";
+                if (Common.Inlist(strColumnName, "MA_SP"))
+                    Create_TSCD.txtMa_Sp.Text = dgvEditCt1.CurrentRow.Cells["Ma_Sp"].Value.ToString();
+                Create_TSCD.txtDvt.Text = dgvEditCt1.CurrentRow.Cells["Dvt"].Value.ToString();
+                Create_TSCD.numSo_Luong.Value = Convert.ToDouble(dgvEditCt1.CurrentRow.Cells["So_Luong9"].Value);
+                Create_TSCD.numTien_NG.Value = Convert.ToDouble(dgvEditCt1.CurrentRow.Cells["Tien_Nt9"].Value);
+                Create_TSCD.numTien_NG_Nt.Value = Convert.ToDouble(dgvEditCt1.CurrentRow.Cells["Tien_Nt9"].Value);
+                Create_TSCD.numTien_CL.Value = Convert.ToDouble(dgvEditCt1.CurrentRow.Cells["Tien_Nt9"].Value);
+                Create_TSCD.numTien_CL_Nt.Value = Convert.ToDouble(dgvEditCt1.CurrentRow.Cells["Tien_Nt9"].Value);
+                Create_TSCD.strStt = drCurrent["Stt"].ToString();
+                Create_TSCD.iStt0 = Convert.ToInt16(drCurrent["Stt0"]);
+
+                Create_TSCD.Load();
+            }
+        }
+
         void dgvEditCt2_CellEnter(object sender, DataGridViewCellEventArgs e)
         {// Hien notice khi Gotfocus
 
@@ -2065,6 +2221,9 @@ namespace Epoint.Modules.AP
 
                 else if (strColumnName == "MA_THUE")
                     bLookup = dgvLookupMa_Thue(ref dgvCell);
+
+                if (strColumnName == "MA_SO_THUE")
+                    bLookup = dgvLookupMa_So_Thue(ref dgvCell);
 
                 else if (Common.Inlist(strColumnName, "TK_NO3,TK_CO3"))
                     bLookup = dgvLookupTk(ref dgvCell, strColumnName);
@@ -2146,6 +2305,117 @@ namespace Epoint.Modules.AP
         #endregion
 
         #region DataGridViewLookup
+
+        private bool dgvLookupMa_So_Thue(ref DataGridViewCell dgvCell)
+        {
+            drCurrent = ((DataRowView)bdsEditCt.Current).Row;
+
+            string strValue = string.Empty;
+
+            if (this.ActiveControl.GetType().Name == "DataGridViewTextBoxEditingControl")
+                strValue = this.ActiveControl.Text;
+            else
+                strValue = dgvCell.FormattedValue.ToString().Trim();
+
+            bool bRequire = false;
+
+            if (strValue == "/" || strValue == @"\")
+            {
+                frmDoiTuong frmLookup = new frmDoiTuong();
+                DataRow drLookup = Lookup.ShowLookup(frmLookup, "LIDOITUONG", "Ma_So_Thue", strValue, bRequire, "", "");
+
+                if (bRequire && drLookup == null)
+                    return false;
+
+                if (drLookup == null)
+                {
+                    dgvCell.Value = string.Empty;
+                    dgvCell.Tag = string.Empty;
+                }
+                else
+                {
+                    dgvEditCt1.CancelEdit();
+
+                    dgvCell.Value = drLookup["Ma_So_Thue"].ToString();
+                    dgvCell.Tag = drLookup["Ten_Dt"].ToString();
+
+                    drCurrent["Ma_So_Thue"] = dgvCell.Value;
+                    drCurrent["Ten_DtGtGt"] = dgvCell.Tag;
+                }
+            }
+            else if (strValue != string.Empty && (drCurrent["Ma_So_Thue", DataRowVersion.Original] == DBNull.Value || strValue != (string)drCurrent["Ma_So_Thue", DataRowVersion.Original]))
+            {
+                DataTable dtLookup = SQLExec.ExecuteReturnDt("SELECT * FROM LIDOITUONG WHERE Ma_So_Thue = '" + strValue + "'");
+
+                if (dtLookup != null)
+                {
+                    if (dtLookup.Rows.Count == 1)
+                    {
+                        dgvCell.Value = dtLookup.Rows[0]["Ma_So_Thue"].ToString();
+                        dgvCell.Tag = dtLookup.Rows[0]["Ten_Dt"].ToString();
+
+                        drCurrent["Ma_So_Thue"] = dgvCell.Value;
+                        drCurrent["Ten_DtGtGt"] = dgvCell.Tag;
+                    }
+                    else
+                    {
+                        dtLookup = SQLExec.ExecuteReturnDt("SELECT * FROM LIDOITUONG WHERE Ma_So_Thue LIKE '" + strValue + "%'");
+
+                        if (dtLookup.Rows.Count >= 1)
+                        {
+                            frmDoiTuong frmLookup = new frmDoiTuong();
+                            DataRow drLookup = Lookup.ShowLookup(frmLookup, "LIDOITUONG", "Ma_So_Thue", strValue, bRequire, "");
+
+                            if (bRequire && drLookup == null)
+                                return false;
+
+                            if (drLookup == null)
+                            {
+                                dgvCell.Value = string.Empty;
+                                dgvCell.Tag = string.Empty;
+                            }
+                            else
+                            {
+                                dgvEditCt1.CancelEdit();
+
+                                dgvCell.Value = drLookup["Ma_So_Thue"].ToString();
+                                dgvCell.Tag = drLookup["Ten_Dt"].ToString();
+
+                                drCurrent["Ma_So_Thue"] = dgvCell.Value;
+                                drCurrent["Ten_DtGtGt"] = dgvCell.Tag;
+                            }
+                        }
+                        else
+                        {
+                            if (Common.MsgYes_No("Bạn có muốn thêm Mã đối tượng và Mã số thuế này ?"))
+                            {
+                                DataRow drNew = dtLookup.NewRow();
+                                drNew["Ma_Dt"] = drNew["Ma_So_Thue"] = strValue;
+                                drNew["Ma_Nh_Dt"] = "MA_SO_THUE";
+
+                                frmDoiTuong_Edit frmEdit = new frmDoiTuong_Edit();
+                                frmEdit.Load(enuEdit.New, drNew);
+
+                                if (frmEdit.isAccept)
+                                {
+                                    dgvEditCt1.CancelEdit();
+
+                                    dgvCell.Value = drNew["Ma_So_Thue"].ToString();
+                                    dgvCell.Tag = drNew["Ten_Dt"].ToString();
+
+                                    drCurrent["Ma_So_Thue"] = dgvCell.Value;
+                                    drCurrent["Ten_DtGtGt"] = dgvCell.Tag;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            drCurrent.AcceptChanges();
+
+            return true;
+        }
         private bool dgvLookupTk(ref DataGridViewCell dgvCell, string strColumnName)
         {
             string strValue = string.Empty;
@@ -2173,8 +2443,8 @@ namespace Epoint.Modules.AP
                         bRequire = false;
             }
 
-            //frmTaiKhoan frmLookup = new frmTaiKhoan();
-            DataRow drLookup = Lookup.ShowLookup( "Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
+            //
+            DataRow drLookup = Lookup.ShowLookup("Tk", strValue, bRequire, "", "Tk_Cuoi = 1");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -2205,7 +2475,7 @@ namespace Epoint.Modules.AP
 
             bool bRequire = true;
 
-            //frmDoiTuong frmLookup = new frmDoiTuong();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Dt", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
@@ -2236,7 +2506,7 @@ namespace Epoint.Modules.AP
 
             bool bRequire = false;
 
-            //frmBoPhan frmLookup = new frmBoPhan();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Bp", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
@@ -2282,7 +2552,7 @@ namespace Epoint.Modules.AP
                     bRequire = true;
             }
 
-            //frmKhoanMuc frmLookup = new frmKhoanMuc();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Km", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
@@ -2328,7 +2598,7 @@ namespace Epoint.Modules.AP
             }
 
 
-            //frmSanPham frmLookup = new frmSanPham();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Sp", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
@@ -2359,8 +2629,8 @@ namespace Epoint.Modules.AP
 
             bool bRequire = true;
 
-            //frmTacVu frmLookup = new frmTacVu();
-            DataRow drLookup = Lookup.ShowLookup("Ma_Job", strValue, bRequire, "", "");
+            //
+            DataRow drLookup = Lookup.ShowLookup( "Ma_Job", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -2393,7 +2663,7 @@ namespace Epoint.Modules.AP
 
             bool bRequire = false;
 
-            //frmThue frmLookup = new frmThue();
+            //
             DataRow drLookup = Lookup.ShowLookup("Ma_Thue", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
@@ -2469,29 +2739,7 @@ namespace Epoint.Modules.AP
                 {
                     drCurrent["Ten_Vt"] = drLookup["Ten_Vt"];
                     drCurrent["Dvt"] = drLookup["Dvt"];
-
-                    drCurrent["Dvt"] = drLookup["Dvt_MD"] == string.Empty ? drLookup["Dvt"] : drLookup["Dvt_MD"];
                     drCurrent["He_So9"] = 1;
-
-
-                    // tính hệ số
-                    drCurrent = ((DataRowView)bdsEditCt.Current).Row;
-
-                    string strDvt_Old = (string)drCurrent["Dvt"];
-                    string strDvt_Chuan = string.Empty;
-
-
-                    strDvt_Chuan = (string)drLookup["Dvt"];
-
-
-
-                    if ((string)drCurrent["Dvt"] == strDvt_Chuan)
-                        drCurrent["He_So9"] = 1;
-                    else
-                        for (int i = 1; i <= 3; i++)
-                            if ((string)drLookup["Dvt" + i] == (string)drCurrent["Dvt"])
-                                drCurrent["He_So9"] = drLookup["He_So" + i];
-
 
                     Voucher.Calc_So_Luong(drCurrent);
                     //if (strMa_Ct == "MTL")//TL
@@ -2540,8 +2788,8 @@ namespace Epoint.Modules.AP
 
             bool bRequire = false;
 
-            //frmKho frmLookup = new frmKho();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Kho", strValue, bRequire, "", "");
+            //
+            DataRow drLookup = Lookup.ShowLookup("Ma_Kho", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -2590,44 +2838,7 @@ namespace Epoint.Modules.AP
             }
             return true;
         }
-
-        private bool dgvLookupMa_So_Thue(ref DataGridViewCell dgvCell)
-        {
-            string strValue = drCurrent["Ma_So_Thue"].ToString();
-
-            bool bRequire = false;
-            drCurrent = ((DataRowView)bdsEditCt.Current).Row;
-
-            if (strValue == "/" || strValue == @"\")
-            {
-                strValue = string.Empty;
-
-                if (this.ActiveControl.GetType().Name == "DataGridViewTextBoxEditingControl")
-                    strValue = this.ActiveControl.Text;
-                else
-                    strValue = dgvCell.FormattedValue.ToString().Trim();
-
-                //frmDoiTuong frmLookup = new frmDoiTuong();
-                DataRow drLookup = Lookup.ShowLookup( "Ma_Dt", strValue, bRequire, "", "");
-
-                if (bRequire && drLookup == null)
-                    return false;
-
-                if (drLookup == null)
-                {
-                    dgvCell.Value = string.Empty;
-                    dgvCell.Tag = string.Empty;
-                }
-                else
-                {
-                    dgvEditCt1.CancelEdit();
-                    dgvCell.Value = drLookup["Ma_Kho"].ToString();
-                    dgvCell.Tag = drLookup["Ten_Kho"].ToString();
-                }
-            }
-            return true;
-        }
-
+        
         #endregion
 
         #endregion
@@ -2640,16 +2851,16 @@ namespace Epoint.Modules.AP
 
             if (this.enuNew_Edit == enuEdit.Edit)
             {
-                if (!Common.CheckDataLocked((DateTime)drEdit["Ngay_Ct"]))
+                //Chứng từ đã duyệt -> không cho sửa
+                if (!Element.sysIs_Admin) //Nếu không phải là Admin
                 {
-                    this.dteNgay_Ct.Enabled = false;
-                    this.btgAccept.btAccept.Enabled = false;
-                }
+                    if (Parameters.GetParaValue("NOT_EDIT_DUYET").ToString().Trim() == "1" && drEditPh["Duyet_Log"].ToString() != "" && (bool)drEditPh["Duyet"] == true)
+                    {
+                        this.btgAccept.btAccept.Enabled = false;
+                    }
 
-                if (!Element.sysIs_Admin)
-                {
+                    //Sua chung tu
                     string strCreate_User = (string)drEditPh["Create_Log"];
-
                     if (strCreate_User != string.Empty && strCreate_User.Substring(14) != Element.sysUser_Id)
                     {
                         string strUser_Allow = (string)SQLExec.ExecuteReturnValue("SELECT Member_ID_Allow FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'") + ",";
@@ -2663,7 +2874,35 @@ namespace Epoint.Modules.AP
                             }
                         }
                     }
+
                 }
+
+                if (!Common.CheckDataLocked((DateTime)drEdit["Ngay_Ct"]))
+                {
+                    this.dteNgay_Ct.Enabled = false;
+                    this.btgAccept.btAccept.Enabled = false;
+                }
+
+                //if (!Element.sysIs_Admin)
+                //{
+                //	string strCreate_User = (string)drEditPh["Create_Log"];
+
+                //	if (strCreate_User != string.Empty && strCreate_User.Substring(14) != Element.sysUser_Id)
+                //	{
+                //		string strUser_Allow = (string)SQLExec.ExecuteReturnValue("SELECT Member_ID_Allow FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'") + ",";
+
+                //		if (!strUser_Allow.Contains("*,")) //Được phép sửa tất cả
+                //		{
+                //			if (!strUser_Allow.Contains(strCreate_User.Substring(14) + ","))
+                //			{
+                //				this.btgAccept.btAccept.Enabled = false;
+                //				return;
+                //			}
+                //		}
+                //	}
+                //}
+
+                
             }
         }
     }

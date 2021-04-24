@@ -37,6 +37,9 @@ namespace Epoint.Modules
         public string strStt = string.Empty;
         public string strMa_Ct = string.Empty;
         public string strSo_Ct = string.Empty;
+        public string strMa_Tte = string.Empty;
+        public double dbTy_Gia = 0;
+
         public bool bDgvEditCtFocusing = false;
 
         public bool Is_Cancel = false;

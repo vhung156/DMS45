@@ -45,12 +45,16 @@ namespace Epoint.Modules.AP
             this.lblControl3 = new Epoint.Systems.Controls.lblControl();
             this.txtTk_Co3 = new Epoint.Systems.Controls.txtTextLookup();
             this.txtTk_No3 = new Epoint.Systems.Controls.txtTextLookup();
+            this.lbNgay = new Epoint.Systems.Controls.lblControl();
+            this.btHanTt = new System.Windows.Forms.Button();
             this.txtMa_Thue = new Epoint.Systems.Controls.txtTextLookup();
             this.txtSo_Seri0 = new Epoint.Systems.Controls.txtTextBox();
             this.lblSo_Seri0 = new Epoint.Systems.Controls.lblControl();
             this.lblNgay_Ct0 = new Epoint.Systems.Controls.lblControl();
             this.dteNgay_Ct0 = new Epoint.Systems.Controls.txtDateTime();
+            this.numHan_Tt = new Epoint.Systems.Controls.numControl();
             this.txtSo_Ct0 = new Epoint.Systems.Controls.txtTextBox();
+            this.lblHan_Tt = new Epoint.Systems.Controls.lblControl();
             this.lblSo_Ct0 = new Epoint.Systems.Controls.lblControl();
             this.txtMa_So_Thue = new Epoint.Systems.Controls.txtTextBox();
             this.lblMa_So_Thue = new Epoint.Systems.Controls.lblControl();
@@ -59,14 +63,11 @@ namespace Epoint.Modules.AP
             this.lblTk_Co3 = new Epoint.Systems.Controls.lblControl();
             this.lblTk_No3 = new Epoint.Systems.Controls.lblControl();
             this.lblMa_Thue = new Epoint.Systems.Controls.lblControl();
-            this.btHanTt = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btInherit = new Epoint.Systems.Controls.btControl();
             this.btPb_ThueNK = new Epoint.Systems.Controls.btControl();
             this.btPb_Cp = new Epoint.Systems.Controls.btControl();
-            this.numHan_Tt = new Epoint.Systems.Controls.numControl();
             this.numTy_Gia = new Epoint.Systems.Controls.numControl();
-            this.lblHan_Tt = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Tte = new Epoint.Systems.Controls.txtEnum();
             this.txtDien_Giai = new Epoint.Systems.Controls.txtTextBox();
             this.lblDien_Giai = new Epoint.Systems.Controls.lblControl();
@@ -112,17 +113,15 @@ namespace Epoint.Modules.AP
             this.dgvEditCt2 = new Epoint.Systems.Customizes.dgvVoucher();
             this.txtTen_Dt = new Epoint.Systems.Controls.txtTextBox();
             this.btImportExcel = new Epoint.Systems.Controls.btControl();
-            this.lbNgay = new Epoint.Systems.Controls.lblControl();
             this.chkNoPosted = new Epoint.Systems.Controls.chkControl();
             this.txtMa_Hd = new Epoint.Systems.Controls.txtTextLookup();
-            this.txtMa_Dt = new Epoint.Systems.Controls.txtTextLookup();
-            this.txtAdmin = new System.Windows.Forms.Control();
+            this.txtMa_Quyen = new Epoint.Systems.Controls.txtTextLookup();
             this.grVoucher = new System.Windows.Forms.GroupBox();
-            this.cboQuyen_So = new Epoint.Systems.Controls.cboMultiControl();
             this.lblQuyen_So = new Epoint.Systems.Controls.lblControl();
             this.chkIs_Customize = new Epoint.Systems.Controls.chkControl();
             this.chkIs_Thue_Vat = new Epoint.Systems.Controls.chkControl();
             this.grInfo = new System.Windows.Forms.GroupBox();
+            this.txtMa_Dt = new Epoint.Systems.Controls.txtTextLookup();
             this.txtTen_Hd = new Epoint.Systems.Controls.txtTextBox();
             this.linkHelp = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEditCt)).BeginInit();
@@ -140,14 +139,19 @@ namespace Epoint.Modules.AP
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(657, 532);
-            this.btgAccept.Size = new System.Drawing.Size(181, 29);
+            this.btgAccept.Location = new System.Drawing.Point(677, 529);
+            this.btgAccept.Size = new System.Drawing.Size(170, 33);
             this.btgAccept.TabIndex = 7;
             // 
             // ucNotice
             // 
-            this.ucNotice.Location = new System.Drawing.Point(12, 531);
-            this.ucNotice.Size = new System.Drawing.Size(548, 31);
+            this.ucNotice.Location = new System.Drawing.Point(5, 531);
+            this.ucNotice.Size = new System.Drawing.Size(596, 30);
+            // 
+            // lineControl1
+            // 
+            this.lineControl1.Location = new System.Drawing.Point(6, 524);
+            this.lineControl1.Size = new System.Drawing.Size(839, 1);
             // 
             // pnlVAT
             // 
@@ -158,12 +162,16 @@ namespace Epoint.Modules.AP
             this.pnlVAT.Controls.Add(this.lblControl3);
             this.pnlVAT.Controls.Add(this.txtTk_Co3);
             this.pnlVAT.Controls.Add(this.txtTk_No3);
+            this.pnlVAT.Controls.Add(this.lbNgay);
+            this.pnlVAT.Controls.Add(this.btHanTt);
             this.pnlVAT.Controls.Add(this.txtMa_Thue);
             this.pnlVAT.Controls.Add(this.txtSo_Seri0);
             this.pnlVAT.Controls.Add(this.lblSo_Seri0);
             this.pnlVAT.Controls.Add(this.lblNgay_Ct0);
             this.pnlVAT.Controls.Add(this.dteNgay_Ct0);
+            this.pnlVAT.Controls.Add(this.numHan_Tt);
             this.pnlVAT.Controls.Add(this.txtSo_Ct0);
+            this.pnlVAT.Controls.Add(this.lblHan_Tt);
             this.pnlVAT.Controls.Add(this.lblSo_Ct0);
             this.pnlVAT.Controls.Add(this.txtMa_So_Thue);
             this.pnlVAT.Controls.Add(this.lblMa_So_Thue);
@@ -172,9 +180,9 @@ namespace Epoint.Modules.AP
             this.pnlVAT.Controls.Add(this.lblTk_Co3);
             this.pnlVAT.Controls.Add(this.lblTk_No3);
             this.pnlVAT.Controls.Add(this.lblMa_Thue);
-            this.pnlVAT.Location = new System.Drawing.Point(3, 427);
+            this.pnlVAT.Location = new System.Drawing.Point(8, 391);
             this.pnlVAT.Name = "pnlVAT";
-            this.pnlVAT.Size = new System.Drawing.Size(512, 114);
+            this.pnlVAT.Size = new System.Drawing.Size(517, 130);
             this.pnlVAT.TabIndex = 4;
             // 
             // txtKh_HoaDon
@@ -186,14 +194,13 @@ namespace Epoint.Modules.AP
             this.txtKh_HoaDon.bRequire = false;
             this.txtKh_HoaDon.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtKh_HoaDon.KeyFilter = "";
-            this.txtKh_HoaDon.Location = new System.Drawing.Point(406, 81);
+            this.txtKh_HoaDon.Location = new System.Drawing.Point(413, 104);
             this.txtKh_HoaDon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtKh_HoaDon.MaxLength = 20;
             this.txtKh_HoaDon.Name = "txtKh_HoaDon";
-            this.txtKh_HoaDon.Size = new System.Drawing.Size(100, 20);
-            this.txtKh_HoaDon.TabIndex = 9;
+            this.txtKh_HoaDon.Size = new System.Drawing.Size(98, 20);
+            this.txtKh_HoaDon.TabIndex = 10;
             this.txtKh_HoaDon.UseAutoFilter = false;
-            this.txtKh_HoaDon.Visible = false;
             // 
             // lblControl4
             // 
@@ -201,14 +208,13 @@ namespace Epoint.Modules.AP
             this.lblControl4.AutoEllipsis = true;
             this.lblControl4.AutoSize = true;
             this.lblControl4.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl4.Location = new System.Drawing.Point(325, 84);
+            this.lblControl4.Location = new System.Drawing.Point(325, 107);
             this.lblControl4.Name = "lblControl4";
             this.lblControl4.Size = new System.Drawing.Size(84, 13);
             this.lblControl4.TabIndex = 136;
             this.lblControl4.Tag = "KH_HOADON";
             this.lblControl4.Text = "Ký hiệu mẫu HĐ";
             this.lblControl4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblControl4.Visible = false;
             // 
             // txtMa_HoaDon
             // 
@@ -218,14 +224,13 @@ namespace Epoint.Modules.AP
             this.txtMa_HoaDon.bReadOnly = false;
             this.txtMa_HoaDon.bRequire = false;
             this.txtMa_HoaDon.KeyFilter = "";
-            this.txtMa_HoaDon.Location = new System.Drawing.Point(87, 80);
+            this.txtMa_HoaDon.Location = new System.Drawing.Point(87, 103);
             this.txtMa_HoaDon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_HoaDon.MaxLength = 20;
             this.txtMa_HoaDon.Name = "txtMa_HoaDon";
             this.txtMa_HoaDon.Size = new System.Drawing.Size(77, 20);
-            this.txtMa_HoaDon.TabIndex = 8;
+            this.txtMa_HoaDon.TabIndex = 9;
             this.txtMa_HoaDon.UseAutoFilter = false;
-            this.txtMa_HoaDon.Visible = false;
             // 
             // lblControl3
             // 
@@ -233,14 +238,13 @@ namespace Epoint.Modules.AP
             this.lblControl3.AutoEllipsis = true;
             this.lblControl3.AutoSize = true;
             this.lblControl3.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl3.Location = new System.Drawing.Point(6, 82);
+            this.lblControl3.Location = new System.Drawing.Point(7, 106);
             this.lblControl3.Name = "lblControl3";
             this.lblControl3.Size = new System.Drawing.Size(65, 13);
             this.lblControl3.TabIndex = 135;
             this.lblControl3.Tag = "Ma_HoaDon";
             this.lblControl3.Text = "Mã hóa đơn";
             this.lblControl3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblControl3.Visible = false;
             // 
             // txtTk_Co3
             // 
@@ -251,15 +255,12 @@ namespace Epoint.Modules.AP
             this.txtTk_Co3.bRequire = false;
             this.txtTk_Co3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTk_Co3.ColumnsView = null;
-            this.txtTk_Co3.CtrlDepend = null;
             this.txtTk_Co3.KeyFilter = "Tk";
-            this.txtTk_Co3.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtTk_Co3.ListFilter = new string[0];
-            this.txtTk_Co3.Location = new System.Drawing.Point(406, 9);
+            this.txtTk_Co3.Location = new System.Drawing.Point(413, 32);
             this.txtTk_Co3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk_Co3.Name = "txtTk_Co3";
-            this.txtTk_Co3.Size = new System.Drawing.Size(100, 20);
-            this.txtTk_Co3.TabIndex = 2;
+            this.txtTk_Co3.Size = new System.Drawing.Size(98, 20);
+            this.txtTk_Co3.TabIndex = 3;
             this.txtTk_Co3.UseAutoFilter = true;
             // 
             // txtTk_No3
@@ -271,16 +272,42 @@ namespace Epoint.Modules.AP
             this.txtTk_No3.bRequire = false;
             this.txtTk_No3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTk_No3.ColumnsView = null;
-            this.txtTk_No3.CtrlDepend = null;
             this.txtTk_No3.KeyFilter = "Tk";
-            this.txtTk_No3.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtTk_No3.ListFilter = new string[0];
-            this.txtTk_No3.Location = new System.Drawing.Point(231, 8);
+            this.txtTk_No3.Location = new System.Drawing.Point(231, 31);
             this.txtTk_No3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk_No3.Name = "txtTk_No3";
             this.txtTk_No3.Size = new System.Drawing.Size(86, 20);
-            this.txtTk_No3.TabIndex = 1;
+            this.txtTk_No3.TabIndex = 2;
             this.txtTk_No3.UseAutoFilter = true;
+            // 
+            // lbNgay
+            // 
+            this.lbNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbNgay.AutoEllipsis = true;
+            this.lbNgay.AutoSize = true;
+            this.lbNgay.BackColor = System.Drawing.Color.Transparent;
+            this.lbNgay.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lbNgay.Location = new System.Drawing.Point(170, 12);
+            this.lbNgay.Name = "lbNgay";
+            this.lbNgay.Size = new System.Drawing.Size(30, 13);
+            this.lbNgay.TabIndex = 193;
+            this.lbNgay.Tag = "Date_Title";
+            this.lbNgay.Text = "ngày";
+            this.lbNgay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btHanTt
+            // 
+            this.btHanTt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btHanTt.Image = global::Epoint.Modules.AP.Properties.Resources.tick;
+            this.btHanTt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btHanTt.Location = new System.Drawing.Point(220, 5);
+            this.btHanTt.Name = "btHanTt";
+            this.btHanTt.Size = new System.Drawing.Size(97, 22);
+            this.btHanTt.TabIndex = 17;
+            this.btHanTt.TabStop = false;
+            this.btHanTt.Tag = "Pay";
+            this.btHanTt.Text = "Thanh toán";
+            this.btHanTt.UseVisualStyleBackColor = true;
             // 
             // txtMa_Thue
             // 
@@ -291,15 +318,12 @@ namespace Epoint.Modules.AP
             this.txtMa_Thue.bRequire = false;
             this.txtMa_Thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Thue.ColumnsView = null;
-            this.txtMa_Thue.CtrlDepend = null;
             this.txtMa_Thue.KeyFilter = "Ma_Thue";
-            this.txtMa_Thue.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtMa_Thue.ListFilter = new string[0];
-            this.txtMa_Thue.Location = new System.Drawing.Point(86, 8);
+            this.txtMa_Thue.Location = new System.Drawing.Point(87, 31);
             this.txtMa_Thue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Thue.Name = "txtMa_Thue";
             this.txtMa_Thue.Size = new System.Drawing.Size(78, 20);
-            this.txtMa_Thue.TabIndex = 0;
+            this.txtMa_Thue.TabIndex = 1;
             this.txtMa_Thue.UseAutoFilter = true;
             // 
             // txtSo_Seri0
@@ -311,12 +335,12 @@ namespace Epoint.Modules.AP
             this.txtSo_Seri0.bRequire = false;
             this.txtSo_Seri0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSo_Seri0.KeyFilter = "";
-            this.txtSo_Seri0.Location = new System.Drawing.Point(406, 57);
+            this.txtSo_Seri0.Location = new System.Drawing.Point(413, 80);
             this.txtSo_Seri0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtSo_Seri0.MaxLength = 20;
             this.txtSo_Seri0.Name = "txtSo_Seri0";
-            this.txtSo_Seri0.Size = new System.Drawing.Size(100, 20);
-            this.txtSo_Seri0.TabIndex = 7;
+            this.txtSo_Seri0.Size = new System.Drawing.Size(98, 20);
+            this.txtSo_Seri0.TabIndex = 8;
             this.txtSo_Seri0.UseAutoFilter = false;
             // 
             // lblSo_Seri0
@@ -325,7 +349,7 @@ namespace Epoint.Modules.AP
             this.lblSo_Seri0.AutoEllipsis = true;
             this.lblSo_Seri0.AutoSize = true;
             this.lblSo_Seri0.BackColor = System.Drawing.Color.Transparent;
-            this.lblSo_Seri0.Location = new System.Drawing.Point(328, 60);
+            this.lblSo_Seri0.Location = new System.Drawing.Point(325, 83);
             this.lblSo_Seri0.Name = "lblSo_Seri0";
             this.lblSo_Seri0.Size = new System.Drawing.Size(41, 13);
             this.lblSo_Seri0.TabIndex = 132;
@@ -339,7 +363,7 @@ namespace Epoint.Modules.AP
             this.lblNgay_Ct0.AutoEllipsis = true;
             this.lblNgay_Ct0.AutoSize = true;
             this.lblNgay_Ct0.BackColor = System.Drawing.Color.Transparent;
-            this.lblNgay_Ct0.Location = new System.Drawing.Point(177, 59);
+            this.lblNgay_Ct0.Location = new System.Drawing.Point(178, 82);
             this.lblNgay_Ct0.Name = "lblNgay_Ct0";
             this.lblNgay_Ct0.Size = new System.Drawing.Size(51, 13);
             this.lblNgay_Ct0.TabIndex = 129;
@@ -357,12 +381,32 @@ namespace Epoint.Modules.AP
             this.dteNgay_Ct0.Culture = new System.Globalization.CultureInfo("fr-FR");
             this.dteNgay_Ct0.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Ct0.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Ct0.Location = new System.Drawing.Point(231, 56);
+            this.dteNgay_Ct0.Location = new System.Drawing.Point(231, 79);
             this.dteNgay_Ct0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Ct0.Mask = "00/00/0000";
             this.dteNgay_Ct0.Name = "dteNgay_Ct0";
             this.dteNgay_Ct0.Size = new System.Drawing.Size(86, 20);
-            this.dteNgay_Ct0.TabIndex = 6;
+            this.dteNgay_Ct0.TabIndex = 7;
+            // 
+            // numHan_Tt
+            // 
+            this.numHan_Tt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numHan_Tt.bEnabled = true;
+            this.numHan_Tt.bFormat = true;
+            this.numHan_Tt.bIsLookup = false;
+            this.numHan_Tt.bReadOnly = false;
+            this.numHan_Tt.bRequire = false;
+            this.numHan_Tt.KeyFilter = "";
+            this.numHan_Tt.Location = new System.Drawing.Point(88, 7);
+            this.numHan_Tt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.numHan_Tt.Name = "numHan_Tt";
+            this.numHan_Tt.Scale = 0;
+            this.numHan_Tt.Size = new System.Drawing.Size(77, 20);
+            this.numHan_Tt.TabIndex = 0;
+            this.numHan_Tt.Text = "0";
+            this.numHan_Tt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numHan_Tt.UseAutoFilter = false;
+            this.numHan_Tt.Value = 0D;
             // 
             // txtSo_Ct0
             // 
@@ -372,13 +416,27 @@ namespace Epoint.Modules.AP
             this.txtSo_Ct0.bReadOnly = false;
             this.txtSo_Ct0.bRequire = false;
             this.txtSo_Ct0.KeyFilter = "";
-            this.txtSo_Ct0.Location = new System.Drawing.Point(86, 56);
+            this.txtSo_Ct0.Location = new System.Drawing.Point(87, 79);
             this.txtSo_Ct0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtSo_Ct0.MaxLength = 20;
             this.txtSo_Ct0.Name = "txtSo_Ct0";
             this.txtSo_Ct0.Size = new System.Drawing.Size(78, 20);
-            this.txtSo_Ct0.TabIndex = 5;
+            this.txtSo_Ct0.TabIndex = 6;
             this.txtSo_Ct0.UseAutoFilter = false;
+            // 
+            // lblHan_Tt
+            // 
+            this.lblHan_Tt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHan_Tt.AutoEllipsis = true;
+            this.lblHan_Tt.AutoSize = true;
+            this.lblHan_Tt.BackColor = System.Drawing.Color.Transparent;
+            this.lblHan_Tt.Location = new System.Drawing.Point(7, 10);
+            this.lblHan_Tt.Name = "lblHan_Tt";
+            this.lblHan_Tt.Size = new System.Drawing.Size(81, 13);
+            this.lblHan_Tt.TabIndex = 68;
+            this.lblHan_Tt.Tag = "Han_Tt";
+            this.lblHan_Tt.Text = "Hạn thanh toán";
+            this.lblHan_Tt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSo_Ct0
             // 
@@ -386,7 +444,7 @@ namespace Epoint.Modules.AP
             this.lblSo_Ct0.AutoEllipsis = true;
             this.lblSo_Ct0.AutoSize = true;
             this.lblSo_Ct0.BackColor = System.Drawing.Color.Transparent;
-            this.lblSo_Ct0.Location = new System.Drawing.Point(8, 61);
+            this.lblSo_Ct0.Location = new System.Drawing.Point(7, 82);
             this.lblSo_Ct0.Name = "lblSo_Ct0";
             this.lblSo_Ct0.Size = new System.Drawing.Size(50, 13);
             this.lblSo_Ct0.TabIndex = 128;
@@ -402,12 +460,12 @@ namespace Epoint.Modules.AP
             this.txtMa_So_Thue.bReadOnly = false;
             this.txtMa_So_Thue.bRequire = false;
             this.txtMa_So_Thue.KeyFilter = "";
-            this.txtMa_So_Thue.Location = new System.Drawing.Point(406, 33);
+            this.txtMa_So_Thue.Location = new System.Drawing.Point(413, 56);
             this.txtMa_So_Thue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_So_Thue.MaxLength = 20;
             this.txtMa_So_Thue.Name = "txtMa_So_Thue";
-            this.txtMa_So_Thue.Size = new System.Drawing.Size(100, 20);
-            this.txtMa_So_Thue.TabIndex = 4;
+            this.txtMa_So_Thue.Size = new System.Drawing.Size(98, 20);
+            this.txtMa_So_Thue.TabIndex = 5;
             this.txtMa_So_Thue.UseAutoFilter = false;
             // 
             // lblMa_So_Thue
@@ -416,7 +474,7 @@ namespace Epoint.Modules.AP
             this.lblMa_So_Thue.AutoEllipsis = true;
             this.lblMa_So_Thue.AutoSize = true;
             this.lblMa_So_Thue.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_So_Thue.Location = new System.Drawing.Point(328, 36);
+            this.lblMa_So_Thue.Location = new System.Drawing.Point(325, 59);
             this.lblMa_So_Thue.Name = "lblMa_So_Thue";
             this.lblMa_So_Thue.Size = new System.Drawing.Size(60, 13);
             this.lblMa_So_Thue.TabIndex = 126;
@@ -432,12 +490,12 @@ namespace Epoint.Modules.AP
             this.txtTen_DtGtgt.bReadOnly = false;
             this.txtTen_DtGtgt.bRequire = false;
             this.txtTen_DtGtgt.KeyFilter = "";
-            this.txtTen_DtGtgt.Location = new System.Drawing.Point(86, 32);
+            this.txtTen_DtGtgt.Location = new System.Drawing.Point(87, 55);
             this.txtTen_DtGtgt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTen_DtGtgt.MaxLength = 100;
             this.txtTen_DtGtgt.Name = "txtTen_DtGtgt";
             this.txtTen_DtGtgt.Size = new System.Drawing.Size(231, 20);
-            this.txtTen_DtGtgt.TabIndex = 3;
+            this.txtTen_DtGtgt.TabIndex = 4;
             this.txtTen_DtGtgt.UseAutoFilter = false;
             // 
             // lblTen_DtGtgt
@@ -446,7 +504,7 @@ namespace Epoint.Modules.AP
             this.lblTen_DtGtgt.AutoEllipsis = true;
             this.lblTen_DtGtgt.AutoSize = true;
             this.lblTen_DtGtgt.BackColor = System.Drawing.Color.Transparent;
-            this.lblTen_DtGtgt.Location = new System.Drawing.Point(8, 36);
+            this.lblTen_DtGtgt.Location = new System.Drawing.Point(7, 58);
             this.lblTen_DtGtgt.Name = "lblTen_DtGtgt";
             this.lblTen_DtGtgt.Size = new System.Drawing.Size(77, 13);
             this.lblTen_DtGtgt.TabIndex = 124;
@@ -460,12 +518,12 @@ namespace Epoint.Modules.AP
             this.lblTk_Co3.AutoEllipsis = true;
             this.lblTk_Co3.AutoSize = true;
             this.lblTk_Co3.BackColor = System.Drawing.Color.Transparent;
-            this.lblTk_Co3.Location = new System.Drawing.Point(328, 12);
+            this.lblTk_Co3.Location = new System.Drawing.Point(325, 35);
             this.lblTk_Co3.Name = "lblTk_Co3";
-            this.lblTk_Co3.Size = new System.Drawing.Size(60, 13);
+            this.lblTk_Co3.Size = new System.Drawing.Size(59, 13);
             this.lblTk_Co3.TabIndex = 122;
             this.lblTk_Co3.Tag = "Tk_Co3";
-            this.lblTk_Co3.Text = "Tk Có VAT";
+            this.lblTk_Co3.Text = "Tk có VAT";
             this.lblTk_Co3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTk_No3
@@ -474,7 +532,7 @@ namespace Epoint.Modules.AP
             this.lblTk_No3.AutoEllipsis = true;
             this.lblTk_No3.AutoSize = true;
             this.lblTk_No3.BackColor = System.Drawing.Color.Transparent;
-            this.lblTk_No3.Location = new System.Drawing.Point(169, 11);
+            this.lblTk_No3.Location = new System.Drawing.Point(170, 34);
             this.lblTk_No3.Name = "lblTk_No3";
             this.lblTk_No3.Size = new System.Drawing.Size(59, 13);
             this.lblTk_No3.TabIndex = 120;
@@ -488,27 +546,13 @@ namespace Epoint.Modules.AP
             this.lblMa_Thue.AutoEllipsis = true;
             this.lblMa_Thue.AutoSize = true;
             this.lblMa_Thue.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Thue.Location = new System.Drawing.Point(8, 12);
+            this.lblMa_Thue.Location = new System.Drawing.Point(7, 35);
             this.lblMa_Thue.Name = "lblMa_Thue";
             this.lblMa_Thue.Size = new System.Drawing.Size(70, 13);
             this.lblMa_Thue.TabIndex = 118;
             this.lblMa_Thue.Tag = "Ma_Thue";
             this.lblMa_Thue.Text = "Mã thuế VAT";
             this.lblMa_Thue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btHanTt
-            // 
-            this.btHanTt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btHanTt.Image = global::Epoint.Modules.AP.Properties.Resources.tick;
-            this.btHanTt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btHanTt.Location = new System.Drawing.Point(216, 395);
-            this.btHanTt.Name = "btHanTt";
-            this.btHanTt.Size = new System.Drawing.Size(97, 22);
-            this.btHanTt.TabIndex = 17;
-            this.btHanTt.TabStop = false;
-            this.btHanTt.Tag = "Pay";
-            this.btHanTt.Text = "Thanh toán";
-            this.btHanTt.UseVisualStyleBackColor = true;
             // 
             // imageList1
             // 
@@ -563,26 +607,6 @@ namespace Epoint.Modules.AP
             this.btPb_Cp.UseVisualStyleBackColor = true;
             this.btPb_Cp.Visible = false;
             // 
-            // numHan_Tt
-            // 
-            this.numHan_Tt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numHan_Tt.bEnabled = true;
-            this.numHan_Tt.bFormat = true;
-            this.numHan_Tt.bIsLookup = false;
-            this.numHan_Tt.bReadOnly = false;
-            this.numHan_Tt.bRequire = false;
-            this.numHan_Tt.KeyFilter = "";
-            this.numHan_Tt.Location = new System.Drawing.Point(90, 397);
-            this.numHan_Tt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.numHan_Tt.Name = "numHan_Tt";
-            this.numHan_Tt.Scale = 0;
-            this.numHan_Tt.Size = new System.Drawing.Size(74, 20);
-            this.numHan_Tt.TabIndex = 3;
-            this.numHan_Tt.Text = "0";
-            this.numHan_Tt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numHan_Tt.UseAutoFilter = false;
-            this.numHan_Tt.Value = 0D;
-            // 
             // numTy_Gia
             // 
             this.numTy_Gia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -593,30 +617,16 @@ namespace Epoint.Modules.AP
             this.numTy_Gia.bRequire = false;
             this.numTy_Gia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTy_Gia.KeyFilter = "";
-            this.numTy_Gia.Location = new System.Drawing.Point(132, 84);
+            this.numTy_Gia.Location = new System.Drawing.Point(132, 110);
             this.numTy_Gia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTy_Gia.Name = "numTy_Gia";
             this.numTy_Gia.Scale = 2;
             this.numTy_Gia.Size = new System.Drawing.Size(102, 20);
-            this.numTy_Gia.TabIndex = 4;
+            this.numTy_Gia.TabIndex = 5;
             this.numTy_Gia.Text = "0.00";
             this.numTy_Gia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTy_Gia.UseAutoFilter = false;
             this.numTy_Gia.Value = 0D;
-            // 
-            // lblHan_Tt
-            // 
-            this.lblHan_Tt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblHan_Tt.AutoEllipsis = true;
-            this.lblHan_Tt.AutoSize = true;
-            this.lblHan_Tt.BackColor = System.Drawing.Color.Transparent;
-            this.lblHan_Tt.Location = new System.Drawing.Point(9, 400);
-            this.lblHan_Tt.Name = "lblHan_Tt";
-            this.lblHan_Tt.Size = new System.Drawing.Size(81, 13);
-            this.lblHan_Tt.TabIndex = 68;
-            this.lblHan_Tt.Tag = "Han_Tt";
-            this.lblHan_Tt.Text = "Hạn thanh toán";
-            this.lblHan_Tt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtMa_Tte
             // 
@@ -628,11 +638,11 @@ namespace Epoint.Modules.AP
             this.txtMa_Tte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Tte.InputMask = "VND,USD,EUR";
             this.txtMa_Tte.KeyFilter = "";
-            this.txtMa_Tte.Location = new System.Drawing.Point(99, 84);
+            this.txtMa_Tte.Location = new System.Drawing.Point(99, 110);
             this.txtMa_Tte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Tte.Name = "txtMa_Tte";
             this.txtMa_Tte.Size = new System.Drawing.Size(29, 20);
-            this.txtMa_Tte.TabIndex = 3;
+            this.txtMa_Tte.TabIndex = 4;
             this.txtMa_Tte.UseAutoFilter = false;
             // 
             // txtDien_Giai
@@ -772,7 +782,7 @@ namespace Epoint.Modules.AP
             this.lblMa_Tte.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Tte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Tte.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Tte.Location = new System.Drawing.Point(29, 87);
+            this.lblMa_Tte.Location = new System.Drawing.Point(26, 114);
             this.lblMa_Tte.Name = "lblMa_Tte";
             this.lblMa_Tte.Size = new System.Drawing.Size(54, 13);
             this.lblMa_Tte.TabIndex = 53;
@@ -791,7 +801,7 @@ namespace Epoint.Modules.AP
             this.txtSo_Ct.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSo_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSo_Ct.KeyFilter = "";
-            this.txtSo_Ct.Location = new System.Drawing.Point(99, 61);
+            this.txtSo_Ct.Location = new System.Drawing.Point(99, 64);
             this.txtSo_Ct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtSo_Ct.MaxLength = 20;
             this.txtSo_Ct.Name = "txtSo_Ct";
@@ -807,7 +817,7 @@ namespace Epoint.Modules.AP
             this.lblSo_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblSo_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSo_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSo_Ct.Location = new System.Drawing.Point(29, 64);
+            this.lblSo_Ct.Location = new System.Drawing.Point(26, 68);
             this.lblSo_Ct.Name = "lblSo_Ct";
             this.lblSo_Ct.Size = new System.Drawing.Size(33, 13);
             this.lblSo_Ct.TabIndex = 51;
@@ -823,7 +833,7 @@ namespace Epoint.Modules.AP
             this.lblNgay_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblNgay_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNgay_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNgay_Ct.Location = new System.Drawing.Point(29, 40);
+            this.lblNgay_Ct.Location = new System.Drawing.Point(26, 44);
             this.lblNgay_Ct.Name = "lblNgay_Ct";
             this.lblNgay_Ct.Size = new System.Drawing.Size(45, 13);
             this.lblNgay_Ct.TabIndex = 0;
@@ -841,7 +851,7 @@ namespace Epoint.Modules.AP
             this.txtMa_Ct.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Ct.KeyFilter = "";
-            this.txtMa_Ct.Location = new System.Drawing.Point(99, 15);
+            this.txtMa_Ct.Location = new System.Drawing.Point(99, 18);
             this.txtMa_Ct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Ct.MaxLength = 20;
             this.txtMa_Ct.Name = "txtMa_Ct";
@@ -857,7 +867,7 @@ namespace Epoint.Modules.AP
             this.lblMa_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Ct.Location = new System.Drawing.Point(29, 18);
+            this.lblMa_Ct.Location = new System.Drawing.Point(26, 22);
             this.lblMa_Ct.Name = "lblMa_Ct";
             this.lblMa_Ct.Size = new System.Drawing.Size(35, 13);
             this.lblMa_Ct.TabIndex = 48;
@@ -876,7 +886,7 @@ namespace Epoint.Modules.AP
             this.dteNgay_Ct.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dteNgay_Ct.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Ct.Location = new System.Drawing.Point(99, 38);
+            this.dteNgay_Ct.Location = new System.Drawing.Point(99, 41);
             this.dteNgay_Ct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Ct.Mask = "00/00/0000";
             this.dteNgay_Ct.Name = "dteNgay_Ct";
@@ -891,9 +901,9 @@ namespace Epoint.Modules.AP
             this.pnlTTien.Controls.Add(this.numTTien);
             this.pnlTTien.Controls.Add(this.numTTien3);
             this.pnlTTien.Controls.Add(this.numTTien0);
-            this.pnlTTien.Location = new System.Drawing.Point(738, 389);
+            this.pnlTTien.Location = new System.Drawing.Point(733, 386);
             this.pnlTTien.Name = "pnlTTien";
-            this.pnlTTien.Size = new System.Drawing.Size(115, 139);
+            this.pnlTTien.Size = new System.Drawing.Size(115, 137);
             this.pnlTTien.TabIndex = 6;
             // 
             // numTTien6
@@ -1022,9 +1032,9 @@ namespace Epoint.Modules.AP
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt);
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt3);
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt0);
-            this.pnlTTien_Nt.Location = new System.Drawing.Point(518, 389);
+            this.pnlTTien_Nt.Location = new System.Drawing.Point(524, 386);
             this.pnlTTien_Nt.Name = "pnlTTien_Nt";
-            this.pnlTTien_Nt.Size = new System.Drawing.Size(224, 139);
+            this.pnlTTien_Nt.Size = new System.Drawing.Size(213, 137);
             this.pnlTTien_Nt.TabIndex = 5;
             // 
             // lblControl1
@@ -1034,7 +1044,7 @@ namespace Epoint.Modules.AP
             this.lblControl1.BackColor = System.Drawing.Color.Transparent;
             this.lblControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl1.ForeColor = System.Drawing.Color.Blue;
-            this.lblControl1.Location = new System.Drawing.Point(3, 119);
+            this.lblControl1.Location = new System.Drawing.Point(-1, 115);
             this.lblControl1.Name = "lblControl1";
             this.lblControl1.Size = new System.Drawing.Size(55, 13);
             this.lblControl1.TabIndex = 118;
@@ -1052,7 +1062,7 @@ namespace Epoint.Modules.AP
             this.numTSo_Luong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTSo_Luong.ForeColor = System.Drawing.Color.Blue;
             this.numTSo_Luong.KeyFilter = "";
-            this.numTSo_Luong.Location = new System.Drawing.Point(104, 113);
+            this.numTSo_Luong.Location = new System.Drawing.Point(89, 113);
             this.numTSo_Luong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTSo_Luong.Name = "numTSo_Luong";
             this.numTSo_Luong.Scale = 2;
@@ -1071,7 +1081,7 @@ namespace Epoint.Modules.AP
             this.TTien_Nt6.BackColor = System.Drawing.Color.Transparent;
             this.TTien_Nt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TTien_Nt6.ForeColor = System.Drawing.Color.Blue;
-            this.TTien_Nt6.Location = new System.Drawing.Point(3, 97);
+            this.TTien_Nt6.Location = new System.Drawing.Point(-1, 93);
             this.TTien_Nt6.Name = "TTien_Nt6";
             this.TTien_Nt6.Size = new System.Drawing.Size(73, 13);
             this.TTien_Nt6.TabIndex = 116;
@@ -1089,7 +1099,7 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt6.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt6.KeyFilter = "";
-            this.numTTien_Nt6.Location = new System.Drawing.Point(104, 91);
+            this.numTTien_Nt6.Location = new System.Drawing.Point(89, 91);
             this.numTTien_Nt6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt6.Name = "numTTien_Nt6";
             this.numTTien_Nt6.Scale = 2;
@@ -1108,7 +1118,7 @@ namespace Epoint.Modules.AP
             this.lblTTien_Nt5.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien_Nt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien_Nt5.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien_Nt5.Location = new System.Drawing.Point(3, 76);
+            this.lblTTien_Nt5.Location = new System.Drawing.Point(-1, 72);
             this.lblTTien_Nt5.Name = "lblTTien_Nt5";
             this.lblTTien_Nt5.Size = new System.Drawing.Size(57, 13);
             this.lblTTien_Nt5.TabIndex = 114;
@@ -1126,7 +1136,7 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt5.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt5.KeyFilter = "";
-            this.numTTien_Nt5.Location = new System.Drawing.Point(104, 69);
+            this.numTTien_Nt5.Location = new System.Drawing.Point(89, 69);
             this.numTTien_Nt5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt5.Name = "numTTien_Nt5";
             this.numTTien_Nt5.Scale = 2;
@@ -1145,7 +1155,7 @@ namespace Epoint.Modules.AP
             this.lblTTien.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien.Location = new System.Drawing.Point(3, 54);
+            this.lblTTien.Location = new System.Drawing.Point(-1, 50);
             this.lblTTien.Name = "lblTTien";
             this.lblTTien.Size = new System.Drawing.Size(61, 13);
             this.lblTTien.TabIndex = 112;
@@ -1160,7 +1170,7 @@ namespace Epoint.Modules.AP
             this.lblTTien3.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien3.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien3.Location = new System.Drawing.Point(3, 32);
+            this.lblTTien3.Location = new System.Drawing.Point(-1, 28);
             this.lblTTien3.Name = "lblTTien3";
             this.lblTTien3.Size = new System.Drawing.Size(60, 13);
             this.lblTTien3.TabIndex = 111;
@@ -1175,7 +1185,7 @@ namespace Epoint.Modules.AP
             this.lblTTien0.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien0.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien0.Location = new System.Drawing.Point(3, 10);
+            this.lblTTien0.Location = new System.Drawing.Point(-1, 6);
             this.lblTTien0.Name = "lblTTien0";
             this.lblTTien0.Size = new System.Drawing.Size(64, 13);
             this.lblTTien0.TabIndex = 110;
@@ -1194,7 +1204,7 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt.KeyFilter = "";
-            this.numTTien_Nt.Location = new System.Drawing.Point(104, 47);
+            this.numTTien_Nt.Location = new System.Drawing.Point(89, 47);
             this.numTTien_Nt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt.Name = "numTTien_Nt";
             this.numTTien_Nt.Scale = 2;
@@ -1216,7 +1226,7 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt3.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt3.KeyFilter = "";
-            this.numTTien_Nt3.Location = new System.Drawing.Point(104, 25);
+            this.numTTien_Nt3.Location = new System.Drawing.Point(89, 25);
             this.numTTien_Nt3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt3.Name = "numTTien_Nt3";
             this.numTTien_Nt3.Scale = 2;
@@ -1238,7 +1248,7 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt0.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt0.KeyFilter = "";
-            this.numTTien_Nt0.Location = new System.Drawing.Point(104, 3);
+            this.numTTien_Nt0.Location = new System.Drawing.Point(89, 3);
             this.numTTien_Nt0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt0.Name = "numTTien_Nt0";
             this.numTTien_Nt0.Scale = 2;
@@ -1476,21 +1486,6 @@ namespace Epoint.Modules.AP
             this.btImportExcel.Text = "&Lấy dữ liệu tập tin";
             this.btImportExcel.UseVisualStyleBackColor = true;
             // 
-            // lbNgay
-            // 
-            this.lbNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbNgay.AutoEllipsis = true;
-            this.lbNgay.AutoSize = true;
-            this.lbNgay.BackColor = System.Drawing.Color.Transparent;
-            this.lbNgay.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lbNgay.Location = new System.Drawing.Point(170, 400);
-            this.lbNgay.Name = "lbNgay";
-            this.lbNgay.Size = new System.Drawing.Size(30, 13);
-            this.lbNgay.TabIndex = 193;
-            this.lbNgay.Tag = "";
-            this.lbNgay.Text = "ngày";
-            this.lbNgay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // chkNoPosted
             // 
             this.chkNoPosted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1514,11 +1509,8 @@ namespace Epoint.Modules.AP
             this.txtMa_Hd.bRequire = false;
             this.txtMa_Hd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Hd.ColumnsView = null;
-            this.txtMa_Hd.CtrlDepend = null;
             this.txtMa_Hd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Hd.KeyFilter = "Ma_Hd";
-            this.txtMa_Hd.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtMa_Hd.ListFilter = new string[0];
             this.txtMa_Hd.Location = new System.Drawing.Point(101, 106);
             this.txtMa_Hd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Hd.Name = "txtMa_Hd";
@@ -1526,41 +1518,28 @@ namespace Epoint.Modules.AP
             this.txtMa_Hd.TabIndex = 4;
             this.txtMa_Hd.UseAutoFilter = true;
             // 
-            // txtMa_Dt
+            // txtMa_Quyen
             // 
-            this.txtMa_Dt.bEnabled = true;
-            this.txtMa_Dt.bIsLookup = false;
-            this.txtMa_Dt.bReadOnly = false;
-            this.txtMa_Dt.bRequire = false;
-            this.txtMa_Dt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_Dt.ColumnsView = null;
-            this.txtMa_Dt.CtrlDepend = null;
-            this.txtMa_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMa_Dt.KeyFilter = "Ma_Dt_NCC";
-            this.txtMa_Dt.ListControlFilter = new System.Windows.Forms.Control[] {
-        this.txtAdmin};
-            this.txtMa_Dt.ListFilter = new string[] {
-        "ADMIN"};
-            this.txtMa_Dt.Location = new System.Drawing.Point(101, 34);
-            this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.txtMa_Dt.Name = "txtMa_Dt";
-            this.txtMa_Dt.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Dt.TabIndex = 0;
-            this.txtMa_Dt.UseAutoFilter = true;
-            // 
-            // txtAdmin
-            // 
-            this.txtAdmin.Location = new System.Drawing.Point(0, 0);
-            this.txtAdmin.Name = "txtAdmin";
-            this.txtAdmin.Size = new System.Drawing.Size(0, 0);
-            this.txtAdmin.TabIndex = 0;
-            this.txtAdmin.Text = "txtAdmin";
+            this.txtMa_Quyen.bEnabled = true;
+            this.txtMa_Quyen.bIsLookup = false;
+            this.txtMa_Quyen.bReadOnly = false;
+            this.txtMa_Quyen.bRequire = false;
+            this.txtMa_Quyen.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Quyen.ColumnsView = null;
+            this.txtMa_Quyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Quyen.KeyFilter = "Ma_Quyen";
+            this.txtMa_Quyen.Location = new System.Drawing.Point(99, 87);
+            this.txtMa_Quyen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Quyen.Name = "txtMa_Quyen";
+            this.txtMa_Quyen.Size = new System.Drawing.Size(135, 20);
+            this.txtMa_Quyen.TabIndex = 3;
+            this.txtMa_Quyen.UseAutoFilter = true;
             // 
             // grVoucher
             // 
             this.grVoucher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grVoucher.Controls.Add(this.cboQuyen_So);
             this.grVoucher.Controls.Add(this.lblQuyen_So);
+            this.grVoucher.Controls.Add(this.txtMa_Quyen);
             this.grVoucher.Controls.Add(this.numTy_Gia);
             this.grVoucher.Controls.Add(this.lblMa_Tte);
             this.grVoucher.Controls.Add(this.txtMa_Tte);
@@ -1584,25 +1563,6 @@ namespace Epoint.Modules.AP
             this.grVoucher.Tag = "grVoucher";
             this.grVoucher.Text = "Chứng từ";
             // 
-            // cboQuyen_So
-            // 
-            this.cboQuyen_So.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboQuyen_So.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.cboQuyen_So.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cboQuyen_So.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboQuyen_So.FormattingEnabled = true;
-            this.cboQuyen_So.InitValue = null;
-            this.cboQuyen_So.Location = new System.Drawing.Point(99, 107);
-            this.cboQuyen_So.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.cboQuyen_So.MaxLength = 20;
-            this.cboQuyen_So.Name = "cboQuyen_So";
-            this.cboQuyen_So.Size = new System.Drawing.Size(135, 21);
-            this.cboQuyen_So.strValueList = null;
-            this.cboQuyen_So.TabIndex = 5;
-            this.cboQuyen_So.UpperCase = false;
-            this.cboQuyen_So.UseAutoComplete = false;
-            this.cboQuyen_So.UseBindingValue = false;
-            // 
             // lblQuyen_So
             // 
             this.lblQuyen_So.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1611,12 +1571,12 @@ namespace Epoint.Modules.AP
             this.lblQuyen_So.BackColor = System.Drawing.Color.Transparent;
             this.lblQuyen_So.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuyen_So.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblQuyen_So.Location = new System.Drawing.Point(29, 110);
+            this.lblQuyen_So.Location = new System.Drawing.Point(26, 90);
             this.lblQuyen_So.Name = "lblQuyen_So";
             this.lblQuyen_So.Size = new System.Drawing.Size(52, 13);
             this.lblQuyen_So.TabIndex = 194;
             this.lblQuyen_So.Tag = "Quyen_So";
-            this.lblQuyen_So.Text = "Quyển số";
+            this.lblQuyen_So.Text = "Quyển sổ";
             this.lblQuyen_So.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chkIs_Customize
@@ -1655,8 +1615,8 @@ namespace Epoint.Modules.AP
             // 
             this.grInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grInfo.Controls.Add(this.txtTen_Hd);
             this.grInfo.Controls.Add(this.txtMa_Dt);
+            this.grInfo.Controls.Add(this.txtTen_Hd);
             this.grInfo.Controls.Add(this.lblMa_Hd);
             this.grInfo.Controls.Add(this.lblMa_Dt);
             this.grInfo.Controls.Add(this.lblOng_Ba);
@@ -1676,6 +1636,23 @@ namespace Epoint.Modules.AP
             this.grInfo.TabStop = false;
             this.grInfo.Tag = "grInfo";
             this.grInfo.Text = "Thông tin chung";
+            // 
+            // txtMa_Dt
+            // 
+            this.txtMa_Dt.bEnabled = true;
+            this.txtMa_Dt.bIsLookup = false;
+            this.txtMa_Dt.bReadOnly = false;
+            this.txtMa_Dt.bRequire = false;
+            this.txtMa_Dt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Dt.ColumnsView = null;
+            this.txtMa_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Dt.KeyFilter = "Ma_Dt";
+            this.txtMa_Dt.Location = new System.Drawing.Point(101, 34);
+            this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Dt.Name = "txtMa_Dt";
+            this.txtMa_Dt.Size = new System.Drawing.Size(120, 20);
+            this.txtMa_Dt.TabIndex = 0;
+            this.txtMa_Dt.UseAutoFilter = true;
             // 
             // txtTen_Hd
             // 
@@ -1705,6 +1682,7 @@ namespace Epoint.Modules.AP
             this.linkHelp.TabStop = true;
             this.linkHelp.Tag = "Help_File";
             this.linkHelp.Text = "Hướng dẫn nhập liệu";
+            this.linkHelp.Visible = false;
             // 
             // frmCtNM_Edit
             // 
@@ -1718,12 +1696,8 @@ namespace Epoint.Modules.AP
             this.Controls.Add(this.chkIs_Customize);
             this.Controls.Add(this.grVoucher);
             this.Controls.Add(this.chkNoPosted);
-            this.Controls.Add(this.lbNgay);
             this.Controls.Add(this.tabVoucher);
-            this.Controls.Add(this.btHanTt);
             this.Controls.Add(this.pnlVAT);
-            this.Controls.Add(this.numHan_Tt);
-            this.Controls.Add(this.lblHan_Tt);
             this.Controls.Add(this.pnlTTien);
             this.Controls.Add(this.pnlTTien_Nt);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -1731,16 +1705,13 @@ namespace Epoint.Modules.AP
             this.Name = "frmCtNM_Edit";
             this.Tag = "frmCtNM, ESC";
             this.Text = "frmCtNM";
+            this.Controls.SetChildIndex(this.lineControl1, 0);
             this.Controls.SetChildIndex(this.ucNotice, 0);
             this.Controls.SetChildIndex(this.pnlTTien_Nt, 0);
             this.Controls.SetChildIndex(this.pnlTTien, 0);
-            this.Controls.SetChildIndex(this.lblHan_Tt, 0);
-            this.Controls.SetChildIndex(this.numHan_Tt, 0);
             this.Controls.SetChildIndex(this.btgAccept, 0);
             this.Controls.SetChildIndex(this.pnlVAT, 0);
-            this.Controls.SetChildIndex(this.btHanTt, 0);
             this.Controls.SetChildIndex(this.tabVoucher, 0);
-            this.Controls.SetChildIndex(this.lbNgay, 0);
             this.Controls.SetChildIndex(this.chkNoPosted, 0);
             this.Controls.SetChildIndex(this.grVoucher, 0);
             this.Controls.SetChildIndex(this.chkIs_Customize, 0);
@@ -1840,7 +1811,7 @@ namespace Epoint.Modules.AP
         private Systems.Controls.lblControl lbNgay;
         private Systems.Controls.chkControl chkNoPosted;
         private Systems.Controls.txtTextLookup txtMa_Hd;
-        private Systems.Controls.txtTextLookup txtMa_Dt;
+        private Systems.Controls.txtTextLookup txtMa_Quyen;
         private Systems.Controls.txtTextLookup txtMa_Thue;
         private Systems.Controls.txtTextLookup txtTk_Co3;
         private Systems.Controls.txtTextLookup txtTk_No3;
@@ -1850,12 +1821,11 @@ namespace Epoint.Modules.AP
         private System.Windows.Forms.GroupBox grInfo;
         private System.Windows.Forms.LinkLabel linkHelp;
         private Systems.Controls.lblControl lblQuyen_So;
-        private Systems.Controls.cboMultiControl cboQuyen_So;
         private Systems.Controls.txtTextBox txtTen_Hd;
         private Systems.Controls.txtTextBox txtKh_HoaDon;
         private Systems.Controls.lblControl lblControl4;
         private Systems.Controls.txtTextBox txtMa_HoaDon;
         private Systems.Controls.lblControl lblControl3;
-        private System.Windows.Forms.Control txtAdmin;
+        private Systems.Controls.txtTextLookup txtMa_Dt;
 	}
 }

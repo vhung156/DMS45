@@ -29,10 +29,10 @@ namespace Epoint.Modules.AP
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numTy_Gia = new Epoint.Systems.Controls.numControl();
             this.txtMa_Tte = new Epoint.Systems.Controls.txtEnum();
             this.lblMa_Tte = new Epoint.Systems.Controls.lblControl();
@@ -92,9 +92,18 @@ namespace Epoint.Modules.AP
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(592, 519);
-            this.btgAccept.Size = new System.Drawing.Size(173, 29);
+            this.btgAccept.Location = new System.Drawing.Point(614, 526);
+            this.btgAccept.Size = new System.Drawing.Size(171, 33);
             this.btgAccept.TabIndex = 11;
+            // 
+            // ucNotice
+            // 
+            this.ucNotice.Location = new System.Drawing.Point(5, 531);
+            // 
+            // lineControl1
+            // 
+            this.lineControl1.Location = new System.Drawing.Point(9, 519);
+            this.lineControl1.Size = new System.Drawing.Size(772, 1);
             // 
             // numTy_Gia
             // 
@@ -142,7 +151,7 @@ namespace Epoint.Modules.AP
             this.lblMa_Tte.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Tte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Tte.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Tte.Location = new System.Drawing.Point(16, 99);
+            this.lblMa_Tte.Location = new System.Drawing.Point(14, 99);
             this.lblMa_Tte.Name = "lblMa_Tte";
             this.lblMa_Tte.Size = new System.Drawing.Size(54, 13);
             this.lblMa_Tte.TabIndex = 53;
@@ -176,7 +185,7 @@ namespace Epoint.Modules.AP
             this.lblSo_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblSo_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSo_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSo_Ct.Location = new System.Drawing.Point(16, 75);
+            this.lblSo_Ct.Location = new System.Drawing.Point(14, 75);
             this.lblSo_Ct.Name = "lblSo_Ct";
             this.lblSo_Ct.Size = new System.Drawing.Size(33, 13);
             this.lblSo_Ct.TabIndex = 51;
@@ -192,7 +201,7 @@ namespace Epoint.Modules.AP
             this.lblNgay_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblNgay_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNgay_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNgay_Ct.Location = new System.Drawing.Point(16, 51);
+            this.lblNgay_Ct.Location = new System.Drawing.Point(14, 51);
             this.lblNgay_Ct.Name = "lblNgay_Ct";
             this.lblNgay_Ct.Size = new System.Drawing.Size(45, 13);
             this.lblNgay_Ct.TabIndex = 0;
@@ -226,7 +235,7 @@ namespace Epoint.Modules.AP
             this.lblMa_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Ct.Location = new System.Drawing.Point(16, 28);
+            this.lblMa_Ct.Location = new System.Drawing.Point(14, 28);
             this.lblMa_Ct.Name = "lblMa_Ct";
             this.lblMa_Ct.Size = new System.Drawing.Size(35, 13);
             this.lblMa_Ct.TabIndex = 48;
@@ -258,7 +267,7 @@ namespace Epoint.Modules.AP
             this.pnlTTien.Controls.Add(this.numTTien);
             this.pnlTTien.Controls.Add(this.numTTien3);
             this.pnlTTien.Controls.Add(this.numTTien0);
-            this.pnlTTien.Location = new System.Drawing.Point(675, 388);
+            this.pnlTTien.Location = new System.Drawing.Point(672, 393);
             this.pnlTTien.Name = "pnlTTien";
             this.pnlTTien.Size = new System.Drawing.Size(115, 102);
             this.pnlTTien.TabIndex = 10;
@@ -274,7 +283,7 @@ namespace Epoint.Modules.AP
             this.numTTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien.ForeColor = System.Drawing.Color.Blue;
             this.numTTien.KeyFilter = "";
-            this.numTTien.Location = new System.Drawing.Point(2, 53);
+            this.numTTien.Location = new System.Drawing.Point(1, 49);
             this.numTTien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien.Name = "numTTien";
             this.numTTien.Scale = 0;
@@ -296,7 +305,7 @@ namespace Epoint.Modules.AP
             this.numTTien3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien3.ForeColor = System.Drawing.Color.Blue;
             this.numTTien3.KeyFilter = "";
-            this.numTTien3.Location = new System.Drawing.Point(2, 31);
+            this.numTTien3.Location = new System.Drawing.Point(1, 27);
             this.numTTien3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien3.Name = "numTTien3";
             this.numTTien3.Scale = 0;
@@ -318,7 +327,7 @@ namespace Epoint.Modules.AP
             this.numTTien0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien0.ForeColor = System.Drawing.Color.Blue;
             this.numTTien0.KeyFilter = "";
-            this.numTTien0.Location = new System.Drawing.Point(2, 9);
+            this.numTTien0.Location = new System.Drawing.Point(1, 5);
             this.numTTien0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien0.Name = "numTTien0";
             this.numTTien0.Scale = 0;
@@ -341,9 +350,9 @@ namespace Epoint.Modules.AP
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt);
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt3);
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt0);
-            this.pnlTTien_Nt.Location = new System.Drawing.Point(488, 388);
+            this.pnlTTien_Nt.Location = new System.Drawing.Point(477, 393);
             this.pnlTTien_Nt.Name = "pnlTTien_Nt";
-            this.pnlTTien_Nt.Size = new System.Drawing.Size(186, 102);
+            this.pnlTTien_Nt.Size = new System.Drawing.Size(194, 102);
             this.pnlTTien_Nt.TabIndex = 9;
             // 
             // lblControl6
@@ -353,7 +362,7 @@ namespace Epoint.Modules.AP
             this.lblControl6.BackColor = System.Drawing.Color.Transparent;
             this.lblControl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl6.ForeColor = System.Drawing.Color.Blue;
-            this.lblControl6.Location = new System.Drawing.Point(3, 79);
+            this.lblControl6.Location = new System.Drawing.Point(1, 74);
             this.lblControl6.Name = "lblControl6";
             this.lblControl6.Size = new System.Drawing.Size(55, 13);
             this.lblControl6.TabIndex = 114;
@@ -372,11 +381,11 @@ namespace Epoint.Modules.AP
             this.numTSo_Luong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTSo_Luong.ForeColor = System.Drawing.Color.Blue;
             this.numTSo_Luong.KeyFilter = "";
-            this.numTSo_Luong.Location = new System.Drawing.Point(73, 75);
+            this.numTSo_Luong.Location = new System.Drawing.Point(82, 71);
             this.numTSo_Luong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTSo_Luong.Name = "numTSo_Luong";
             this.numTSo_Luong.Scale = 2;
-            this.numTSo_Luong.Size = new System.Drawing.Size(111, 20);
+            this.numTSo_Luong.Size = new System.Drawing.Size(108, 20);
             this.numTSo_Luong.TabIndex = 113;
             this.numTSo_Luong.TabStop = false;
             this.numTSo_Luong.Text = "0.00";
@@ -391,7 +400,7 @@ namespace Epoint.Modules.AP
             this.lblTTien.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien.Location = new System.Drawing.Point(3, 57);
+            this.lblTTien.Location = new System.Drawing.Point(1, 52);
             this.lblTTien.Name = "lblTTien";
             this.lblTTien.Size = new System.Drawing.Size(61, 13);
             this.lblTTien.TabIndex = 112;
@@ -406,7 +415,7 @@ namespace Epoint.Modules.AP
             this.lblTTien3.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien3.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien3.Location = new System.Drawing.Point(3, 36);
+            this.lblTTien3.Location = new System.Drawing.Point(1, 31);
             this.lblTTien3.Name = "lblTTien3";
             this.lblTTien3.Size = new System.Drawing.Size(60, 13);
             this.lblTTien3.TabIndex = 111;
@@ -421,7 +430,7 @@ namespace Epoint.Modules.AP
             this.lblTTien0.BackColor = System.Drawing.Color.Transparent;
             this.lblTTien0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTien0.ForeColor = System.Drawing.Color.Blue;
-            this.lblTTien0.Location = new System.Drawing.Point(3, 13);
+            this.lblTTien0.Location = new System.Drawing.Point(1, 8);
             this.lblTTien0.Name = "lblTTien0";
             this.lblTTien0.Size = new System.Drawing.Size(64, 13);
             this.lblTTien0.TabIndex = 110;
@@ -440,11 +449,11 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt.KeyFilter = "";
-            this.numTTien_Nt.Location = new System.Drawing.Point(73, 53);
+            this.numTTien_Nt.Location = new System.Drawing.Point(82, 49);
             this.numTTien_Nt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt.Name = "numTTien_Nt";
             this.numTTien_Nt.Scale = 2;
-            this.numTTien_Nt.Size = new System.Drawing.Size(111, 20);
+            this.numTTien_Nt.Size = new System.Drawing.Size(108, 20);
             this.numTTien_Nt.TabIndex = 3;
             this.numTTien_Nt.TabStop = false;
             this.numTTien_Nt.Text = "0.00";
@@ -462,11 +471,11 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt3.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt3.KeyFilter = "";
-            this.numTTien_Nt3.Location = new System.Drawing.Point(73, 31);
+            this.numTTien_Nt3.Location = new System.Drawing.Point(82, 27);
             this.numTTien_Nt3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt3.Name = "numTTien_Nt3";
             this.numTTien_Nt3.Scale = 2;
-            this.numTTien_Nt3.Size = new System.Drawing.Size(111, 20);
+            this.numTTien_Nt3.Size = new System.Drawing.Size(108, 20);
             this.numTTien_Nt3.TabIndex = 2;
             this.numTTien_Nt3.Text = "0.00";
             this.numTTien_Nt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -484,11 +493,11 @@ namespace Epoint.Modules.AP
             this.numTTien_Nt0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTTien_Nt0.ForeColor = System.Drawing.Color.Blue;
             this.numTTien_Nt0.KeyFilter = "";
-            this.numTTien_Nt0.Location = new System.Drawing.Point(73, 9);
+            this.numTTien_Nt0.Location = new System.Drawing.Point(82, 5);
             this.numTTien_Nt0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTTien_Nt0.Name = "numTTien_Nt0";
             this.numTTien_Nt0.Scale = 2;
-            this.numTTien_Nt0.Size = new System.Drawing.Size(111, 20);
+            this.numTTien_Nt0.Size = new System.Drawing.Size(108, 20);
             this.numTTien_Nt0.TabIndex = 0;
             this.numTTien_Nt0.TabStop = false;
             this.numTTien_Nt0.Text = "0.00";
@@ -500,43 +509,43 @@ namespace Epoint.Modules.AP
             // 
             this.dgvEditCt1.AllowUserToAddRows = false;
             this.dgvEditCt1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEditCt1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEditCt1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEditCt1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEditCt1.BackgroundColor = System.Drawing.Color.White;
             this.dgvEditCt1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEditCt1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEditCt1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEditCt1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEditCt1.EnableHeadersVisualStyles = false;
             this.dgvEditCt1.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgvEditCt1.Location = new System.Drawing.Point(7, 167);
             this.dgvEditCt1.MultiSelect = false;
             this.dgvEditCt1.Name = "dgvEditCt1";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEditCt1.Size = new System.Drawing.Size(779, 218);
             this.dgvEditCt1.strZone = "";
             this.dgvEditCt1.TabIndex = 2;
@@ -547,7 +556,7 @@ namespace Epoint.Modules.AP
             this.lblControl1.AutoEllipsis = true;
             this.lblControl1.AutoSize = true;
             this.lblControl1.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl1.Location = new System.Drawing.Point(13, 399);
+            this.lblControl1.Location = new System.Drawing.Point(11, 399);
             this.lblControl1.Name = "lblControl1";
             this.lblControl1.Size = new System.Drawing.Size(99, 13);
             this.lblControl1.TabIndex = 64;
@@ -563,7 +572,7 @@ namespace Epoint.Modules.AP
             this.txtDia_Diem.bReadOnly = false;
             this.txtDia_Diem.bRequire = false;
             this.txtDia_Diem.KeyFilter = "";
-            this.txtDia_Diem.Location = new System.Drawing.Point(121, 397);
+            this.txtDia_Diem.Location = new System.Drawing.Point(128, 397);
             this.txtDia_Diem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtDia_Diem.MaxLength = 200;
             this.txtDia_Diem.Name = "txtDia_Diem";
@@ -577,12 +586,12 @@ namespace Epoint.Modules.AP
             this.lblControl2.AutoEllipsis = true;
             this.lblControl2.AutoSize = true;
             this.lblControl2.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl2.Location = new System.Drawing.Point(13, 423);
+            this.lblControl2.Location = new System.Drawing.Point(11, 423);
             this.lblControl2.Name = "lblControl2";
-            this.lblControl2.Size = new System.Drawing.Size(89, 13);
+            this.lblControl2.Size = new System.Drawing.Size(107, 13);
             this.lblControl2.TabIndex = 62;
             this.lblControl2.Tag = "Pt_Tt";
-            this.lblControl2.Text = "Pthức thanh toán";
+            this.lblControl2.Text = "Hình thức thanh toán";
             this.lblControl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPt_Tt
@@ -593,7 +602,7 @@ namespace Epoint.Modules.AP
             this.txtPt_Tt.bReadOnly = false;
             this.txtPt_Tt.bRequire = false;
             this.txtPt_Tt.KeyFilter = "";
-            this.txtPt_Tt.Location = new System.Drawing.Point(121, 421);
+            this.txtPt_Tt.Location = new System.Drawing.Point(128, 421);
             this.txtPt_Tt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtPt_Tt.MaxLength = 200;
             this.txtPt_Tt.Name = "txtPt_Tt";
@@ -608,12 +617,12 @@ namespace Epoint.Modules.AP
             this.lblControl3.AutoEllipsis = true;
             this.lblControl3.AutoSize = true;
             this.lblControl3.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl3.Location = new System.Drawing.Point(13, 447);
+            this.lblControl3.Location = new System.Drawing.Point(11, 447);
             this.lblControl3.Name = "lblControl3";
-            this.lblControl3.Size = new System.Drawing.Size(94, 13);
+            this.lblControl3.Size = new System.Drawing.Size(112, 13);
             this.lblControl3.TabIndex = 62;
             this.lblControl3.Tag = "Pt_Vc";
-            this.lblControl3.Text = "Pthức vận chuyển";
+            this.lblControl3.Text = "Hình thức vận chuyển";
             this.lblControl3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPt_Vc
@@ -624,7 +633,7 @@ namespace Epoint.Modules.AP
             this.txtPt_Vc.bReadOnly = false;
             this.txtPt_Vc.bRequire = false;
             this.txtPt_Vc.KeyFilter = "";
-            this.txtPt_Vc.Location = new System.Drawing.Point(121, 445);
+            this.txtPt_Vc.Location = new System.Drawing.Point(128, 445);
             this.txtPt_Vc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtPt_Vc.MaxLength = 200;
             this.txtPt_Vc.Name = "txtPt_Vc";
@@ -642,7 +651,7 @@ namespace Epoint.Modules.AP
             this.dteNgay_DkHt.Culture = new System.Globalization.CultureInfo("fr-FR");
             this.dteNgay_DkHt.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_DkHt.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_DkHt.Location = new System.Drawing.Point(121, 469);
+            this.dteNgay_DkHt.Location = new System.Drawing.Point(128, 469);
             this.dteNgay_DkHt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_DkHt.Mask = "00/00/0000";
             this.dteNgay_DkHt.Name = "dteNgay_DkHt";
@@ -655,12 +664,12 @@ namespace Epoint.Modules.AP
             this.lblControl4.AutoEllipsis = true;
             this.lblControl4.AutoSize = true;
             this.lblControl4.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl4.Location = new System.Drawing.Point(13, 471);
+            this.lblControl4.Location = new System.Drawing.Point(11, 471);
             this.lblControl4.Name = "lblControl4";
-            this.lblControl4.Size = new System.Drawing.Size(100, 13);
+            this.lblControl4.Size = new System.Drawing.Size(93, 13);
             this.lblControl4.TabIndex = 0;
             this.lblControl4.Tag = "Ngay_Dk_Gh";
-            this.lblControl4.Text = "Ngày DK giao hàng";
+            this.lblControl4.Text = "Ngày giao dự kiến";
             this.lblControl4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblControl5
@@ -669,7 +678,7 @@ namespace Epoint.Modules.AP
             this.lblControl5.AutoEllipsis = true;
             this.lblControl5.AutoSize = true;
             this.lblControl5.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl5.Location = new System.Drawing.Point(13, 495);
+            this.lblControl5.Location = new System.Drawing.Point(11, 495);
             this.lblControl5.Name = "lblControl5";
             this.lblControl5.Size = new System.Drawing.Size(46, 13);
             this.lblControl5.TabIndex = 118;
@@ -687,7 +696,7 @@ namespace Epoint.Modules.AP
             this.dteNgay_Gh.Culture = new System.Globalization.CultureInfo("fr-FR");
             this.dteNgay_Gh.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Gh.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Gh.Location = new System.Drawing.Point(372, 469);
+            this.dteNgay_Gh.Location = new System.Drawing.Point(378, 469);
             this.dteNgay_Gh.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Gh.Mask = "00/00/0000";
             this.dteNgay_Gh.Name = "dteNgay_Gh";
@@ -700,7 +709,7 @@ namespace Epoint.Modules.AP
             this.lblControl8.AutoEllipsis = true;
             this.lblControl8.AutoSize = true;
             this.lblControl8.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl8.Location = new System.Drawing.Point(285, 472);
+            this.lblControl8.Location = new System.Drawing.Point(291, 472);
             this.lblControl8.Name = "lblControl8";
             this.lblControl8.Size = new System.Drawing.Size(82, 13);
             this.lblControl8.TabIndex = 0;
@@ -718,7 +727,7 @@ namespace Epoint.Modules.AP
             this.txtMa_Thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Thue.ColumnsView = null;
             this.txtMa_Thue.KeyFilter = "Ma_Thue";
-            this.txtMa_Thue.Location = new System.Drawing.Point(121, 493);
+            this.txtMa_Thue.Location = new System.Drawing.Point(128, 493);
             this.txtMa_Thue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Thue.Name = "txtMa_Thue";
             this.txtMa_Thue.Size = new System.Drawing.Size(97, 20);
@@ -789,6 +798,7 @@ namespace Epoint.Modules.AP
             this.linkHelp.TabStop = true;
             this.linkHelp.Tag = "Help_File";
             this.linkHelp.Text = "Hướng dẫn nhập liệu";
+            this.linkHelp.Visible = false;
             // 
             // txtTen_Dt
             // 
@@ -992,6 +1002,7 @@ namespace Epoint.Modules.AP
             this.Name = "frmCtPO_Edit";
             this.Tag = "frmCtPO, ESC";
             this.Text = "frmCtPO";
+            this.Controls.SetChildIndex(this.lineControl1, 0);
             this.Controls.SetChildIndex(this.dteNgay_DkHt, 0);
             this.Controls.SetChildIndex(this.dteNgay_Gh, 0);
             this.Controls.SetChildIndex(this.lblControl4, 0);

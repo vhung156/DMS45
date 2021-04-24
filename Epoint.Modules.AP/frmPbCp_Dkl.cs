@@ -122,8 +122,8 @@ namespace Epoint.Modules.AP
 			string strValue = txtMa_Kho.Text.Trim();
 			bool bRequire = false;
 
-            //frmKho frmLookup = new frmKho();
-			DataRow drLookup = Lookup.ShowLookup( "Ma_Kho", strValue, bRequire, "");
+			//
+			DataRow drLookup = Lookup.ShowLookup("Ma_Kho", strValue, bRequire, "");
 
 			if (bRequire && drLookup == null)
 				e.Cancel = true;
@@ -152,7 +152,7 @@ namespace Epoint.Modules.AP
 			string strValue = txtMa_Nh_Vt.Text.Trim();
 			bool bRequire = false;
 
-            //frmVatTuNh frmLookup = new frmVatTuNh();
+			//frmVatTuNh frmLookup = new frmVatTuNh();
 			DataRow drLookup = Lookup.ShowLookup("Ma_Nh_Vt", strValue, bRequire, "");
 
 			if (bRequire && drLookup == null)
@@ -182,8 +182,8 @@ namespace Epoint.Modules.AP
 			string strValue = txtMa_Vt.Text.Trim();
 			bool bRequire = false;
 
-            //frmVatTu frmLookup = new frmVatTu();
-			DataRow drLookup = Lookup.ShowLookup( "Ma_Vt", strValue, bRequire, "");
+			//frmVatTu frmLookup = new frmVatTu();
+			DataRow drLookup = Lookup.ShowLookup("Ma_Vt", strValue, bRequire, "");
 
 			if (bRequire && drLookup == null)
 				e.Cancel = true;

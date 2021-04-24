@@ -41,9 +41,9 @@ namespace Epoint.Modules.AP
             this.dgvViewPn.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvViewPn.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvViewPn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvViewPn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvViewPn.BackgroundColor = System.Drawing.Color.White;
             this.dgvViewPn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvViewPn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -54,15 +54,15 @@ namespace Epoint.Modules.AP
             this.dgvViewPn.MultiSelect = false;
             this.dgvViewPn.Name = "dgvViewPn";
             this.dgvViewPn.ReadOnly = true;
-            this.dgvViewPn.Size = new System.Drawing.Size(788, 533);
+            this.dgvViewPn.Size = new System.Drawing.Size(788, 526);
             this.dgvViewPn.strZone = "";
             this.dgvViewPn.TabIndex = 0;
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(594, 539);
+            this.btgAccept.Location = new System.Drawing.Point(594, 533);
             this.btgAccept.Name = "btgAccept";
-            this.btgAccept.Size = new System.Drawing.Size(170, 30);
+            this.btgAccept.Size = new System.Drawing.Size(170, 33);
             this.btgAccept.TabIndex = 1;
             this.btgAccept.TabStop = false;
             // 
