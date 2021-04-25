@@ -130,9 +130,9 @@ namespace Epoint.Modules.AP
             //Mac dinh
             if (enuNew_Edit == enuEdit.New || enuNew_Edit == enuEdit.Copy)
             {
-                string strSQL = "SELECT TOP 1 Ma_Quyen FROM LIQUYENSO WHERE Month(Ngay_BatDau) <= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() +
-                                "') AND Month(Ngay_KetThuc) >= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_KetThuc) = Year ('"
-                                + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Ma_Ct = '" + strMa_Ct + "'";
+                string strSQL = "SELECT TOP 1 Ma_Quyen FROM LIQUYENSO WHERE Month(Ngay_Begin) <= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() +
+                                "') AND Month(Ngay_End) >= Month('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_End) = Year ('"
+                                + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "')";
                 DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
                 foreach (DataRow drQuyen in dtQuyen_So.Rows)
                 {
@@ -2014,6 +2014,13 @@ namespace Epoint.Modules.AP
 
             if (Common.Inlist(strColumnName, "SO_LUONG9,GIA_NT9,TIEN_NT9,TIEN"))
             {
+                if (strColumnName == "TIEN_NT9" && Convert.ToDouble(drCurrent[strColumnName]) == 0)
+                {
+                    drCurrent["GIA_NT9"] = 0;
+                    drCurrent["TIEN"] = 0;
+                    drCurrent.AcceptChanges();
+                }
+
                 if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
                 {
                     Voucher.Calc_So_Luong(drCurrent);

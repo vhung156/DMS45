@@ -715,7 +715,7 @@ namespace Epoint.Modules.AR
 
                 drEdit = drEditPh;
             }
-            
+
 
             if (Parameters.GetParaValue("DMS_CHECKSDHD") != null && Parameters.GetParaValue("DMS_CHECKSDHD").ToString() == "Y")
                 if (this.drEditPh["Stt_Org"].ToString() != string.Empty) // Check hóa đơn bán hàng còn dư nợ hay không
@@ -1660,7 +1660,7 @@ namespace Epoint.Modules.AR
                                     strSttKM = drbr["Stt"].ToString();
                                     iDiscTime = Convert.ToInt32(drbr["DiscTime"]);
                                     //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
-                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0],strMa_Ns, ref dbQtyAlloc);
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], strMa_Ns, ref dbQtyAlloc);
                                 }
                             }
                         }
@@ -1719,7 +1719,7 @@ namespace Epoint.Modules.AR
                         {
                             //int aTemp = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
                             //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0]);
-                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0],strMa_Ns,ref dbQtyAlloc);
+                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0], strMa_Ns, ref dbQtyAlloc);
                         }
                         dtEditCt.AcceptChanges();
 
@@ -1764,7 +1764,7 @@ namespace Epoint.Modules.AR
 
                     if (dtBreakBy.Rows.Count > 0)
                     {
-                        
+
                         string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
                         double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
                         int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);  // số xuất khuyến mãi
@@ -1780,8 +1780,8 @@ namespace Epoint.Modules.AR
                             Discount.Calc_Chiet_Khau_ForGroup(this, dbPer, strMa_Vt_Disc_List, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
                         }
                         else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
-                        {                            
-                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0], strMa_Ns,ref dbQtyAlloc);
+                        {
+                            Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Rows[0], strMa_Ns, ref dbQtyAlloc);
                         }
                         dtEditCt.AcceptChanges();
 
@@ -1843,7 +1843,7 @@ namespace Epoint.Modules.AR
                             {
                                 dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
                             }
-                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm,strMa_Ns, ref dbAmtAlloc);
+                            Discount.Calc_Chiet_Khau_ForInvoice(this, dbAmtDisc, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
                         }
 
                     }
@@ -2935,8 +2935,7 @@ namespace Epoint.Modules.AR
                     Voucher.Update_TTien(this);
                     Voucher.Adjust_TThue_Vat(this, true);
                 }
-                else
-                    if (Common.Inlist(strColumnName, "GIA_NT9"))
+                else if (Common.Inlist(strColumnName, "GIA_NT9"))
                 {
                     double dbGia_Nt9 = 0;
                     if (double.TryParse(drCurrent["GIA_NT9"].ToString(), out dbGia_Nt9))
