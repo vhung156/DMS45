@@ -2018,6 +2018,8 @@ namespace Epoint.Modules.AP
                 {
                     drCurrent["GIA_NT9"] = 0;
                     drCurrent["TIEN"] = 0;
+                    drCurrent["TIEN_NT"] = 0;
+                    Voucher.Update_TTien(this);
                     drCurrent.AcceptChanges();
                 }
 
