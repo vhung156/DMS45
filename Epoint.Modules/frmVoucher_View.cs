@@ -1785,12 +1785,18 @@ namespace Epoint.Modules
             //    }
             //}
 
-
+           
             if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
             {
                 if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
                     if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
                      e.Appearance.ForeColor = Color.Red;
+
+                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
+                {
+                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                }
 
             }
         }
