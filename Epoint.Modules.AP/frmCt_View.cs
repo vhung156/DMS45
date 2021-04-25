@@ -193,29 +193,29 @@ namespace Epoint.Modules.AP
 
             //SQLExec.Execute(strSQL);
             //--------------------------------------------------------------------
-            /*
-			if (Voucher.SQLDeleteCt(strStt, strMa_Ct))
-			{
-				bdsViewPh.RemoveAt(bdsViewPh.Position);
-				dtViewPh.AcceptChanges();
 
-                ////Sync Delete----------                
-                string Is_Sync = Convert.ToString(SQLExec.ExecuteReturnValue("SELECT Parameter_Value FROM SYSPARAMETER WHERE Parameter_ID = 'SYNC_BEGIN'"));
-                if (Is_Sync == "1")
-                {
-                    SqlConnection sqlCon = SQLExecSync1.GetNewSQLConnectionSync1();
-                    if (sqlCon.State != ConnectionState.Open)
-                    {
-                        SQLExec.Execute("UPDATE SYSPARAMETER SET Parameter_Value = 0 WHERE Parameter_ID = 'SYNC_BEGIN'");
-                    }
-                    else
-                    {
-                        VoucherSync1.SQLDeleteCt(strStt, strMa_Ct);
-                    }
-                }
+            if (Voucher.SQLDeleteCt(strStt, strMa_Ct))
+            {
+                bdsViewPh.RemoveAt(bdsViewPh.Position);
+                dtViewPh.AcceptChanges();
+
+                //////Sync Delete----------                
+                //string Is_Sync = Convert.ToString(SQLExec.ExecuteReturnValue("SELECT Parameter_Value FROM SYSPARAMETER WHERE Parameter_ID = 'SYNC_BEGIN'"));
+                //if (Is_Sync == "1")
+                //{
+                //    SqlConnection sqlCon = SQLExecSync1.GetNewSQLConnectionSync1();
+                //    if (sqlCon.State != ConnectionState.Open)
+                //    {
+                //        SQLExec.Execute("UPDATE SYSPARAMETER SET Parameter_Value = 0 WHERE Parameter_ID = 'SYNC_BEGIN'");
+                //    }
+                //    else
+                //    {
+                //        VoucherSync1.SQLDeleteCt(strStt, strMa_Ct);
+                //    }
+                //}
                 //-----------------------
-            
-            }*/
+
+            }
         }
 
         public override void EditHanTt()

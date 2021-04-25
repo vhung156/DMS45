@@ -2555,12 +2555,12 @@ namespace Epoint.Modules
                 strTien_Nt = i == 0 ? "Tien_Nt" : "Tien_Nt" + i;
 
                 if (dgv.Columns.Contains(strTien_Nt))
-                    dgv.Columns[strTien_Nt].DefaultCellStyle.Format = strMa_Tte == Element.sysMa_Tte ? "N0" : "N0";
+                    dgv.Columns[strTien_Nt].DefaultCellStyle.Format = strMa_Tte == Element.sysMa_Tte ? "N0" : "N2";
             }
 
 
             if (dgv.Columns.Contains("Gia_Nt9"))
-                dgv.Columns["Gia_Nt9"].DefaultCellStyle.Format = strMa_Tte == Element.sysMa_Tte ? "N0" : "N0";
+                dgv.Columns["Gia_Nt9"].DefaultCellStyle.Format = strMa_Tte == Element.sysMa_Tte ? "N0" : "N2";
 
             if (dgv.Columns.Contains("Gia_Nt"))
                 dgv.Columns["Gia_Nt"].DefaultCellStyle.Format = strMa_Tte == Element.sysMa_Tte ? "N2" : "N2";
