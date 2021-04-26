@@ -1871,12 +1871,12 @@ namespace Epoint.Modules
             //}
 
 
-            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
-                if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
-                {
-                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                        e.Appearance.ForeColor = Color.Blue;
-                }
+            //if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
+            if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+            {
+                if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                    e.Appearance.ForeColor = Color.Blue;
+            }
 
         }
 
