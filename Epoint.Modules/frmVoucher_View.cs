@@ -25,7 +25,8 @@ namespace Epoint.Modules
     public partial class frmVoucher_View : Epoint.Systems.Customizes.frmView
     {
         #region Fields
-
+        Color usd_color = Color.FromArgb(255, 49, 106, 197);
+        public bool isFormated = false;
         public DataSet dsVoucher = new DataSet("dsVoucher");
 
         public DataTable dtViewPh;
@@ -71,6 +72,7 @@ namespace Epoint.Modules
 
             dgvViewPh.dgvGridView.Click += new EventHandler(dgvViewPh_CellMouseClick);
             dgvViewPh.dgvGridView.CustomDrawCell += new RowCellCustomDrawEventHandler(dgvViewPh_CellFormatting);
+            //dgvViewPh.dgvGridView.RowCellStyle += dgvViewPh_RowCellStyle;
             dgvViewPh.Enter += new EventHandler(dgvViewPh_Enter);
             dgvViewCt.Enter += new EventHandler(dgvViewCt_Enter);
 
@@ -89,7 +91,7 @@ namespace Epoint.Modules
             string sYear = Convert.ToString(Parameters.GetParaValue("YEAR_FILTER"));
             string sMonth = Convert.ToString(Parameters.GetParaValue("MONTH_FILTER"));
 
-            DateTime dteNgay_Ct2 = objNgay_CtMax == null ||  objNgay_CtMax == DBNull.Value ? DateTime.Now :(DateTime)objNgay_CtMax ;
+            DateTime dteNgay_Ct2 = objNgay_CtMax == null || objNgay_CtMax == DBNull.Value ? DateTime.Now : (DateTime)objNgay_CtMax;
             DateTime dteNgay_Ct1 = dteNgay_Ct2.Subtract(new TimeSpan(iInterval, 0, 0, 0));
 
             string strFilterKey = string.Empty;
@@ -131,6 +133,8 @@ namespace Epoint.Modules
             this.BindingLanguage();
             this.BindingTong_Tien();
 
+            //if (strMa_Ct_List == "PC")
+            //    this.dgvViewPh.FormatCell = false;
             //string strMa_Ct_Access = SQLExec.ExecuteReturnValue("SELECT Ma_Ct_Access FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "' AND MEMBER_TYPE = 'U'").ToString();
             //if (!Element.sysIs_Admin)
             //    if (Common.Inlist(strMa_Ct_List, strMa_Ct_Access))
@@ -201,7 +205,7 @@ namespace Epoint.Modules
                     //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
                 }
             }
-            
+
             string strSelectPh = " *, TTien0 + TTien3 AS TTien, TTien_Nt0 + TTien_Nt3 AS TTien_Nt, CAST(0 AS BIT) AS CHON ,CAST(0 AS BIT) AS Mark,SUBSTRING(Create_Log,15,LEN(Create_Log)) AS User_Create";
             dtViewPh = DataTool.SQLGetDataTable(strTable_Ph, strSelectPh, strKey_Ph, "Ngay_Ct, So_Ct");
             dtViewPh.TableName = strTable_Ph;
@@ -223,6 +227,15 @@ namespace Epoint.Modules
                 dcNew.Expression = "Tien_Nt + Tien_Nt3";
                 dtViewCt.Columns.Add(dcNew);
             }
+
+            //Thêm tổng tiền ở phía dưới
+            //if (!dtViewPh.Columns.Contains("FORE_COLOR"))
+            //{
+            //    DataColumn dcNew = new DataColumn("FORE_COLOR", typeof(string));
+            //    dtViewPh.Columns.Add(dcNew);              
+            //}
+
+
 
             bdsViewCt.DataSource = dtViewCt;
             dgvViewCt.DataSource = bdsViewCt;
@@ -248,6 +261,8 @@ namespace Epoint.Modules
                     continue;
 
                 Common.CopyDataRow(drViewCt, drViewPh, (string)drDmCt["Update_Header"]);
+
+                //drViewPh["FORE_COLOR"] = drViewPh["MA_TTE"].ToString() != Element.sysMa_Tte ? "RED" : "";
             }
 
             bdsViewPh.MoveLast();
@@ -261,7 +276,7 @@ namespace Epoint.Modules
             string strTable_Ph = (string)drDmCt["Table_Ph"];
             string strTable_Ct = (string)drDmCt["Table_Ct"];
             if (!bINewLoad)// OldLoad way
-            {                
+            {
                 if (!Element.sysIs_Admin)
                 {
                     if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
@@ -315,7 +330,7 @@ namespace Epoint.Modules
                 dsVoucher.Tables.Clear();
                 dsVoucher.Tables.Add(dtViewPh);
                 dsVoucher.Tables.Add(dtViewCt);
-              
+
             }
             //Thêm tổng tiền ở phía dưới
             if (dtViewCt.Columns.Contains("TTien_Nt") && dtViewCt.Columns.Contains("TTien_Nt3"))
@@ -335,7 +350,7 @@ namespace Epoint.Modules
             bdsViewCt.DataSource = dtViewCt;
             dgvViewCt.DataSource = bdsViewCt;
 
-            
+
 
             //Lay du lieu tu Ct len Ph theo danh sach Carry_Header
             Common.CopyDataColumn(dtViewCt, dtViewPh, (string)drDmCt["Update_Header"]);
@@ -361,7 +376,7 @@ namespace Epoint.Modules
 
             int value = dgvViewPh.dgvGridView.RowCount - 1;
             dgvViewPh.dgvGridView.TopRowIndex = value;
-            dgvViewPh.dgvGridView.FocusedRowHandle = value; 
+            dgvViewPh.dgvGridView.FocusedRowHandle = value;
             //dgvViewPh.dgvGridView.MoveLast();
             //
 
@@ -655,10 +670,10 @@ namespace Epoint.Modules
                 this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
                 this.FillDataIN(strFilterKey_Old, strFilterKey_Old);
-            else 
+            else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
-        
+
         public virtual bool Filter_ShowForm(DataRow drFilter)
         {
             frmFilter frm = new frmFilter();
@@ -674,7 +689,7 @@ namespace Epoint.Modules
 
             drCurrent = ((DataRowView)bdsViewPh.Current).Row;
             string stt = string.Empty;
-            DataRow[] drArrPrint ;
+            DataRow[] drArrPrint;
             bool bAcceptShowDialog = true;
             bool bInVisibleNextPrint = false;
             string strReport_File_First = string.Empty;
@@ -697,10 +712,10 @@ namespace Epoint.Modules
             }
             else
                 drArrPrint = dtViewPh.Select("CHON = true");
-                    
 
 
-           
+
+
 
             if (drArrPrint.Length > 1)
             {
@@ -878,7 +893,7 @@ namespace Epoint.Modules
         /// <summary>
         /// /////////////////////////////////////////////////////////
         /// </summary>
-        
+
         #region Import Excel chưng từ
         private string strKey_Ph, strKey_Ct;
         //Import Excel chưng từ
@@ -941,7 +956,7 @@ namespace Epoint.Modules
             //int days = (str == "") ? Convert.ToInt32(Parameters.GetParaValue("DAY_FILTER")) : Convert.ToInt32(str);
 
             int days = Convert.ToInt32(Parameters.GetParaValue("DAY_FILTER"));
-            DateTime dteNgay = (objNgay_Ct == DBNull.Value || objNgay_Ct== null) ? DateTime.Now :((DateTime)objNgay_Ct) ;
+            DateTime dteNgay = (objNgay_Ct == DBNull.Value || objNgay_Ct == null) ? DateTime.Now : ((DateTime)objNgay_Ct);
             DateTime time2 = dteNgay.Subtract(new TimeSpan(days, 0, 0, 0));
             string str4 = string.Empty + "(Ma_Ct IN ('" + this.strMa_Ct_List.Replace(",", "','") + "'))";
             string str2 = str4 + " AND (Ngay_Ct BETWEEN  '" + Library.DateToStr(time2) + "' AND '" + Library.DateToStr(dteNgay) + "')";
@@ -972,8 +987,8 @@ namespace Epoint.Modules
         public void Import_Excel(bool IsAspocel)
         {
             try
-            {               
-               
+            {
+
                 EpointProcessBox.AddMessage("Loading data....................");
                 if (dtDataExcelImport != null)
                 {
@@ -1002,7 +1017,7 @@ namespace Epoint.Modules
 
                         if (dtDataExcelImport.Columns.Contains("Auto_Cost"))
                         {
-                            rowIp["Auto_Cost"] = rowIp["Auto_Cost"].ToString() == "1"? "true" : "false";
+                            rowIp["Auto_Cost"] = rowIp["Auto_Cost"].ToString() == "1" ? "true" : "false";
                         }
 
                         if (dtDataExcelImport.Columns.Contains("Is_Thue_VAT"))
@@ -1051,30 +1066,30 @@ namespace Epoint.Modules
                         if (tableARBan.Columns.Contains("So_Ct") && (dr["So_Ct"] == DBNull.Value || dr["So_Ct"].ToString() == string.Empty))
                         {
                             dr["So_Ct"] = dr["So_Ct0"];
-                        }                        
+                        }
                     }
 
                     var structStt = from c in tableARBan.AsEnumerable()
-                                 group c by new
-                                 {
-                                     Ma_Ct = c.Field<string>("Ma_Ct"),
-                                     So_Ct = c.Field<string>("So_Ct"),//column names for checking duplicate values.
-                                     Ngay_Ct = c.Field<DateTime>("Ngay_Ct"),
-                                     
-                                 } into g
-                                 where g.Key.So_Ct != string.Empty
-                                 select new
-                                 {
-                                     g.Key.Ma_Ct,
-                                     g.Key.So_Ct,
-                                     g.Key.Ngay_Ct
-                                 };
+                                    group c by new
+                                    {
+                                        Ma_Ct = c.Field<string>("Ma_Ct"),
+                                        So_Ct = c.Field<string>("So_Ct"),//column names for checking duplicate values.
+                                        Ngay_Ct = c.Field<DateTime>("Ngay_Ct"),
+
+                                    } into g
+                                    where g.Key.So_Ct != string.Empty
+                                    select new
+                                    {
+                                        g.Key.Ma_Ct,
+                                        g.Key.So_Ct,
+                                        g.Key.Ngay_Ct
+                                    };
 
                     EpointProcessBox.AddMessage("Importing Invoice......................");
                     foreach (var c in structStt)
                     {
 
-                       if (c.So_Ct == string.Empty)
+                        if (c.So_Ct == string.Empty)
                             continue;
 
                         string strColumnName;
@@ -1218,7 +1233,7 @@ namespace Epoint.Modules
                             DataRow rowDetail = dataRow;
                             Common.SetDefaultDataRow(ref rowDetail);
                             rowDetail["Stt"] = newStt;
-                            rowDetail["Stt0"] = ++num;  
+                            rowDetail["Stt0"] = ++num;
                             if (rowDetail.Table.Columns.Contains("Duyet"))
                             {
                                 rowDetail["Duyet"] = true;
@@ -1250,18 +1265,18 @@ namespace Epoint.Modules
                                 //MessageBox.Show("Có lỗi xảy ra trong quá trình import  :" + exception.Message); 
                                 command.Transaction.Rollback();
                                 EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + exception.Message);
-                               
+
                             }
                         }
                         ImportTrans.Commit();
-                        
+
                     }
                 }
                 EpointProcessBox.AddMessage("Kết thúc!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n"+ ex.Message);
+                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + ex.Message);
                 //EpointMessage.MsgOk(ex.Message);
             }
         }
@@ -1435,8 +1450,8 @@ namespace Epoint.Modules
                             {
                                 newStt = Common.GetNewStt(strModule, true);
                             }
-                            SQLExec.Execute(string.Concat(new object[] { 
-                                                                        "DELETE FROM ", strTable_Ct, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "';\r\n\t\t\t\t\t\t\t\t\t\t\t DELETE FROM ", strTable_Ph, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), 
+                            SQLExec.Execute(string.Concat(new object[] {
+                                                                        "DELETE FROM ", strTable_Ct, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]), "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "';\r\n\t\t\t\t\t\t\t\t\t\t\t DELETE FROM ", strTable_Ph, " WHERE Ma_Ct = '", row4["Ma_Ct"], "' AND Ngay_Ct = '", Library.DateToStr((DateTime) row4["Ngay_Ct"]),
                                                                         "' AND So_Ct = '", row4["So_Ct"], "' AND Ma_DvCs = '", Element.sysMa_DvCs, "'"
                                                                      }));
                             if (row5 != null)
@@ -1583,7 +1598,7 @@ namespace Epoint.Modules
                             dgvViewPh.Refresh();
                         }
 
-                    if (strColumnName == "CHON" && Common.Inlist(strMa_Ct_List ,"IN,INT"))
+                    if (strColumnName == "CHON" && Common.Inlist(strMa_Ct_List, "IN,INT"))
                         if (e.Modifiers == Keys.Control)
                         {
                             string strListInvoice = string.Empty;
@@ -1591,7 +1606,7 @@ namespace Epoint.Modules
                             for (int i = 0; i < dgvViewPh.dgvGridView.RowCount; i++)
                             {
                                 if (dgvViewPh.dgvGridView.Columns["SO_CT_LAP"] != null && dgvViewPh.dgvGridView.GetRowCellValue(i, "SO_CT_LAP").ToString() == string.Empty && !(bool)dgvViewPh.dgvGridView.GetRowCellValue(i, "DUYET"))
-                                { 
+                                {
                                     dgvViewPh.dgvGridView.SetRowCellValue(i, "CHON", true);
                                     dtViewPh.AcceptChanges();
                                     //strListInvoice += "," + dgvViewPh.dgvGridView.GetRowCellValue(i, "STT");
@@ -1612,7 +1627,7 @@ namespace Epoint.Modules
                             //{
                             //    strStt_List += drArrStt[i]["Stt"].ToString() + ",";
                             //}
-                          
+
                             //Hashtable htPara = new Hashtable();
                             //htPara.Add("STTLIST", strStt_List);
                             //htPara.Add("MA_DVCS", Element.sysMa_DvCs);
@@ -1668,7 +1683,7 @@ namespace Epoint.Modules
 
                                     this.dtDataExcelImport = Common.ReadExcel(dialog.FileName);
                                 }
-                                EpointProcessBox.Show(this); 
+                                EpointProcessBox.Show(this);
                                 this.Cursor = Cursors.Default;
                             }
                             return;
@@ -1711,7 +1726,7 @@ namespace Epoint.Modules
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
                 this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
-                 this.FillDataIN(strFilterKey_Old, strFilterKey_Old);
+                this.FillDataIN(strFilterKey_Old, strFilterKey_Old);
             else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
@@ -1745,9 +1760,40 @@ namespace Epoint.Modules
         {
             ExportControl = sender;
         }
-
-        void dgvViewPh_CellFormatting(object sender, RowCellCustomDrawEventArgs e)
+        private void dgvViewPh_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
+            //if (!this.dgvViewPh.FormatCell)
+            //    return;
+            if (e.CellValue == null || e.CellValue == DBNull.Value)
+                return;
+
+            if (e.RowHandle < 0)
+                return;
+
+            GridView gridView = (GridView)sender;
+
+            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
+            {
+                //if (Common.Inlist(strMa_Ct_List, "BG,PO,SO,IN,INT"))
+                //{
+                //    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
+                //        e.Appearance.ForeColor = Color.Red;
+                //}
+                //else
+
+                if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+                {
+                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                        e.Appearance.ForeColor = usd_color;
+                }
+            }
+
+        }
+
+        void dgvViewPh_CellFormatting1(object sender, RowCellCustomDrawEventArgs e)
+        {
+
+
             GridView gridView = (GridView)sender;
 
             if (e.CellValue == null || e.CellValue == DBNull.Value)
@@ -1755,6 +1801,45 @@ namespace Epoint.Modules
 
             if (e.RowHandle < 0)
                 return;
+
+
+            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
+            {
+                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
+                    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
+                        e.Appearance.ForeColor = Color.Red;
+
+                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
+                {
+                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                }
+
+            }
+
+        }
+
+        void dgvViewPh_CellFormatting(object sender, RowCellCustomDrawEventArgs e)
+        {
+            if (e.CellValue == null || e.CellValue == DBNull.Value)
+                return;
+
+            if (e.RowHandle < 0)
+                return;
+
+
+            if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC") && e.Column.FieldName != "MA_TTE")
+                return;
+
+
+            GridView gridView = (GridView)sender;
+
+
+
+            //if ((GridColumn)gridView.Columns["MA_CT"] == null || gridView.GetRowCellValue(e.RowHandle, "MA_CT") == null)
+            //    return;
+
+
 
             //if (dgvViewPh.Columns.Contains("Ma_Tte"))
             //{
@@ -1785,27 +1870,21 @@ namespace Epoint.Modules
             //    }
             //}
 
-           
-            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
-            {
-                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
-                    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
-                     e.Appearance.ForeColor = Color.Red;
 
-                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
+            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
+                if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
                 {
-                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                        e.Appearance.ForeColor = Color.Blue;
                 }
 
-            }
         }
 
         void dgvViewPh_CellMouseClick(object sender, EventArgs e)
         {
             if (bdsViewPh.Position < 0)
                 return;
-          
+
             string strColumnName = dgvViewPh.dgvGridView.FocusedColumn.Name.ToUpper();
 
             drCurrent = ((DataRowView)bdsViewPh.Current).Row;
@@ -1834,10 +1913,10 @@ namespace Epoint.Modules
             {
                 bool IsCheckTranferTax = true;
 
-                if(IsCheckTranferTax)
+                if (IsCheckTranferTax)
                 {
                     bool IsAccept = Common.MsgYes_No("Chứng từ đã được thay đổi, bạn có muốn chuyển lại không?");
-                    if(IsAccept)
+                    if (IsAccept)
                     {
 
                     }
@@ -1851,15 +1930,20 @@ namespace Epoint.Modules
 
 
             GetInfoPXK();
-           
+
 
         }
 
 
-        void  GetInfoPXK()
+        void GetInfoPXK()
         {
             if (strMa_Ct_List != "IN")
                 return;
+
+
+            DataTable dtStt = new DataTable();
+            dtStt.Columns.Add(new DataColumn("Stt"));
+
 
             strStt_List = string.Empty;
             DataRow[] drArrStt = dtViewPh.Select("CHON = true");
@@ -1872,14 +1956,43 @@ namespace Epoint.Modules
 
             for (int i = 0; i < drArrStt.Length; i++)
             {
-                strStt_List += drArrStt[i]["Stt"].ToString() + ",";
-            }
-          
-            Hashtable htPara = new Hashtable();
-            htPara.Add("STTLIST", strStt_List);
-            htPara.Add("MA_DVCS", Element.sysMa_DvCs);
+                //strStt_List += drArrStt[i]["Stt"].ToString() + ",";
+                DataRow drStt = dtStt.NewRow();
+                drStt["Stt"] = drArrStt[i]["Stt"].ToString();
+                dtStt.Rows.Add(drStt);
 
-            lbtStt.Text = SQLExec.ExecuteReturnValue("sp_GetPXKInfo", htPara, CommandType.StoredProcedure).ToString();
+            }
+
+
+            DataTable dtReturn = new DataTable();
+            SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+            command.CommandText = "IN_GetPXKInfo";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
+            SqlParameter parameter = new SqlParameter
+            {
+                SqlDbType = SqlDbType.Structured,
+                ParameterName = "@SttList",
+                TypeName = "TVP_STTLIST",
+                Value = dtStt
+            };
+            command.Parameters.Add(parameter);
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(dtReturn);
+
+                lbtStt.Text = dtReturn.Rows[0][0].ToString();
+            }
+            catch
+            {
+                lbtStt.Text = string.Empty;
+            }
+
+            //Hashtable htPara = new Hashtable();
+            //htPara.Add("STTLIST", strStt_List);
+            //htPara.Add("MA_DVCS", Element.sysMa_DvCs);
+            //lbtStt.Text = SQLExec.ExecuteReturnValue("sp_GetPXKInfo", htPara, CommandType.StoredProcedure).ToString();
 
         }
 
