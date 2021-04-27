@@ -1774,13 +1774,6 @@ namespace Epoint.Modules
 
             if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
             {
-                //if (Common.Inlist(strMa_Ct_List, "BG,PO,SO,IN,INT"))
-                //{
-                //    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
-                //        e.Appearance.ForeColor = Color.Red;
-                //}
-                //else
-
                 if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
                 {
                     if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
@@ -1790,11 +1783,12 @@ namespace Epoint.Modules
 
         }
 
-        void dgvViewPh_CellFormatting1(object sender, RowCellCustomDrawEventArgs e)
+        void dgvViewPh_CellFormatting(object sender, RowCellCustomDrawEventArgs e)
         {
 
 
-            GridView gridView = (GridView)sender;
+            if (!Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+                return;
 
             if (e.CellValue == null || e.CellValue == DBNull.Value)
                 return;
@@ -1802,34 +1796,33 @@ namespace Epoint.Modules
             if (e.RowHandle < 0)
                 return;
 
+            if (e.Column.FieldName != "MA_TTE")
+                return;
+
+            GridView gridView = (GridView)sender;
 
             if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
             {
-                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
-                    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
-                        e.Appearance.ForeColor = Color.Red;
+                //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
+                //    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
+                //        e.Appearance.ForeColor = Color.Red;
 
-                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
-                {
+                //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
                     if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
                         e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
-                }
+
 
             }
 
         }
 
-        void dgvViewPh_CellFormatting(object sender, RowCellCustomDrawEventArgs e)
+        /*void dgvViewPh_CellFormatting0(object sender, RowCellCustomDrawEventArgs e)
         {
             if (e.CellValue == null || e.CellValue == DBNull.Value)
                 return;
 
             if (e.RowHandle < 0)
-                return;
-
-
-            if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC") && e.Column.FieldName != "MA_TTE")
-                return;
+                return;          
 
 
             GridView gridView = (GridView)sender;
@@ -1871,14 +1864,21 @@ namespace Epoint.Modules
             //}
 
 
-            //if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
-            if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
             {
-                if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                    e.Appearance.ForeColor = Color.Blue;
+                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
+                    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
+                        e.Appearance.ForeColor = Color.Red;
+
+                if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
+                {
+                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                }
+
             }
 
-        }
+        }*/
 
         void dgvViewPh_CellMouseClick(object sender, EventArgs e)
         {
