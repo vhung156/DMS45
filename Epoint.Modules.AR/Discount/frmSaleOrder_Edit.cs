@@ -1682,7 +1682,6 @@ namespace Epoint.Modules.AR
                     if (dtDiscItemSale.Rows.Count == 0)
                         continue;
 
-
                     foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
@@ -1695,6 +1694,9 @@ namespace Epoint.Modules.AR
 
                         }
                     }
+
+                    if (dbQty + dbAmt == 0)
+                        continue;
 
                     DataTable dtBreakBy = Discount.GetDiscBreak(strMa_CtKm, "", strBreakBy == "Q" ? dbQty : dbAmt);
 
