@@ -1678,7 +1678,6 @@ namespace Epoint.Modules.AR
                     strMa_Vt_Disc_List = string.Empty;
 
                     //DataTable dtDiscItemSale = SQLExec.ExecuteReturnDt("select * from OM_DiscItem WHERE Ma_CTKM = '" + strMa_CtKm + "'");
-
                     DataTable dtDiscItemSale = Discount.GetSaleGroupItem(strMa_CtKm); // Các mặt hàng mua trong chưng trình KM
                     //DataTable dtItemSale = dtEditCt.DefaultView.ToTable(true, "Ma_Vt"); // Các mặt hàng bán trong đơn hàng
 
