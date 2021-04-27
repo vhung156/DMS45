@@ -1547,8 +1547,8 @@ namespace Epoint.Modules.AR
         #region  Phần khuyến mãi và chiết khấu tự động
         private void CalcDiscount() //ref DataTable dtEditCt
         {
-            //var result = dtEditCt.AsEnumerable().Where(x => (Boolean)x["Hang_Km"] == false).Select(x => new { Ma_Vt = x["Ma_Vt"], Qty = x["So_Luong"], Amt = x["Tien_Nt9"] }).ToArray();
-
+           // var result0 = dtEditCt.AsEnumerable().Where(x => (Boolean)x["Hang_Km"] == false).Select(x => new { Ma_Vt = x["Ma_Vt"], Qty = x["So_Luong"], Amt = x["Tien_Nt9"] }).ToArray();
+          
             Discount.ClearPromotionAuto(ref dtEditCt, ref dtEditCtDisc);
 
             string strMa_Vt_Disc = string.Empty;
@@ -1692,16 +1692,17 @@ namespace Epoint.Modules.AR
                     if (dtDiscItemSale.Rows.Count == 0)
                         continue;
 
-                    double dbQty = 0, dbAmt = 0;
-                    var result = dtEditCt.AsEnumerable().Where(x => (Boolean)x["Hang_Km"] == false).Select(x => new { Ma_Vt =  x["Ma_Vt"], Qty = x["So_Luong"], Amt = x["Tien_Nt9"] }).ToArray();
-                    foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
-                    {
-                        strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
-                        dbQty = result.Sum(val => (double)val.Qty);
-                    }
+                    //double dbQty = 0, dbAmt = 0;
+                    //var result = dtEditCt.AsEnumerable().Where(x => (Boolean)x["Hang_Km"] == false).Select(x => new { Ma_Vt =  x["Ma_Vt"], Qty = x["So_Luong"], Amt = x["Tien_Nt9"] }).ToArray();
+                    //foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
+                    //{
+                    //    strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
+                    //    dbQty = result.Sum(val => (double)val.Qty);
+                    //    dbAmt = result.Sum(val => (double)val.Amt);
+                    //}
 
-                              
-                    //var query = from row in dtEditCt.AsEnumerable()  
+
+                    //var query = from row in dtEditCt.Select("Hang_Km = 0").AsEnumerable()
                     //            group row by row.Field<string>("Ma_Vt") into grp
                     //            select new
                     //            {
