@@ -1589,14 +1589,15 @@ namespace Epoint.Modules.AR
 
             string strMa_Vt_Disc = string.Empty;
             string strMa_Vt_Disc_List = string.Empty;
-            DataTable dtItemSale = dtEditCt.DefaultView.ToTable(true, "Ma_Vt", "Hang_Km");
-            foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
+            DataTable dtItemSaleinInvoice = dtEditCt.DefaultView.ToTable(true, "Ma_Vt", "Hang_Km");
+            foreach (DataRow dritem in dtItemSaleinInvoice.Select("Hang_Km = 0"))
             {
                 strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
                 strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
             }
             //Lấy các chương trình khuyến mãi / chiết khấu đang chạy
-            dtDiscCount = Discount.GetDiscoutProg(Library.StrToDate(dteNgay_Ct.Text), txtMa_Dt.Text, strMa_Vt_Disc_List);
+            dtDiscCount = Discount.GetAutoPromotion(Library.StrToDate(dteNgay_Ct.Text), txtMa_Dt.Text, dtEditCt);
+            //dtDiscCount = Discount.GetDiscoutProg(Library.StrToDate(dteNgay_Ct.Text), txtMa_Dt.Text, strMa_Vt_Disc_List);
 
             if (dtDiscCount.Rows.Count == 0)
                 return;
@@ -1653,7 +1654,7 @@ namespace Epoint.Modules.AR
                     strMa_Vt_Disc = string.Empty;
                     strMa_Vt_Disc_List = string.Empty;
 
-                    foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
+                    foreach (DataRow dritem in dtItemSaleinInvoice.Select("Hang_Km = 0"))
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
                         strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
@@ -1731,7 +1732,7 @@ namespace Epoint.Modules.AR
                     //    }
                     //}
 
-                    foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
+                    foreach (DataRow dritem in dtItemSaleinInvoice.Select("Hang_Km = 0"))
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
 
@@ -1801,13 +1802,13 @@ namespace Epoint.Modules.AR
 
                     DataColumn dcSo_Luong = new DataColumn("So_Luong", typeof(string));
                     dcSo_Luong.DefaultValue = 0;
-                    dtItemSale.Columns.Add(dcSo_Luong);
+                    dtItemSaleinInvoice.Columns.Add(dcSo_Luong);
 
                     DataColumn dcTien = new DataColumn("Tien", typeof(double));
                     dcTien.DefaultValue = 0;
-                    dtItemSale.Columns.Add(dcTien);
+                    dtItemSaleinInvoice.Columns.Add(dcTien);
 
-                    foreach (DataRow dritem in dtItemSale.Select("Hang_Km = 0"))
+                    foreach (DataRow dritem in dtItemSaleinInvoice.Select("Hang_Km = 0"))
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
                         strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
@@ -1820,7 +1821,7 @@ namespace Epoint.Modules.AR
                         dritem.AcceptChanges();
                     }
 
-                    DataTable dtBreakBy = Discount.GetDiscBreakBundle(strMa_CtKm, dtItemSale);
+                    DataTable dtBreakBy = Discount.GetDiscBreakBundle(strMa_CtKm, dtItemSaleinInvoice);
 
                     if (dtBreakBy.Rows.Count > 0)
                     {
@@ -1864,13 +1865,13 @@ namespace Epoint.Modules.AR
 
                     DataColumn dcSo_Luong = new DataColumn("So_Luong", typeof(string));
                     dcSo_Luong.DefaultValue = 0;
-                    dtItemSale.Columns.Add(dcSo_Luong);
+                    dtItemSaleinInvoice.Columns.Add(dcSo_Luong);
 
                     DataColumn dcTien = new DataColumn("Tien", typeof(double));
                     dcTien.DefaultValue = 0;
-                    dtItemSale.Columns.Add(dcTien);
+                    dtItemSaleinInvoice.Columns.Add(dcTien);
 
-                    foreach (DataRow dritem in dtItemSale.Rows)
+                    foreach (DataRow dritem in dtItemSaleinInvoice.Rows)
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
                         strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
@@ -1891,7 +1892,7 @@ namespace Epoint.Modules.AR
 
                         dbTTien = Convert.ToDouble(Common.SumDCValue(dtEditCt, "Tien_Nt9", ""));//+ Convert.ToDouble(drEditCt["Tien4"]);
                         //dbAmtDisc = Math.Round((dbAmtDisc / dbTTien) * 100, 7); //% trên tổng đơn hàng
-                        DataTable dtBreakBy = Discount.GetDiscBreakInvoice(strMa_CtKm, dtItemSale, dbTTien);
+                        DataTable dtBreakBy = Discount.GetDiscBreakInvoice(strMa_CtKm, dtItemSaleinInvoice, dbTTien);
 
                         if (dtBreakBy.Rows.Count > 0)
                         {

@@ -48,7 +48,7 @@ namespace Epoint.Modules.AR
             htPara.Add("MA_DT", strMa_Dt);
             htPara.Add("ITEMID_LIST", strMa_Vt_Disc_List);
             htPara.Add("MA_DVCS", Element.sysMa_DvCs);
-            return SQLExec.ExecuteReturnDt("sp_GetDiscCountProg", htPara, CommandType.StoredProcedure);
+            return SQLExec.ExecuteReturnDt("OM_GetDiscCountProg", htPara, CommandType.StoredProcedure);
 
         }
         public static DataTable GetDiscoutProg(DateTime FromDate, string strMa_Dt)
@@ -67,7 +67,7 @@ namespace Epoint.Modules.AR
 
             DataTable dtBreak = new DataTable();
             SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
-            command.CommandText = "sp_GetAutoPromotion";
+            command.CommandText = "OM_GetAutoPromotion";
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@NGAY_CT", FromDate);
             command.Parameters.AddWithValue("@MA_DT", strMa_Dt);
