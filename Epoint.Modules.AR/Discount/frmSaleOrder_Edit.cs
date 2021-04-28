@@ -693,7 +693,7 @@ namespace Epoint.Modules.AR
 
             }
 
-            this.TestDiscount();
+           // this.TestDiscount();
             // tính khuyến mãi tự động
             if ((bool)drDmCt["Is_AutoPromotion"] && chkIs_CalDiscCount.Checked)
                 this.CalcDiscount();
@@ -1570,7 +1570,7 @@ namespace Epoint.Modules.AR
                 foreach (DataRow dr in dtItem.Rows)
                 {
                     string strMa_Vt_Disc = dr["Ma_Vt"].ToString();
-                    var sum = dtItem.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row =>row.Field<decimal>("SO_LUONG"));
+                    var sum = dtItem.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("SO_LUONG"));
                     //var sum = dtEditCt.AsEnumerable()
                     //         .Where(r => r.Field<string>("Ma_Vt") == strMa_Vt_Disc && r.Field<bool>("Hang_Km") == false)
                     //         .Sum(r => r.Field<double>("So_Luong"));
@@ -1650,38 +1650,42 @@ namespace Epoint.Modules.AR
                 if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
                 {
 
-                    double dbQty = 0, dbAmt = 0;
+                    double dbQtyLine = 0, dbAmtLine = 0, dbAmtDiscLine = 0;
+                    string strSttKM_Line = string.Empty;
+                    int iDiscTimeLine = 1;
                     strMa_Vt_Disc = string.Empty;
                     strMa_Vt_Disc_List = string.Empty;
 
                     foreach (DataRow dritem in dtItemSaleinInvoice.Select("Hang_Km = 0"))
                     {
                         strMa_Vt_Disc = dritem["Ma_Vt"].ToString();
-                        strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
-                        dbQty = Common.SumDCValue(dtEditCt, "So_Luong", "MA_VT = '" + strMa_Vt_Disc + "' AND Hang_Km  <> true");
-                        dbAmt = Common.SumDCValue(dtEditCt, "Tien_Nt9", "MA_VT = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
+                        //strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
+                        dbQtyLine = (double)dtEditCt.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("SO_LUONG"));
+                        dbAmtLine = (double)dtEditCt.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("TIEN_NT9"));
 
-                        DataTable dtBreakBy = Discount.GetDiscBreak(strMa_CtKm, strMa_Vt_Disc, strBreakBy == "Q" ? dbQty : dbAmt);
+                        //dbQtyLine = Common.SumDCValue(dtEditCt, "So_Luong", "MA_VT = '" + strMa_Vt_Disc + "' AND Hang_Km  <> true");
+                        //dbAmtLine = Common.SumDCValue(dtEditCt, "Tien_Nt9", "MA_VT = '" + strMa_Vt_Disc + "'  AND Hang_Km  <> true");
+
+                        DataTable dtBreakBy = Discount.GetDiscBreak(strMa_CtKm, strMa_Vt_Disc, strBreakBy == "Q" ? dbQtyLine : dbAmtLine);
 
                         if (dtBreakBy.Rows.Count > 0)
                         {
-
-                            double dbAmtDisc = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
-                            string strSttKM = dtBreakBy.Rows[0]["Stt"].ToString();
-                            int iDiscTime = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);
+                            dbAmtDiscLine = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
+                            strSttKM_Line = dtBreakBy.Rows[0]["Stt"].ToString();
+                            iDiscTimeLine = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);
 
                             if (strHinh_Thuc_KM == "PP") // áp dụng cho Chiết khấu dòng %
                             {
 
-                                Discount.Calc_Chiet_Khau_ForLine(this, dbAmtDisc, strMa_Vt_Disc, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
+                                Discount.Calc_Chiet_Khau_ForLine(this, dbAmtDiscLine, strMa_Vt_Disc, strMa_CtKm, strSttKM_Line, isEditKm, strMa_Ns, ref dbAmtAlloc);
                                 //Discount.Calc_Chiet_Khau_ForLine(this, dbAmtDisc, strMa_Vt_Disc, strMa_CtKm, strSttKM, isEditKm);
                             }
                             else if (strHinh_Thuc_KM == "II") // Chiết khấu tiền 
                             {
-                                dbAmtDisc *= iDiscTime;
-                                double dbPer = Math.Round((dbAmtDisc / dbAmt) * 100, 7);
+                                dbAmtDiscLine *= iDiscTimeLine;
+                                double dbPerLine = Math.Round((dbAmtDiscLine / dbAmtLine) * 100, 7);
 
-                                Discount.Calc_Chiet_Khau_ForLine(this, dbPer, strMa_Vt_Disc, strMa_CtKm, strSttKM, isEditKm, strMa_Ns, ref dbAmtAlloc);
+                                Discount.Calc_Chiet_Khau_ForLine(this, dbPerLine, strMa_Vt_Disc, strMa_CtKm, strSttKM_Line, isEditKm, strMa_Ns, ref dbAmtAlloc);
                                 //Discount.Calc_Chiet_Khau_ForLine(this, dbPer, strMa_Vt_Disc, strMa_CtKm, strSttKM, isEditKm);
                             }
                             else if (strHinh_Thuc_KM == "IN") // Khuyến mãi tặng hàng 
@@ -1689,11 +1693,11 @@ namespace Epoint.Modules.AR
                                 //Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0]);
                                 foreach (DataRow drbr in dtBreakBy.Rows)
                                 {
-                                    dbAmtDisc = Convert.ToDouble(drbr["Amt"]);
-                                    strSttKM = drbr["Stt"].ToString();
-                                    iDiscTime = Convert.ToInt32(drbr["DiscTime"]);
+                                    dbAmtDiscLine = Convert.ToDouble(drbr["Amt"]);
+                                    strSttKM_Line = drbr["Stt"].ToString();
+                                    iDiscTimeLine = Convert.ToInt32(drbr["DiscTime"]);
 
-                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM, isEditKm, iDiscTime, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], strMa_Ns, ref dbQtyAlloc);
+                                    Discount.CalDiscountFreeItem(this, strMa_CtKm, strSttKM_Line, isEditKm, iDiscTimeLine, dtEditCt.Select("Ma_Vt = '" + strMa_Vt_Disc + "'")[0], strMa_Ns, ref dbQtyAlloc);
                                 }
                             }
                         }
@@ -1740,7 +1744,7 @@ namespace Epoint.Modules.AR
                         {
                             strMa_Vt_Disc_List += strMa_Vt_Disc + ",";
                             dbQtyLine = (double)dtEditCt.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("SO_LUONG"));
-                            dbAmtLine = (double)dtEditCt.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("SO_LUONG"));
+                            dbAmtLine = (double)dtEditCt.AsEnumerable().Where(row => row.Field<string>("MA_VT") == strMa_Vt_Disc && row.Field<bool>("HANG_KM") == false).Sum(row => row.Field<decimal>("TIEN_NT9"));
                             dbQtyTotal += dbQtyLine;
                             dbAmtTotal += dbAmtLine;
                             dtSaleItemForGroup.Rows.Add(strMa_Vt_Disc, dbQtyLine, dbAmtLine);
