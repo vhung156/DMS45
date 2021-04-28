@@ -47,6 +47,7 @@ namespace Epoint.Modules
         public string strStt_List = string.Empty;
         public DataRow drCurrent;
         public DataRow drDmCt;
+        public DataTable dtSttList = null;
 
         public string strFilterKey_Old = string.Empty;
         private DataTable dtDataExcelImport = null;
@@ -1941,8 +1942,8 @@ namespace Epoint.Modules
                 return;
 
 
-            DataTable dtStt = new DataTable();
-            dtStt.Columns.Add(new DataColumn("Stt"));
+            dtSttList = new DataTable();
+            dtSttList.Columns.Add(new DataColumn("Stt"));
 
 
             strStt_List = string.Empty;
@@ -1957,9 +1958,9 @@ namespace Epoint.Modules
             for (int i = 0; i < drArrStt.Length; i++)
             {
                 //strStt_List += drArrStt[i]["Stt"].ToString() + ",";
-                DataRow drStt = dtStt.NewRow();
+                DataRow drStt = dtSttList.NewRow();
                 drStt["Stt"] = drArrStt[i]["Stt"].ToString();
-                dtStt.Rows.Add(drStt);
+                dtSttList.Rows.Add(drStt);
 
             }
 
@@ -1974,7 +1975,7 @@ namespace Epoint.Modules
                 SqlDbType = SqlDbType.Structured,
                 ParameterName = "@SttList",
                 TypeName = "TVP_STTLIST",
-                Value = dtStt
+                Value = dtSttList
             };
             command.Parameters.Add(parameter);
             try

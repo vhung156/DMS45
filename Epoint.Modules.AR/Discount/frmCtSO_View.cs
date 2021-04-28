@@ -221,6 +221,7 @@ namespace Epoint.Modules.AR
 
             drEditPXK["NGAY_CT"] = Library.DateToStr(DateTime.Now);
             drEditPXK["MA_PX"] = "PX001";
+            drEditPXK["Active"] = true;
             drCurrent = ((DataRowView)bdsViewPh.Current).Row;
 
 
@@ -265,6 +266,7 @@ namespace Epoint.Modules.AR
             }
 
             frmGopPXK_Edit frm = new frmGopPXK_Edit();
+            frm.dtStt = this.dtSttList;
             frm.dtDetail = dt;
             frm.strMa_Ct = strMa_Ct_List;
             frm.strStt_List = this.strStt_List;

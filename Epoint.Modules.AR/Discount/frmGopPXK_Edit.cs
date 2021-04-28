@@ -28,6 +28,7 @@ namespace Epoint.Modules.AR
         private string strModule = "04";
 
         public string strStt_List = string.Empty;
+        public DataTable dtStt = null;
         public DataTable dtDetail;
         #endregion
 
@@ -39,8 +40,8 @@ namespace Epoint.Modules.AR
 
             this.KeyDown += new KeyEventHandler(frmEditCtTien_KeyDown);
 
-         
-          
+
+
             tabVoucher.Enter += new EventHandler(tabVoucher_Enter);
 
             txtMa_CBNV_GH.Validating += new CancelEventHandler(txtMa_CBNV_GH_Validating);
@@ -52,14 +53,14 @@ namespace Epoint.Modules.AR
             btCheckStock.Click += new EventHandler(btCheckStock_Click);
         }
 
-      
-       
+
+
 
         public void Load(enuEdit enuNew_Edit, DataRow drEdit)
         {
             this.drEdit = drEdit;
             //this.drEditPh = drEdit;
-            this.drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct != string.Empty?this.strMa_Ct:drEdit["Ma_Ct"].ToString());
+            this.drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct != string.Empty ? this.strMa_Ct : drEdit["Ma_Ct"].ToString());
             this.enuNew_Edit = enuNew_Edit;
             this.Tag = (char)enuNew_Edit + "," + this.Tag;
 
@@ -76,7 +77,7 @@ namespace Epoint.Modules.AR
                 TinhSoCtPXK();
                 txtMa_Ct.Text = this.drDmCt["Ma_Ct"].ToString();
                 txtNh_Ct.Text = this.drDmCt["Nh_Ct"].ToString();
-                
+
             }
 
             else
@@ -84,13 +85,13 @@ namespace Epoint.Modules.AR
 
 
             Common.ScaterMemvar(this, ref drEdit);
-           
-            
+
+
             this.Build();
             this.FillData();
             this.Init_Ct();
 
-           
+
             if (enuNew_Edit == enuEdit.New)
             {
 
@@ -108,7 +109,7 @@ namespace Epoint.Modules.AR
 
         #endregion
 
-     
+
 
         private void Build()
         {
@@ -145,11 +146,11 @@ namespace Epoint.Modules.AR
                     dgvEditCt1.DataSource = bdsEditCt;
                     dgvEditCt1.ClearSelection();
 
-                    drEdit["TTien"] = Common.SumDCValue(dtEditCt, "TTien","");
+                    drEdit["TTien"] = Common.SumDCValue(dtEditCt, "TTien", "");
                     numTTien.Value = Convert.ToDouble(drEdit["TTien"]);
 
                 }
-                else 
+                else
                 {
                     Hashtable ht = new Hashtable();
                     ht.Add("MA_PX", drEdit["Ma_PX"].ToString());
@@ -166,7 +167,7 @@ namespace Epoint.Modules.AR
                 }
             }
             else
-            {  
+            {
 
                 Hashtable ht = new Hashtable();
                 ht.Add("MA_PX", drEdit["Ma_PX"].ToString());
@@ -184,14 +185,14 @@ namespace Epoint.Modules.AR
                 dgvEditCt1.DataSource = bdsEditCt;
 
                 drEdit["TTien"] = Common.SumDCValue(dtEditCt, "TTien", "");
-                numTTien.Value = Common.SumDCValue(dtEditCt,"TTien","");
+                numTTien.Value = Common.SumDCValue(dtEditCt, "TTien", "");
 
             }
 
 
             GetInfoPXK();
-            
-         
+
+
         }
 
         private void Init_Ct()
@@ -215,7 +216,7 @@ namespace Epoint.Modules.AR
                 //}
             }
 
-          
+
             //BindingTTien            
             if (isAccept)
             {
@@ -236,7 +237,7 @@ namespace Epoint.Modules.AR
 
         private void LoadDicName()
         {
-           
+
             //txtMa_Dt
             if (txtMa_CBNV_GH.Text.Trim() != string.Empty)
             {
@@ -260,7 +261,7 @@ namespace Epoint.Modules.AR
                 return false;
             }
 
-            if(Element.sysWorkingYear != Library.StrToDate(dteNgay_Ct.Text).Year)
+            if (Element.sysWorkingYear != Library.StrToDate(dteNgay_Ct.Text).Year)
             {
                 EpointMessage.MsgOk("Ngày chứng từ không nằm trong năm làm việc ! ");
                 return false;
@@ -285,14 +286,14 @@ namespace Epoint.Modules.AR
                 }
 
             }
-            string strCheckQtyOnhand = Parameters.GetParaValue("CHECKONHAND") == null? "Y" : (string)Parameters.GetParaValue("CHECKONHAND");
+            string strCheckQtyOnhand = Parameters.GetParaValue("CHECKONHAND") == null ? "Y" : (string)Parameters.GetParaValue("CHECKONHAND");
             if (strCheckQtyOnhand == "Y" && txtMa_Ct.Text == "IN")
             {
                 DataTable dtCheckTon = GetStockDetail();
                 if (dtCheckTon != null && dtCheckTon.Rows.Count > 0)
                 {
                     EpointMessage.MsgOk("Tồn tại mặt hàng bị âm kho khi xuất kho. Kiểm tra lại tồn kho! ");
-                        return false;
+                    return false;
                 }
             }
 
@@ -312,8 +313,8 @@ namespace Epoint.Modules.AR
             //Luu xuong CSDL
             if (!DataTool.SQLUpdate(enuNew_Edit, "OM_PXK", ref drEdit))
                 return false;
-            
-            Save_PXKDetail(dtEditCt);       
+
+            Save_PXKDetail(dtEditCt);
             return true;
         }
 
@@ -324,8 +325,8 @@ namespace Epoint.Modules.AR
                 return false;
 
             DataGridViewCell dgvCell = dgvEditCt1.CurrentCell;
-            string strCurrentColumn = dgvCell.OwningColumn.Name.ToUpper();         
-           
+            string strCurrentColumn = dgvCell.OwningColumn.Name.ToUpper();
+
             return false;
         }
 
@@ -337,14 +338,14 @@ namespace Epoint.Modules.AR
         }
         void btAddHD_Click(object sender, EventArgs e)
         {
-          
+
             frmChonHD_View frm = new frmChonHD_View();
             frm.dtViewCur = this.dtEditCt;
-            frm.LoadCheckPXK(enuEdit.New,txtMa_Px.Text,txtMa_CBNV_GH.Text,txtMa_Ct.Text);
+            frm.LoadCheckPXK(enuEdit.New, txtMa_Px.Text, txtMa_CBNV_GH.Text, txtMa_Ct.Text);
             if (frm.is_Accept)
             {
                 DataTable dt = frm.dtVoucherSelect;
-                foreach(DataRow dr in dt.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
                     DataRow drNew = this.dtEditCt.NewRow();
                     Common.CopyDataRow(dr, drNew);
@@ -354,14 +355,14 @@ namespace Epoint.Modules.AR
             }
         }
 
-     
+
         void dteNgay_Ct_Validating(object sender, CancelEventArgs e)
         {
-            this.drEdit["Ngay_Ct"] = Library.StrToDate( dteNgay_Ct.Text);
+            this.drEdit["Ngay_Ct"] = Library.StrToDate(dteNgay_Ct.Text);
             TinhSoCtPXK();
-            
+
         }
-       
+
         private void txtMa_CBNV_GH_Validating(object sender, CancelEventArgs e)
         {
             string strValue = txtMa_CBNV_GH.Text.Trim();
@@ -384,7 +385,7 @@ namespace Epoint.Modules.AR
 
             }
 
-  
+
 
             if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
             {
@@ -397,7 +398,7 @@ namespace Epoint.Modules.AR
             string strValue = txtMa_Xe.Text.Trim();
             bool bRequire = true;
 
-            DataRow drLookup = Lookup.ShowQuickLookup("MA_XE", strValue, bRequire, "","");
+            DataRow drLookup = Lookup.ShowQuickLookup("MA_XE", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 e.Cancel = true;
@@ -480,7 +481,7 @@ namespace Epoint.Modules.AR
             Hashtable htParameter = new Hashtable();
             htParameter.Add("MA_DVCS", Element.sysMa_DvCs);
             htParameter.Add("MA_PX", this.drEdit["Ma_Px"]);
-            htParameter.Add("NGAY_CT",this.drEdit["Ngay_Ct"]);
+            htParameter.Add("NGAY_CT", this.drEdit["Ngay_Ct"]);
 
             strSo_Ct_New = SQLExec.ExecuteReturnValue("sp_TAOPXK", htParameter, CommandType.StoredProcedure).ToString();
 
@@ -496,11 +497,11 @@ namespace Epoint.Modules.AR
                 dr.AcceptChanges();
             }
 
-           
+
             //drEdit.AcceptChanges();
 
         }
-      
+
         void frmEditCtTien_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -508,7 +509,7 @@ namespace Epoint.Modules.AR
                 case Keys.F8:
                     Delete();
                     break;
-                                 
+
 
 
                 case Keys.F10:
@@ -524,21 +525,21 @@ namespace Epoint.Modules.AR
             if (!this.dgvEditCt1.Focused)
                 this.dgvEditCt1.ClearSelection();
 
-          
+
         }
 
-        
+
 
         void tabVoucher_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         void tabVoucher_Enter(object sender, EventArgs e)
         {
             this.SelectNextControl(tabVoucher, true, true, true, true);
         }
 
-        public bool UpdateCt(DataTable dtEditCt )
+        public bool UpdateCt(DataTable dtEditCt)
         {
             #region UpdateCt: Cap nhat tung dong trong dtEditCt
 
@@ -610,7 +611,7 @@ namespace Epoint.Modules.AR
                                             "WHERE Stt  = '" + dr["Stt"].ToString() + "'");
 
                     SQLExec.Execute("Update ARBan SET Ma_CBNV_GH = '" + txtMa_CBNV_GH.Text + "' " +
-                                          "WHERE Stt  = '" + dr["Stt"].ToString() + "'"); 
+                                          "WHERE Stt  = '" + dr["Stt"].ToString() + "'");
                     iSave_Ct_Success += 1;
                 }
                 catch (Exception ex)
@@ -634,13 +635,13 @@ namespace Epoint.Modules.AR
 
                 DataTable dtImport = SQLExec.ExecuteReturnDt("DECLARE @TVP_PXKDETAIL AS TVP_PXKDETAIL SELECT * FROM @TVP_PXKDETAIL");
 
-                foreach(DataRow drEdit in dtEditCt.Rows)
+                foreach (DataRow drEdit in dtEditCt.Rows)
                 {
                     DataRow drNew = dtImport.NewRow();
                     Common.CopyDataRow(drEdit, drNew);
                     dtImport.Rows.Add(drNew);
                 }
-               
+
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "Sp_Update_PXKDetail";
                 command.CommandType = CommandType.StoredProcedure;
@@ -668,7 +669,7 @@ namespace Epoint.Modules.AR
                     command.Parameters.Clear();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Có lỗi xảy ra :" + exception.Message);
-                }                
+                }
             }
         }
 
@@ -709,12 +710,38 @@ namespace Epoint.Modules.AR
             if (this.strMa_Ct != "IN")
                 return;
 
-            Hashtable htPara = new Hashtable();
-            htPara.Add("STTLIST", strStt_List);
-            htPara.Add("MA_DVCS", Element.sysMa_DvCs);
+            if (this.dtStt != null)
+            {
+                DataTable dtReturn = new DataTable();
+                SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+                command.CommandText = "IN_GetPXKInfo";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
+                SqlParameter parameter = new SqlParameter
+                {
+                    SqlDbType = SqlDbType.Structured,
+                    ParameterName = "@SttList",
+                    TypeName = "TVP_STTLIST",
+                    Value = this.dtStt
+                };
+                command.Parameters.Add(parameter);
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dtReturn);
 
-            lbtStt.Text = SQLExec.ExecuteReturnValue("sp_GetPXKInfo", htPara, CommandType.StoredProcedure).ToString();
+                    lbtStt.Text = dtReturn.Rows[0][0].ToString();
+                }
+                catch
+                {
+                    lbtStt.Text = string.Empty;
+                }
+                //Hashtable htPara = new Hashtable();
+                //htPara.Add("STTLIST", strStt_List);
+                //htPara.Add("MA_DVCS", Element.sysMa_DvCs);
 
+                //lbtStt.Text = SQLExec.ExecuteReturnValue("sp_GetPXKInfo", htPara, CommandType.StoredProcedure).ToString();
+            }
         }
 
         protected override void OnShown(EventArgs e)
@@ -768,7 +795,7 @@ namespace Epoint.Modules.AR
         }
 
         public string strDiscItem { get; set; }
-        
+
 
     }
 }

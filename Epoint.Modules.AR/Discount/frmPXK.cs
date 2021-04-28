@@ -275,7 +275,7 @@ namespace Epoint.Modules.AR
 
                 Hashtable htPara = new Hashtable();
                 htPara["MA_PX"] = drCurrent["MA_PX"].ToString();
-                htPara["USERCODE"] = Element.sysUser_Id;
+                htPara["USERID"] = Element.sysUser_Id;
                 htPara["MA_DVCS"] = Element.sysMa_DvCs;
 
                 if (SQLExec.Execute("sp_Delete_PXK", htPara, CommandType.StoredProcedure))
@@ -298,7 +298,7 @@ namespace Epoint.Modules.AR
 
             if (!Common.CheckPermission(this.Object_ID, enuPermission_Type.Allow_Edit))
             {
-                EpointMessage.MsgOk("Không có quyền sửa Phiếu xu");
+                EpointMessage.MsgOk("Không có quyền sửa Phiếu xuất");
                 return;
             }
 
@@ -326,7 +326,7 @@ namespace Epoint.Modules.AR
             Hashtable htPara = new Hashtable();
             htPara["MA_PX"] = drCurrent["MA_PX"].ToString();
             htPara["STT"] = drCurrent["STT"].ToString();
-            htPara["USERCODE"] = Element.sysUser_Id;
+            htPara["USERID"] = Element.sysUser_Id;
             htPara["MA_DVCS"] = Element.sysMa_DvCs;
            //if (DataTool.SQLDelete("OM_PXKDetail",drCurrent))
             if (SQLExec.Execute("sp_Delete_PXKDetail", htPara,CommandType.StoredProcedure))
