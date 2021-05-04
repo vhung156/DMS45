@@ -121,7 +121,13 @@ namespace Epoint.Modules
                 this.FillDataIN(strFilterKey, strFilterKey);
                 btnPXK.Visible = true;
                 btDiscoutDetail.Visible = true;
-            }
+
+                if (strMa_Ct_List == "INT")
+                {
+                    btnPXK.AutoSize = true;
+                    btnPXK.Text = "Xác nhận trả hàng";
+                }
+            } 
             else if (Common.Inlist(strMa_Ct_List, "PTT"))
             {
                 this.FillData(strFilterKey, strFilterKey);
