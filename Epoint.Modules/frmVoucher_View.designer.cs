@@ -33,13 +33,13 @@
             this.numTTien3 = new Epoint.Systems.Controls.numControl();
             this.numTTien0 = new Epoint.Systems.Controls.numControl();
             this.pnlTTien_Nt = new Epoint.Systems.Controls.pnlControl();
-            this.lbtStt = new Epoint.Systems.Controls.lblControl();
             this.lblControl1 = new Epoint.Systems.Controls.lblControl();
             this.lblTTien3 = new Epoint.Systems.Controls.lblControl();
             this.lblTTien0 = new Epoint.Systems.Controls.lblControl();
             this.numTTien_Nt3 = new Epoint.Systems.Controls.numControl();
             this.numTTien_Nt0 = new Epoint.Systems.Controls.numControl();
             this.numTSo_Luong = new Epoint.Systems.Controls.numControl();
+            this.lbtStt = new Epoint.Systems.Controls.lblControl();
             this.btPrint = new Epoint.Systems.Customizes.btPrint();
             this.btFilter = new Epoint.Systems.Customizes.btFilter();
             this.btPreview = new Epoint.Systems.Customizes.btPreview();
@@ -119,22 +119,6 @@
             this.pnlTTien_Nt.Name = "pnlTTien_Nt";
             this.pnlTTien_Nt.Size = new System.Drawing.Size(199, 69);
             this.pnlTTien_Nt.TabIndex = 108;
-            // 
-            // lbtStt
-            // 
-            this.lbtStt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbtStt.AutoEllipsis = true;
-            this.lbtStt.AutoSize = true;
-            this.lbtStt.BackColor = System.Drawing.Color.Transparent;
-            this.lbtStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtStt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtStt.Location = new System.Drawing.Point(556, 528);
-            this.lbtStt.Name = "lbtStt";
-            this.lbtStt.Size = new System.Drawing.Size(47, 18);
-            this.lbtStt.TabIndex = 132;
-            this.lbtStt.Tag = "";
-            this.lbtStt.Text = "txtStt";
-            this.lbtStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblControl1
             // 
@@ -241,6 +225,22 @@
             this.numTSo_Luong.UseAutoFilter = false;
             this.numTSo_Luong.Value = 0D;
             // 
+            // lbtStt
+            // 
+            this.lbtStt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbtStt.AutoEllipsis = true;
+            this.lbtStt.AutoSize = true;
+            this.lbtStt.BackColor = System.Drawing.Color.Transparent;
+            this.lbtStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtStt.ForeColor = System.Drawing.Color.Blue;
+            this.lbtStt.Location = new System.Drawing.Point(559, 528);
+            this.lbtStt.Name = "lbtStt";
+            this.lbtStt.Size = new System.Drawing.Size(47, 18);
+            this.lbtStt.TabIndex = 132;
+            this.lbtStt.Tag = "";
+            this.lbtStt.Text = "txtStt";
+            this.lbtStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // btPrint
             // 
             this.btPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -316,7 +316,7 @@
             this.btDiscoutDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDiscoutDetail.Image = ((System.Drawing.Image)(resources.GetObject("btDiscoutDetail.Image")));
             this.btDiscoutDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btDiscoutDetail.Location = new System.Drawing.Point(454, 502);
+            this.btDiscoutDetail.Location = new System.Drawing.Point(460, 502);
             this.btDiscoutDetail.Name = "btDiscoutDetail";
             this.btDiscoutDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btDiscoutDetail.Size = new System.Drawing.Size(96, 49);
@@ -333,10 +333,10 @@
             this.btnPXK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPXK.Image = ((System.Drawing.Image)(resources.GetObject("btnPXK.Image")));
             this.btnPXK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPXK.Location = new System.Drawing.Point(352, 502);
+            this.btnPXK.Location = new System.Drawing.Point(350, 502);
             this.btnPXK.Name = "btnPXK";
             this.btnPXK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnPXK.Size = new System.Drawing.Size(96, 49);
+            this.btnPXK.Size = new System.Drawing.Size(105, 49);
             this.btnPXK.TabIndex = 112;
             this.btnPXK.Tag = "";
             this.btnPXK.Text = "Tạo PXK";

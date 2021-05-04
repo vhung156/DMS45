@@ -125,7 +125,7 @@ namespace Epoint.Modules
                 if (strMa_Ct_List == "INT")
                 {
                     btnPXK.AutoSize = true;
-                    btnPXK.Text = "Xác nhận trả hàng";
+                    btnPXK.Text = "Xác nhận trả";
                 }
             } 
             else if (Common.Inlist(strMa_Ct_List, "PTT"))
