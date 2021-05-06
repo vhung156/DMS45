@@ -37,7 +37,7 @@
             // btgAccept
             // 
             this.btgAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btgAccept.Location = new System.Drawing.Point(593, 529);
+            this.btgAccept.Location = new System.Drawing.Point(690, 529);
             this.btgAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btgAccept.Name = "btgAccept";
             this.btgAccept.Size = new System.Drawing.Size(180, 28);
@@ -51,7 +51,7 @@
             this.ucNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucNotice.Location = new System.Drawing.Point(12, 529);
             this.ucNotice.Name = "ucNotice";
-            this.ucNotice.Size = new System.Drawing.Size(486, 30);
+            this.ucNotice.Size = new System.Drawing.Size(583, 30);
             this.ucNotice.TabIndex = 108;
             // 
             // lineControl1
@@ -62,7 +62,7 @@
             this.lineControl1.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lineControl1.Location = new System.Drawing.Point(0, 525);
             this.lineControl1.Name = "lineControl1";
-            this.lineControl1.Size = new System.Drawing.Size(773, 1);
+            this.lineControl1.Size = new System.Drawing.Size(893, 1);
             this.lineControl1.TabIndex = 110;
             this.lineControl1.Text = "lineControl1";
             this.lineControl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -71,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 569);
+            this.ClientSize = new System.Drawing.Size(889, 569);
             this.Controls.Add(this.lineControl1);
             this.Controls.Add(this.ucNotice);
             this.Controls.Add(this.btgAccept);
