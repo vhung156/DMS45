@@ -30,14 +30,14 @@ namespace Epoint.Modules.AR
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSaleOrder_Edit));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numTy_Gia = new Epoint.Systems.Controls.numControl();
             this.txtMa_Tte = new Epoint.Systems.Controls.txtEnum();
             this.numHan_Tt = new Epoint.Systems.Controls.numControl();
@@ -135,6 +135,7 @@ namespace Epoint.Modules.AR
             this.lblTk_Co3 = new Epoint.Systems.Controls.lblControl();
             this.lblTk_No3 = new Epoint.Systems.Controls.lblControl();
             this.lblMa_Thue = new Epoint.Systems.Controls.lblControl();
+            this.pnlVisiable = new Epoint.Systems.Controls.pnlControl();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEditCt)).BeginInit();
             this.pnlTTien.SuspendLayout();
             this.pnlTTien_Nt.SuspendLayout();
@@ -148,6 +149,7 @@ namespace Epoint.Modules.AR
             this.pnlVAT.SuspendLayout();
             this.tpTaxInfo.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.pnlVisiable.SuspendLayout();
             this.SuspendLayout();
             // 
             // btgAccept
@@ -175,7 +177,7 @@ namespace Epoint.Modules.AR
             this.numTy_Gia.bRequire = true;
             this.numTy_Gia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTy_Gia.KeyFilter = "";
-            this.numTy_Gia.Location = new System.Drawing.Point(930, 5);
+            this.numTy_Gia.Location = new System.Drawing.Point(969, 5);
             this.numTy_Gia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTy_Gia.Name = "numTy_Gia";
             this.numTy_Gia.Scale = 2;
@@ -185,7 +187,6 @@ namespace Epoint.Modules.AR
             this.numTy_Gia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTy_Gia.UseAutoFilter = false;
             this.numTy_Gia.Value = 0D;
-            this.numTy_Gia.Visible = false;
             // 
             // txtMa_Tte
             // 
@@ -197,13 +198,12 @@ namespace Epoint.Modules.AR
             this.txtMa_Tte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Tte.InputMask = "";
             this.txtMa_Tte.KeyFilter = "";
-            this.txtMa_Tte.Location = new System.Drawing.Point(889, 5);
+            this.txtMa_Tte.Location = new System.Drawing.Point(928, 5);
             this.txtMa_Tte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Tte.Name = "txtMa_Tte";
             this.txtMa_Tte.Size = new System.Drawing.Size(33, 20);
             this.txtMa_Tte.TabIndex = 3;
             this.txtMa_Tte.UseAutoFilter = false;
-            this.txtMa_Tte.Visible = false;
             // 
             // numHan_Tt
             // 
@@ -329,14 +329,13 @@ namespace Epoint.Modules.AR
             this.lblMa_Tte.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Tte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Tte.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Tte.Location = new System.Drawing.Point(829, 8);
+            this.lblMa_Tte.Location = new System.Drawing.Point(868, 8);
             this.lblMa_Tte.Name = "lblMa_Tte";
             this.lblMa_Tte.Size = new System.Drawing.Size(54, 13);
             this.lblMa_Tte.TabIndex = 53;
             this.lblMa_Tte.Tag = "Ma_Tte";
             this.lblMa_Tte.Text = "Mã tiền tệ";
             this.lblMa_Tte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMa_Tte.Visible = false;
             // 
             // txtSo_Ct
             // 
@@ -426,14 +425,13 @@ namespace Epoint.Modules.AR
             // 
             // pnlTTien
             // 
-            this.pnlTTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTTien.Controls.Add(this.numTTien4);
             this.pnlTTien.Controls.Add(this.numTTien);
             this.pnlTTien.Controls.Add(this.numTTien3);
             this.pnlTTien.Controls.Add(this.numTTien0);
-            this.pnlTTien.Location = new System.Drawing.Point(883, 199);
+            this.pnlTTien.Location = new System.Drawing.Point(595, 25);
             this.pnlTTien.Name = "pnlTTien";
-            this.pnlTTien.Size = new System.Drawing.Size(115, 116);
+            this.pnlTTien.Size = new System.Drawing.Size(115, 98);
             this.pnlTTien.TabIndex = 8;
             // 
             // numTTien4
@@ -951,7 +949,7 @@ namespace Epoint.Modules.AR
             this.btInherit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btInherit.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btInherit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btInherit.Location = new System.Drawing.Point(896, 159);
+            this.btInherit.Location = new System.Drawing.Point(242, 79);
             this.btInherit.Name = "btInherit";
             this.btInherit.Size = new System.Drawing.Size(102, 25);
             this.btInherit.TabIndex = 31;
@@ -972,7 +970,7 @@ namespace Epoint.Modules.AR
             this.btImportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btImportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btImportExcel.Location = new System.Drawing.Point(897, 128);
+            this.btImportExcel.Location = new System.Drawing.Point(242, 38);
             this.btImportExcel.Name = "btImportExcel";
             this.btImportExcel.Size = new System.Drawing.Size(101, 25);
             this.btImportExcel.TabIndex = 193;
@@ -1047,41 +1045,41 @@ namespace Epoint.Modules.AR
             // 
             this.dgvEditCt1.AllowUserToAddRows = false;
             this.dgvEditCt1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEditCt1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEditCt1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEditCt1.BackgroundColor = System.Drawing.Color.White;
             this.dgvEditCt1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEditCt1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEditCt1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEditCt1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEditCt1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEditCt1.EnableHeadersVisualStyles = false;
             this.dgvEditCt1.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgvEditCt1.Location = new System.Drawing.Point(0, 0);
             this.dgvEditCt1.MultiSelect = false;
             this.dgvEditCt1.Name = "dgvEditCt1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEditCt1.Size = new System.Drawing.Size(1049, 395);
             this.dgvEditCt1.strZone = "";
             this.dgvEditCt1.TabIndex = 0;
@@ -1103,41 +1101,41 @@ namespace Epoint.Modules.AR
             // 
             this.dgvEditCt2.AllowUserToAddRows = false;
             this.dgvEditCt2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEditCt2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEditCt2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEditCt2.BackgroundColor = System.Drawing.Color.White;
             this.dgvEditCt2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvEditCt2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEditCt2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEditCt2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvEditCt2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEditCt2.EnableHeadersVisualStyles = false;
             this.dgvEditCt2.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgvEditCt2.Location = new System.Drawing.Point(0, 0);
             this.dgvEditCt2.MultiSelect = false;
             this.dgvEditCt2.Name = "dgvEditCt2";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditCt2.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditCt2.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvEditCt2.Size = new System.Drawing.Size(1049, 395);
             this.dgvEditCt2.strZone = "";
             this.dgvEditCt2.TabIndex = 11;
@@ -1147,7 +1145,7 @@ namespace Epoint.Modules.AR
             this.chkNoPosted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkNoPosted.AutoSize = true;
             this.chkNoPosted.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.chkNoPosted.Location = new System.Drawing.Point(832, 64);
+            this.chkNoPosted.Location = new System.Drawing.Point(871, 64);
             this.chkNoPosted.Name = "chkNoPosted";
             this.chkNoPosted.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkNoPosted.Size = new System.Drawing.Size(166, 17);
@@ -1320,7 +1318,7 @@ namespace Epoint.Modules.AR
             this.chkIs_Thue_Vat.Checked = true;
             this.chkIs_Thue_Vat.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIs_Thue_Vat.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.chkIs_Thue_Vat.Location = new System.Drawing.Point(905, 45);
+            this.chkIs_Thue_Vat.Location = new System.Drawing.Point(944, 45);
             this.chkIs_Thue_Vat.Name = "chkIs_Thue_Vat";
             this.chkIs_Thue_Vat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkIs_Thue_Vat.Size = new System.Drawing.Size(93, 17);
@@ -1534,21 +1532,18 @@ namespace Epoint.Modules.AR
             // 
             // pnlVAT
             // 
-            this.pnlVAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlVAT.Controls.Add(this.pnlVisiable);
             this.pnlVAT.Controls.Add(this.panel1);
-            this.pnlVAT.Controls.Add(this.txtTen_Hd);
             this.pnlVAT.Controls.Add(this.numTy_Gia);
-            this.pnlVAT.Controls.Add(this.txtMa_Hd);
             this.pnlVAT.Controls.Add(this.lblMa_Tte);
             this.pnlVAT.Controls.Add(this.chkIs_Thue_Vat);
             this.pnlVAT.Controls.Add(this.chkNoPosted);
             this.pnlVAT.Controls.Add(this.txtMa_Tte);
-            this.pnlVAT.Controls.Add(this.btInherit);
-            this.pnlVAT.Controls.Add(this.btImportExcel);
             this.pnlVAT.Controls.Add(this.pnlTTien);
-            this.pnlVAT.Location = new System.Drawing.Point(16, 14);
+            this.pnlVAT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlVAT.Location = new System.Drawing.Point(0, 0);
             this.pnlVAT.Name = "pnlVAT";
-            this.pnlVAT.Size = new System.Drawing.Size(1010, 378);
+            this.pnlVAT.Size = new System.Drawing.Size(1049, 395);
             this.pnlVAT.TabIndex = 5;
             // 
             // txtTen_Hd
@@ -1561,12 +1556,12 @@ namespace Epoint.Modules.AR
             this.txtTen_Hd.bRequire = false;
             this.txtTen_Hd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTen_Hd.KeyFilter = "";
-            this.txtTen_Hd.Location = new System.Drawing.Point(741, 315);
+            this.txtTen_Hd.Location = new System.Drawing.Point(12, 154);
             this.txtTen_Hd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTen_Hd.MaxLength = 200;
             this.txtTen_Hd.Name = "txtTen_Hd";
             this.txtTen_Hd.ReadOnly = true;
-            this.txtTen_Hd.Size = new System.Drawing.Size(261, 20);
+            this.txtTen_Hd.Size = new System.Drawing.Size(343, 20);
             this.txtTen_Hd.TabIndex = 9;
             this.txtTen_Hd.UseAutoFilter = false;
             // 
@@ -1583,7 +1578,7 @@ namespace Epoint.Modules.AR
             this.txtMa_Hd.KeyFilter = "Ma_Hd";
             this.txtMa_Hd.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Hd.ListFilter = new string[0];
-            this.txtMa_Hd.Location = new System.Drawing.Point(617, 315);
+            this.txtMa_Hd.Location = new System.Drawing.Point(149, 132);
             this.txtMa_Hd.LookupKeyFilter = "";
             this.txtMa_Hd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Hd.Name = "txtMa_Hd";
@@ -1611,7 +1606,6 @@ namespace Epoint.Modules.AR
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.txtTk_Co3);
             this.panel1.Controls.Add(this.txtMa_Thue);
             this.panel1.Controls.Add(this.txtTk_No3);
@@ -1632,7 +1626,7 @@ namespace Epoint.Modules.AR
             this.panel1.Controls.Add(this.lblTk_Co3);
             this.panel1.Controls.Add(this.lblTk_No3);
             this.panel1.Controls.Add(this.lblMa_Thue);
-            this.panel1.Location = new System.Drawing.Point(18, 202);
+            this.panel1.Location = new System.Drawing.Point(18, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(511, 98);
             this.panel1.TabIndex = 210;
@@ -1952,6 +1946,19 @@ namespace Epoint.Modules.AR
             this.lblMa_Thue.Text = "Mã thuế VAT";
             this.lblMa_Thue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pnlVisiable
+            // 
+            this.pnlVisiable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlVisiable.Controls.Add(this.btImportExcel);
+            this.pnlVisiable.Controls.Add(this.btInherit);
+            this.pnlVisiable.Controls.Add(this.txtTen_Hd);
+            this.pnlVisiable.Controls.Add(this.txtMa_Hd);
+            this.pnlVisiable.Location = new System.Drawing.Point(691, 178);
+            this.pnlVisiable.Name = "pnlVisiable";
+            this.pnlVisiable.Size = new System.Drawing.Size(346, 204);
+            this.pnlVisiable.TabIndex = 211;
+            this.pnlVisiable.Visible = false;
+            // 
             // frmSaleOrder_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1992,6 +1999,8 @@ namespace Epoint.Modules.AR
             this.tpTaxInfo.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlVisiable.ResumeLayout(false);
+            this.pnlVisiable.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2096,5 +2105,6 @@ namespace Epoint.Modules.AR
         private Systems.Controls.lblControl lblTk_Co3;
         private Systems.Controls.lblControl lblTk_No3;
         private Systems.Controls.lblControl lblMa_Thue;
+        private Systems.Controls.pnlControl pnlVisiable;
     }
 }
