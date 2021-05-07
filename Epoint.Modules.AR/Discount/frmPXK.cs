@@ -32,8 +32,8 @@ namespace Epoint.Modules.AR
         DataTable dtPXKDetail;
         BindingSource bdsPXKDetail = new BindingSource();
 
-       string strOptionMsg = string.Empty;
-           
+        string strOptionMsg = string.Empty;
+
 
         public frmPXK()
         {
@@ -50,11 +50,11 @@ namespace Epoint.Modules.AR
             this.btFillterData.Click += new EventHandler(btFillData_Click);
             this.btPrint000.Click += new EventHandler(btPrintClick);
             this.btPrintReport.Click += new EventHandler(btPrintReport_Click);
-        }       
+        }
 
         public override void Load()
         {
-            BindingCombobox(); 
+            BindingCombobox();
             this.Object_ID = "PXKLIST";
             this.Build();
             this.FillData();
@@ -65,7 +65,7 @@ namespace Epoint.Modules.AR
         }
         private void Init()
         {
-           
+
         }
         private void Build()
         {
@@ -73,7 +73,7 @@ namespace Epoint.Modules.AR
             dgvPXK.BuildGridView(this.isLookup);
             ExportControl = dtPXK;
 
-           
+
 
             dgvPXDetail.strZone = "OM_PXDETAIL";
             dgvPXDetail.BuildGridView(this.isLookup);
@@ -99,11 +99,11 @@ namespace Epoint.Modules.AR
         }
         private void FillData()
         {
-           
+
 
             Hashtable ht = new Hashtable();
             ht.Add("NGAY_CT1", dteNgay_Ct1.Text);
-            ht.Add("NGAY_CT2",  dteNgay_Ct2.Text);
+            ht.Add("NGAY_CT2", dteNgay_Ct2.Text);
             ht.Add("LOAI_PX", cboMa_Ct.SelectedValue.ToString());
             ht.Add("SO_CT", txtSo_Ct.Text);
             ht.Add("USERID", Element.sysUser_Id);
@@ -112,7 +112,6 @@ namespace Epoint.Modules.AR
             DataSet dsPXK = SQLExec.ExecuteReturnDs("sp_GetPhieuXuatKho", ht, CommandType.StoredProcedure);
 
             dtPXK = dsPXK.Tables[0];
-            
 
             DataColumn dc = new DataColumn("Selected", typeof(bool));
             dc.DefaultValue = false;
@@ -125,17 +124,17 @@ namespace Epoint.Modules.AR
             bdsSearch = bdsPXK;
             ExportControl = dgvPXK;
 
+
+
+            dtPXKDetail = dsPXK.Tables.Count > 1 ? dsPXK.Tables[1] : SQLExec.ExecuteReturnDt("sp_GetPhieuXuatKhoDetail", ht, CommandType.StoredProcedure);
+
+            bdsPXKDetail.DataSource = dtPXKDetail;
+            dgvPXDetail.DataSource = bdsPXKDetail;
+
             if (bdsPXK.Count >= 0)
                 bdsPXK.Position = bdsPXK.Count - 1;
 
 
-            dtPXKDetail = dsPXK.Tables.Count > 1 ? dsPXK.Tables[1] : SQLExec.ExecuteReturnDt("sp_GetPhieuXuatKhoDetail", ht, CommandType.StoredProcedure);
-          
-            bdsPXKDetail.DataSource = dtPXKDetail;
-            dgvPXDetail.DataSource = bdsPXKDetail;
-
-
-           
         }
 
         public override void Edit(enuEdit enuNew_Edit)
@@ -144,7 +143,7 @@ namespace Epoint.Modules.AR
                 EditPXK(enuNew_Edit);
             else if (dgvPXDetail.Focused)
                 EditPXK(enuNew_Edit);
-           
+
         }
         private void EditPXK(enuEdit enuNew_Edit)
         {
@@ -193,26 +192,26 @@ namespace Epoint.Modules.AR
                 dtPXK.RejectChanges();
 
         }
-        
-       private bool CheckThanhToan(DataRow drCurrent)
+
+        private bool CheckThanhToan(DataRow drCurrent)
         {
-           DataRow [] drDetail = dtPXKDetail.Select("Ma_PX = '" + drCurrent["Ma_Px"].ToString() + "'");
-           foreach(DataRow dr in drDetail)
-           {
-               if (Voucher.CheckDataLockedCtHanTtHD((string)dr["Stt"]))
-               {
-                   if (strOptionMsg == "Y")
-                   {
-                       EpointMessage.MsgOk(dr["So_Ct"].ToString() + ": Chứng từ đã được thanh toán. không thể xóa PXK!");
-                       return true;
-                   }
-                   else
-                   {
-                       if (!Common.MsgYes_No("Các chứng từ thanh toán thuộc phiếu xuất kho sẽ bị hủy !" + Languages.GetLanguage("SURE_DELETE")))
-                         return true;
-                   }
-               }
-           }
+            DataRow[] drDetail = dtPXKDetail.Select("Ma_PX = '" + drCurrent["Ma_Px"].ToString() + "'");
+            foreach (DataRow dr in drDetail)
+            {
+                if (Voucher.CheckDataLockedCtHanTtHD((string)dr["Stt"]))
+                {
+                    if (strOptionMsg == "Y")
+                    {
+                        EpointMessage.MsgOk(dr["So_Ct"].ToString() + ": Chứng từ đã được thanh toán. không thể xóa PXK!");
+                        return true;
+                    }
+                    else
+                    {
+                        if (!Common.MsgYes_No("Các chứng từ thanh toán thuộc phiếu xuất kho sẽ bị hủy !" + Languages.GetLanguage("SURE_DELETE")))
+                            return true;
+                    }
+                }
+            }
             return false;
         }
         public override void Delete()
@@ -250,7 +249,7 @@ namespace Epoint.Modules.AR
                 DeletePXK();
             else if (dgvPXDetail.Focused)
                 DeletePXKDetail();
-           
+
         }
 
 
@@ -314,22 +313,22 @@ namespace Epoint.Modules.AR
                 }
                 else
                 {
-                      if (!Common.MsgYes_No("Các chứng từ thanh toán thuộc phiếu xuất kho sẽ bị hủy !" + Languages.GetLanguage("SURE_DELETE")))
+                    if (!Common.MsgYes_No("Các chứng từ thanh toán thuộc phiếu xuất kho sẽ bị hủy !" + Languages.GetLanguage("SURE_DELETE")))
                         return;
                 }
             }
             else if (!Common.MsgYes_No(Languages.GetLanguage("SURE_DELETE") + " Chi tiết phiếu xuất"))
-                    return;
+                return;
 
-           
+
 
             Hashtable htPara = new Hashtable();
             htPara["MA_PX"] = drCurrent["MA_PX"].ToString();
             htPara["STT"] = drCurrent["STT"].ToString();
             htPara["USERID"] = Element.sysUser_Id;
             htPara["MA_DVCS"] = Element.sysMa_DvCs;
-           //if (DataTool.SQLDelete("OM_PXKDetail",drCurrent))
-            if (SQLExec.Execute("sp_Delete_PXKDetail", htPara,CommandType.StoredProcedure))
+            //if (DataTool.SQLDelete("OM_PXKDetail",drCurrent))
+            if (SQLExec.Execute("sp_Delete_PXKDetail", htPara, CommandType.StoredProcedure))
             {
                 bdsPXKDetail.RemoveAt(bdsPXKDetail.Position);
                 dtPXKDetail.AcceptChanges();
@@ -343,7 +342,7 @@ namespace Epoint.Modules.AR
                 EpointMessage.MsgOk("Không xóa được chi tiết");
             }
         }
-       
+
         #region Sự kiện
 
         void bdsPXK_PositionChanged(object sender, EventArgs e)
@@ -354,7 +353,7 @@ namespace Epoint.Modules.AR
             this.strMa_PX = drCurrentPXK["Ma_PX"].ToString();
             this.dte_Ngay = Convert.ToDateTime(drCurrentPXK["Ngay_Ct"]);
             bdsPXKDetail.Filter = "Ma_PX = '" + strMa_PX + "'";
-           
+
 
 
 
@@ -376,7 +375,7 @@ namespace Epoint.Modules.AR
                 return;
             string strColumnName = dgvPXK.dgvGridView.FocusedColumn.Name;
 
-            DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;           
+            DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
 
             if (strColumnName == "SELECTED")
             {
@@ -386,7 +385,7 @@ namespace Epoint.Modules.AR
         }
         void dgvPXDetail_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+
             if (bdsPXKDetail.Position < 0)
                 return;
             string strColumnName = dgvPXDetail.Columns[e.ColumnIndex].Name.ToUpper();
@@ -397,7 +396,7 @@ namespace Epoint.Modules.AR
 
             frmSaleOrder_Edit frmEdit = new frmSaleOrder_Edit();
             frmEdit.Load(enuEdit.Edit, drCurrentDetail, null);
-          
+
         }
         void KeyDownEvent(object sender, KeyEventArgs e)
         {
@@ -422,7 +421,7 @@ namespace Epoint.Modules.AR
                     }
                     break;
 
-               
+
 
             }
         }
@@ -490,12 +489,12 @@ namespace Epoint.Modules.AR
         {
 
             if (bdsPXK.Position < 0)
-                return ;
+                return;
 
             string strReport_ID = "DTT06";
 
             DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
-         
+
             DataRow drReport = DataTool.SQLGetDataRowByID("SYSREPORT", "Report_Id", strReport_ID);
             DataRow drFilter = Epoint.Reports.Report.GetdrFilter(drReport);
             drFilter["Ngay_Ct1"] = drCurrent["Ngay_Ct"];
@@ -516,7 +515,7 @@ namespace Epoint.Modules.AR
 
             string strReport_ID = "DTT02_1";
             DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
-          
+
             DataRow drReport = DataTool.SQLGetDataRowByID("SYSREPORT", "Report_Id", strReport_ID);
             DataRow drFilter = Epoint.Reports.Report.GetdrFilter(drReport);
             drFilter["Ngay_Ct1"] = drCurrent["Ngay_Ct"];
@@ -589,7 +588,7 @@ namespace Epoint.Modules.AR
             else if (strRPT == "DTT05_1")
                 PrintDTT05_1();
 
-            
+
         }
 
         #endregion
