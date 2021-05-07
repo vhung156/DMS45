@@ -42,9 +42,10 @@ namespace Epoint.Modules
         //public dgvVoucher dgvViewCt = new dgvVoucher();
 
         public DataRelation drlView;
-
+        public string strModule = string.Empty;
         public string strMa_Ct_List = string.Empty;
         public string strStt_List = string.Empty;
+        public string strMa_Kho_Access_List = string.Empty;
         public DataRow drCurrent;
         public DataRow drDmCt;
         public DataTable dtSttList = null;
@@ -84,6 +85,7 @@ namespace Epoint.Modules
         {
             this.strMa_Ct_List = strMa_Ct_List;
             this.Object_ID = strMa_Ct_List;
+            this.strMa_Kho_Access_List = SQLExec.ExecuteReturnValue("  SELECT TOP 1 Ma_Kho_Access  FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'").ToString();
 
             this.Build();
 
@@ -118,7 +120,7 @@ namespace Epoint.Modules
             }
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
             {
-                this.FillDataIN(strFilterKey, strFilterKey);
+                this.FillData_OM(strFilterKey, strFilterKey);
                 btnPXK.Visible = true;
                 btDiscoutDetail.Visible = true;
 
@@ -127,7 +129,7 @@ namespace Epoint.Modules
                     btnPXK.AutoSize = true;
                     btnPXK.Text = "Xác nhận trả";
                 }
-            } 
+            }
             else if (Common.Inlist(strMa_Ct_List, "PTT"))
             {
                 this.FillData(strFilterKey, strFilterKey);
@@ -201,27 +203,99 @@ namespace Epoint.Modules
 
         private void FillData(string strKey_Ph, string strKey_Ct)
         {
+            bool bINewLoad = DataTool.SQLCheckExist("sys.procedures", "Name", "sp_Vourcher_GetDataBegin");
             string strTable_Ph = (string)drDmCt["Table_Ph"];
             string strTable_Ct = (string)drDmCt["Table_Ct"];
-            if (!Element.sysIs_Admin)
+            //if (!Element.sysIs_Admin)
+            //{
+            //    if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
+            //    {
+            //        strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+            //        // bỏ chỗ này xem có nhanh hơn không
+            //        //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+            //    }
+
+            //    //if ((this.strModule == "02" || this.strModule == "05") && this.strMa_Kho_Access_List != string.Empty)
+            //    //{
+            //    //    strKey_Ph += @" AND EXISTS
+            //    //            (
+            //    //                SELECT TOP 1 1 FROM " + strKey_Ct + @" AS Ct
+            //    //                WHERE Ct.Stt = h.Stt AND
+            //    //                (AR.Ma_Kho  LIKE ''' + REPLACE(" + this.strMa_Kho_Access_List + ", ', ', ''' OR Ma_Kho LIKE ''') + '''))'";
+
+            //    //}
+            //}          
+
+
+            if (bINewLoad&& Common.Inlist(this.strModule,"02,05"))// NewLoad way
             {
-                if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
+                Hashtable htPara = new Hashtable();
+                htPara.Add("MA_CT", strMa_Ct_List);
+                htPara.Add("TABLE_CT", strTable_Ct);
+                htPara.Add("KEY", strKey_Ph);
+                htPara.Add("USER_ID", Element.sysUser_Id);
+                htPara.Add("IS_ADMIN", Element.sysIs_Admin);
+                htPara.Add("MA_DVCS", Element.sysMa_DvCs);
+                DataSet ds = SQLExec.ExecuteReturnDs("sp_Vourcher_GetDataBegin", htPara, CommandType.StoredProcedure);
+
+                dtViewPh = ds.Tables[0].Copy();
+                dtViewCt = ds.Tables[1].Copy();
+
+                dtViewPh.TableName = strTable_Ph;
+                dtViewCt.TableName = strTable_Ct;
+
+                dsVoucher.Tables.Clear();
+                dsVoucher.Tables.Add(dtViewPh);
+                dsVoucher.Tables.Add(dtViewCt);
+            }
+            else //OldLoad Way
+            {
+                if (!Element.sysIs_Admin)
                 {
-                    strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
-                    // bỏ chỗ này xem có nhanh hơn không
-                    //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+                    if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
+                    {
+                        strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                        // bỏ chỗ này xem có nhanh hơn không
+                        //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+                    }
+                    else
+                    {
+                        string strUser_Access = (string)SQLExec.ExecuteReturnValue("SELECT Member_Access FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'") + ",";
+
+                        if (!strUser_Access.Contains("*,"))// *: Xem chứng từ của tất cả user, ngược lại là chỉ xem được các chứng từ của user cho phép
+                        {
+                            string[] User = strUser_Access.Split(new char[] { ',' });
+                            string strUser = string.Empty;
+                            foreach (string u in User)
+                            {
+                                if (u.Trim() != "")
+                                    strUser += "'" + u + "',";
+                            }
+                            //Cong them User hien tai dang log vao -> user dang log vao co the thay chung tu cua chinh minh va chung tu cua user khác duoc cho phep truy xuat
+                            strUser = strUser + "'" + Element.sysUser_Id + "'";
+                            strKey_Ph += " AND SUBSTRING(Create_Log,15,LEN(Create_Log)) IN (" + strUser + ")";
+                            strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) IN (" + strUser + "))";
+                        }
+                    }
                 }
+                string strSelectPh = " *, TTien0 + TTien3 AS TTien, TTien_Nt0 + TTien_Nt3 AS TTien_Nt, CAST(0 AS BIT) AS CHON ,CAST(0 AS BIT) AS Mark,SUBSTRING(Create_Log,15,LEN(Create_Log)) AS User_Create";
+                dtViewPh = DataTool.SQLGetDataTable(strTable_Ph, strSelectPh, strKey_Ph, "Ngay_Ct, So_Ct");
+                dtViewPh.TableName = strTable_Ph;
+
+                bdsViewPh.DataSource = dtViewPh;
+                dgvViewPh.DataSource = bdsViewPh;
+
+                dtViewCt = DataTool.SQLGetDataTable(strTable_Ct, "*", strKey_Ct, "Ngay_Ct");
+                dtViewCt.TableName = strTable_Ct;
+
+
+                dsVoucher.Tables.Clear();
+                dsVoucher.Tables.Add(dtViewPh);
+                dsVoucher.Tables.Add(dtViewCt);
+                
+
             }
 
-            string strSelectPh = " *, TTien0 + TTien3 AS TTien, TTien_Nt0 + TTien_Nt3 AS TTien_Nt, CAST(0 AS BIT) AS CHON ,CAST(0 AS BIT) AS Mark,SUBSTRING(Create_Log,15,LEN(Create_Log)) AS User_Create";
-            dtViewPh = DataTool.SQLGetDataTable(strTable_Ph, strSelectPh, strKey_Ph, "Ngay_Ct, So_Ct");
-            dtViewPh.TableName = strTable_Ph;
-
-            bdsViewPh.DataSource = dtViewPh;
-            dgvViewPh.DataSource = bdsViewPh;
-
-            dtViewCt = DataTool.SQLGetDataTable(strTable_Ct, "*", strKey_Ct, "Ngay_Ct");
-            dtViewCt.TableName = strTable_Ct;
 
             //Thêm tổng tiền ở phía dưới
             if (dtViewCt.Columns.Contains("TTien_Nt") && dtViewCt.Columns.Contains("TTien_Nt3"))
@@ -235,6 +309,13 @@ namespace Epoint.Modules
                 dtViewCt.Columns.Add(dcNew);
             }
 
+            bdsViewPh.DataSource = dtViewPh;
+            dgvViewPh.DataSource = bdsViewPh;
+
+            bdsViewCt.DataSource = dtViewCt;
+            dgvViewCt.DataSource = bdsViewCt;
+
+
             //Thêm tổng tiền ở phía dưới
             //if (!dtViewPh.Columns.Contains("FORE_COLOR"))
             //{
@@ -244,12 +325,12 @@ namespace Epoint.Modules
 
 
 
-            bdsViewCt.DataSource = dtViewCt;
-            dgvViewCt.DataSource = bdsViewCt;
+            //bdsViewCt.DataSource = dtViewCt;
+            //dgvViewCt.DataSource = bdsViewCt;
 
-            dsVoucher.Tables.Clear();
-            dsVoucher.Tables.Add(dtViewPh);
-            dsVoucher.Tables.Add(dtViewCt);
+            //dsVoucher.Tables.Clear();
+            //dsVoucher.Tables.Add(dtViewPh);
+            //dsVoucher.Tables.Add(dtViewCt);
 
             //Lay du lieu tu Ct len Ph theo danh sach Carry_Header
             Common.CopyDataColumn(dtViewCt, dtViewPh, (string)drDmCt["Update_Header"]);
@@ -277,7 +358,7 @@ namespace Epoint.Modules
             this.bdsSearch = bdsViewPh;
             this.ExportControl = dgvViewPh;
         }
-        private void FillDataIN(string strKey_Ph, string strKey_Ct)
+        private void FillData_OM(string strKey_Ph, string strKey_Ct)
         {
             bool bINewLoad = DataTool.SQLCheckExist("sys.procedures", "Name", "sp_OM_GetDataBegin");
             string strTable_Ph = (string)drDmCt["Table_Ph"];
@@ -386,6 +467,94 @@ namespace Epoint.Modules
             dgvViewPh.dgvGridView.FocusedRowHandle = value;
             //dgvViewPh.dgvGridView.MoveLast();
             //
+
+            this.bdsSearch = bdsViewPh;
+            this.ExportControl = dgvViewPh;
+        }
+        private void FillData_IN(string strKey_Ph, string strKey_Ct)
+        {
+            string strTable_Ph = (string)drDmCt["Table_Ph"];
+            string strTable_Ct = (string)drDmCt["Table_Ct"];
+            if (!Element.sysIs_Admin)
+            {
+                if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
+                {
+                    strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                    // bỏ chỗ này xem có nhanh hơn không
+                    //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+                }
+
+                if ((this.strModule == "02" || this.strModule == "05") && this.strMa_Kho_Access_List != string.Empty)
+                {
+                    strKey_Ph += @" AND EXISTS
+                            (
+                                SELECT TOP 1 1 FROM " + strKey_Ct + @" AS Ct
+                                WHERE Ct.Stt = h.Stt AND
+                                (AR.Ma_Kho  LIKE ''' + REPLACE(" + this.strMa_Kho_Access_List + ", ', ', ''' OR Ma_Kho LIKE ''') + '''))'";
+
+                }
+            }
+
+            string strSelectPh = " *, TTien0 + TTien3 AS TTien, TTien_Nt0 + TTien_Nt3 AS TTien_Nt, CAST(0 AS BIT) AS CHON ,CAST(0 AS BIT) AS Mark,SUBSTRING(Create_Log,15,LEN(Create_Log)) AS User_Create";
+            dtViewPh = DataTool.SQLGetDataTable(strTable_Ph, strSelectPh, strKey_Ph, "Ngay_Ct, So_Ct");
+            dtViewPh.TableName = strTable_Ph;
+
+            bdsViewPh.DataSource = dtViewPh;
+            dgvViewPh.DataSource = bdsViewPh;
+
+            dtViewCt = DataTool.SQLGetDataTable(strTable_Ct, "*", strKey_Ct, "Ngay_Ct");
+            dtViewCt.TableName = strTable_Ct;
+
+            //Thêm tổng tiền ở phía dưới
+            if (dtViewCt.Columns.Contains("TTien_Nt") && dtViewCt.Columns.Contains("TTien_Nt3"))
+            {
+                DataColumn dcNew = new DataColumn("TTIEN", typeof(double));
+                dcNew.Expression = "Tien + Tien3";
+                dtViewCt.Columns.Add(dcNew);
+
+                dcNew = new DataColumn("TTIEN_NT", typeof(double));
+                dcNew.Expression = "Tien_Nt + Tien_Nt3";
+                dtViewCt.Columns.Add(dcNew);
+            }
+
+            //Thêm tổng tiền ở phía dưới
+            //if (!dtViewPh.Columns.Contains("FORE_COLOR"))
+            //{
+            //    DataColumn dcNew = new DataColumn("FORE_COLOR", typeof(string));
+            //    dtViewPh.Columns.Add(dcNew);              
+            //}
+
+
+
+            bdsViewCt.DataSource = dtViewCt;
+            dgvViewCt.DataSource = bdsViewCt;
+
+            dsVoucher.Tables.Clear();
+            dsVoucher.Tables.Add(dtViewPh);
+            dsVoucher.Tables.Add(dtViewCt);
+
+            //Lay du lieu tu Ct len Ph theo danh sach Carry_Header
+            Common.CopyDataColumn(dtViewCt, dtViewPh, (string)drDmCt["Update_Header"]);
+
+
+            DataRow[] arrdrViewCt;
+            DataRow drViewCt;
+            foreach (DataRow drViewPh in dtViewPh.Rows)
+            {
+                string strStt = (string)drViewPh["Stt"];
+                arrdrViewCt = dtViewCt.Select("Stt = '" + strStt + "'");
+
+                if (arrdrViewCt.Length > 0)
+                    drViewCt = arrdrViewCt[0];
+                else
+                    continue;
+
+                Common.CopyDataRow(drViewCt, drViewPh, (string)drDmCt["Update_Header"]);
+
+                //drViewPh["FORE_COLOR"] = drViewPh["MA_TTE"].ToString() != Element.sysMa_Tte ? "RED" : "";
+            }
+
+            bdsViewPh.MoveLast();
 
             this.bdsSearch = bdsViewPh;
             this.ExportControl = dgvViewPh;
@@ -660,7 +829,7 @@ namespace Epoint.Modules
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
             {
                 strKey_Ph = "h." + strKey_Ph;
-                this.FillDataIN(strKey_Ph, strKey_Ct);
+                this.FillData_OM(strKey_Ph, strKey_Ct);
             }
             else
             {
@@ -676,7 +845,7 @@ namespace Epoint.Modules
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
                 this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
-                this.FillDataIN(strFilterKey_Old, strFilterKey_Old);
+                this.FillData_OM(strFilterKey_Old, strFilterKey_Old);
             else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
@@ -1733,7 +1902,7 @@ namespace Epoint.Modules
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
                 this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
             else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
-                this.FillDataIN(strFilterKey_Old, strFilterKey_Old);
+                this.FillData_OM(strFilterKey_Old, strFilterKey_Old);
             else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
@@ -1815,8 +1984,8 @@ namespace Epoint.Modules
                 //        e.Appearance.ForeColor = Color.Red;
 
                 //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
-                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                    e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
 
 
             }

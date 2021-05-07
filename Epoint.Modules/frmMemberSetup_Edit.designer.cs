@@ -42,6 +42,7 @@ namespace Epoint.Modules
             this.txtMa_Kho_Ban = new Epoint.Systems.Controls.txtTextBox();
             this.lblControl4 = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Cbnv_Access = new Epoint.Systems.Controls.txtTextBox();
+            this.btMa_Kho_Access = new Epoint.Systems.Controls.btControl();
             this.SuspendLayout();
             // 
             // txtMember_Name
@@ -221,11 +222,22 @@ namespace Epoint.Modules
             this.txtMa_Cbnv_Access.TabIndex = 4;
             this.txtMa_Cbnv_Access.UseAutoFilter = false;
             // 
+            // btMa_Kho_Access
+            // 
+            this.btMa_Kho_Access.Location = new System.Drawing.Point(349, 66);
+            this.btMa_Kho_Access.Name = "btMa_Kho_Access";
+            this.btMa_Kho_Access.Size = new System.Drawing.Size(27, 22);
+            this.btMa_Kho_Access.TabIndex = 153;
+            this.btMa_Kho_Access.TabStop = false;
+            this.btMa_Kho_Access.Text = "...";
+            this.btMa_Kho_Access.UseVisualStyleBackColor = true;
+            // 
             // frmMemberSetup_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 239);
+            this.Controls.Add(this.btMa_Kho_Access);
             this.Controls.Add(this.txtMa_Cbnv_Access);
             this.Controls.Add(this.lblControl4);
             this.Controls.Add(this.txtMa_Kho_Ban);
@@ -263,5 +275,6 @@ namespace Epoint.Modules
         private Systems.Controls.txtTextBox txtMa_Kho_Ban;
         private Systems.Controls.lblControl lblControl4;
         private Systems.Controls.txtTextBox txtMa_Cbnv_Access;
-	}
+        private Systems.Controls.btControl btMa_Kho_Access;
+    }
 }

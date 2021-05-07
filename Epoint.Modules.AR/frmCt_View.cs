@@ -25,6 +25,7 @@ namespace Epoint.Modules.AR
         public frmCt_View()
         {
             InitializeComponent();
+            this.strModule = "04";
         }
 
         #endregion

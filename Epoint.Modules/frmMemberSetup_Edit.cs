@@ -21,7 +21,8 @@ namespace Epoint.Modules
 		{
 			InitializeComponent();
 
-			btgAccept.btAccept.Click+=new EventHandler(btAccept_Click);
+		  this.btMa_Kho_Access.Click += new EventHandler(btbtMa_Kho_Access_Click);
+		  btgAccept.btAccept.Click+=new EventHandler(btAccept_Click);
 			btgAccept.btCancel.Click +=new EventHandler(btCancel_Click);
 		}
 
@@ -58,11 +59,26 @@ namespace Epoint.Modules
 			return true;
 		}
 
-        #endregion
+	   #endregion
 
-        #region Su kien
+	   #region Su kien
+	   void btbtMa_Kho_Access_Click(object sender, EventArgs e)
+	   {
+		  string strValue = txtMa_Kho_Access.Text.Trim();
 
-		void btAccept_Click(object sender, EventArgs e)
+		  string strMember_ID_Old = txtMa_Kho_Access.Text.Trim();
+
+		  DataRow drLookup = Lookup.ShowMultiLookupNew("Ma_Kho", strValue, true, "Nh_Cuoi= 1 ","", "");
+		  if (drLookup != null)
+		  {
+			 if (strMember_ID_Old != "")
+				txtMa_Kho_Access.Text = strMember_ID_Old + "," + drLookup["MuiltiSelectValue"].ToString();
+			 if (strMember_ID_Old == "")
+				txtMa_Kho_Access.Text = strMember_ID_Old + drLookup["MuiltiSelectValue"].ToString();
+		  }
+
+	   }
+	   void btAccept_Click(object sender, EventArgs e)
 		{
 			if (this.Save())
 			{

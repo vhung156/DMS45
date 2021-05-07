@@ -24,7 +24,10 @@ namespace Epoint.Modules.AP
 
         public frmCt_View()
         {
+
             InitializeComponent();
+
+            this.strModule = "02";
         }
 
         #endregion

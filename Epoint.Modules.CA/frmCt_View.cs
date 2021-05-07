@@ -26,6 +26,7 @@ namespace Epoint.Modules.CA
 		{            
 			InitializeComponent();
             this.btnPXK.Click += new EventHandler(btnPXK_Click);
+		  this.strModule = "01";
 		}		
 
 		#region Update

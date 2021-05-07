@@ -21,10 +21,11 @@ namespace Epoint.Modules.AR
     public partial class frmCtSO_View : frmVoucher_View
     {
         #region Contructor
-
+      
         public frmCtSO_View()
         {
             InitializeComponent();
+            this.strModule = "OM";
             this.btnPXK.Click += new EventHandler(btnPXK_Click);
             this.btDiscoutDetail.Click += new EventHandler(btDiscoutDetail_Click);
         }
