@@ -714,7 +714,7 @@ namespace Epoint.Modules.AR
             }
 
 
-            if (Parameters.GetParaValue("DMS_CHECKSDHD") != null && Parameters.GetParaValue("DMS_CHECKSDHD").ToString() == "Y")
+            if ((string)drDmCt["Nh_Ct"] == "1" && Parameters.GetParaValue("DMS_CHECKSDHD") != null && Parameters.GetParaValue("DMS_CHECKSDHD").ToString() == "Y")
                 if (this.drEditPh["Stt_Org"].ToString() != string.Empty) // Check hóa đơn bán hàng còn dư nợ hay không
                 {
                     dbTien_No1 = Voucher.GetDuCuoiCtHd(this, this.drEditPh["Stt_Org"].ToString(), string.Empty);
@@ -725,7 +725,6 @@ namespace Epoint.Modules.AR
                     else
                     {
                         EpointMessage.MsgOk("Chứng từ mua hàng đã hết số dư, không thể áp cấn trừ công nợ!");
-                        //Voucher.UpdateSo_Ct(this, "Tk_Co2");
                         this.drEditPh["Is_ThanhToan"] = false;
                         if (this.strTk_No2 != string.Empty)
                             foreach (DataRow dr in dtEditCt.Rows)
@@ -2073,6 +2072,12 @@ namespace Epoint.Modules.AR
             {
                 Stt_Org = string.Empty;
                 txtCt_Di_Kem.Text = string.Empty;
+
+                foreach (DataRow dr in dtEditCt.Rows)
+                {
+                    //DataRow drvt = DataTool.SQLGetDataRowByID("LIVATTU", "Ma_Vt", dr["Ma_Vt"].ToString());
+                    dr["Tk_Co2"] = drDmCt["Tk_Co"];
+                }
             }
             else
             {
@@ -2626,7 +2631,7 @@ namespace Epoint.Modules.AR
 
                     break;
 
-                case Keys.F11:
+                case Keys.F7:
                     string strMsg = "Bạn có muốn xóa tính khuyến mã tự động?";
                     if (EpointMessage.MsgYes_No(strMsg, "Y"))
                     {
@@ -2640,9 +2645,9 @@ namespace Epoint.Modules.AR
                     this.CalcDiscount();
                     break;
 
-                    //case Keys.F11:
-                    //    this.HanTt();
-                    //    break;
+                case Keys.F11:
+                    this.HanTt();
+                    break;
                     //case Keys.F9:
                     //    this.CalcDiscount();
                     //    break;
