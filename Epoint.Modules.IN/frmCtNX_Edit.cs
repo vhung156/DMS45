@@ -1575,17 +1575,14 @@ namespace Epoint.Modules.IN
                 {
                     drCurrent["Ten_Vt"] = drLookup["Ten_Vt"];
                     drCurrent["Dvt"] = drLookup["Dvt"];
-                    drCurrent["Dvt"] = drLookup["Dvt_MD"] == string.Empty ? drLookup["Dvt"] : drLookup["Dvt_MD"];
+                    drCurrent["Dvt"] = drLookup["Dvt_MD"].ToString() == string.Empty ? drLookup["Dvt"] : drLookup["Dvt_MD"];
                     drCurrent["He_So9"] = 1;
                     
                     // tính hệ số
                     drCurrent = ((DataRowView)bdsEditCt.Current).Row;
 
                     string strDvt_Old = (string)drCurrent["Dvt"];
-                    string strDvt_Chuan = string.Empty;
-
-
-                    strDvt_Chuan = (string)drLookup["Dvt"];
+                    string strDvt_Chuan =  (string)drLookup["Dvt"];
 
 
 

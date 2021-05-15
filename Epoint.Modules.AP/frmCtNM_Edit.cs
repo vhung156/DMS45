@@ -2748,7 +2748,21 @@ namespace Epoint.Modules.AP
                 {
                     drCurrent["Ten_Vt"] = drLookup["Ten_Vt"];
                     drCurrent["Dvt"] = drLookup["Dvt"];
+                    drCurrent["Dvt"] = drLookup["Dvt_MD"].ToString() == string.Empty ? drLookup["Dvt"] : drLookup["Dvt_MD"];
                     drCurrent["He_So9"] = 1;
+
+
+                    string strDvt_Old = (string)drCurrent["Dvt"];
+                    string strDvt_Chuan = (string)drLookup["Dvt"];
+
+
+
+                    if ((string)drCurrent["Dvt"] == strDvt_Chuan)
+                        drCurrent["He_So9"] = 1;
+                    else
+                        for (int i = 1; i <= 3; i++)
+                            if ((string)drLookup["Dvt" + i] == (string)drCurrent["Dvt"])
+                                drCurrent["He_So9"] = drLookup["He_So" + i];
 
                     Voucher.Calc_So_Luong(drCurrent);
                     //if (strMa_Ct == "MTL")//TL
