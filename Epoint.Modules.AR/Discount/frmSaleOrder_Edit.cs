@@ -693,7 +693,7 @@ namespace Epoint.Modules.AR
 
             }
 
-           // this.TestDiscount();
+            // this.TestDiscount();
             // tính khuyến mãi tự động
             if ((bool)drDmCt["Is_AutoPromotion"] && chkIs_CalDiscCount.Checked)
                 this.CalcDiscount();
@@ -3681,11 +3681,7 @@ namespace Epoint.Modules.AR
                     drCurrent = ((DataRowView)bdsEditCt.Current).Row;
 
                     string strDvt_Old = (string)drCurrent["Dvt"];
-                    string strDvt_Chuan = string.Empty;
-
-
-                    strDvt_Chuan = (string)drLookup["Dvt"];
-
+                    string strDvt_Chuan = (string)drLookup["Dvt"];
 
 
                     if ((string)drCurrent["Dvt"] == strDvt_Chuan)
@@ -3694,7 +3690,6 @@ namespace Epoint.Modules.AR
                         for (int i = 1; i <= 3; i++)
                             if ((string)drLookup["Dvt" + i] == (string)drCurrent["Dvt"])
                                 drCurrent["He_So9"] = drLookup["He_So" + i];
-
 
 
                     //drCurrent["He_So9"] = 1;
