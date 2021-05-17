@@ -52,16 +52,16 @@ namespace Epoint.Modules.AP
 
             tabVoucher.SelectedIndexChanged += new EventHandler(tabVoucher_SelectedIndexChanged);
             tabVoucher.Enter += new EventHandler(tabVoucher_Enter);
-                        
-            txtMa_Dt.Validating += new CancelEventHandler(txtMa_Dt_Validating);            
+
+            txtMa_Dt.Validating += new CancelEventHandler(txtMa_Dt_Validating);
 
             txtMa_Hd.Enter += new EventHandler(txtMa_Hd_Enter);
-            txtMa_Hd.Validating += new CancelEventHandler(txtMa_Hd_Validating);            
+            txtMa_Hd.Validating += new CancelEventHandler(txtMa_Hd_Validating);
 
             txtMa_Ct.Enter += new EventHandler(txtMa_Ct_Enter);
             txtMa_Ct.Validating += new CancelEventHandler(txtMa_Ct_Validating);
             txtMa_Ct.TextChanged += new EventHandler(txtMa_Ct_TextChanged);
-                        
+
             txtSo_Ct.Validating += new CancelEventHandler(txtSo_Ct_Validating);
             dteNgay_Ct.Validating += new CancelEventHandler(dteNgay_Ct_Validating);
             txtMa_Quyen.Validating += new CancelEventHandler(txtMa_Quyen_Validating);
@@ -98,8 +98,8 @@ namespace Epoint.Modules.AP
             dgvEditCt2.CellValidating += new DataGridViewCellValidatingEventHandler(dgvEditCt2_CellValidating);
             dgvEditCt2.CellValidated += new DataGridViewCellEventHandler(dgvEditCt2_CellValidated);
             dgvEditCt2.CellEnter += new DataGridViewCellEventHandler(dgvEditCt_CellEnter);
-            
-        }        
+
+        }
 
         public override void Load(enuEdit enuNew_Edit, DataRow drEdit, DataSet dsVoucher)
         {
@@ -112,7 +112,7 @@ namespace Epoint.Modules.AP
             this.strMa_Ct = ((string)drEdit["Ma_Ct"]).Trim();
             this.drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct);
             this.Object_ID = (string)SQLExec.ExecuteReturnValue("SELECT MAX(Object_ID) FROM SYSDMCT WHERE Ma_Ct LIKE '" + this.strMa_Ct + "'");
-                
+
             if (strMa_Ct == "NK")
                 this.pnlVAT.Visible = false;
 
@@ -262,7 +262,7 @@ namespace Epoint.Modules.AP
                     drCurrent["Ma_DvCs"] = Element.sysMa_DvCs;
                     drCurrent["Stt"] = strStt;
                     drCurrent["Stt0"] = 1;
-                    drCurrent["Ma_Ct"] = strMa_Ct;                    
+                    drCurrent["Ma_Ct"] = strMa_Ct;
                     drCurrent["Ngay_Ct"] = ((string)Epoint.Systems.Librarys.Parameters.GetParaValue("NGAY_CT") == "0" && drEdit["Ngay_Ct"] != DBNull.Value) ? drEdit["Ngay_Ct"] : DateTime.Now;
 
                     drCurrent["Tk_No"] = (string)drDmCt["Tk_No"];
@@ -333,7 +333,7 @@ namespace Epoint.Modules.AP
                 if (dgvEditCt1.Columns.Contains("TK_CO6"))
                     dgvEditCt1.Columns["TK_CO6"].ReadOnly = true;
 
-                btPb_Cp.Visible = true;                                
+                btPb_Cp.Visible = true;
             }
             else if (strMa_Ct == "NM")
                 btPb_Cp.Visible = true;
@@ -450,7 +450,7 @@ namespace Epoint.Modules.AP
                     Common.MsgCancel("Dữ liệu đã phân vùng, không cho phép sửa chứng từ từ năm này sang năm khác");
                     return false;
                 }
-            }           
+            }
 
             //Kiểm tra nghiệp vụ hợp lệ
             foreach (DataRow dr in dtEditCt.Rows)
@@ -503,7 +503,7 @@ namespace Epoint.Modules.AP
 
             if (!FormCheckValid())
                 return false;
-                        
+
             if (this.enuNew_Edit == enuEdit.New || this.enuNew_Edit == enuEdit.Copy)
             {
                 drEditPh["Create_Log"] = Common.GetCurrent_Log();
@@ -923,6 +923,13 @@ namespace Epoint.Modules.AP
                             Voucher.Calc_So_Luong(drCurrent);
                             Voucher.Update_TTien(this);
                         }
+                        else if (dbTien_Nt9 == 0)
+                        {
+                            drCurrent["GIA_NT9"] = 0;
+                            Voucher.Calc_So_Luong(drCurrent);
+                            Voucher.Update_TTien(this);
+
+                        }
 
                         if (dgvEditCt1.bIsCurrentLastRow)
                         {
@@ -1135,7 +1142,7 @@ namespace Epoint.Modules.AP
         public void Update_Gia_Vt(DataRow drEditCt)
         {
             //Thong: Lay giá gần nhất từ chứng từ
-            if ((bool)drDmCt["Is_Gia"])            
+            if ((bool)drDmCt["Is_Gia"])
             {
                 //Chi cap nhat gia vat tu khi co so luong
                 if (drEditCt["Ma_Vt"] == DBNull.Value || (string)drEditCt["Ma_Vt"] == string.Empty)
@@ -1229,7 +1236,7 @@ namespace Epoint.Modules.AP
 
             Voucher.Update_Detail(this);
             Voucher.Calc_So_Luong_All(this);
-            Voucher.Update_TTien(this);            
+            Voucher.Update_TTien(this);
         }
 
         #endregion
@@ -1453,7 +1460,7 @@ namespace Epoint.Modules.AP
                 ((txtTextLookup)sender).AutoFilter.Visible = false;
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-        }      
+        }
         void txtMa_Hd_Enter(object sender, EventArgs e)
         {
             txtTen_Hd.Text = dicName.GetValue(txtTen_Hd.Name);
@@ -1504,7 +1511,7 @@ namespace Epoint.Modules.AP
                 ((txtTextLookup)sender).AutoFilter.Visible = false;
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-        }       
+        }
         //void txtMa_Km_Enter(object sender, EventArgs e)
         //{
         //    lbtTen_Km.Text = dicName.GetValue(lbtTen_Km.Name);
@@ -1809,9 +1816,9 @@ namespace Epoint.Modules.AP
 
                     if (tabVoucher.SelectedTab == tpChiTiet1)
                         tabVoucher.SelectedTab = tpChiTiet2;
-					else
+                    else
                         tabVoucher.SelectedTab = tpChiTiet1;
-					break;
+                    break;
 
                 case Keys.Up:
 
@@ -1859,7 +1866,7 @@ namespace Epoint.Modules.AP
         {
             TTien_Valid();
         }
-        
+
         void tabVoucher_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabVoucher.SelectedTab == tpChiTiet1)
@@ -1981,7 +1988,7 @@ namespace Epoint.Modules.AP
 
                 else if (strColumnName == "MA_KHO")
                     bLookup = dgvLookupMa_Kho(ref dgvCell);
-                
+
                 else if (strColumnName == "MA_PO")
                     bLookup = dgvLookupMa_Po(ref dgvCell);
 
@@ -2009,7 +2016,35 @@ namespace Epoint.Modules.AP
             //Cập nhật giá từ chính sách giá
             if (Common.Inlist(strColumnName, "SO_LUONG9"))
             {
-                Update_Gia_Vt(drCurrent);
+                if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
+                {
+                    //drCurrent["GIA_NT9"] = 0;
+                    //drCurrent["TIEN_NT9"] = 0;
+                    Update_Gia_Vt(drCurrent);
+                }
+            }
+            else if (Common.Inlist(strColumnName, "DVT"))
+            {
+                if (drCurrent.RowState == DataRowState.Added || drCurrent[strColumnName] != drCurrent[strColumnName, DataRowVersion.Original])
+                {
+                    drCurrent["GIA_NT9"] = 0;
+                    drCurrent["TIEN_NT9"] = 0;
+                    Update_Gia_Vt(drCurrent);
+                }
+            }
+            else if (Common.Inlist(strColumnName, "GIA_NT9"))
+            {
+                if (drCurrent.RowState == DataRowState.Added || Convert.ToDouble(drCurrent[strColumnName]) != Convert.ToDouble(drCurrent[strColumnName, DataRowVersion.Original]))
+                {
+                    double dbGIA_NT9 = 0;
+                    if (double.TryParse(drCurrent["GIA_NT9"].ToString(), out dbGIA_NT9))
+                    {
+                        if (dbGIA_NT9 == 0)
+                            drCurrent["TIEN_NT9"] = 0;
+                    }
+                    else if (dbGIA_NT9 == 0)
+                        drCurrent["TIEN_NT9"] = 0;
+                }
             }
 
             if (Common.Inlist(strColumnName, "SO_LUONG9,GIA_NT9,TIEN_NT9,TIEN"))
@@ -2639,7 +2674,7 @@ namespace Epoint.Modules.AP
             bool bRequire = true;
 
             //
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Job", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Job", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -2755,13 +2790,13 @@ namespace Epoint.Modules.AP
                     if ((string)drDmCt["Nh_Ct"] == "2")
                     {
                         drCurrent["Tk_Co"] = drLookup["Tk_Vt"];
-                       
+
                     }
                     else//HD
                     {
                         drCurrent["Tk_No"] = drLookup["Tk_Vt"];
                     }
-                   
+
                 }
                 else
                 {
@@ -2847,7 +2882,7 @@ namespace Epoint.Modules.AP
             }
             return true;
         }
-        
+
         #endregion
 
         #endregion
@@ -2911,7 +2946,7 @@ namespace Epoint.Modules.AP
                 //	}
                 //}
 
-                
+
             }
         }
     }
