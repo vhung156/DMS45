@@ -26,6 +26,7 @@ namespace Epoint.Modules
     {
         #region Fields
         Color usd_color = Color.FromArgb(255, 49, 106, 197);
+        public bool IsFormatGrid = true;
         public bool isFormated = false;
         public DataSet dsVoucher = new DataSet("dsVoucher");
 
@@ -60,7 +61,8 @@ namespace Epoint.Modules
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
-
+          
+            this.SetFormatGrid();
             this.Resize += new EventHandler(frmViewPh_Resize);
             this.KeyDown += new KeyEventHandler(KeyDownEvent);
 
@@ -73,12 +75,14 @@ namespace Epoint.Modules
             btBack.Click += new EventHandler(btBack_Click);
 
             dgvViewPh.dgvGridView.Click += new EventHandler(dgvViewPh_CellMouseClick);
-            dgvViewPh.dgvGridView.CustomDrawCell += new RowCellCustomDrawEventHandler(dgvViewPh_CellFormatting);
+            //dgvViewPh.dgvGridView.CustomDrawCell += new RowCellCustomDrawEventHandler(dgvViewPh_CellFormatting);
             //dgvViewPh.dgvGridView.RowCellStyle += dgvViewPh_RowCellStyle;
             dgvViewPh.Enter += new EventHandler(dgvViewPh_Enter);
             dgvViewCt.Enter += new EventHandler(dgvViewCt_Enter);
+            if (this.IsFormatGrid)
+                dgvViewPh.dgvGridView.CustomDrawCell += new RowCellCustomDrawEventHandler(dgvViewPh_CellFormatting);
+            this.SetColor();
 
-            SetColor();
         }
 
         public void Load(string strMa_Ct_List)
@@ -227,7 +231,7 @@ namespace Epoint.Modules
             //}          
 
 
-            if (bINewLoad&& Common.Inlist(this.strModule,"02,05"))// NewLoad way
+            if (bINewLoad && Common.Inlist(this.strModule, "02,05"))// NewLoad way
             {
                 Hashtable htPara = new Hashtable();
                 htPara.Add("MA_CT", strMa_Ct_List);
@@ -292,7 +296,7 @@ namespace Epoint.Modules
                 dsVoucher.Tables.Clear();
                 dsVoucher.Tables.Add(dtViewPh);
                 dsVoucher.Tables.Add(dtViewCt);
-                
+
 
             }
 
@@ -926,6 +930,17 @@ namespace Epoint.Modules
         private void SetColor()
         {
             this.BackColor = Color.FromArgb(34, 32, 11, 43);
+        }
+        private void SetFormatGrid()
+        {
+
+            if (Collection.Parameters.ContainsKey("VOURCHER_FORMAT") && Collection.Parameters["VOURCHER_FORMAT"].ToString() == "0")
+            {
+                this.isFormated = false;
+            }
+
+            if (!Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+                this.isFormated = false;
         }
         private void Design()
         {
@@ -1963,8 +1978,8 @@ namespace Epoint.Modules
         {
 
 
-            if (!Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
-                return;
+            //if (!Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
+            //    return;
 
             if (e.CellValue == null || e.CellValue == DBNull.Value)
                 return;
@@ -1977,21 +1992,25 @@ namespace Epoint.Modules
 
             GridView gridView = (GridView)sender;
 
-            if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
-            {
-                //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
-                //{
-                //    if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
-                //        e.Appearance.ForeColor = Color.Red;
-                //}
-                //else
-                {
-                    //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
-                    if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                        e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
-                }
+            if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+                e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
 
-            }
+
+            //if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
+            //{
+            //    if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "BG,PO,SO,IN,INT"))
+            //    {
+            //        if ((GridColumn)gridView.Columns["SO_CT_LAP"] != null && gridView.GetRowCellValue(e.RowHandle, "SO_CT_LAP").ToString() == string.Empty && !(bool)gridView.GetRowCellValue(e.RowHandle, "DUYET"))
+            //            e.Appearance.ForeColor = Color.Red;
+            //    }
+            //    else
+            //    {
+            //        //if (Common.Inlist((string)gridView.GetRowCellValue(e.RowHandle, "MA_CT"), "NM,NK,PT,PC,BN,BC"))
+            //        if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
+            //            e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+            //    }
+
+            //}
 
         }
 

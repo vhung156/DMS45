@@ -359,7 +359,8 @@ namespace Epoint.Modules.AR
                     if (dtEditCt.Columns.Contains("Auto_Cost"))//&& (string)drDmCt["Nh_Ct"] == "2")
                         drCurrent["Auto_Cost"] = true;
 
-
+                    //if (dtEditCt.Columns.Contains("COLOR"))
+                    //    drCurrent["COLOR"] = "RED";
 
                     drCurrent["Deleted"] = false;
 

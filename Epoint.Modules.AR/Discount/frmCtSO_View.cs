@@ -58,6 +58,11 @@ namespace Epoint.Modules.AR
                 //this.FillDataNew();
                 if (drCurrent.Table.Columns.Contains("Ma_Tuyen"))
                     drCurrent["Ma_Tuyen"] = Epoint.Systems.Data.DataTool.SQLGetNameByCode("LIDOITUONG", "Ma_Dt", "Ma_Tuyen", drCurrent["Ma_Dt"].ToString());
+
+                if (drCurrent.Table.Columns.Contains("COLOR"))
+                    drCurrent["COLOR"] = "RED";
+
+
                 bdsViewPh.Position = bdsViewPh.Find("Stt", frmEdit.strStt);
             }
 
