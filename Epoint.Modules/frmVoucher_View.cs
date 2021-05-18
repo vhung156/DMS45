@@ -61,7 +61,7 @@ namespace Epoint.Modules
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
-          
+
             this.SetFormatGrid();
             this.Resize += new EventHandler(frmViewPh_Resize);
             this.KeyDown += new KeyEventHandler(KeyDownEvent);
@@ -1963,6 +1963,9 @@ namespace Epoint.Modules
 
             GridView gridView = (GridView)sender;
 
+
+
+
             if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
             {
                 if (Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
@@ -1977,7 +1980,10 @@ namespace Epoint.Modules
         void dgvViewPh_CellFormatting(object sender, RowCellCustomDrawEventArgs e)
         {
 
-
+            //if (dgvViewPh.dgvGridView.State == GridState.CellSelection || dgvViewPh.dgvGridView.State == GridState.ColumnFilterDown || dgvViewPh.dgvGridView.State == GridState.Scrolling || dgvViewPh.dgvGridView.State == GridState.FilterPanelTextPressed )
+            //    return;
+            //if (!dgvViewPh.dgvGridView.Editable)
+            //    return;
             //if (!Common.Inlist(strMa_Ct_List, "NM,NK,PT,PC,BN,BC"))
             //    return;
 
@@ -1993,7 +1999,7 @@ namespace Epoint.Modules
             GridView gridView = (GridView)sender;
 
             if ((GridColumn)gridView.Columns["MA_TTE"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != string.Empty && gridView.GetRowCellValue(e.RowHandle, "MA_TTE").ToString() != Element.sysMa_Tte)
-                e.Appearance.ForeColor = Color.FromArgb(255, 49, 106, 197);
+                e.Appearance.ForeColor = usd_color;//Color.FromArgb(255, 49, 106, 197);
 
 
             //if ((GridColumn)gridView.Columns["MA_CT"] != null && gridView.GetRowCellValue(e.RowHandle, "MA_CT") != null)
