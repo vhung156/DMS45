@@ -96,9 +96,17 @@ namespace Epoint.Modules.AR
         private DataTable GetDiscountDetail()
         {
             DataTable dtReturn = new DataTable();
-            
 
-                SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
+            DataTable dtImport = SQLExec.ExecuteReturnDt("DECLARE @TVP_PXKDETAIL AS TVP_PXKDETAIL SELECT * FROM @TVP_PXKDETAIL");
+
+            foreach (DataRow drEdit in this.dtListInvoice.Rows)
+            {
+                DataRow drNew = dtImport.NewRow();
+                Common.CopyDataRow(drEdit, drNew);
+                dtImport.Rows.Add(drNew);
+            }
+
+            SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "sp_GetPXKDetail";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Ngay_Ct", this.Ngay_Ct);
@@ -108,7 +116,7 @@ namespace Epoint.Modules.AR
                     SqlDbType = SqlDbType.Structured,
                     ParameterName = "@TVP_PXKDETAIL",
                     TypeName = "TVP_PXKDETAIL",
-                    Value = dtListInvoice,
+                    Value = dtImport,
                 };
                 command.Parameters.Add(parameter);
                 try
