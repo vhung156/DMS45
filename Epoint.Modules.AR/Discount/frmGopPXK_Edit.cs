@@ -345,7 +345,7 @@ namespace Epoint.Modules.AR
         void btCheckStock_Click(object sender, EventArgs e)
         {
             frmCheckStock_View frm = new frmCheckStock_View();
-            frm.Load(this.dtEditCt, Library.StrToDate(dteNgay_Ct.Text));
+            frm.Load(this.dtEditCt, Library.StrToDate(dteNgay_Ct.Text), this.txtMa_Px.Text);
         }
         void btAddHD_Click(object sender, EventArgs e)
         {
@@ -642,10 +642,6 @@ namespace Epoint.Modules.AR
         {
             if (true)
             {
-
-
-               
-
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "Sp_Update_PXKDetail";
                 command.CommandType = CommandType.StoredProcedure;
