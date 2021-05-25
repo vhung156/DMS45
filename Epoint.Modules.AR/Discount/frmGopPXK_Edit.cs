@@ -30,6 +30,7 @@ namespace Epoint.Modules.AR
         public string strStt_List = string.Empty;
         public DataTable dtStt = null;
         public DataTable dtDetail;
+        DataTable dtImport;
         #endregion
 
         #region Contructor
@@ -303,6 +304,16 @@ namespace Epoint.Modules.AR
         public override bool Save()
         {
             Common.GatherMemvar(this, ref this.drEdit);
+
+            this.dtImport = SQLExec.ExecuteReturnDt("DECLARE @TVP_PXKDETAIL AS TVP_PXKDETAIL SELECT * FROM @TVP_PXKDETAIL");
+
+            foreach (DataRow drEdit in dtEditCt.Rows)
+            {
+                DataRow drNew = dtImport.NewRow();
+                Common.CopyDataRow(drEdit, drNew);
+                dtImport.Rows.Add(drNew);
+            }
+
 
             if (!FormCheckValid())
                 return false;
@@ -633,14 +644,7 @@ namespace Epoint.Modules.AR
             {
 
 
-                DataTable dtImport = SQLExec.ExecuteReturnDt("DECLARE @TVP_PXKDETAIL AS TVP_PXKDETAIL SELECT * FROM @TVP_PXKDETAIL");
-
-                foreach (DataRow drEdit in dtEditCt.Rows)
-                {
-                    DataRow drNew = dtImport.NewRow();
-                    Common.CopyDataRow(drEdit, drNew);
-                    dtImport.Rows.Add(drNew);
-                }
+               
 
                 SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
                 command.CommandText = "Sp_Update_PXKDetail";
@@ -655,7 +659,7 @@ namespace Epoint.Modules.AR
                     SqlDbType = SqlDbType.Structured,
                     ParameterName = "@TVP_PXKDETAIL",
                     TypeName = "TVP_PXKDETAIL",
-                    Value = dtImport,
+                    Value = this.dtImport,
                 };
                 command.Parameters.Add(parameter);
                 try
@@ -681,6 +685,7 @@ namespace Epoint.Modules.AR
             SqlCommand command = SQLExec.GetNewSQLConnection().CreateCommand();
             command.CommandText = "sp_GetPXKDetail";
             command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Ma_PX", txtMa_Px.Text);
             command.Parameters.AddWithValue("@Ngay_Ct", Library.StrToDate(dteNgay_Ct.Text));
             command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
             command.Parameters.AddWithValue("@Is_NotAvail", true);
@@ -689,7 +694,7 @@ namespace Epoint.Modules.AR
                 SqlDbType = SqlDbType.Structured,
                 ParameterName = "@TVP_PXKDETAIL",
                 TypeName = "TVP_PXKDETAIL",
-                Value = dtEditCt,
+                Value = this.dtImport,
             };
             command.Parameters.Add(parameter);
             try
