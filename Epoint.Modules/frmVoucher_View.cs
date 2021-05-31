@@ -844,6 +844,109 @@ namespace Epoint.Modules
             Element.sysNgay_Ct1 = Convert.ToDateTime(drFilter["Ngay_Ct1"]);
             Element.sysNgay_Ct2 = Convert.ToDateTime(drFilter["Ngay_Ct2"]);
         }
+        public void Filter(bool isNew)
+        {
+            DataTable dtFilter = new DataTable();
+
+            dtFilter.Columns.Add(new DataColumn("Ma_Ct", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ngay_Ct1", typeof(DateTime)));
+            dtFilter.Columns.Add(new DataColumn("Ngay_Ct2", typeof(DateTime)));
+            dtFilter.Columns.Add(new DataColumn("So_Ct1", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("So_Ct2", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Tien1", typeof(double)));
+            dtFilter.Columns.Add(new DataColumn("Tien2", typeof(double)));
+            dtFilter.Columns.Add(new DataColumn("Dien_Giai", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Tte", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Tk", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("No_Co", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Tk_Du", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Thue", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Hd", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Dt", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Km", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Bp", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Sp", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Nx", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Kho", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Vt", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_CbNv", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Job", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Tc", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Kv", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Table", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Is_Thue_Vat", typeof(bool)));
+            dtFilter.Columns.Add(new DataColumn("Is_Nb", typeof(bool)));
+            dtFilter.Columns.Add(new DataColumn("Ma_DvCs", typeof(string)));
+
+            DataRow drFilter = dtFilter.NewRow();
+
+            //Set Default 
+            drFilter["Ma_Ct"] = strMa_Ct_List;
+            drFilter["Ngay_Ct1"] = Element.sysNgay_Ct1;
+            drFilter["Ngay_Ct2"] = Element.sysNgay_Ct2;
+
+            string strTable_Ph = (string)drDmCt["Table_Ph"];
+            string strTable_Ct = (string)drDmCt["Table_Ct"];
+
+            drFilter["Table"] = strTable_Ct;
+            drFilter["Ma_DvCs"] = Element.sysMa_DvCs;
+
+            if (!this.Filter_ShowForm(drFilter))
+                return;
+
+            string strKey = (string)SQLExec.ExecuteReturnValue("sp_GetVoucherFilterKeyNew", drFilter, CommandType.StoredProcedure);
+            string strSelectCt = "SELECT TOP 1 Stt  FROM " + strTable_Ct + " AS Table_Ct WHERE ";
+            string strKey_Ph, strKey_Ct, strUserFilter_Ph = string.Empty, strUserFilter_Ct = string.Empty;
+            if (drFilter["Is_Thue_Vat"].ToString() != string.Empty)
+            {
+                if ((bool)drFilter["Is_Thue_Vat"])
+                {
+                    //strKey_Ph = "Stt IN (" + strKey + " AND (Is_Thue_Vat = 1))";
+                    strKey_Ph = " EXISTS  (" + strSelectCt + " h.Stt = Table_Ct.Stt AND " + strKey + " AND (Is_Thue_Vat = 1))";
+                }
+                else if ((bool)drFilter["Is_Nb"])
+                {
+                    //strKey_Ph = "Stt IN (" + strKey + " AND (Is_Thue_Vat = 0))";
+                    strKey_Ph = " EXISTS  (" + strSelectCt + " h.Stt = Table_Ct.Stt AND " + strKey + "AND (Is_Thue_Vat = 0))";
+                }
+                else
+                {
+                    strKey_Ph = " EXISTS  (" + strSelectCt + " h.Stt = Table_Ct.Stt AND " + strKey + ")";
+                }
+            }
+            else
+                strKey_Ph = " EXISTS  (" + strSelectCt + " h.Stt = Table_Ct.Stt AND " + strKey + ")";
+
+            strKey_Ct = "Stt IN (" + strKey + ")";
+
+            if (!Element.sysIs_Admin)
+            {
+                if (!Common.CheckPermission("MEMBER_ID_ALLOW", enuPermission_Type.Allow_Access))
+                {
+                    strUserFilter_Ph = "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                    strUserFilter_Ct = " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+
+                    //strKey_Ph += "AND SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "'";
+                    //strKey_Ct += " AND Stt IN (SELECT Stt FROM " + strTable_Ph + " WHERE SUBSTRING(Create_Log,15,LEN(Create_Log)) = '" + Element.sysUser_Id + "')";
+                }
+            }
+            if (Common.Inlist(strMa_Ct_List, "BG,SO"))
+                this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
+            else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
+            {
+                //strKey_Ph = "h." + strKey_Ph;
+                this.FillData_OM(strKey_Ph, strKey_Ct);
+            }
+            else
+            {
+                strKey_Ph += strUserFilter_Ph;
+                strKey_Ct += strUserFilter_Ct;
+                this.FillData(strKey_Ph, strKey_Ct);
+            }
+            Element.sysNgay_Ct1 = Convert.ToDateTime(drFilter["Ngay_Ct1"]);
+            Element.sysNgay_Ct2 = Convert.ToDateTime(drFilter["Ngay_Ct2"]);
+        }
+
         public void FillDataNew()
         {
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
