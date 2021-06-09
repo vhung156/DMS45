@@ -231,7 +231,7 @@ namespace Epoint.Modules
             //}          
 
 
-            if (bINewLoad && Common.Inlist(this.strModule, "02,05"))// NewLoad way
+            if (bINewLoad && Common.Inlist(this.strModule, "01,02,05"))// NewLoad way
             {
                 Hashtable htPara = new Hashtable();
                 htPara.Add("MA_CT", strMa_Ct_List);
