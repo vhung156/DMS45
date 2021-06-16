@@ -1177,6 +1177,7 @@ namespace Epoint.Modules.AP
                 Hashtable htParameter = new Hashtable();
                 htParameter.Add("MA_VT", (string)drEditCt["Ma_Vt"]);
                 htParameter.Add("MA_DT", (string)drEditCt["Ma_Dt"]);
+                htParameter.Add("DVT", (string)drEditCt["Dvt"]);
                 htParameter.Add("NGAY_CT", this.dteNgay_Ct.Text);
 
                 drEditCt["Gia_Nt9"] = SQLExec.ExecuteReturnValue("sp_GetGiaMua", htParameter, CommandType.StoredProcedure);
