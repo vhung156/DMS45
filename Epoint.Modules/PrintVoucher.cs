@@ -11,7 +11,7 @@ using Epoint.Systems.Customizes;
 using Epoint.Systems.Commons;
 using Epoint.Systems.Librarys;
 using Epoint.Systems.Elements;
-
+using System.Windows.Forms;
 
 namespace Epoint.Modules
 {
@@ -435,7 +435,82 @@ namespace Epoint.Modules
             }
             
         }
-      
+        public static bool PrintIN_Crytal(string Stt,string rptFileName, bool bPreview,bool bShowDialog,string PrinterName)
+        {
+            //string rptFileName = Application.StartupPath + @"\Reports\CT_IN_Report.rpt";
+            DataTable dtDetail;
+            DataTable dtSubDetail;
+            bool bAcceptShowDialog = true;
+            bool bInVisibleNextPrint = false;
+
+            Hashtable ht = new Hashtable();
+            ht.Add("STT", Stt);
+            DataSet dsPrintVoucher = new DataSet();
+            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintVoucher_IN", ht, CommandType.StoredProcedure);   
+            Epoint.Reports.frmReportPrint_CRP frmPrint = new Epoint.Reports.frmReportPrint_CRP();
+            return frmPrint.Load(Stt,dsPrintVoucher, rptFileName, bPreview, bShowDialog, PrinterName);
+
+        }
+        public static void PrintInvoices(string Ma_Px, bool IsRpt)
+        {
+            string strMa_Px = Ma_Px;// (string)drPhView["Ma_Px"];
+
+            bool bPreview = false;
+            bool bAcceptShowDialog = true;
+            bool bInVisibleNextPrint = false;
+            string strReport_File_First = string.Empty;
+            string rptFileName = Application.StartupPath + @"\Reports\CT_IN_Report.rpt";
+            DataTable dtHeader;
+            DataTable dtDetail;
+
+            Hashtable ht = new Hashtable();
+            ht.Add("MA_PX", strMa_Px);
+            DataSet dsPrintVoucher = new DataSet();
+            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintListOrder", ht, CommandType.StoredProcedure);
+
+            //Upadte Gia = 0, Tien = 0, TTien = 0 khi in chung tu doi voi User cam ACCESS_PRICE
+            DataTable dtPrinVoucherHeader = new DataTable();
+            DataTable dtPrinVoucherDetail = new DataTable();
+
+            dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
+            dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
+
+            dtHeader = dtPrinVoucherHeader;
+            dtDetail = dtPrinVoucherDetail;
+
+
+            PrintDialog dlg = new PrintDialog(); //Khởi tạo đối tượng PrintDialog
+            dlg.ShowDialog(); //Hiển thị hộp thoại PrintDialog
+
+            string PrinterName = dlg.PrinterSettings.PrinterName;
+
+
+            if (dtDetail.Rows.Count > 0)
+            {
+                int i = 0;
+                foreach (DataRow drCurrent in dtDetail.Rows)
+                {
+                    string stt = drCurrent["Stt"].ToString();                    
+                    if (drCurrent["Stt"].ToString() != string.Empty)
+                    {
+                        bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(), rptFileName, bPreview, true, PrinterName);
+                        //if (i == 0)
+                        //{
+                        //    bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(),rptFileName, bPreview,true, PrinterName);
+                        //}
+                        //else
+                        //{
+                        //    if (bAcceptShowDialog)
+                        //        bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(), rptFileName, bPreview,false, PrinterName);
+                        //    else
+                        //        break;
+                        //}
+                        //i++;
+                    }
+                }
+            }
+
+        }
 
         #region DocTien
         public string ReadMoneyC(Double SoTien)

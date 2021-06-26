@@ -521,14 +521,6 @@ namespace Epoint.Modules
                 dtViewCt.Columns.Add(dcNew);
             }
 
-            //Thêm tổng tiền ở phía dưới
-            //if (!dtViewPh.Columns.Contains("FORE_COLOR"))
-            //{
-            //    DataColumn dcNew = new DataColumn("FORE_COLOR", typeof(string));
-            //    dtViewPh.Columns.Add(dcNew);              
-            //}
-
-
 
             bdsViewCt.DataSource = dtViewCt;
             dgvViewCt.DataSource = bdsViewCt;
@@ -996,10 +988,6 @@ namespace Epoint.Modules
             else
                 drArrPrint = dtViewPh.Select("CHON = true");
 
-
-
-
-
             if (drArrPrint.Length > 1)
             {
                 for (int i = 0; i < drArrPrint.Length; i++)
@@ -1029,6 +1017,21 @@ namespace Epoint.Modules
             }
             else
                 PrintVoucher.Print(drCurrent, bPreview, true, ref bInVisibleNextPrint, ref strReport_File_First);
+        }
+        private void PrintRpt(bool bPreview)
+        {
+            if (bdsViewPh.Position < 0)
+                return;
+
+            drCurrent = ((DataRowView)bdsViewPh.Current).Row;
+            string stt = drCurrent["Stt"].ToString();
+            string rptFileName = Application.StartupPath + @"\Reports\CT_IN_Report.rpt";
+            DataRow[] drArrPrint;
+            bool bAcceptShowDialog = true;
+            bool bInVisibleNextPrint = false;
+            string strReport_File_First = string.Empty;
+
+            PrintVoucher.PrintIN_Crytal(stt, rptFileName, bPreview,true,"");
         }
         private void SetColor()
         {
@@ -1870,7 +1873,12 @@ namespace Epoint.Modules
                             break;
 
                         case Keys.None:
-                            Print(false);
+                            {
+                                if (strMa_Ct_List == "IN")
+                                    PrintRpt(true);
+                                else
+                                    Print(false);
+                            }
                             break;
                     }
                     break;
@@ -2033,6 +2041,7 @@ namespace Epoint.Modules
         void btPreview_Click(object sender, EventArgs e)
         {
             this.Print(true);
+            //this.PrintRpt(true);
         }
 
         void btPrint_Click(object sender, EventArgs e)
