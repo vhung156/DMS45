@@ -404,17 +404,21 @@ namespace Epoint.Modules.AR
         }
         void btImport_Click(object sender, EventArgs e)
         {
+            frmPJP_Import frmImp = new frmPJP_Import();
+            frmImp.Load();
+            //frmImp.ShowDialog();
+
             strError = string.Empty;
 
-            OpenFileDialog ofdlg = new OpenFileDialog();
-            ofdlg.Filter = "xls files (*.xls;*.xlsx)|*.xls;*.xlsx";
-            ofdlg.RestoreDirectory = true;
-            if (ofdlg.ShowDialog() != DialogResult.OK)
-                return;
+            //OpenFileDialog ofdlg = new OpenFileDialog();
+            //ofdlg.Filter = "xls files (*.xls;*.xlsx)|*.xls;*.xlsx";
+            //ofdlg.RestoreDirectory = true;
+            //if (ofdlg.ShowDialog() != DialogResult.OK)
+            //    return;
 
-            dtImport = Common.ReadExcel(ofdlg.FileName);
-            Setdefault(ref dtImport);
-            EpointProcessBox.Show(this);    
+            //dtImport = Common.ReadExcel(ofdlg.FileName);
+            //Setdefault(ref dtImport);
+            //EpointProcessBox.Show(this);    
         }
         public virtual void Import_Excel(bool CheckAPI)
         {
@@ -427,7 +431,7 @@ namespace Epoint.Modules.AR
                 command.CommandText = "OM_Import_PJP";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
-                //command.Parameters.AddWithValue("@IsImport", false);
+                command.Parameters.AddWithValue("@UserId", Element.sysUser_Id);
                 SqlParameter parameter = new SqlParameter
                 {
                     SqlDbType = SqlDbType.Structured,

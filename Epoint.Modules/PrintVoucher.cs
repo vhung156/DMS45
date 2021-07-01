@@ -15,28 +15,28 @@ using System.Windows.Forms;
 
 namespace Epoint.Modules
 {
-	public class PrintVoucher
-	{
+    public class PrintVoucher
+    {
         public static bool Print(DataRow drPhView, bool bPreview, bool bShowDialog, ref bool bInVisibleNextPrint, ref string strReport_File_First)
-		{
-			string strStt = (string)drPhView["Stt"];
-			string strMa_Ct = (string)drPhView["Ma_Ct"];
+        {
+            string strStt = (string)drPhView["Stt"];
+            string strMa_Ct = (string)drPhView["Ma_Ct"];
             string strMa_Tte = "VND";// (string)drPhView["Ma_Tte"];
-			string strReportTag = string.Empty;
-			string strTable_Ph = string.Empty;
-			string strTable_Ct = string.Empty;
-			bool bIs_Vnd = true;            
+            string strReportTag = string.Empty;
+            string strTable_Ph = string.Empty;
+            string strTable_Ct = string.Empty;
+            bool bIs_Vnd = true;
             string strReport_File = string.Empty;
             bool bInVisibleNextPrint0 = false;
             bool bIs_Doc_Tien1 = false;
             int iSo_Lien = 1;
 
-			DataRow drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", strMa_Ct);
-			DataTable dtHeader;
-			DataTable dtDetail;
+            DataRow drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", strMa_Ct);
+            DataTable dtHeader;
+            DataTable dtDetail;
 
-			strTable_Ph = (string)drDmCt["Table_Ph"];
-			strTable_Ct = (string)drDmCt["Table_Ct"];
+            strTable_Ph = (string)drDmCt["Table_Ph"];
+            strTable_Ct = (string)drDmCt["Table_Ct"];
             strReport_File = (string)drDmCt["Report_File"];
 
             if (strMa_Ct == "BN" && !bInVisibleNextPrint)
@@ -72,7 +72,7 @@ namespace Epoint.Modules
                 string strName3 = string.Empty;
                 string strName4 = string.Empty;
                 string strName5 = string.Empty;
-                
+
                 string strKey = "Ma_Dvcs = '" + Element.sysMa_DvCs + "'" + " AND Ma_Ct = '" + strMa_Ct + "'";
                 DataTable dtDmCk = DataTool.SQLGetDataTable("SYSDMCK", "*", strKey, "Ma_Ct");
                 if (dtDmCk != null)
@@ -88,7 +88,7 @@ namespace Epoint.Modules
                 }
 
                 //Cập nhật thông tin chữ ký xuống GLVOUCHER
-               
+
                 string strSQLUpdate = "UPDATE " + strTable_Ph + " SET " +
                         @"Chu_Ky_1 = @Chu_Ky_1, Chu_Ky_2 = @Chu_Ky_2, Chu_Ky_3 = @Chu_Ky_3, Chu_Ky_4 = @Chu_Ky_4, Chu_Ky_5 = @Chu_Ky_5" +
                         " WHERE Stt = @Stt";
@@ -102,7 +102,7 @@ namespace Epoint.Modules
                 htChuKy["STT"] = strStt;
 
                 SQLExec.Execute(strSQLUpdate, htChuKy, CommandType.Text);
-                
+
                 //In Tien_Nt
                 if (strMa_Tte != Element.sysMa_Tte)
                 {
@@ -117,7 +117,7 @@ namespace Epoint.Modules
             }
 
             //Chon nhieu mau report khi in
-            DataTable dtDmMauIn = DataTool.SQLGetDataTable("SYSDMMAUCT", "Ma_Mau, Ten_Mau", "Ma_Ct = '" + strMa_Ct + "'", "Ma_Mau");            
+            DataTable dtDmMauIn = DataTool.SQLGetDataTable("SYSDMMAUCT", "Ma_Mau, Ten_Mau", "Ma_Ct = '" + strMa_Ct + "'", "Ma_Mau");
 
             if (dtDmMauIn.Rows.Count == 1)
                 strReport_File = (string)dtDmMauIn.Rows[0]["Ma_Mau"];
@@ -151,82 +151,82 @@ namespace Epoint.Modules
                     if (!frmInHD.Is_Design)
                         return false;
                 }
-            }            
+            }
             string strMau_So = string.Empty;
 
             if (drPhView.Table.Columns.Contains("Mau_So"))
                 strMau_So = (string)drPhView["Mau_So"];
 
-			Hashtable ht = new Hashtable();
+            Hashtable ht = new Hashtable();
             ht.Add("STT", strStt);
             ht.Add("MA_CT", strMa_Ct);
             ht.Add("IS_VND", bIs_Vnd ? 1 : 0);
             ht.Add("LANGUAGE_TYPE", (char)Element.sysLanguage);
 
-			DataSet dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintVoucher", ht, CommandType.StoredProcedure);
+            DataSet dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintVoucher", ht, CommandType.StoredProcedure);
 
-			//Upadte Gia = 0, Tien = 0, TTien = 0 khi in chung tu doi voi User cam ACCESS_PRICE
-			DataTable dtPrinVoucherHeader = new DataTable();
-			DataTable dtPrinVoucherDetail = new DataTable();
-			dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
-			dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
-			if (DataTool.SQLCheckExist("SYSOBJECT", "Object_ID", "ACCESS_PRICE") && !Common.CheckPermission("ACCESS_PRICE", enuPermission_Type.Allow_Access))
-			{
-				foreach (DataColumn dc in dtPrinVoucherHeader.Columns)
-				{
-					if (dc.ColumnName.StartsWith("GIA") || dc.ColumnName.StartsWith("TIEN") || dc.ColumnName.StartsWith("TTIEN") || dc.ColumnName.StartsWith("PS_NO") || dc.ColumnName.StartsWith("PS_CO") || dc.ColumnName.StartsWith("PS_TANG") || dc.ColumnName.StartsWith("PS_GIAM") || dc.ColumnName.StartsWith("DU_DAU") || dc.ColumnName.StartsWith("DU_CUOI") || dc.ColumnName.StartsWith("DU_NO") || dc.ColumnName.StartsWith("DU_CO"))
-					{
-						if (dc.DataType == typeof(double) || dc.DataType == typeof(decimal))
-						{
-							//Gán cột dữ liệu về 0
-							foreach (DataRow dr in dtPrinVoucherHeader.Rows)
-							{
-								dr[dc] = 0;
-							}
+            //Upadte Gia = 0, Tien = 0, TTien = 0 khi in chung tu doi voi User cam ACCESS_PRICE
+            DataTable dtPrinVoucherHeader = new DataTable();
+            DataTable dtPrinVoucherDetail = new DataTable();
+            dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
+            dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
+            if (DataTool.SQLCheckExist("SYSOBJECT", "Object_ID", "ACCESS_PRICE") && !Common.CheckPermission("ACCESS_PRICE", enuPermission_Type.Allow_Access))
+            {
+                foreach (DataColumn dc in dtPrinVoucherHeader.Columns)
+                {
+                    if (dc.ColumnName.StartsWith("GIA") || dc.ColumnName.StartsWith("TIEN") || dc.ColumnName.StartsWith("TTIEN") || dc.ColumnName.StartsWith("PS_NO") || dc.ColumnName.StartsWith("PS_CO") || dc.ColumnName.StartsWith("PS_TANG") || dc.ColumnName.StartsWith("PS_GIAM") || dc.ColumnName.StartsWith("DU_DAU") || dc.ColumnName.StartsWith("DU_CUOI") || dc.ColumnName.StartsWith("DU_NO") || dc.ColumnName.StartsWith("DU_CO"))
+                    {
+                        if (dc.DataType == typeof(double) || dc.DataType == typeof(decimal))
+                        {
+                            //Gán cột dữ liệu về 0
+                            foreach (DataRow dr in dtPrinVoucherHeader.Rows)
+                            {
+                                dr[dc] = 0;
+                            }
 
-						}
-						if (dc.DataType == typeof(string))
-						{
-							//Gán cột dữ liệu về rổng
-							foreach (DataRow dr in dtPrinVoucherHeader.Rows)
-							{
-								dr[dc] = "";
-							}
+                        }
+                        if (dc.DataType == typeof(string))
+                        {
+                            //Gán cột dữ liệu về rổng
+                            foreach (DataRow dr in dtPrinVoucherHeader.Rows)
+                            {
+                                dr[dc] = "";
+                            }
 
-						}
-					}
-				}
-				foreach (DataColumn dc in dtPrinVoucherDetail.Columns)
-				{
-					if (dc.ColumnName.StartsWith("GIA") || dc.ColumnName.StartsWith("TIEN") || dc.ColumnName.StartsWith("PS_NO") || dc.ColumnName.StartsWith("PS_CO") || dc.ColumnName.StartsWith("PS_TANG") || dc.ColumnName.StartsWith("PS_GIAM") || dc.ColumnName.StartsWith("DU_DAU") || dc.ColumnName.StartsWith("DU_CUOI") || dc.ColumnName.StartsWith("DU_NO") || dc.ColumnName.StartsWith("DU_CO"))
-					{
-						if (dc.DataType == typeof(double) || dc.DataType == typeof(decimal))
-						{
-							//Gán cột dữ liệu về 0
-							foreach (DataRow dr in dtPrinVoucherDetail.Rows)
-							{
-								dr[dc] = 0;
-							}
+                        }
+                    }
+                }
+                foreach (DataColumn dc in dtPrinVoucherDetail.Columns)
+                {
+                    if (dc.ColumnName.StartsWith("GIA") || dc.ColumnName.StartsWith("TIEN") || dc.ColumnName.StartsWith("PS_NO") || dc.ColumnName.StartsWith("PS_CO") || dc.ColumnName.StartsWith("PS_TANG") || dc.ColumnName.StartsWith("PS_GIAM") || dc.ColumnName.StartsWith("DU_DAU") || dc.ColumnName.StartsWith("DU_CUOI") || dc.ColumnName.StartsWith("DU_NO") || dc.ColumnName.StartsWith("DU_CO"))
+                    {
+                        if (dc.DataType == typeof(double) || dc.DataType == typeof(decimal))
+                        {
+                            //Gán cột dữ liệu về 0
+                            foreach (DataRow dr in dtPrinVoucherDetail.Rows)
+                            {
+                                dr[dc] = 0;
+                            }
 
-						}
-					}
-				}
-			}
+                        }
+                    }
+                }
+            }
 
-			dtHeader = dtPrinVoucherHeader;
-			dtDetail = dtPrinVoucherDetail;
+            dtHeader = dtPrinVoucherHeader;
+            dtDetail = dtPrinVoucherDetail;
 
-			dtHeader.Columns.Add("REPORT_FILE", typeof(string));
-			dtHeader.Columns.Add("TITLE", typeof(string));
-			dtHeader.Columns.Add("IS_VND", typeof(bool));
-			dtHeader.Columns.Add("DOC_TIEN", typeof(string));
+            dtHeader.Columns.Add("REPORT_FILE", typeof(string));
+            dtHeader.Columns.Add("TITLE", typeof(string));
+            dtHeader.Columns.Add("IS_VND", typeof(bool));
+            dtHeader.Columns.Add("DOC_TIEN", typeof(string));
             dtHeader.Columns.Add("DOC_TIEN1", typeof(string));
             dtHeader.Columns.Add("DOC_TIEN_TC", typeof(string));
 
-			DataRow drHeader = dtHeader.Rows[0];
+            DataRow drHeader = dtHeader.Rows[0];
 
-			drHeader["Is_Vnd"] = bIs_Vnd;
-			drHeader["Title"] = ((string)drDmCt["Title"]).ToUpper();            
+            drHeader["Is_Vnd"] = bIs_Vnd;
+            drHeader["Title"] = ((string)drDmCt["Title"]).ToUpper();
             if (bInVisibleNextPrint)
             {
                 drHeader["Report_File"] = strReport_File_First;
@@ -262,11 +262,11 @@ namespace Epoint.Modules
                     dtHeader.Rows[0]["Doc_Tien1"] = !bIs_Vnd ? Common.ReadMoneyE(Convert.ToDouble(drHeader["TTien_Nt"]), strMa_Tte) : Common.ReadMoneyE(Convert.ToDouble(drHeader["TTien"]), Element.sysMa_Tte.ToString());
             }
 
-			Epoint.Reports.frmReportPrint frmPrint = new Epoint.Reports.frmReportPrint();
-			//frmPrint.MdiParent = Element.frmActiveMain;
-			return frmPrint.Load(dtHeader.Rows[0], dtDetail, bPreview, bShowDialog);
-		}
-        public static bool PrintPXK(string Ma_Px, bool bPreview, bool bShowDialog, ref bool bInVisibleNextPrint, ref string strReport_File_First,DataRow drCurrent)
+            Epoint.Reports.frmReportPrint frmPrint = new Epoint.Reports.frmReportPrint();
+            //frmPrint.MdiParent = Element.frmActiveMain;
+            return frmPrint.Load(dtHeader.Rows[0], dtDetail, bPreview, bShowDialog);
+        }
+        public static bool PrintPXK(string Ma_Px, bool bPreview, bool bShowDialog, ref bool bInVisibleNextPrint, ref string strReport_File_First, DataRow drCurrent)
         {
             string strMa_Px = Ma_Px;// (string)drPhView["Ma_Px"];
             string strReportTag = string.Empty;
@@ -276,11 +276,11 @@ namespace Epoint.Modules
             string strReport_File = "rptPXK";
             bool bInVisibleNextPrint0 = false;
 
-        
+
             DataTable dtHeader;
             DataTable dtDetail;
 
-       
+
 
             Hashtable ht = new Hashtable();
             ht.Add("MA_PX", strMa_Px);
@@ -292,7 +292,7 @@ namespace Epoint.Modules
             DataTable dtPrinVoucherDetail = new DataTable();
             dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
             dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
-           
+
 
             dtHeader = dtPrinVoucherHeader;
             dtDetail = dtPrinVoucherDetail;
@@ -306,7 +306,7 @@ namespace Epoint.Modules
             DataRow drHeader = dtHeader.Rows[0];
 
             drHeader["Is_Vnd"] = bIs_Vnd;
-            drHeader["Title"] = drCurrent["MA_CT"].ToString() == "IN" ? "PHIẾU XUẤT KHO":"PHIẾU NHẬP TRẢ HÀNG";
+            drHeader["Title"] = drCurrent["MA_CT"].ToString() == "IN" ? "PHIẾU XUẤT KHO" : "PHIẾU NHẬP TRẢ HÀNG";
             if (bInVisibleNextPrint)
             {
                 drHeader["Report_File"] = strReport_File_First;
@@ -318,7 +318,7 @@ namespace Epoint.Modules
                 bInVisibleNextPrint = bInVisibleNextPrint0;
             }
 
-          
+
             Epoint.Reports.frmReportPrint frmPrint = new Epoint.Reports.frmReportPrint();
             //frmPrint.MdiParent = Element.frmActiveMain;
             return frmPrint.Load(dtHeader.Rows[0], dtDetail, bPreview, bShowDialog);
@@ -384,11 +384,11 @@ namespace Epoint.Modules
         public static void PrintInvoices(string Ma_Px)
         {
             string strMa_Px = Ma_Px;// (string)drPhView["Ma_Px"];
-            
+
             bool bPreview = false;
-           // bool bShowDialog;
-           // bool bInVisibleNextPrint; 
-           // string strReport_File_First;
+            // bool bShowDialog;
+            // bool bInVisibleNextPrint; 
+            // string strReport_File_First;
             bool bAcceptShowDialog = true;
             bool bInVisibleNextPrint = false;
             string strReport_File_First = string.Empty;
@@ -415,46 +415,43 @@ namespace Epoint.Modules
             {
                 int i = 0;
                 foreach (DataRow drCurrent in dtDetail.Rows)
-               {
-                   if (drCurrent["Stt"].ToString() != string.Empty)
-                   {
-                       if (i == 0)
-                       {
-                           bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, true, ref bInVisibleNextPrint, ref strReport_File_First);
-                       }
-                       else
-                       {
-                           if (bAcceptShowDialog)
-                               bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, false, ref bInVisibleNextPrint, ref strReport_File_First);
-                           else
-                               break;
-                       }
-                       i++;
-                   }
-               }
+                {
+                    if (drCurrent["Stt"].ToString() != string.Empty)
+                    {
+                        if (i == 0)
+                        {
+                            bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, true, ref bInVisibleNextPrint, ref strReport_File_First);
+                        }
+                        else
+                        {
+                            if (bAcceptShowDialog)
+                                bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, false, ref bInVisibleNextPrint, ref strReport_File_First);
+                            else
+                                break;
+                        }
+                        i++;
+                    }
+                }
             }
-            
+
         }
-        public static bool PrintIN_Crytal(string Stt,string rptFileName, bool bPreview,bool bShowDialog,string PrinterName)
+        public static bool Print_Crytal(string Stt, string rptFileName, bool bPreview, bool bShowDialog, PrintDialog dialog)
         {
-            //string rptFileName = Application.StartupPath + @"\Reports\CT_IN_Report.rpt";
+
             DataTable dtDetail;
             DataTable dtSubDetail;
-            bool bAcceptShowDialog = true;
-            bool bInVisibleNextPrint = false;
-
+            string PrinterName = dialog == null ? string.Empty : dialog.PrinterSettings.PrinterName;
             Hashtable ht = new Hashtable();
             ht.Add("STT", Stt);
             DataSet dsPrintVoucher = new DataSet();
-            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintVoucher_IN", ht, CommandType.StoredProcedure);   
+            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintVoucher_IN", ht, CommandType.StoredProcedure);
             Epoint.Reports.frmReportPrint_CRP frmPrint = new Epoint.Reports.frmReportPrint_CRP();
-            return frmPrint.Load(Stt,dsPrintVoucher, rptFileName, bPreview, bShowDialog, PrinterName);
+            return frmPrint.Load(Stt, dsPrintVoucher, rptFileName, bPreview, bShowDialog, PrinterName);
 
         }
         public static void PrintInvoices(string Ma_Px, bool IsRpt)
         {
-            string strMa_Px = Ma_Px;// (string)drPhView["Ma_Px"];
-
+            string strMa_Px = Ma_Px;
             bool bPreview = false;
             bool bAcceptShowDialog = true;
             bool bInVisibleNextPrint = false;
@@ -468,7 +465,6 @@ namespace Epoint.Modules
             DataSet dsPrintVoucher = new DataSet();
             dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintListOrder", ht, CommandType.StoredProcedure);
 
-            //Upadte Gia = 0, Tien = 0, TTien = 0 khi in chung tu doi voi User cam ACCESS_PRICE
             DataTable dtPrinVoucherHeader = new DataTable();
             DataTable dtPrinVoucherDetail = new DataTable();
 
@@ -479,34 +475,17 @@ namespace Epoint.Modules
             dtDetail = dtPrinVoucherDetail;
 
 
-            PrintDialog dlg = new PrintDialog(); //Khởi tạo đối tượng PrintDialog
-            dlg.ShowDialog(); //Hiển thị hộp thoại PrintDialog
+            PrintDialog dlgPrinter = new PrintDialog(); //Khởi tạo đối tượng PrintDialog
+            dlgPrinter.ShowDialog(); //Hiển thị hộp thoại PrintDialog
 
-            string PrinterName = dlg.PrinterSettings.PrinterName;
-
-
+            string PrinterName = dlgPrinter.PrinterSettings.PrinterName;
             if (dtDetail.Rows.Count > 0)
             {
-                int i = 0;
                 foreach (DataRow drCurrent in dtDetail.Rows)
                 {
-                    string stt = drCurrent["Stt"].ToString();                    
-                    if (drCurrent["Stt"].ToString() != string.Empty)
-                    {
-                        bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(), rptFileName, bPreview, true, PrinterName);
-                        //if (i == 0)
-                        //{
-                        //    bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(),rptFileName, bPreview,true, PrinterName);
-                        //}
-                        //else
-                        //{
-                        //    if (bAcceptShowDialog)
-                        //        bAcceptShowDialog = PrintVoucher.PrintIN_Crytal(drCurrent["Stt"].ToString(), rptFileName, bPreview,false, PrinterName);
-                        //    else
-                        //        break;
-                        //}
-                        //i++;
-                    }
+                    string stt = drCurrent["Stt"].ToString();
+                    bAcceptShowDialog = PrintVoucher.Print_Crytal(stt, rptFileName, bPreview, true, dlgPrinter);
+
                 }
             }
 
@@ -515,7 +494,7 @@ namespace Epoint.Modules
         #region DocTien
         public string ReadMoneyC(Double SoTien)
         {
-            string[] strSo = { " 零 ", " 壹 ", " 貳 ", " 叁 ", " 肆 ", " 伍 ", " 陆 ", " 柒 ", 
+            string[] strSo = { " 零 ", " 壹 ", " 貳 ", " 叁 ", " 肆 ", " 伍 ", " 陆 ", " 柒 ",
                                     " 捌 ", " 玖 " };
 
             string strKq = string.Empty;
@@ -554,12 +533,12 @@ namespace Epoint.Modules
                                 strKq += strSo[iTram] + " 佰 ";
                             else
                                 if (i == 2) // tram trieu
-                                    strKq += strSo[iTram] + " 億 ";
-                                else
+                                strKq += strSo[iTram] + " 億 ";
+                            else
                                     if (i == 1) // tram ngan
-                                        strKq += strSo[iTram] + " 拾 萬 ";
-                                    else
-                                        strKq += strSo[iTram] + " 佰 ";
+                                strKq += strSo[iTram] + " 拾 萬 ";
+                            else
+                                strKq += strSo[iTram] + " 佰 ";
                         }
                         else if (j == 1) //Hang chuc
                         {
@@ -570,15 +549,15 @@ namespace Epoint.Modules
                                 strKq += strSo[iChuc] + " 拾 ";
                             else
                                 if (i == 2) // chuc trieu
-                                    strKq += strSo[iChuc] + " 仟 萬 ";
-                                else
+                                strKq += strSo[iChuc] + " 仟 萬 ";
+                            else
                                     if (i == 1) // chuc ngan
-                                        strKq += strSo[iChuc] + " 萬 ";
-                                    else
+                                strKq += strSo[iChuc] + " 萬 ";
+                            else
                                         if (SoTien00 < 20)
-                                            strKq += " 拾 ";
-                                        else
-                                            strKq += strSo[iChuc] + " 拾 ";
+                                strKq += " 拾 ";
+                            else
+                                strKq += strSo[iChuc] + " 拾 ";
                         }
                         else if (j == 0) //Hang dv
                         {
@@ -595,12 +574,12 @@ namespace Epoint.Modules
                                 strKq += strSo[iDonvi] + " 拾 億 ";
                             else
                                 if (i == 2) // trieu
-                                    strKq += strSo[iDonvi] + " 佰 萬 ";
-                                else
+                                strKq += strSo[iDonvi] + " 佰 萬 ";
+                            else
                                     if (i == 1) // ngan
-                                        strKq += strSo[iDonvi] + " 仟 ";
-                                    else
-                                        strKq += strSo[iDonvi];
+                                strKq += strSo[iDonvi] + " 仟 ";
+                            else
+                                strKq += strSo[iDonvi];
                         }
                     }
                 }
@@ -642,5 +621,5 @@ namespace Epoint.Modules
             return strKq + " 元 整 ";
         }
         #endregion
-	}
+    }
 }

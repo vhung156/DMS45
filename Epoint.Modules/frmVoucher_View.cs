@@ -1031,7 +1031,7 @@ namespace Epoint.Modules
             bool bInVisibleNextPrint = false;
             string strReport_File_First = string.Empty;
 
-            PrintVoucher.PrintIN_Crytal(stt, rptFileName, bPreview,true,"");
+            PrintVoucher.Print_Crytal(stt, rptFileName, bPreview,true,null);
         }
         private void SetColor()
         {

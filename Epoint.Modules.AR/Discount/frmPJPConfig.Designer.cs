@@ -363,7 +363,6 @@
             this.btImport.Text = "&Import";
             this.btImport.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btImport.UseVisualStyleBackColor = true;
-            this.btImport.Visible = false;
             // 
             // frmPJPConfig
             // 
