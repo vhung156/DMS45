@@ -449,46 +449,54 @@ namespace Epoint.Modules
             return frmPrint.Load(Stt, dsPrintVoucher, rptFileName, bPreview, bShowDialog, PrinterName);
 
         }
-        public static void PrintInvoices(string Ma_Px, bool IsRpt)
+        public static void PrintInvoices(string Ma_Px, bool IsRpt, bool IsPreview)
         {
             string strMa_Px = Ma_Px;
-            bool bPreview = false;
+            bool bPreview = IsPreview;
             bool bAcceptShowDialog = true;
             bool bInVisibleNextPrint = false;
             string strReport_File_First = string.Empty;
             string rptFileName = Application.StartupPath + @"\Reports\CT_IN_Report.rpt";
-            DataTable dtHeader;
-            DataTable dtDetail;
 
-            Hashtable ht = new Hashtable();
-            ht.Add("MA_PX", strMa_Px);
-            DataSet dsPrintVoucher = new DataSet();
-            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintListOrder", ht, CommandType.StoredProcedure);
-
-            DataTable dtPrinVoucherHeader = new DataTable();
-            DataTable dtPrinVoucherDetail = new DataTable();
-
-            dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
-            dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
-
-            dtHeader = dtPrinVoucherHeader;
-            dtDetail = dtPrinVoucherDetail;
-
-
-            PrintDialog dlgPrinter = new PrintDialog(); //Khởi tạo đối tượng PrintDialog
-            dlgPrinter.ShowDialog(); //Hiển thị hộp thoại PrintDialog
-
-            string PrinterName = dlgPrinter.PrinterSettings.PrinterName;
-            if (dtDetail.Rows.Count > 0)
+            if (IsPreview)
             {
-                foreach (DataRow drCurrent in dtDetail.Rows)
-                {
-                    string stt = drCurrent["Stt"].ToString();
-                    bAcceptShowDialog = PrintVoucher.Print_Crytal(stt, rptFileName, bPreview, true, dlgPrinter);
-
-                }
+                PrintVoucher.Print_Crytal(Ma_Px, rptFileName, bPreview, true, null);
             }
+            else
+            {
+                DataTable dtHeader;
+                DataTable dtDetail;
 
+                Hashtable ht = new Hashtable();
+                ht.Add("MA_PX", strMa_Px);
+                DataSet dsPrintVoucher = new DataSet();
+                dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintListOrder", ht, CommandType.StoredProcedure);
+
+                DataTable dtPrinVoucherHeader = new DataTable();
+                DataTable dtPrinVoucherDetail = new DataTable();
+
+                dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
+                dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
+
+                dtHeader = dtPrinVoucherHeader;
+                dtDetail = dtPrinVoucherDetail;
+
+
+                PrintDialog dlgPrinter = new PrintDialog(); //Khởi tạo đối tượng PrintDialog
+                dlgPrinter.ShowDialog(); //Hiển thị hộp thoại PrintDialog
+
+                string PrinterName = dlgPrinter.PrinterSettings.PrinterName;
+                if (dtDetail.Rows.Count > 0)
+                {
+                    foreach (DataRow drCurrent in dtDetail.Rows)
+                    {
+                        string stt = drCurrent["Stt"].ToString();
+                        bAcceptShowDialog = PrintVoucher.Print_Crytal(stt, rptFileName, bPreview, true, dlgPrinter);
+
+                    }
+                }
+
+            }
         }
 
         #region DocTien

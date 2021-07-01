@@ -580,12 +580,19 @@ namespace Epoint.Modules.AR
                 DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
                 PrintVoucher.PrintInvoices(drCurrent["Ma_Px"].ToString());
             }
-            if (strRPT == "INVOICE_0")
+            else if (strRPT == "INVOICE_0")
             {
                 if (bdsPXK.Position < 0)
                     return;
                 DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
-                PrintVoucher.PrintInvoices(drCurrent["Ma_Px"].ToString(),true);
+                PrintVoucher.PrintInvoices(drCurrent["Ma_Px"].ToString(), true,false);
+            }
+            else if (strRPT == "INVOICE_1")
+            {
+                if (bdsPXK.Position < 0)
+                    return;
+                DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
+                PrintVoucher.PrintInvoices(drCurrent["Ma_Px"].ToString(), true,true);
             }
             else if (strRPT == "DTT02")
                 PrintDTT02();
