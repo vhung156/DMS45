@@ -105,7 +105,7 @@ namespace Epoint.Modules
             // btgAccept
             // 
             this.btgAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btgAccept.Location = new System.Drawing.Point(328, 199);
+            this.btgAccept.Location = new System.Drawing.Point(388, 199);
             this.btgAccept.Name = "btgAccept";
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
             this.btgAccept.TabIndex = 6;
@@ -149,7 +149,7 @@ namespace Epoint.Modules
             this.txtMa_Kho_Access.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Kho_Access.MaxLength = 100;
             this.txtMa_Kho_Access.Name = "txtMa_Kho_Access";
-            this.txtMa_Kho_Access.Size = new System.Drawing.Size(192, 20);
+            this.txtMa_Kho_Access.Size = new System.Drawing.Size(371, 20);
             this.txtMa_Kho_Access.TabIndex = 2;
             this.txtMa_Kho_Access.UseAutoFilter = false;
             // 
@@ -224,7 +224,7 @@ namespace Epoint.Modules
             // 
             // btMa_Kho_Access
             // 
-            this.btMa_Kho_Access.Location = new System.Drawing.Point(349, 66);
+            this.btMa_Kho_Access.Location = new System.Drawing.Point(528, 66);
             this.btMa_Kho_Access.Name = "btMa_Kho_Access";
             this.btMa_Kho_Access.Size = new System.Drawing.Size(27, 22);
             this.btMa_Kho_Access.TabIndex = 153;
@@ -236,7 +236,7 @@ namespace Epoint.Modules
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 239);
+            this.ClientSize = new System.Drawing.Size(599, 239);
             this.Controls.Add(this.btMa_Kho_Access);
             this.Controls.Add(this.txtMa_Cbnv_Access);
             this.Controls.Add(this.lblControl4);

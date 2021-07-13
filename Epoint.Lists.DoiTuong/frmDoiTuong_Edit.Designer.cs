@@ -68,7 +68,10 @@ namespace Epoint.Lists
             this.numTien_No_Max = new Epoint.Systems.Controls.numControl();
             this.lblMax_Debt = new Epoint.Systems.Controls.lblControl();
             this.grTitle2 = new System.Windows.Forms.GroupBox();
+            this.txtLongitude = new Epoint.Systems.Controls.txtTextLookup();
+            this.txtLatitude = new Epoint.Systems.Controls.txtTextLookup();
             this.txtMa_CbNV_GH = new Epoint.Systems.Controls.txtTextLookup();
+            this.lblControl1 = new Epoint.Systems.Controls.lblControl();
             this.txtMa_CBNV_BH = new Epoint.Systems.Controls.txtTextLookup();
             this.lblControl4 = new Epoint.Systems.Controls.lblControl();
             this.lblControl3 = new Epoint.Systems.Controls.lblControl();
@@ -87,9 +90,6 @@ namespace Epoint.Lists
             this.lblMa_Tuyen = new Epoint.Systems.Controls.lblControl();
             this.lbtTen_Tuyen = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Tuyen = new Epoint.Systems.Controls.txtTextLookup();
-            this.lblControl1 = new Epoint.Systems.Controls.lblControl();
-            this.txtLatitude = new Epoint.Systems.Controls.txtTextLookup();
-            this.txtLongitude = new Epoint.Systems.Controls.txtTextLookup();
             this.tabEdit.SuspendLayout();
             this.Page1.SuspendLayout();
             this.Page2.SuspendLayout();
@@ -99,24 +99,24 @@ namespace Epoint.Lists
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(437, 698);
+            this.btgAccept.Location = new System.Drawing.Point(436, 637);
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
             this.btgAccept.TabIndex = 1;
             // 
             // tabEdit
             // 
-            this.tabEdit.Size = new System.Drawing.Size(609, 681);
+            this.tabEdit.Size = new System.Drawing.Size(609, 629);
             this.tabEdit.TabIndex = 0;
             // 
             // Page1
             // 
             this.Page1.Controls.Add(this.grTitle1);
             this.Page1.Controls.Add(this.grTitle2);
-            this.Page1.Size = new System.Drawing.Size(601, 655);
+            this.Page1.Size = new System.Drawing.Size(601, 603);
             // 
             // Page2
             // 
-            this.Page2.Size = new System.Drawing.Size(601, 606);
+            this.Page2.Size = new System.Drawing.Size(601, 655);
             // 
             // txtLoai_Dt
             // 
@@ -771,6 +771,48 @@ namespace Epoint.Lists
             this.grTitle2.TabStop = false;
             this.grTitle2.Text = "Thông tin khác";
             // 
+            // txtLongitude
+            // 
+            this.txtLongitude.bEnabled = true;
+            this.txtLongitude.bIsLookup = false;
+            this.txtLongitude.bReadOnly = false;
+            this.txtLongitude.bRequire = false;
+            this.txtLongitude.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLongitude.ColumnsView = null;
+            this.txtLongitude.CtrlDepend = null;
+            this.txtLongitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLongitude.KeyFilter = "Ma_CBNV";
+            this.txtLongitude.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtLongitude.ListFilter = new string[0];
+            this.txtLongitude.Location = new System.Drawing.Point(306, 365);
+            this.txtLongitude.LookupKeyFilter = "";
+            this.txtLongitude.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtLongitude.Name = "txtLongitude";
+            this.txtLongitude.Size = new System.Drawing.Size(151, 20);
+            this.txtLongitude.TabIndex = 14;
+            this.txtLongitude.UseAutoFilter = true;
+            // 
+            // txtLatitude
+            // 
+            this.txtLatitude.bEnabled = true;
+            this.txtLatitude.bIsLookup = false;
+            this.txtLatitude.bReadOnly = true;
+            this.txtLatitude.bRequire = false;
+            this.txtLatitude.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLatitude.ColumnsView = null;
+            this.txtLatitude.CtrlDepend = null;
+            this.txtLatitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLatitude.KeyFilter = "Ma_CBNV";
+            this.txtLatitude.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtLatitude.ListFilter = new string[0];
+            this.txtLatitude.Location = new System.Drawing.Point(139, 364);
+            this.txtLatitude.LookupKeyFilter = "";
+            this.txtLatitude.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtLatitude.Name = "txtLatitude";
+            this.txtLatitude.Size = new System.Drawing.Size(151, 20);
+            this.txtLatitude.TabIndex = 14;
+            this.txtLatitude.UseAutoFilter = true;
+            // 
             // txtMa_CbNV_GH
             // 
             this.txtMa_CbNV_GH.bEnabled = true;
@@ -791,6 +833,21 @@ namespace Epoint.Lists
             this.txtMa_CbNV_GH.Size = new System.Drawing.Size(151, 20);
             this.txtMa_CbNV_GH.TabIndex = 14;
             this.txtMa_CbNV_GH.UseAutoFilter = true;
+            // 
+            // lblControl1
+            // 
+            this.lblControl1.AutoEllipsis = true;
+            this.lblControl1.AutoSize = true;
+            this.lblControl1.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblControl1.Location = new System.Drawing.Point(29, 367);
+            this.lblControl1.Name = "lblControl1";
+            this.lblControl1.Size = new System.Drawing.Size(42, 13);
+            this.lblControl1.TabIndex = 74;
+            this.lblControl1.Tag = "";
+            this.lblControl1.Text = "Tạo độ";
+            this.lblControl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtMa_CBNV_BH
             // 
@@ -1087,68 +1144,11 @@ namespace Epoint.Lists
             this.txtMa_Tuyen.TabIndex = 3;
             this.txtMa_Tuyen.UseAutoFilter = true;
             // 
-            // lblControl1
-            // 
-            this.lblControl1.AutoEllipsis = true;
-            this.lblControl1.AutoSize = true;
-            this.lblControl1.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblControl1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblControl1.Location = new System.Drawing.Point(29, 367);
-            this.lblControl1.Name = "lblControl1";
-            this.lblControl1.Size = new System.Drawing.Size(42, 13);
-            this.lblControl1.TabIndex = 74;
-            this.lblControl1.Tag = "";
-            this.lblControl1.Text = "Tạo độ";
-            this.lblControl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtLatitude
-            // 
-            this.txtLatitude.bEnabled = true;
-            this.txtLatitude.bIsLookup = false;
-            this.txtLatitude.bReadOnly = true;
-            this.txtLatitude.bRequire = false;
-            this.txtLatitude.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLatitude.ColumnsView = null;
-            this.txtLatitude.CtrlDepend = null;
-            this.txtLatitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLatitude.KeyFilter = "Ma_CBNV";
-            this.txtLatitude.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtLatitude.ListFilter = new string[0];
-            this.txtLatitude.Location = new System.Drawing.Point(139, 364);
-            this.txtLatitude.LookupKeyFilter = "";
-            this.txtLatitude.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.txtLatitude.Name = "txtLatitude";
-            this.txtLatitude.Size = new System.Drawing.Size(151, 20);
-            this.txtLatitude.TabIndex = 14;
-            this.txtLatitude.UseAutoFilter = true;
-            // 
-            // txtLongitude
-            // 
-            this.txtLongitude.bEnabled = true;
-            this.txtLongitude.bIsLookup = false;
-            this.txtLongitude.bReadOnly = false;
-            this.txtLongitude.bRequire = false;
-            this.txtLongitude.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLongitude.ColumnsView = null;
-            this.txtLongitude.CtrlDepend = null;
-            this.txtLongitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLongitude.KeyFilter = "Ma_CBNV";
-            this.txtLongitude.ListControlFilter = new System.Windows.Forms.Control[0];
-            this.txtLongitude.ListFilter = new string[0];
-            this.txtLongitude.Location = new System.Drawing.Point(306, 365);
-            this.txtLongitude.LookupKeyFilter = "";
-            this.txtLongitude.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.txtLongitude.Name = "txtLongitude";
-            this.txtLongitude.Size = new System.Drawing.Size(151, 20);
-            this.txtLongitude.TabIndex = 14;
-            this.txtLongitude.UseAutoFilter = true;
-            // 
             // frmDoiTuong_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 739);
+            this.ClientSize = new System.Drawing.Size(633, 678);
             this.Name = "frmDoiTuong_Edit";
             this.Object_ID = "LIDOITUONG";
             this.Tag = "ESC";
