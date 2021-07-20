@@ -78,7 +78,8 @@ namespace Epoint.Modules.AR
                 TinhSoCtPXK();
                 txtMa_Ct.Text = this.drDmCt["Ma_Ct"].ToString();
                 txtNh_Ct.Text = this.drDmCt["Nh_Ct"].ToString();
-
+                //if (txtNh_Ct.Text == "1")
+                //    txtMa_Ct.Text = "IN";
             }
 
             else
