@@ -1505,6 +1505,7 @@ namespace Epoint.Modules
                         DataRow drVt = DataTool.SQLGetDataRowByID("LIVATTU", "Ma_Vt", rowEx["Ma_Vt"].ToString());
                         DataRow drDt = DataTool.SQLGetDataRowByID("LIDOITUONG", "Ma_Dt", rowEx["Ma_Dt"].ToString());
                         rowEx["Ma_Dvcs"] = Element.sysMa_DvCs;
+                        rowEx["Ma_Ct"] = this.strMa_Ct_List;
                         rowEx["User_Crtd"] = Element.sysUser_Id;
                         rowEx["Han_Tt"] = 7;
                         rowEx["Ma_Tte"] = rowEx["Ma_Tte"].ToString().Trim() == string.Empty ? "VND" : rowEx["Ma_Tte"];
