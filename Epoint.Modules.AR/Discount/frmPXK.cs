@@ -55,7 +55,7 @@ namespace Epoint.Modules.AR
         public override void Load()
         {
             BindingCombobox();
-            this.Object_ID = "PXKLIST";
+            this.Object_ID = "PXK";
             this.Build();
             this.FillData();
             this.txtMau_In.Text = "rptPXK";
@@ -225,6 +225,12 @@ namespace Epoint.Modules.AR
                 return;
             }
 
+            if (!Common.CheckPermission(this.Object_ID, enuPermission_Type.Allow_Delete))
+            {
+                EpointMessage.MsgOk("Không có quyền xóa được phiếu xuất kho!");
+                return;
+            }
+
             if (!Element.sysIs_Admin)
             {
                 string strCreate_User = (string)drCurrent["Create_Log"];
@@ -258,13 +264,7 @@ namespace Epoint.Modules.AR
             if (bdsPXK.Position < 0)
                 return;
 
-            DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;
-
-            if (!Common.CheckPermission(this.Object_ID, enuPermission_Type.Allow_Delete))
-            {
-                EpointMessage.MsgOk("Không có quyền xóa được PXK");
-                return;
-            }
+            DataRow drCurrent = ((DataRowView)bdsPXK.Current).Row;           
 
 
             if (!CheckThanhToan(drCurrent))

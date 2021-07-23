@@ -79,7 +79,7 @@ namespace Epoint.Modules
             btFilter.Click += new EventHandler(btFilter_Click);
             //btExit.Click += new EventHandler(btExit_Click);
             btBack.Click += new EventHandler(btBack_Click);
-
+            btImport.Click += new EventHandler(btImport_Click);
             dgvViewPh.dgvGridView.Click += new EventHandler(dgvViewPh_CellMouseClick);
             //dgvViewPh.dgvGridView.CustomDrawCell += new RowCellCustomDrawEventHandler(dgvViewPh_CellFormatting);
             //dgvViewPh.dgvGridView.RowCellStyle += dgvViewPh_RowCellStyle;
@@ -98,8 +98,10 @@ namespace Epoint.Modules
             this.strMa_Kho_Access_List = SQLExec.ExecuteReturnValue("  SELECT TOP 1 Ma_Kho_Access  FROM SYSMEMBER WHERE Member_ID = '" + Element.sysUser_Id + "'").ToString();
 
             if (Common.Inlist(this.strMa_Ct_List, "IN,INT,SC"))
+            {
                 this.IsDmsInvoice = true;
-
+                btImport.Visible = true;
+            }
 
             this.Build();
 
@@ -1365,17 +1367,23 @@ namespace Epoint.Modules
         /// 
         public void Import_Excel(bool IsAspocel)
         {
+
+            string Ma_Vt_List = string.Empty, Ma_Dt_List = string.Empty, So_Ct_List = string.Empty;
+            DataRow rowCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct_List);
+            string strTableName = (string)rowCt["Table_Ct"];
+            string strTable_Ph = (string)rowCt["Table_Ph"];
+            string strSp_UpdatePh = (string)rowCt["Sp_UpdatePh"];
+            string strSp_UpdateCt = (string)rowCt["Sp_UpdateCt"];
+            DataTable tableVoucher = DataTool.SQLGetDataTable(strTable_Ph, "TOP 0 * ", " 0 = 1", null);
+            DataTable tableDetail = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
+            DataTable tableStructForStt = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
+
+
             EpointProcessBox.AddMessage("Loading data....................");
+
             try
             {
-                DataRow rowCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", this.strMa_Ct_List);
-                string strTableName = (string)rowCt["Table_Ct"];
-                string strTable_Ph = (string)rowCt["Table_Ph"];
-                string strSp_UpdatePh = (string)rowCt["Sp_UpdatePh"];
-                string strSp_UpdateCt = (string)rowCt["Sp_UpdateCt"];
-                DataTable tableVoucher = DataTool.SQLGetDataTable(strTable_Ph, "TOP 0 * ", " 0 = 1", null);
-                DataTable tableDetail = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
-                DataTable tableStructForStt = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
+
                 //DataTable tableARBan = tableDetail.Clone();
 
                 string strModule = string.Empty;
@@ -1470,31 +1478,82 @@ namespace Epoint.Modules
                     }
                 }
 
+                var structInvoice = from c in tableDetail.AsEnumerable()
+                                    group c by new
+                                    {
+                                        So_Ct = c.Field<string>("So_Ct")
+                                    } into g
+                                    where g.Key.So_Ct != string.Empty
+                                    select new
+                                    {
+                                        g.Key.So_Ct
+                                    };
+
                 var structVattu = from c in tableDetail.AsEnumerable()
-                                group c by new
-                                {
-                                    Ma_Vt = c.Field<string>("Ma_Vt")
-                                } into g
-                                where g.Key.Ma_Vt != string.Empty
-                                select new
-                                {
-                                    g.Key.Ma_Vt
-                                };
-                string Ma_Vt_List = string.Empty;
+                                  group c by new
+                                  {
+                                      Ma_Vt = c.Field<string>("Ma_Vt")
+                                  } into g
+                                  where g.Key.Ma_Vt != string.Empty
+                                  select new
+                                  {
+                                      g.Key.Ma_Vt
+                                  };
+                var structDoituong = from c in tableDetail.AsEnumerable()
+                                     group c by new
+                                     {
+                                         Ma_Dt = c.Field<string>("Ma_Dt")
+                                     } into g
+                                     where g.Key.Ma_Dt != string.Empty
+                                     select new
+                                     {
+                                         g.Key.Ma_Dt
+                                     };
+                foreach (var c in structInvoice)
+                {
+                    DataRow drVou = DataTool.SQLGetDataRowByID("GLVOUCHER", "So_Ct", c.So_Ct);
+                    if (drVou != null)
+                    {
+                        So_Ct_List += c.So_Ct + ";" + System.Environment.NewLine;
+                    }
+                }
+                if (So_Ct_List != string.Empty)
+                {
+                    EpointProcessBox.AddMessage("Các chứng từ đã tồn tại:" + So_Ct_List);
+                    return;
+                }
+
                 foreach (var c in structVattu)
                 {
                     DataRow drVt = DataTool.SQLGetDataRowByID("LIVATTU", "Ma_Vt", c.Ma_Vt);
                     if (drVt == null)
                     {
-                        Ma_Vt_List += c.Ma_Vt + ";";
+                        Ma_Vt_List += c.Ma_Vt + ";" + System.Environment.NewLine;
                     }
                 }
 
+                foreach (var c in structDoituong)
+                {
+                    DataRow drdt = DataTool.SQLGetDataRowByID("LIDOITUONG", "Ma_Dt", c.Ma_Dt);
+                    if (drdt == null)
+                    {
+                        Ma_Dt_List += c.Ma_Dt + ";" + System.Environment.NewLine;
+                    }
+                }
 
                 if (Ma_Vt_List != string.Empty)
                 {
-
                     EpointProcessBox.AddMessage("Danh sách mã hàng không tồn tại:" + Ma_Vt_List);
+                }
+
+                if (Ma_Dt_List != string.Empty)
+                {
+                    EpointProcessBox.AddMessage("Danh sách khách hàng không tồn tại:" + Ma_Dt_List);
+                }
+
+                if (Ma_Vt_List != string.Empty || Ma_Vt_List != string.Empty)
+                {
+                    EpointProcessBox.AddMessage("Import đơn hàng thất bại.");
                     return;
                 }
 
@@ -1637,6 +1696,7 @@ namespace Epoint.Modules
                     {
                         drVoucher["TTien_Nt6"] = Common.SumDCValue(drAr, "Tien_Nt6");
                     }
+                    drVoucher["Create_Log"] = Common.GetCurrent_Log();
 
                     string newStt = Common.GetNewStt(strModule, true);
                     while (DataTool.SQLCheckExist(strTable_Ph, "Stt", newStt))
@@ -2495,10 +2555,27 @@ namespace Epoint.Modules
         {
             if (Common.Inlist(strMa_Ct_List, "BG,SO"))
                 this.FillDataBG(strFilterKey_Old, strFilterKey_Old);
-            else if (Common.Inlist(strMa_Ct_List, "IN,INT"))
+            else if (this.IsDmsInvoice)//Common.Inlist(strMa_Ct_List, "IN,INT")
                 this.FillData_OM(strFilterKey_Old, strFilterKey_Old);
             else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
+        }
+    void btImport_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;                     
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                DefaultExt = "xlsx",
+                Filter = "xls files (*.xls;*.xlsx)|*.xls;*.xlsx"
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.dtDataExcelImport = Common.ReadExcel(dialog.FileName);
+                EpointProcessBox.Show(this);
+                
+            }
+
+            this.Cursor = Cursors.Default;
         }
 
         void btFilter_Click(object sender, EventArgs e)

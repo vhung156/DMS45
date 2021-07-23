@@ -55,6 +55,7 @@ namespace Epoint.Modules.AR
             this.dgvEditCt1 = new Epoint.Systems.Customizes.dgvVoucher();
             this.txtMa_CBNV_GH = new Epoint.Systems.Controls.txtTextLookup();
             this.grInfo = new System.Windows.Forms.GroupBox();
+            this.lbtStt = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Xe = new Epoint.Systems.Controls.txtTextLookup();
             this.btCheckStock = new Epoint.Systems.Controls.btControl();
             this.btAddHD = new Epoint.Systems.Controls.btControl();
@@ -65,7 +66,6 @@ namespace Epoint.Modules.AR
             this.lblControl2 = new Epoint.Systems.Controls.lblControl();
             this.lblNote = new Epoint.Systems.Controls.lblControl();
             this.txtGhi_Chu = new Epoint.Systems.Controls.txtTextBox();
-            this.lbtStt = new Epoint.Systems.Controls.lblControl();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEditCt)).BeginInit();
             this.pnlTTien_Nt.SuspendLayout();
             this.tabVoucher.SuspendLayout();
@@ -494,6 +494,22 @@ namespace Epoint.Modules.AR
             this.grInfo.Tag = "grInfo";
             this.grInfo.Text = "Thông tin chung";
             // 
+            // lbtStt
+            // 
+            this.lbtStt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbtStt.AutoEllipsis = true;
+            this.lbtStt.AutoSize = true;
+            this.lbtStt.BackColor = System.Drawing.Color.Transparent;
+            this.lbtStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtStt.ForeColor = System.Drawing.Color.Blue;
+            this.lbtStt.Location = new System.Drawing.Point(440, 42);
+            this.lbtStt.Name = "lbtStt";
+            this.lbtStt.Size = new System.Drawing.Size(47, 18);
+            this.lbtStt.TabIndex = 133;
+            this.lbtStt.Tag = "";
+            this.lbtStt.Text = "txtStt";
+            this.lbtStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // txtMa_Xe
             // 
             this.txtMa_Xe.bEnabled = true;
@@ -529,6 +545,7 @@ namespace Epoint.Modules.AR
             this.btCheckStock.TabStop = false;
             this.btCheckStock.Tag = "";
             this.btCheckStock.Text = "&Kiểm tra tồn kho";
+            this.btCheckStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btCheckStock.UseVisualStyleBackColor = true;
             // 
             // btAddHD
@@ -545,6 +562,7 @@ namespace Epoint.Modules.AR
             this.btAddHD.TabStop = false;
             this.btAddHD.Tag = "";
             this.btAddHD.Text = "&Chọn hóa đơn";
+            this.btAddHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btAddHD.UseVisualStyleBackColor = true;
             // 
             // txtNh_Ct
@@ -667,22 +685,6 @@ namespace Epoint.Modules.AR
             this.txtGhi_Chu.TabIndex = 5;
             this.txtGhi_Chu.UseAutoFilter = false;
             // 
-            // lbtStt
-            // 
-            this.lbtStt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbtStt.AutoEllipsis = true;
-            this.lbtStt.AutoSize = true;
-            this.lbtStt.BackColor = System.Drawing.Color.Transparent;
-            this.lbtStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtStt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtStt.Location = new System.Drawing.Point(440, 42);
-            this.lbtStt.Name = "lbtStt";
-            this.lbtStt.Size = new System.Drawing.Size(47, 18);
-            this.lbtStt.TabIndex = 133;
-            this.lbtStt.Tag = "";
-            this.lbtStt.Text = "txtStt";
-            this.lbtStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // frmGopPXK_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -695,6 +697,7 @@ namespace Epoint.Modules.AR
             this.Name = "frmGopPXK_Edit";
             this.Tag = "frmCtHD, ESC";
             this.Text = "frmCtHD";
+            this.Controls.SetChildIndex(this.lineControl1, 0);
             this.Controls.SetChildIndex(this.tabVoucher, 0);
             this.Controls.SetChildIndex(this.grInfo, 0);
             this.Controls.SetChildIndex(this.ucNotice, 0);

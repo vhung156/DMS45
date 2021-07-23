@@ -30,13 +30,13 @@
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGiaBanNhDt));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btCopyPrice = new Epoint.Systems.Customizes.btPreview();
             this.txtMa_Vt = new Epoint.Systems.Controls.txtTextLookup();
             this.cboMa_Nh_Dt = new Epoint.Systems.Controls.cboMultiControl();
             this.lbtTen_Vt = new Epoint.Systems.Controls.lblControl();
             this.lblControl2 = new Epoint.Systems.Controls.lblControl();
             this.lbMa_Vt = new Epoint.Systems.Controls.lblControl();
             this.pnlGiaban = new System.Windows.Forms.Panel();
-            this.btCopyPrice = new Epoint.Systems.Customizes.btPreview();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,22 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc giá bán";
+            // 
+            // btCopyPrice
+            // 
+            this.btCopyPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCopyPrice.Image = ((System.Drawing.Image)(resources.GetObject("btCopyPrice.Image")));
+            this.btCopyPrice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btCopyPrice.Location = new System.Drawing.Point(633, 19);
+            this.btCopyPrice.Name = "btCopyPrice";
+            this.btCopyPrice.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btCopyPrice.Size = new System.Drawing.Size(125, 27);
+            this.btCopyPrice.TabIndex = 73;
+            this.btCopyPrice.Tag = "";
+            this.btCopyPrice.Text = "Copy nhóm giá";
+            this.btCopyPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btCopyPrice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCopyPrice.UseVisualStyleBackColor = true;
             // 
             // txtMa_Vt
             // 
@@ -138,21 +154,6 @@
             this.pnlGiaban.Name = "pnlGiaban";
             this.pnlGiaban.Size = new System.Drawing.Size(792, 514);
             this.pnlGiaban.TabIndex = 2;
-            // 
-            // btCopyPrice
-            // 
-            this.btCopyPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCopyPrice.Image = ((System.Drawing.Image)(resources.GetObject("btCopyPrice.Image")));
-            this.btCopyPrice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCopyPrice.Location = new System.Drawing.Point(633, 19);
-            this.btCopyPrice.Name = "btCopyPrice";
-            this.btCopyPrice.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btCopyPrice.Size = new System.Drawing.Size(125, 27);
-            this.btCopyPrice.TabIndex = 73;
-            this.btCopyPrice.Tag = "";
-            this.btCopyPrice.Text = "Copy nhóm giá";
-            this.btCopyPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btCopyPrice.UseVisualStyleBackColor = true;
             // 
             // frmGiaBanNhDt
             // 

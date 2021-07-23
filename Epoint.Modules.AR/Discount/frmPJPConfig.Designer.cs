@@ -30,7 +30,7 @@
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPJPConfig));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.chkSun = new System.Windows.Forms.CheckBox();
             this.chkSat = new System.Windows.Forms.CheckBox();
             this.chkFri = new System.Windows.Forms.CheckBox();
@@ -145,6 +145,7 @@
             this.btFillterData.Tag = "Preview";
             this.btFillterData.Text = "Lọc dữ liệu";
             this.btFillterData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btFillterData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btFillterData.UseVisualStyleBackColor = true;
             // 
             // lbGia
@@ -229,8 +230,8 @@
             // 
             this.dgvPJP.AllowUserToAddRows = false;
             this.dgvPJP.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvPJP.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvPJP.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPJP.BackgroundColor = System.Drawing.Color.White;
             this.dgvPJP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPJP.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -266,9 +267,9 @@
             this.grbVisitOp.Controls.Add(this.chkSat);
             this.grbVisitOp.Controls.Add(this.chkThu);
             this.grbVisitOp.Controls.Add(this.chkFri);
-            this.grbVisitOp.Location = new System.Drawing.Point(32, 28);
+            this.grbVisitOp.Location = new System.Drawing.Point(32, 32);
             this.grbVisitOp.Name = "grbVisitOp";
-            this.grbVisitOp.Size = new System.Drawing.Size(870, 37);
+            this.grbVisitOp.Size = new System.Drawing.Size(870, 33);
             this.grbVisitOp.TabIndex = 76;
             this.grbVisitOp.TabStop = false;
             this.grbVisitOp.Text = "Viếng thăm";
@@ -328,14 +329,14 @@
             this.btPJPDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPJPDetail.Image = ((System.Drawing.Image)(resources.GetObject("btPJPDetail.Image")));
             this.btPJPDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPJPDetail.Location = new System.Drawing.Point(673, 3);
+            this.btPJPDetail.Location = new System.Drawing.Point(669, 3);
             this.btPJPDetail.Name = "btPJPDetail";
             this.btPJPDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btPJPDetail.Size = new System.Drawing.Size(103, 27);
+            this.btPJPDetail.Size = new System.Drawing.Size(107, 30);
             this.btPJPDetail.TabIndex = 72;
             this.btPJPDetail.Tag = "";
             this.btPJPDetail.Text = "Lịch chi tiết";
-            this.btPJPDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPJPDetail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btPJPDetail.UseVisualStyleBackColor = true;
             // 
             // chkCustomAvail
@@ -361,7 +362,7 @@
             this.btImport.TabIndex = 77;
             this.btImport.Tag = "";
             this.btImport.Text = "&Import";
-            this.btImport.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btImport.UseVisualStyleBackColor = true;
             // 
             // frmPJPConfig
@@ -380,7 +381,7 @@
             this.Controls.Add(this.dteNgay_Kt);
             this.Controls.Add(this.lbGia);
             this.Name = "frmPJPConfig";
-            this.Text = "frmDiscount";
+            this.Text = "frmPJPConfig";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

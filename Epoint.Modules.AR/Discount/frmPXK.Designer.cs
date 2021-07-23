@@ -292,6 +292,7 @@
             this.btPrint000.Tag = "";
             this.btPrint000.Text = "Xem PXK Tổng";
             this.btPrint000.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrint000.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btPrint000.UseVisualStyleBackColor = true;
             this.btPrint000.Visible = false;
             // 
@@ -308,6 +309,7 @@
             this.btFillterData.Tag = "Preview";
             this.btFillterData.Text = "Lọc dữ liệu";
             this.btFillterData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btFillterData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btFillterData.UseVisualStyleBackColor = true;
             // 
             // dteNgay_Ct2

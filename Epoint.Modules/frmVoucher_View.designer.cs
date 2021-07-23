@@ -47,6 +47,7 @@
             this.pnlControl1 = new Epoint.Systems.Controls.pnlControl();
             this.btDiscoutDetail = new Epoint.Systems.Customizes.btPreview();
             this.btnPXK = new Epoint.Systems.Customizes.btPreview();
+            this.btImport = new Epoint.Systems.Controls.btControl();
             this.pnlTTien.SuspendLayout();
             this.pnlTTien_Nt.SuspendLayout();
             this.pnlControl1.SuspendLayout();
@@ -58,7 +59,7 @@
             this.pnlTTien.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pnlTTien.Controls.Add(this.numTTien3);
             this.pnlTTien.Controls.Add(this.numTTien0);
-            this.pnlTTien.Location = new System.Drawing.Point(776, 483);
+            this.pnlTTien.Location = new System.Drawing.Point(674, 483);
             this.pnlTTien.Name = "pnlTTien";
             this.pnlTTien.Size = new System.Drawing.Size(102, 69);
             this.pnlTTien.TabIndex = 109;
@@ -115,7 +116,7 @@
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt3);
             this.pnlTTien_Nt.Controls.Add(this.numTTien_Nt0);
             this.pnlTTien_Nt.Controls.Add(this.numTSo_Luong);
-            this.pnlTTien_Nt.Location = new System.Drawing.Point(577, 483);
+            this.pnlTTien_Nt.Location = new System.Drawing.Point(475, 483);
             this.pnlTTien_Nt.Name = "pnlTTien_Nt";
             this.pnlTTien_Nt.Size = new System.Drawing.Size(199, 69);
             this.pnlTTien_Nt.TabIndex = 108;
@@ -233,7 +234,7 @@
             this.lbtStt.BackColor = System.Drawing.Color.Transparent;
             this.lbtStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtStt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtStt.Location = new System.Drawing.Point(559, 528);
+            this.lbtStt.Location = new System.Drawing.Point(352, 495);
             this.lbtStt.Name = "lbtStt";
             this.lbtStt.Size = new System.Drawing.Size(47, 18);
             this.lbtStt.TabIndex = 132;
@@ -253,6 +254,7 @@
             this.btPrint.Tag = "Print";
             this.btPrint.Text = "&In";
             this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btPrint.UseVisualStyleBackColor = true;
             // 
             // btFilter
@@ -267,6 +269,7 @@
             this.btFilter.Tag = "Filter";
             this.btFilter.Text = "&Lọc";
             this.btFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btFilter.UseVisualStyleBackColor = true;
             // 
             // btPreview
@@ -281,6 +284,7 @@
             this.btPreview.Tag = "Preview";
             this.btPreview.Text = "Xem";
             this.btPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btPreview.UseVisualStyleBackColor = true;
             // 
             // btBack
@@ -295,6 +299,7 @@
             this.btBack.Tag = "Back";
             this.btBack.Text = "Quay lại";
             this.btBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btBack.UseVisualStyleBackColor = true;
             // 
             // pnlControl1
@@ -316,14 +321,15 @@
             this.btDiscoutDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDiscoutDetail.Image = ((System.Drawing.Image)(resources.GetObject("btDiscoutDetail.Image")));
             this.btDiscoutDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btDiscoutDetail.Location = new System.Drawing.Point(460, 502);
+            this.btDiscoutDetail.Location = new System.Drawing.Point(460, 518);
             this.btDiscoutDetail.Name = "btDiscoutDetail";
             this.btDiscoutDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btDiscoutDetail.Size = new System.Drawing.Size(96, 49);
+            this.btDiscoutDetail.Size = new System.Drawing.Size(96, 34);
             this.btDiscoutDetail.TabIndex = 111;
             this.btDiscoutDetail.Tag = "";
             this.btDiscoutDetail.Text = "Chi tiết KM";
             this.btDiscoutDetail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btDiscoutDetail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btDiscoutDetail.UseVisualStyleBackColor = true;
             this.btDiscoutDetail.Visible = false;
             // 
@@ -333,23 +339,41 @@
             this.btnPXK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPXK.Image = ((System.Drawing.Image)(resources.GetObject("btnPXK.Image")));
             this.btnPXK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPXK.Location = new System.Drawing.Point(350, 502);
+            this.btnPXK.Location = new System.Drawing.Point(350, 518);
             this.btnPXK.Name = "btnPXK";
             this.btnPXK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnPXK.Size = new System.Drawing.Size(105, 49);
+            this.btnPXK.Size = new System.Drawing.Size(105, 34);
             this.btnPXK.TabIndex = 112;
             this.btnPXK.Tag = "";
             this.btnPXK.Text = "Tạo PXK";
             this.btnPXK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPXK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPXK.UseVisualStyleBackColor = true;
             this.btnPXK.Visible = false;
+            // 
+            // btImport
+            // 
+            this.btImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btImport.Image = ((System.Drawing.Image)(resources.GetObject("btImport.Image")));
+            this.btImport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btImport.Location = new System.Drawing.Point(562, 517);
+            this.btImport.Name = "btImport";
+            this.btImport.Size = new System.Drawing.Size(97, 34);
+            this.btImport.TabIndex = 136;
+            this.btImport.Tag = "";
+            this.btImport.Text = "Import";
+            this.btImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btImport.UseVisualStyleBackColor = true;
+            this.btImport.Visible = false;
             // 
             // frmVoucher_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(228)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(900, 566);
+            this.ClientSize = new System.Drawing.Size(781, 566);
+            this.Controls.Add(this.btImport);
             this.Controls.Add(this.lbtStt);
             this.Controls.Add(this.btDiscoutDetail);
             this.Controls.Add(this.btnPXK);
@@ -389,5 +413,6 @@
         public Systems.Customizes.btPreview btDiscoutDetail;
         public Systems.Customizes.btPreview btnPXK;
         private Systems.Controls.lblControl lbtStt;
-	}
+        public Systems.Controls.btControl btImport;
+    }
 }
