@@ -492,13 +492,13 @@ namespace Epoint.Modules.AR
             dtEditCt.AcceptChanges();
         }
 
-        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbAmt, bool isManual)
+        public static void Calc_Chiet_Khau_ForInvoice(frmVoucher_Edit frmEditCt, double dbTotalAmt, bool isManual)
         {
 
             string Ma_Ct_CKHD = "CKHOADON_M";
             double dbTien = 0, dbTien4 = 0, dbTien4_Old = 0, dbTien_CkInvoice = 0, dbTien_CkInvoice_Old = 0, dbTien_Ck_M4 = 0;
             double dbTTien = Convert.ToDouble(Common.SumDCValue(frmEditCt.dtEditCt, "Tien_Nt9", ""));
-            double dbAmtPercent = Math.Round((dbAmt / dbTTien) * 100, 7);
+            double dbAmtPercent = Math.Round((dbTotalAmt / dbTTien) * 100, 7);
             DataTable dtEditCt = frmEditCt.dtEditCt;
             frmEditCt.dtEditCtDisc = Common.FilterDatatable(frmEditCt.dtEditCtDisc, "MA_CTKM <> '" + Ma_Ct_CKHD + "'");
 
@@ -508,6 +508,10 @@ namespace Epoint.Modules.AR
                 if ((bool)drEditCt["Hang_Km"]) // Đối với hàng KM nhập tay
                     continue;
                 dbTien = Convert.ToDouble(drEditCt["Tien_Nt9"]);
+
+                if (dbTien == 0) // Đối với hàng KM nhập tay
+                    continue;
+
                 dbTien4_Old = Convert.ToDouble(drEditCt["Tien4"]);
                 dbTien4 = Convert.ToDouble(drEditCt["Tien4"]);
                 dbTien_Ck_M4 = Math.Round(dbTien * dbAmtPercent / 100); /// Tien nhap tay duoi detail
@@ -520,7 +524,7 @@ namespace Epoint.Modules.AR
                 drEditCt["Tien_Ck_M4"] = dbTien_Ck_M4; // Tien nhap tay Invoice
                 drEditCt["Tien_CkInvoice"] = dbTien_CkInvoice;
                 //drEditCt["Ma_CtCk1"] = CKHOADON
-                drEditCt["Chiet_Khau"] = Math.Round((dbTien4 / dbTien) * 100, 7);
+                drEditCt["Chiet_Khau"] = Convert.ToDouble( Math.Round((dbTien4 / dbTien) * 100, 7));
                 drEditCt["Tien2"] = drEditCt["Tien_Nt2"] = dbTien;
                 drEditCt["Tien4"] = drEditCt["Tien_Nt4"] = dbTien4;
 
@@ -547,7 +551,7 @@ namespace Epoint.Modules.AR
             }
 
             double dbAmt_InvoiceM = Common.SumDCValue(dtEditCt, "Tien_Ck_M4", "");
-            double dbChenh_Lech = dbAmt - dbAmt_InvoiceM;
+            double dbChenh_Lech = dbTotalAmt - dbAmt_InvoiceM;
             if (dbChenh_Lech != 0)
             {
                 foreach (DataRow drEditCtCheck in dtEditCt.Select("Tien_Ck_M4 > 0"))

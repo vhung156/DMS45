@@ -1593,6 +1593,7 @@ namespace Epoint.Modules
                     }
                     else
                     {
+                        rowEx["Ma_Ct"] = this.strMa_Ct_List;
                         DataRow drVoucher = tableVoucher.NewRow();
                         Common.SetDefaultDataRow(ref drVoucher);
                         Common.CopyDataRow(rowEx, drVoucher);
