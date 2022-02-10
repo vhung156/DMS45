@@ -545,6 +545,8 @@ namespace Epoint.Modules.AR
 
         private bool FormCheckValid()
         {
+            double dbTienAlow = Convert.ToDouble(Parameters.GetParaValue("TRON_THANH_TIEN_BAN"));
+
             if (!Common.CheckDataLocked(Library.StrToDate(this.dteNgay_Ct.Text)))
             {
                 string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Dữ liệu đã bị khóa" : "Data have been locked";
@@ -633,12 +635,24 @@ namespace Epoint.Modules.AR
                     dr["MA_CTKM_M"] = string.Empty;
                 }
 
+
+                double dHe_So9 = Convert.ToDouble(dr["He_So9"]);
+                double dbSo_Luong9 = (dr["So_Luong9"] == DBNull.Value) ? 0 : Convert.ToDouble(dr["So_Luong9"]);
+                double dbGia_Nt9 = (dr["Gia_Nt9"] == DBNull.Value) ? 0 : Convert.ToDouble(dr["Gia_Nt9"]);
+                double dbTien_Nt9 = (dr["Tien_Nt9"] == DBNull.Value) ? 0 : Convert.ToDouble(dr["Tien_Nt9"]);
+                double dbTy_Gia = Convert.ToDouble(dr["Ty_Gia"]);
+
+                double dbChenh_Lech = Math.Round((dbTien_Nt9 - dbSo_Luong9 * dbGia_Nt9) * dbTy_Gia, MidpointRounding.AwayFromZero);
+
+                if (Math.Abs(dbChenh_Lech) > dbTienAlow)
+                {
+                    string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Có dòng mã vật tư tiền hàng chênh lệch: " + (string)dr["Ma_Vt"] : "Exists row has value do not balance : " + (string)dr["Ma_Vt"];
+                    Common.MsgCancel(strMsg);
+                    return false;
+                }
             }
-
             if (!Voucher.CheckDuplicateInvoice(this))
-                return false;
-
-            return true;
+                return false; return true;
         }
 
         public override bool Save()
@@ -3005,6 +3019,7 @@ namespace Epoint.Modules.AR
                     Voucher.Calc_Tien(drCurrent);
                     Voucher.Update_TTien(this);
                     Voucher.Adjust_TThue_Vat(this, true);
+
                 }
                 else if (Common.Inlist(strColumnName, "GIA_NT9"))
                 {
@@ -3506,8 +3521,8 @@ namespace Epoint.Modules.AR
                 bRequire = true;
             }
 
-            //DataRow drLookup = Lookup.ShowQuickLookup("MA_CTKM_M", strValue, bRequire, "'" + Library.DateToStr(Convert.ToDateTime(drCurrent["Ngay_Ct"].ToString())) + "' BETWEEN Ngay_Bd AND Ngay_Kt ", "");
-            DataRow drLookup = Lookup.ShowLookup("MA_CTKM", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowQuickLookup("MA_CTKM_M", strValue, bRequire, "'" + Library.DateToStr(Convert.ToDateTime(drCurrent["Ngay_Ct"].ToString())) + "' BETWEEN Ngay_Bd AND Ngay_Kt ", "");
+            //DataRow drLookup = Lookup.ShowLookup("MA_CTKM", strValue, bRequire, "", "");
             if (bRequire && drLookup == null)
                 return false;
 

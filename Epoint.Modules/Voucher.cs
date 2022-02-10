@@ -1247,6 +1247,7 @@ namespace Epoint.Modules
                 drEditCt["He_So9"] = 1;
 
             DataRow drDmCt = DataTool.SQLGetDataRowByID("SYSDMCT", "Ma_Ct", (string)drEditCt["Ma_Ct"]);
+            double dbTienAlowRound = Convert.ToDouble(Parameters.GetParaValue("TRON_THANH_TIEN_BAN"));
 
             double dHe_So9 = Convert.ToDouble(drEditCt["He_So9"]);
             double dbSo_Luong9 = (drEditCt["So_Luong9"] == DBNull.Value) ? 0 : Convert.ToDouble(drEditCt["So_Luong9"]);
@@ -1263,7 +1264,7 @@ namespace Epoint.Modules
 
             //------------- Chưa tính trường hợp số tiền quá nhỏ--------
 
-            if (Math.Abs(dbChenh_Lech) > Convert.ToDouble(Parameters.GetParaValue("TRON_THANH_TIEN_BAN")))
+            if (Math.Abs(dbChenh_Lech) > dbTienAlowRound)
             {
                 if (dbTien_Nt9 == 0)
                     dbTien_Nt9 = Math.Round(dbSo_Luong9 * dbGia_Nt9, 2, MidpointRounding.AwayFromZero);

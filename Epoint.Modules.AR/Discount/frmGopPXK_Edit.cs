@@ -72,6 +72,7 @@ namespace Epoint.Modules.AR
                     dteNgay_Ct.Text = Library.DateToStr(DateTime.Now);
                     this.drEdit = drEdit.Table.NewRow();
                     this.drEdit["Ngay_Ct"] = dteNgay_Ct.Text;
+                    this.drEdit["Active"] = true;
                     Common.SetDefaultDataRow(ref this.drEdit);
                 }
                 this.strStt = Common.GetNewStt(strModule, true);
