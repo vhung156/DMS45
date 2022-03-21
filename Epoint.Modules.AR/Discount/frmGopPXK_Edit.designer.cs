@@ -57,6 +57,7 @@ namespace Epoint.Modules.AR
             this.grInfo = new System.Windows.Forms.GroupBox();
             this.lbtStt = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Xe = new Epoint.Systems.Controls.txtTextLookup();
+            this.btCheckCustomerCredit = new Epoint.Systems.Controls.btControl();
             this.btCheckStock = new Epoint.Systems.Controls.btControl();
             this.btAddHD = new Epoint.Systems.Controls.btControl();
             this.txtNh_Ct = new Epoint.Systems.Controls.txtTextBox();
@@ -469,6 +470,7 @@ namespace Epoint.Modules.AR
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grInfo.Controls.Add(this.lbtStt);
             this.grInfo.Controls.Add(this.txtMa_Xe);
+            this.grInfo.Controls.Add(this.btCheckCustomerCredit);
             this.grInfo.Controls.Add(this.btCheckStock);
             this.grInfo.Controls.Add(this.btAddHD);
             this.grInfo.Controls.Add(this.txtNh_Ct);
@@ -531,6 +533,23 @@ namespace Epoint.Modules.AR
             this.txtMa_Xe.TabIndex = 2;
             this.txtMa_Xe.UseAutoFilter = true;
             // 
+            // btCheckCustomerCredit
+            // 
+            this.btCheckCustomerCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCheckCustomerCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCheckCustomerCredit.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCheckCustomerCredit.Image = global::Epoint.Modules.AR.Properties.Resources.credit_card__2_;
+            this.btCheckCustomerCredit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btCheckCustomerCredit.Location = new System.Drawing.Point(662, 110);
+            this.btCheckCustomerCredit.Name = "btCheckCustomerCredit";
+            this.btCheckCustomerCredit.Size = new System.Drawing.Size(128, 32);
+            this.btCheckCustomerCredit.TabIndex = 7;
+            this.btCheckCustomerCredit.TabStop = false;
+            this.btCheckCustomerCredit.Tag = "";
+            this.btCheckCustomerCredit.Text = "&Kiểm tra công nợ";
+            this.btCheckCustomerCredit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCheckCustomerCredit.UseVisualStyleBackColor = true;
+            // 
             // btCheckStock
             // 
             this.btCheckStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -538,9 +557,9 @@ namespace Epoint.Modules.AR
             this.btCheckStock.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btCheckStock.Image = ((System.Drawing.Image)(resources.GetObject("btCheckStock.Image")));
             this.btCheckStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCheckStock.Location = new System.Drawing.Point(649, 110);
+            this.btCheckStock.Location = new System.Drawing.Point(528, 110);
             this.btCheckStock.Name = "btCheckStock";
-            this.btCheckStock.Size = new System.Drawing.Size(136, 31);
+            this.btCheckStock.Size = new System.Drawing.Size(128, 31);
             this.btCheckStock.TabIndex = 7;
             this.btCheckStock.TabStop = false;
             this.btCheckStock.Tag = "";
@@ -555,7 +574,7 @@ namespace Epoint.Modules.AR
             this.btAddHD.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btAddHD.Image = ((System.Drawing.Image)(resources.GetObject("btAddHD.Image")));
             this.btAddHD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btAddHD.Location = new System.Drawing.Point(509, 111);
+            this.btAddHD.Location = new System.Drawing.Point(388, 110);
             this.btAddHD.Name = "btAddHD";
             this.btAddHD.Size = new System.Drawing.Size(134, 31);
             this.btAddHD.TabIndex = 6;
@@ -748,5 +767,6 @@ namespace Epoint.Modules.AR
         private Systems.Controls.txtTextBox txtMa_Ct;
         private Systems.Controls.txtTextBox txtNh_Ct;
         private Systems.Controls.lblControl lbtStt;
-	}
+        private Systems.Controls.btControl btCheckCustomerCredit;
+    }
 }

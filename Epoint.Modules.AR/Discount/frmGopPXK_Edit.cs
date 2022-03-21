@@ -52,6 +52,7 @@ namespace Epoint.Modules.AR
 
             btAddHD.Click += new EventHandler(btAddHD_Click);
             btCheckStock.Click += new EventHandler(btCheckStock_Click);
+            btCheckCustomerCredit.Click += new EventHandler(btCheckStock_Click);
         }
 
 
@@ -347,6 +348,11 @@ namespace Epoint.Modules.AR
         void btCheckStock_Click(object sender, EventArgs e)
         {
             frmCheckStock_View frm = new frmCheckStock_View();
+            frm.Load(this.dtEditCt, Library.StrToDate(dteNgay_Ct.Text), this.txtMa_Px.Text);
+        }
+        void btCheckCustomerCredit_Click(object sender, EventArgs e)
+        {
+            frmCheckCustCredit_View frm = new frmCheckCustCredit_View();
             frm.Load(this.dtEditCt, Library.StrToDate(dteNgay_Ct.Text), this.txtMa_Px.Text);
         }
         void btAddHD_Click(object sender, EventArgs e)
@@ -650,7 +656,8 @@ namespace Epoint.Modules.AR
                 command.Parameters.AddWithValue("@Ma_PX", txtMa_Px.Text);
                 command.Parameters.AddWithValue("@Ma_CBNV_GH", txtMa_CBNV_GH.Text);
                 command.Parameters.AddWithValue("@LOAI_PX", txtMa_Ct.Text);
-                command.Parameters.AddWithValue("@IS_UPDATE", "0");
+                command.Parameters.AddWithValue("@IS_UPDATE", enuNew_Edit == enuEdit.New? "1" : "0");
+                command.Parameters.AddWithValue("@UserId", Element.sysUser_Id);
                 command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
                 SqlParameter parameter = new SqlParameter
                 {
