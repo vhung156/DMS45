@@ -64,7 +64,9 @@ namespace Epoint.Modules.IN
             dteNgay_Ct.Validating += new CancelEventHandler(dteNgay_Ct_Validating);
             txtMa_Tte.Validating += new CancelEventHandler(txtMa_Tte_Validating);
             numTy_Gia.Leave += new EventHandler(numTy_Gia_Leave);
-            
+
+            txtMa_Xe.Validating += new CancelEventHandler(txtMa_Xe_Validating);
+
             dgvEditCt1.CellValidating += new DataGridViewCellValidatingEventHandler(dgvEditCt_CellValidating);
             dgvEditCt1.CellValidated += new DataGridViewCellEventHandler(dgvEditCt_CellValidated);
             dgvEditCt1.CellEnter += new DataGridViewCellEventHandler(dgvEditCt_CellEnter);
@@ -976,7 +978,35 @@ namespace Epoint.Modules.IN
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
+        void txtMa_Xe_Validating(object sender, CancelEventArgs e)
+        {
+            string strValue = txtMa_Xe.Text.Trim();
+            bool bRequire = false;
 
+            DataRow drLookup = Lookup.ShowQuickLookup("MA_XE", strValue, bRequire, "", "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Xe.Text = string.Empty;
+                //txtTen_CbNv_Gh.Text = string.Empty;
+            }
+            else
+            {
+                txtMa_Xe.Text = drLookup["Ma_Xe"].ToString();
+
+            }
+
+
+
+            if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
+            {
+                ((txtTextLookup)sender).AutoFilter.Visible = false;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
         void frmEditCtTien_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

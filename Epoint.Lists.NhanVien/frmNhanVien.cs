@@ -84,7 +84,7 @@ namespace Epoint.Lists
 
 		public void FillData()	
 		{
-			dtNhanVien = DataTool.SQLGetDataTable("LINHANVIEN", null, this.strLookupKeyFilter, null);
+			dtNhanVien = DataTool.SQLGetDataTable("LINHANVIEN", null, this.strLookupKeyFilter, "Ma_Cbnv");
 
             //Khong Luu field Hinh anh
             if (dtNhanVien.Columns.Contains("Hinh"))

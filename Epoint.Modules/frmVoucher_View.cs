@@ -754,6 +754,65 @@ namespace Epoint.Modules
             this.bdsSearch = bdsViewPh;
             this.ExportControl = dgvViewPh;
         }
+        private void FillDataKiemKe(string strKey)
+        {
+            string strTable_Ph = (string)drDmCt["Table_Ph"];
+            string strTable_Ct = (string)drDmCt["Table_Ct"];
+
+
+            string strSelectPh = string.Empty;
+
+            Hashtable htPara = new Hashtable();
+            htPara.Add("MA_CT", strMa_Ct_List);
+            htPara.Add("KEY", strKey);
+            htPara.Add("USER_ID", Element.sysUser_Id);
+            htPara.Add("IS_ADMIN", Element.sysIs_Admin);
+            htPara.Add("MA_DVCS", Element.sysMa_DvCs);
+            dsVoucher = SQLExec.ExecuteReturnDs("sp_IN_GetDataKiemKe", htPara, CommandType.StoredProcedure);
+
+            dtViewPh = dsVoucher.Tables[0].Copy();
+            dtViewCt = dsVoucher.Tables[1].Copy();
+
+            dtViewPh.TableName = strTable_Ph;
+            dtViewCt.TableName = strTable_Ct;
+
+            //bdsViewPh.DataSource = dtViewPh;
+            //dgvViewPh.DataSource = bdsViewPh;
+
+            //Thêm tổng tiền ở phía dưới
+            //if (dtViewCt.Columns.Contains("Tien") && dtViewCt.Columns.Contains("Tien_KK"))
+            //{
+            //    DataColumn dcNew = new DataColumn("TTIEN", typeof(double));
+            //    dcNew.Expression = "Tien";
+            //    dtViewCt.Columns.Add(dcNew);
+
+            //    dcNew = new DataColumn("TTIEN_KK", typeof(double));
+            //    dcNew.Expression = "Tien_KK";
+            //    dtViewCt.Columns.Add(dcNew);
+            //}
+
+            bdsViewCt.DataSource = dtViewCt;
+            dgvViewCt.DataSource = bdsViewCt;
+
+            //dsVoucher.Tables.Clear();
+            //dsVoucher.Tables.Add(dtViewPh);
+            //dsVoucher.Tables.Add(dtViewCt);
+
+            //Lay du lieu tu Ct len Ph theo danh sach Carry_Header
+            //Common.CopyDataColumn(dtViewCt, dtViewPh, (string)drDmCt["Update_Header"]);
+            //foreach (DataRow drViewPh in dtViewPh.Rows)
+            //{
+            //    string strStt = (string)drViewPh["Stt"];
+            //    DataRow drViewCt = dtViewCt.Select("Stt = '" + strStt + "'")[0];
+
+            //    Common.CopyDataRow(drViewCt, drViewPh, (string)drDmCt["Update_Header"]);
+            //}
+
+            bdsViewPh.MoveLast();
+
+            this.bdsSearch = bdsViewPh;
+            this.ExportControl = dgvViewPh;
+        }
         public void Filter()
         {
             DataTable dtFilter = new DataTable();
@@ -1378,7 +1437,7 @@ namespace Epoint.Modules
             DataTable tableDetail = DataTool.SQLGetDataTable(strTableName, "TOP 0 * ", " 0 = 1", null);
             DataTable tableStructForStt = DataTool.SQLGetDataTable(strTableName, "TOP 0 Ma_Ct, Ngay_Ct, So_Ct ", " 0 = 1", null);
 
-
+            int RowDataImport = 0;
             EpointProcessBox.AddMessage("Loading data....................");
 
             try
@@ -1438,16 +1497,19 @@ namespace Epoint.Modules
                 //    }
                 //}
                 this.GetDefColImport();
+               
                 object objValue;
                 //Xu ly dữ liệu
                 foreach (DataRow drRow0 in dtDefineRow_Pos.Rows)
                 {
                     int iRowGetValue = Convert.ToInt32(drRow0[0]);
+                    RowDataImport = 0;
                     foreach (DataRow drImport in this.dtDataExcelImport.Rows)
                     {
                         if (this.dtDataExcelImport.Rows.IndexOf(drImport) < iRowGetValue)
                             continue;
 
+                        RowDataImport ++;
                         DataRow drNewRowFirst = tableDetail.NewRow();
                         foreach (DataColumn dc in dtDefineCol_Pos.Columns)
                         {
@@ -1488,7 +1550,7 @@ namespace Epoint.Modules
                                     {
                                         g.Key.So_Ct
                                     };
-
+                //return;
                 var structVattu = from c in tableDetail.AsEnumerable()
                                   group c by new
                                   {
@@ -1584,10 +1646,11 @@ namespace Epoint.Modules
                         rowEx["Tk_Co2"] = this.drDmCt["Tk_Co"];
                         rowEx["Ngay_Ct"] = ((DateTime)rowEx["Ngay_Ct"]).ToShortDateString();
 
-                        rowEx["So_Luong9"] = Convert.ToDouble(rowEx["So_LuongT"]) * Convert.ToDouble(rowEx["He_So"]) + Convert.ToDouble(rowEx["So_LuongL"]);
-                        rowEx["So_Luong"] = rowEx["So_Luong9"];
-                        rowEx["He_So9"] = 1;
-                        rowEx["Dvt"] = drVt["Dvt"];
+                        rowEx["So_Luong9"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0? Convert.ToDouble(rowEx["So_LuongT"]) * Convert.ToDouble(drVt["He_So1"]) + Convert.ToDouble(rowEx["So_LuongL"]) : Convert.ToDouble(rowEx["So_LuongT"]);                        
+                        rowEx["He_So9"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? 1 : Convert.ToDouble(drVt["He_So1"]);
+                        rowEx["So_Luong"] = Convert.ToDouble(rowEx["So_Luong9"]) * Convert.ToDouble(rowEx["He_So9"]);
+                        rowEx["Gia_Nt9"] = Convert.ToDouble(rowEx["Tien_Nt9"]) / Convert.ToDouble(rowEx["So_Luong9"]);
+                        rowEx["Dvt"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? drVt["Dvt"]: drVt["Dvt1"];
                         rowEx["Ma_Kho"] = drVt["Ma_Kho_Ban"];
                         rowEx["Hang_Km"] = Convert.ToDouble(rowEx["Gia_Nt9"]) == 0 ? "true" : "false";
                     }
@@ -1605,7 +1668,7 @@ namespace Epoint.Modules
                 //return;
 
                 EpointProcessBox.AddMessage("Importing Invoice......................");
-
+                //return;
                 //var structStt = from c in tableARBan.AsEnumerable()
                 //                group c by new
                 //                {
@@ -1745,7 +1808,7 @@ namespace Epoint.Modules
                         exception = exception1;
                         ImportTrans.Rollback();
                         EpointProcessBox.ShowOK(true);
-                        EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + exception.Message);
+                        EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + RowDataImport.ToString() + exception.Message);
 
                     }
                     command.Parameters.Clear();
@@ -1771,7 +1834,7 @@ namespace Epoint.Modules
                         }
                         if (rowDetail.Table.Columns.Contains("He_So9"))
                         {
-                            rowDetail["He_So9"] = 1;
+                            //rowDetail["He_So9"] = 1;
                         }
                         foreach (DataRow row6 in dtParam.Rows)
                         {
@@ -1791,7 +1854,7 @@ namespace Epoint.Modules
                             exception = exception2;
                             ImportTrans.Rollback();
                             EpointProcessBox.ShowOK(true);
-                            EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + exception.Message);
+                            EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + RowDataImport.ToString() + exception.Message);
 
                         }
                     }
@@ -1808,7 +1871,7 @@ namespace Epoint.Modules
             }
             catch (Exception ex)
             {
-                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + ex.Message);
+                EpointProcessBox.AddMessage("Có lỗi xảy ra....................\n" + RowDataImport.ToString() + ex.Message);
             }
 
         }

@@ -2709,7 +2709,6 @@ namespace Epoint.Modules
         public static bool CheckDataLockedCtHanTtHD(string strStt)
         {
             bool bReturn = (bool)DataTool.SQLCheckExist("GLTHANHTOAN", "Stt_HD", strStt);
-
             return bReturn;
         }
 
