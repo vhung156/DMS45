@@ -941,9 +941,14 @@ namespace Epoint.Modules
                     continue;
                if(Convert.ToDouble(row2["Tien_Tt1"]) <= 0)
                {
-                   EpointMessage.MsgOk("Tồn tại dòng thanh toán tiền âm!");
+                   EpointMessage.MsgOk("Tồn tại dòng thanh toán tiền âm: " + row2["So_Ct_Hd"].ToString());
                    return;
                }
+                if (Convert.ToDateTime(row2["Ngay_Ct_Hd"]) > Library.StrToDate(dteNgay_Ct_TT.Text))
+                {
+                    EpointMessage.MsgOk("Tồn tại dòng hóa đơn có ngày hóa đơn lớn hơn ngày thanh toán: " + row2["So_Ct_Hd"].ToString());
+                    return;
+                }
             }
 
             EpointProcessBox.Show(this);           

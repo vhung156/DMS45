@@ -1664,7 +1664,7 @@ namespace Epoint.Modules.AR
                 if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
                 {
 
-                    double dbQtyLine = 0, dbAmtLine = 0, dbAmtDiscLine = 0;
+                    double dbQtyLine = 0, dbAmtLine = 0, dbAmtDiscLine = 0,dbFactorQtyAmt = 0;
                     string strSttKM_Line = string.Empty;
                     int iDiscTimeLine = 1;
                     strMa_Vt_Disc = string.Empty;
@@ -1687,7 +1687,7 @@ namespace Epoint.Modules.AR
                             dbAmtDiscLine = Convert.ToDouble(dtBreakBy.Rows[0]["Amt"]);
                             strSttKM_Line = dtBreakBy.Rows[0]["Stt"].ToString();
                             iDiscTimeLine = Convert.ToInt32(dtBreakBy.Rows[0]["DiscTime"]);
-
+                            dbFactorQtyAmt = dtBreakBy.Columns.Contains("FactorQtyAmt") ? Convert.ToDouble(dtBreakBy.Rows[0]["FactorQtyAmt"]) : -1;
                             if (strHinh_Thuc_KM == "PP") // áp dụng cho Chiết khấu dòng %
                             {
 

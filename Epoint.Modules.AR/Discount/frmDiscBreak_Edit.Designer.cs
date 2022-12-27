@@ -51,6 +51,8 @@
             this.lblControl6 = new Epoint.Systems.Controls.lblControl();
             this.numToBreakQty = new Epoint.Systems.Controls.numControl();
             this.lblControl7 = new Epoint.Systems.Controls.lblControl();
+            this.numFactorQtyAmt = new Epoint.Systems.Controls.numControl();
+            this.lblControl8 = new Epoint.Systems.Controls.lblControl();
             this.SuspendLayout();
             // 
             // lblMa_Dt
@@ -117,7 +119,7 @@
             this.btgAccept.Location = new System.Drawing.Point(341, 342);
             this.btgAccept.Name = "btgAccept";
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
-            this.btgAccept.TabIndex = 10;
+            this.btgAccept.TabIndex = 12;
             // 
             // txtMa_CTKM
             // 
@@ -210,7 +212,7 @@
             this.numDiscPer.Name = "numDiscPer";
             this.numDiscPer.Scale = 2;
             this.numDiscPer.Size = new System.Drawing.Size(120, 20);
-            this.numDiscPer.TabIndex = 7;
+            this.numDiscPer.TabIndex = 8;
             this.numDiscPer.Text = "0.00";
             this.numDiscPer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numDiscPer.UseAutoFilter = false;
@@ -227,12 +229,12 @@
             this.txtGhi_Chu.KeyFilter = "";
             this.txtGhi_Chu.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtGhi_Chu.ListFilter = new string[0];
-            this.txtGhi_Chu.Location = new System.Drawing.Point(128, 217);
+            this.txtGhi_Chu.Location = new System.Drawing.Point(128, 241);
             this.txtGhi_Chu.LookupKeyFilter = "";
             this.txtGhi_Chu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtGhi_Chu.Name = "txtGhi_Chu";
             this.txtGhi_Chu.Size = new System.Drawing.Size(267, 20);
-            this.txtGhi_Chu.TabIndex = 9;
+            this.txtGhi_Chu.TabIndex = 11;
             this.txtGhi_Chu.UseAutoFilter = false;
             // 
             // lblControl1
@@ -240,7 +242,7 @@
             this.lblControl1.AutoEllipsis = true;
             this.lblControl1.AutoSize = true;
             this.lblControl1.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl1.Location = new System.Drawing.Point(35, 224);
+            this.lblControl1.Location = new System.Drawing.Point(35, 248);
             this.lblControl1.Name = "lblControl1";
             this.lblControl1.Size = new System.Drawing.Size(44, 13);
             this.lblControl1.TabIndex = 67;
@@ -300,7 +302,7 @@
             this.numDiscQty.Name = "numDiscQty";
             this.numDiscQty.Scale = 2;
             this.numDiscQty.Size = new System.Drawing.Size(120, 20);
-            this.numDiscQty.TabIndex = 3;
+            this.numDiscQty.TabIndex = 7;
             this.numDiscQty.Text = "0.00";
             this.numDiscQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numDiscQty.UseAutoFilter = false;
@@ -344,7 +346,7 @@
             this.chkHe_So.Name = "chkHe_So";
             this.chkHe_So.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkHe_So.Size = new System.Drawing.Size(102, 17);
-            this.chkHe_So.TabIndex = 8;
+            this.chkHe_So.TabIndex = 9;
             this.chkHe_So.TabStop = false;
             this.chkHe_So.Tag = "He_So";
             this.chkHe_So.Text = "Hệ Số (Lũy tiến)";
@@ -414,6 +416,38 @@
             this.lblControl7.Text = "Đến Số lượng";
             this.lblControl7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // numFactorQtyAmt
+            // 
+            this.numFactorQtyAmt.bEnabled = true;
+            this.numFactorQtyAmt.bFormat = true;
+            this.numFactorQtyAmt.bIsLookup = false;
+            this.numFactorQtyAmt.bReadOnly = false;
+            this.numFactorQtyAmt.bRequire = false;
+            this.numFactorQtyAmt.KeyFilter = "";
+            this.numFactorQtyAmt.Location = new System.Drawing.Point(128, 217);
+            this.numFactorQtyAmt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.numFactorQtyAmt.Name = "numFactorQtyAmt";
+            this.numFactorQtyAmt.Scale = 2;
+            this.numFactorQtyAmt.Size = new System.Drawing.Size(120, 20);
+            this.numFactorQtyAmt.TabIndex = 10;
+            this.numFactorQtyAmt.Text = "0.00";
+            this.numFactorQtyAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numFactorQtyAmt.UseAutoFilter = false;
+            this.numFactorQtyAmt.Value = 0D;
+            // 
+            // lblControl8
+            // 
+            this.lblControl8.AutoEllipsis = true;
+            this.lblControl8.AutoSize = true;
+            this.lblControl8.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl8.Location = new System.Drawing.Point(35, 223);
+            this.lblControl8.Name = "lblControl8";
+            this.lblControl8.Size = new System.Drawing.Size(91, 13);
+            this.lblControl8.TabIndex = 67;
+            this.lblControl8.Tag = "";
+            this.lblControl8.Text = "Hệ Số Bước nhảy";
+            this.lblControl8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmDiscBreak_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,11 +467,13 @@
             this.Controls.Add(this.lblControl2);
             this.Controls.Add(this.lblControl5);
             this.Controls.Add(this.lblControl7);
+            this.Controls.Add(this.lblControl8);
             this.Controls.Add(this.lb);
             this.Controls.Add(this.numDiscPer);
             this.Controls.Add(this.numDiscQty);
             this.Controls.Add(this.numDiscAmt);
             this.Controls.Add(this.numToBreakQty);
+            this.Controls.Add(this.numFactorQtyAmt);
             this.Controls.Add(this.numBreakQty);
             this.Controls.Add(this.numToBreakAmt);
             this.Controls.Add(this.numBreakAmt);
@@ -475,5 +511,7 @@
         private Systems.Controls.lblControl lblControl6;
         private Systems.Controls.numControl numToBreakQty;
         private Systems.Controls.lblControl lblControl7;
-	}
+        private Systems.Controls.numControl numFactorQtyAmt;
+        private Systems.Controls.lblControl lblControl8;
+    }
 }

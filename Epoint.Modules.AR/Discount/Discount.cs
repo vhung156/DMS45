@@ -314,6 +314,8 @@ namespace Epoint.Modules.AR
 
                 if (dbAmtAlloc >= 0)
                     dbTien_Line4 = dbAmtAlloc <= dbTien_Line4_Org ? dbAmtAlloc : dbTien_Line4_Org;
+                else
+                    dbTien_Line4 = dbTien_Line4_Org;
 
                 dbTien_Ck = dbTien_Line4 + Convert.ToDouble(drEditCt["Tien_Ck"]);
                 dbTien4 = dbTien_Ck + Convert.ToDouble(drEditCt["Tien_M4"]) + Convert.ToDouble(drEditCt["Tien_Ck_M4"]);
