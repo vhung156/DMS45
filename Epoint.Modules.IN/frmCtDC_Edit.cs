@@ -265,7 +265,7 @@ namespace Epoint.Modules.IN
                     Common.SetDefaultDataRow(ref drEditPh);
                     Common.SetDefaultDataRow(ref drCurrent);
 
-                    //Ngầm định 1 số thông tin từ chứng từ cũ
+                    //Mặc định 1 số thông tin từ chứng từ cũ
                     if (drEdit != null)
                         Common.CopyDataRow(drEdit, drCurrent, (string)drDmCt["Carry_Header"]);
 
