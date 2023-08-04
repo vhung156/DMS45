@@ -98,6 +98,9 @@
             this.lblControl7 = new Epoint.Systems.Controls.lblControl();
             this.lbtTen_Tuyen = new Epoint.Systems.Controls.lbtControl();
             this.txtMa_Tuyen = new Epoint.Systems.Controls.txtTextLookup();
+            this.lblControl11 = new Epoint.Systems.Controls.lblControl();
+            this.lbtTen_Nvu = new Epoint.Systems.Controls.lbtControl();
+            this.txtMa_Nvu = new Epoint.Systems.Controls.txtTextLookup();
             this.SuspendLayout();
             // 
             // lblControl1
@@ -248,7 +251,7 @@
             this.lblMa_Vt.AutoEllipsis = true;
             this.lblMa_Vt.AutoSize = true;
             this.lblMa_Vt.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Vt.Location = new System.Drawing.Point(41, 344);
+            this.lblMa_Vt.Location = new System.Drawing.Point(41, 369);
             this.lblMa_Vt.Name = "lblMa_Vt";
             this.lblMa_Vt.Size = new System.Drawing.Size(52, 13);
             this.lblMa_Vt.TabIndex = 101;
@@ -261,7 +264,7 @@
             this.lbtTen_Vt.AutoEllipsis = true;
             this.lbtTen_Vt.AutoSize = true;
             this.lbtTen_Vt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Vt.Location = new System.Drawing.Point(262, 347);
+            this.lbtTen_Vt.Location = new System.Drawing.Point(262, 372);
             this.lbtTen_Vt.Name = "lbtTen_Vt";
             this.lbtTen_Vt.Size = new System.Drawing.Size(56, 13);
             this.lbtTen_Vt.TabIndex = 100;
@@ -273,7 +276,7 @@
             this.lblMa_Kho.AutoEllipsis = true;
             this.lblMa_Kho.AutoSize = true;
             this.lblMa_Kho.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Kho.Location = new System.Drawing.Point(41, 321);
+            this.lblMa_Kho.Location = new System.Drawing.Point(41, 346);
             this.lblMa_Kho.Name = "lblMa_Kho";
             this.lblMa_Kho.Size = new System.Drawing.Size(43, 13);
             this.lblMa_Kho.TabIndex = 97;
@@ -286,7 +289,7 @@
             this.lbtTen_Kho.AutoEllipsis = true;
             this.lbtTen_Kho.AutoSize = true;
             this.lbtTen_Kho.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Kho.Location = new System.Drawing.Point(262, 324);
+            this.lbtTen_Kho.Location = new System.Drawing.Point(262, 349);
             this.lbtTen_Kho.Name = "lbtTen_Kho";
             this.lbtTen_Kho.Size = new System.Drawing.Size(47, 13);
             this.lbtTen_Kho.TabIndex = 96;
@@ -300,12 +303,12 @@
             this.txtDien_Giai.bReadOnly = false;
             this.txtDien_Giai.bRequire = false;
             this.txtDien_Giai.KeyFilter = "";
-            this.txtDien_Giai.Location = new System.Drawing.Point(137, 482);
+            this.txtDien_Giai.Location = new System.Drawing.Point(137, 507);
             this.txtDien_Giai.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtDien_Giai.MaxLength = 200;
             this.txtDien_Giai.Name = "txtDien_Giai";
             this.txtDien_Giai.Size = new System.Drawing.Size(436, 20);
-            this.txtDien_Giai.TabIndex = 24;
+            this.txtDien_Giai.TabIndex = 25;
             this.txtDien_Giai.UseAutoFilter = false;
             // 
             // lblDien_Giai
@@ -313,7 +316,7 @@
             this.lblDien_Giai.AutoEllipsis = true;
             this.lblDien_Giai.AutoSize = true;
             this.lblDien_Giai.BackColor = System.Drawing.Color.Transparent;
-            this.lblDien_Giai.Location = new System.Drawing.Point(41, 482);
+            this.lblDien_Giai.Location = new System.Drawing.Point(41, 507);
             this.lblDien_Giai.Name = "lblDien_Giai";
             this.lblDien_Giai.Size = new System.Drawing.Size(48, 13);
             this.lblDien_Giai.TabIndex = 103;
@@ -354,7 +357,7 @@
             this.lblTk.AutoEllipsis = true;
             this.lblTk.AutoSize = true;
             this.lblTk.BackColor = System.Drawing.Color.Transparent;
-            this.lblTk.Location = new System.Drawing.Point(41, 92);
+            this.lblTk.Location = new System.Drawing.Point(41, 117);
             this.lblTk.Name = "lblTk";
             this.lblTk.Size = new System.Drawing.Size(58, 13);
             this.lblTk.TabIndex = 118;
@@ -367,7 +370,7 @@
             this.lblControl4.AutoEllipsis = true;
             this.lblControl4.AutoSize = true;
             this.lblControl4.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl4.Location = new System.Drawing.Point(41, 138);
+            this.lblControl4.Location = new System.Drawing.Point(41, 163);
             this.lblControl4.Name = "lblControl4";
             this.lblControl4.Size = new System.Drawing.Size(94, 13);
             this.lblControl4.TabIndex = 118;
@@ -380,7 +383,7 @@
             this.lblMa_Thue.AutoEllipsis = true;
             this.lblMa_Thue.AutoSize = true;
             this.lblMa_Thue.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Thue.Location = new System.Drawing.Point(41, 367);
+            this.lblMa_Thue.Location = new System.Drawing.Point(41, 392);
             this.lblMa_Thue.Name = "lblMa_Thue";
             this.lblMa_Thue.Size = new System.Drawing.Size(49, 13);
             this.lblMa_Thue.TabIndex = 120;
@@ -393,7 +396,7 @@
             this.lbtTen_Bp.AutoEllipsis = true;
             this.lbtTen_Bp.AutoSize = true;
             this.lbtTen_Bp.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Bp.Location = new System.Drawing.Point(262, 278);
+            this.lbtTen_Bp.Location = new System.Drawing.Point(262, 303);
             this.lbtTen_Bp.Name = "lbtTen_Bp";
             this.lbtTen_Bp.Size = new System.Drawing.Size(71, 13);
             this.lbtTen_Bp.TabIndex = 145;
@@ -405,7 +408,7 @@
             this.lblMa_Bp.AutoEllipsis = true;
             this.lblMa_Bp.AutoSize = true;
             this.lblMa_Bp.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Bp.Location = new System.Drawing.Point(41, 275);
+            this.lblMa_Bp.Location = new System.Drawing.Point(41, 300);
             this.lblMa_Bp.Name = "lblMa_Bp";
             this.lblMa_Bp.Size = new System.Drawing.Size(64, 13);
             this.lblMa_Bp.TabIndex = 144;
@@ -418,7 +421,7 @@
             this.lblMa_Dt.AutoEllipsis = true;
             this.lblMa_Dt.AutoSize = true;
             this.lblMa_Dt.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Dt.Location = new System.Drawing.Point(41, 229);
+            this.lblMa_Dt.Location = new System.Drawing.Point(41, 254);
             this.lblMa_Dt.Name = "lblMa_Dt";
             this.lblMa_Dt.Size = new System.Drawing.Size(70, 13);
             this.lblMa_Dt.TabIndex = 151;
@@ -431,7 +434,7 @@
             this.lbtTen_Dt.AutoEllipsis = true;
             this.lbtTen_Dt.AutoSize = true;
             this.lbtTen_Dt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Dt.Location = new System.Drawing.Point(262, 232);
+            this.lbtTen_Dt.Location = new System.Drawing.Point(262, 257);
             this.lbtTen_Dt.Name = "lbtTen_Dt";
             this.lbtTen_Dt.Size = new System.Drawing.Size(74, 13);
             this.lbtTen_Dt.TabIndex = 150;
@@ -443,7 +446,7 @@
             this.lblMa_Hd.AutoEllipsis = true;
             this.lblMa_Hd.AutoSize = true;
             this.lblMa_Hd.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Hd.Location = new System.Drawing.Point(41, 206);
+            this.lblMa_Hd.Location = new System.Drawing.Point(41, 231);
             this.lblMa_Hd.Name = "lblMa_Hd";
             this.lblMa_Hd.Size = new System.Drawing.Size(71, 13);
             this.lblMa_Hd.TabIndex = 149;
@@ -456,7 +459,7 @@
             this.lbtTen_Thue.AutoEllipsis = true;
             this.lbtTen_Thue.AutoSize = true;
             this.lbtTen_Thue.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Thue.Location = new System.Drawing.Point(262, 370);
+            this.lbtTen_Thue.Location = new System.Drawing.Point(262, 395);
             this.lbtTen_Thue.Name = "lbtTen_Thue";
             this.lbtTen_Thue.Size = new System.Drawing.Size(50, 13);
             this.lbtTen_Thue.TabIndex = 148;
@@ -468,7 +471,7 @@
             this.lbtTen_Sp.AutoEllipsis = true;
             this.lbtTen_Sp.AutoSize = true;
             this.lbtTen_Sp.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Sp.Location = new System.Drawing.Point(262, 301);
+            this.lbtTen_Sp.Location = new System.Drawing.Point(262, 326);
             this.lbtTen_Sp.Name = "lbtTen_Sp";
             this.lbtTen_Sp.Size = new System.Drawing.Size(75, 13);
             this.lbtTen_Sp.TabIndex = 150;
@@ -480,7 +483,7 @@
             this.lblMa_Sp.AutoEllipsis = true;
             this.lblMa_Sp.AutoSize = true;
             this.lblMa_Sp.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Sp.Location = new System.Drawing.Point(41, 298);
+            this.lblMa_Sp.Location = new System.Drawing.Point(41, 323);
             this.lblMa_Sp.Name = "lblMa_Sp";
             this.lblMa_Sp.Size = new System.Drawing.Size(71, 13);
             this.lblMa_Sp.TabIndex = 151;
@@ -493,7 +496,7 @@
             this.lbtTen_CbNv.AutoEllipsis = true;
             this.lbtTen_CbNv.AutoSize = true;
             this.lbtTen_CbNv.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_CbNv.Location = new System.Drawing.Point(262, 393);
+            this.lbtTen_CbNv.Location = new System.Drawing.Point(262, 418);
             this.lbtTen_CbNv.Name = "lbtTen_CbNv";
             this.lbtTen_CbNv.Size = new System.Drawing.Size(76, 13);
             this.lbtTen_CbNv.TabIndex = 150;
@@ -505,7 +508,7 @@
             this.lblControl6.AutoEllipsis = true;
             this.lblControl6.AutoSize = true;
             this.lblControl6.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl6.Location = new System.Drawing.Point(41, 390);
+            this.lblControl6.Location = new System.Drawing.Point(41, 415);
             this.lblControl6.Name = "lblControl6";
             this.lblControl6.Size = new System.Drawing.Size(72, 13);
             this.lblControl6.TabIndex = 151;
@@ -518,7 +521,7 @@
             this.lbtTen_Job.AutoEllipsis = true;
             this.lbtTen_Job.AutoSize = true;
             this.lbtTen_Job.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Job.Location = new System.Drawing.Point(262, 416);
+            this.lbtTen_Job.Location = new System.Drawing.Point(262, 441);
             this.lbtTen_Job.Name = "lbtTen_Job";
             this.lbtTen_Job.Size = new System.Drawing.Size(59, 13);
             this.lbtTen_Job.TabIndex = 150;
@@ -530,7 +533,7 @@
             this.lblMa_Job.AutoEllipsis = true;
             this.lblMa_Job.AutoSize = true;
             this.lblMa_Job.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Job.Location = new System.Drawing.Point(41, 413);
+            this.lblMa_Job.Location = new System.Drawing.Point(41, 438);
             this.lblMa_Job.Name = "lblMa_Job";
             this.lblMa_Job.Size = new System.Drawing.Size(55, 13);
             this.lblMa_Job.TabIndex = 151;
@@ -543,7 +546,7 @@
             this.lbtTen_Tc.AutoEllipsis = true;
             this.lbtTen_Tc.AutoSize = true;
             this.lbtTen_Tc.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Tc.Location = new System.Drawing.Point(262, 439);
+            this.lbtTen_Tc.Location = new System.Drawing.Point(262, 464);
             this.lbtTen_Tc.Name = "lbtTen_Tc";
             this.lbtTen_Tc.Size = new System.Drawing.Size(61, 13);
             this.lbtTen_Tc.TabIndex = 150;
@@ -555,7 +558,7 @@
             this.lblMa_Tc.AutoEllipsis = true;
             this.lblMa_Tc.AutoSize = true;
             this.lblMa_Tc.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_Tc.Location = new System.Drawing.Point(41, 436);
+            this.lblMa_Tc.Location = new System.Drawing.Point(41, 461);
             this.lblMa_Tc.Name = "lblMa_Tc";
             this.lblMa_Tc.Size = new System.Drawing.Size(57, 13);
             this.lblMa_Tc.TabIndex = 151;
@@ -568,7 +571,7 @@
             this.lbtTen_Hd.AutoEllipsis = true;
             this.lbtTen_Hd.AutoSize = true;
             this.lbtTen_Hd.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Hd.Location = new System.Drawing.Point(262, 209);
+            this.lbtTen_Hd.Location = new System.Drawing.Point(262, 234);
             this.lbtTen_Hd.Name = "lbtTen_Hd";
             this.lbtTen_Hd.Size = new System.Drawing.Size(75, 13);
             this.lbtTen_Hd.TabIndex = 152;
@@ -580,7 +583,7 @@
             this.lbtTen_Km.AutoEllipsis = true;
             this.lbtTen_Km.AutoSize = true;
             this.lbtTen_Km.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Km.Location = new System.Drawing.Point(262, 255);
+            this.lbtTen_Km.Location = new System.Drawing.Point(262, 280);
             this.lbtTen_Km.Name = "lbtTen_Km";
             this.lbtTen_Km.Size = new System.Drawing.Size(82, 13);
             this.lbtTen_Km.TabIndex = 150;
@@ -592,7 +595,7 @@
             this.lblControl8.AutoEllipsis = true;
             this.lblControl8.AutoSize = true;
             this.lblControl8.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl8.Location = new System.Drawing.Point(41, 252);
+            this.lblControl8.Location = new System.Drawing.Point(41, 277);
             this.lblControl8.Name = "lblControl8";
             this.lblControl8.Size = new System.Drawing.Size(79, 13);
             this.lblControl8.TabIndex = 151;
@@ -605,7 +608,7 @@
             this.lbtTen_Tk.AutoEllipsis = true;
             this.lbtTen_Tk.AutoSize = true;
             this.lbtTen_Tk.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Tk.Location = new System.Drawing.Point(212, 95);
+            this.lbtTen_Tk.Location = new System.Drawing.Point(212, 120);
             this.lbtTen_Tk.Name = "lbtTen_Tk";
             this.lbtTen_Tk.Size = new System.Drawing.Size(73, 13);
             this.lbtTen_Tk.TabIndex = 148;
@@ -617,7 +620,7 @@
             this.lbtTen_Tk_Du.AutoEllipsis = true;
             this.lbtTen_Tk_Du.AutoSize = true;
             this.lbtTen_Tk_Du.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Tk_Du.Location = new System.Drawing.Point(212, 141);
+            this.lbtTen_Tk_Du.Location = new System.Drawing.Point(212, 166);
             this.lbtTen_Tk_Du.Name = "lbtTen_Tk_Du";
             this.lbtTen_Tk_Du.Size = new System.Drawing.Size(104, 13);
             this.lbtTen_Tk_Du.TabIndex = 148;
@@ -627,17 +630,17 @@
             // btgAccept
             // 
             this.btgAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btgAccept.Location = new System.Drawing.Point(410, 523);
+            this.btgAccept.Location = new System.Drawing.Point(410, 531);
             this.btgAccept.Name = "btgAccept";
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
-            this.btgAccept.TabIndex = 24;
+            this.btgAccept.TabIndex = 26;
             // 
             // lbtTen_Kv
             // 
             this.lbtTen_Kv.AutoEllipsis = true;
             this.lbtTen_Kv.AutoSize = true;
             this.lbtTen_Kv.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Kv.Location = new System.Drawing.Point(262, 462);
+            this.lbtTen_Kv.Location = new System.Drawing.Point(262, 487);
             this.lbtTen_Kv.Name = "lbtTen_Kv";
             this.lbtTen_Kv.Size = new System.Drawing.Size(68, 13);
             this.lbtTen_Kv.TabIndex = 150;
@@ -649,7 +652,7 @@
             this.lblControl5.AutoEllipsis = true;
             this.lblControl5.AutoSize = true;
             this.lblControl5.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl5.Location = new System.Drawing.Point(41, 459);
+            this.lblControl5.Location = new System.Drawing.Point(41, 484);
             this.lblControl5.Name = "lblControl5";
             this.lblControl5.Size = new System.Drawing.Size(64, 13);
             this.lblControl5.TabIndex = 151;
@@ -662,7 +665,7 @@
             this.lblControl9.AutoEllipsis = true;
             this.lblControl9.AutoSize = true;
             this.lblControl9.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl9.Location = new System.Drawing.Point(41, 161);
+            this.lblControl9.Location = new System.Drawing.Point(41, 186);
             this.lblControl9.Name = "lblControl9";
             this.lblControl9.Size = new System.Drawing.Size(54, 13);
             this.lblControl9.TabIndex = 86;
@@ -675,7 +678,7 @@
             this.lblControl10.AutoEllipsis = true;
             this.lblControl10.AutoSize = true;
             this.lblControl10.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl10.Location = new System.Drawing.Point(262, 164);
+            this.lblControl10.Location = new System.Drawing.Point(262, 189);
             this.lblControl10.Name = "lblControl10";
             this.lblControl10.Size = new System.Drawing.Size(61, 13);
             this.lblControl10.TabIndex = 86;
@@ -692,12 +695,12 @@
             this.numTien1.bRequire = false;
             this.numTien1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTien1.KeyFilter = "";
-            this.numTien1.Location = new System.Drawing.Point(137, 161);
+            this.numTien1.Location = new System.Drawing.Point(137, 186);
             this.numTien1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTien1.Name = "numTien1";
             this.numTien1.Scale = 2;
             this.numTien1.Size = new System.Drawing.Size(120, 20);
-            this.numTien1.TabIndex = 9;
+            this.numTien1.TabIndex = 10;
             this.numTien1.Text = "0.00";
             this.numTien1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTien1.UseAutoFilter = false;
@@ -712,12 +715,12 @@
             this.numTien2.bRequire = false;
             this.numTien2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTien2.KeyFilter = "";
-            this.numTien2.Location = new System.Drawing.Point(328, 161);
+            this.numTien2.Location = new System.Drawing.Point(328, 186);
             this.numTien2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numTien2.Name = "numTien2";
             this.numTien2.Scale = 2;
             this.numTien2.Size = new System.Drawing.Size(98, 20);
-            this.numTien2.TabIndex = 10;
+            this.numTien2.TabIndex = 11;
             this.numTien2.Text = "0.00";
             this.numTien2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTien2.UseAutoFilter = false;
@@ -743,7 +746,7 @@
             this.lblControl2.AutoEllipsis = true;
             this.lblControl2.AutoSize = true;
             this.lblControl2.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl2.Location = new System.Drawing.Point(41, 115);
+            this.lblControl2.Location = new System.Drawing.Point(41, 140);
             this.lblControl2.Name = "lblControl2";
             this.lblControl2.Size = new System.Drawing.Size(45, 13);
             this.lblControl2.TabIndex = 105;
@@ -759,11 +762,11 @@
             this.txtNo_Co.bRequire = false;
             this.txtNo_Co.InputMask = "VND,USD,EUR";
             this.txtNo_Co.KeyFilter = "";
-            this.txtNo_Co.Location = new System.Drawing.Point(137, 115);
+            this.txtNo_Co.Location = new System.Drawing.Point(137, 140);
             this.txtNo_Co.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtNo_Co.Name = "txtNo_Co";
             this.txtNo_Co.Size = new System.Drawing.Size(68, 20);
-            this.txtNo_Co.TabIndex = 7;
+            this.txtNo_Co.TabIndex = 8;
             this.txtNo_Co.Text = "*";
             this.txtNo_Co.UseAutoFilter = false;
             // 
@@ -773,7 +776,7 @@
             this.lblControl3.AutoSize = true;
             this.lblControl3.BackColor = System.Drawing.Color.Transparent;
             this.lblControl3.ForeColor = System.Drawing.Color.Blue;
-            this.lblControl3.Location = new System.Drawing.Point(214, 118);
+            this.lblControl3.Location = new System.Drawing.Point(214, 143);
             this.lblControl3.Name = "lblControl3";
             this.lblControl3.Size = new System.Drawing.Size(120, 13);
             this.lblControl3.TabIndex = 94;
@@ -793,12 +796,12 @@
             this.txtTk.KeyFilter = "Tk";
             this.txtTk.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtTk.ListFilter = new string[0];
-            this.txtTk.Location = new System.Drawing.Point(137, 92);
+            this.txtTk.Location = new System.Drawing.Point(137, 117);
             this.txtTk.LookupKeyFilter = "";
             this.txtTk.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk.Name = "txtTk";
             this.txtTk.Size = new System.Drawing.Size(68, 20);
-            this.txtTk.TabIndex = 6;
+            this.txtTk.TabIndex = 7;
             this.txtTk.UseAutoFilter = true;
             // 
             // txtTk_Du
@@ -813,12 +816,12 @@
             this.txtTk_Du.KeyFilter = "Tk";
             this.txtTk_Du.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtTk_Du.ListFilter = new string[0];
-            this.txtTk_Du.Location = new System.Drawing.Point(137, 138);
+            this.txtTk_Du.Location = new System.Drawing.Point(137, 163);
             this.txtTk_Du.LookupKeyFilter = "";
             this.txtTk_Du.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk_Du.Name = "txtTk_Du";
             this.txtTk_Du.Size = new System.Drawing.Size(68, 20);
-            this.txtTk_Du.TabIndex = 8;
+            this.txtTk_Du.TabIndex = 9;
             this.txtTk_Du.UseAutoFilter = true;
             // 
             // txtMa_Hd
@@ -833,12 +836,12 @@
             this.txtMa_Hd.KeyFilter = "Ma_Hd";
             this.txtMa_Hd.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Hd.ListFilter = new string[0];
-            this.txtMa_Hd.Location = new System.Drawing.Point(137, 206);
+            this.txtMa_Hd.Location = new System.Drawing.Point(137, 231);
             this.txtMa_Hd.LookupKeyFilter = "";
             this.txtMa_Hd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Hd.Name = "txtMa_Hd";
             this.txtMa_Hd.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Hd.TabIndex = 12;
+            this.txtMa_Hd.TabIndex = 13;
             this.txtMa_Hd.UseAutoFilter = true;
             // 
             // txtMa_Dt
@@ -853,12 +856,12 @@
             this.txtMa_Dt.KeyFilter = "Ma_Dt";
             this.txtMa_Dt.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Dt.ListFilter = new string[0];
-            this.txtMa_Dt.Location = new System.Drawing.Point(137, 229);
+            this.txtMa_Dt.Location = new System.Drawing.Point(137, 254);
             this.txtMa_Dt.LookupKeyFilter = "";
             this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Dt.Name = "txtMa_Dt";
             this.txtMa_Dt.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Dt.TabIndex = 13;
+            this.txtMa_Dt.TabIndex = 14;
             this.txtMa_Dt.UseAutoFilter = true;
             // 
             // txtMa_Km
@@ -873,12 +876,12 @@
             this.txtMa_Km.KeyFilter = "Ma_Km";
             this.txtMa_Km.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Km.ListFilter = new string[0];
-            this.txtMa_Km.Location = new System.Drawing.Point(137, 252);
+            this.txtMa_Km.Location = new System.Drawing.Point(137, 277);
             this.txtMa_Km.LookupKeyFilter = "";
             this.txtMa_Km.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Km.Name = "txtMa_Km";
             this.txtMa_Km.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Km.TabIndex = 14;
+            this.txtMa_Km.TabIndex = 15;
             this.txtMa_Km.UseAutoFilter = true;
             // 
             // txtMa_Bp
@@ -893,12 +896,12 @@
             this.txtMa_Bp.KeyFilter = "Ma_Bp";
             this.txtMa_Bp.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Bp.ListFilter = new string[0];
-            this.txtMa_Bp.Location = new System.Drawing.Point(137, 275);
+            this.txtMa_Bp.Location = new System.Drawing.Point(137, 300);
             this.txtMa_Bp.LookupKeyFilter = "";
             this.txtMa_Bp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Bp.Name = "txtMa_Bp";
             this.txtMa_Bp.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Bp.TabIndex = 15;
+            this.txtMa_Bp.TabIndex = 16;
             this.txtMa_Bp.UseAutoFilter = true;
             // 
             // txtMa_Sp
@@ -913,12 +916,12 @@
             this.txtMa_Sp.KeyFilter = "Ma_Sp";
             this.txtMa_Sp.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Sp.ListFilter = new string[0];
-            this.txtMa_Sp.Location = new System.Drawing.Point(137, 298);
+            this.txtMa_Sp.Location = new System.Drawing.Point(137, 323);
             this.txtMa_Sp.LookupKeyFilter = "";
             this.txtMa_Sp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Sp.Name = "txtMa_Sp";
             this.txtMa_Sp.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Sp.TabIndex = 16;
+            this.txtMa_Sp.TabIndex = 17;
             this.txtMa_Sp.UseAutoFilter = true;
             // 
             // txtMa_Kho
@@ -933,12 +936,12 @@
             this.txtMa_Kho.KeyFilter = "Ma_Kho";
             this.txtMa_Kho.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Kho.ListFilter = new string[0];
-            this.txtMa_Kho.Location = new System.Drawing.Point(137, 321);
+            this.txtMa_Kho.Location = new System.Drawing.Point(137, 346);
             this.txtMa_Kho.LookupKeyFilter = "";
             this.txtMa_Kho.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Kho.Name = "txtMa_Kho";
             this.txtMa_Kho.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Kho.TabIndex = 17;
+            this.txtMa_Kho.TabIndex = 18;
             this.txtMa_Kho.UseAutoFilter = true;
             // 
             // txtMa_Vt
@@ -953,12 +956,12 @@
             this.txtMa_Vt.KeyFilter = "Ma_Vt";
             this.txtMa_Vt.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Vt.ListFilter = new string[0];
-            this.txtMa_Vt.Location = new System.Drawing.Point(137, 344);
+            this.txtMa_Vt.Location = new System.Drawing.Point(137, 369);
             this.txtMa_Vt.LookupKeyFilter = "";
             this.txtMa_Vt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Vt.Name = "txtMa_Vt";
             this.txtMa_Vt.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Vt.TabIndex = 18;
+            this.txtMa_Vt.TabIndex = 19;
             this.txtMa_Vt.UseAutoFilter = true;
             // 
             // txtMa_Thue
@@ -973,12 +976,12 @@
             this.txtMa_Thue.KeyFilter = "Ma_Thue";
             this.txtMa_Thue.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Thue.ListFilter = new string[0];
-            this.txtMa_Thue.Location = new System.Drawing.Point(137, 367);
+            this.txtMa_Thue.Location = new System.Drawing.Point(137, 392);
             this.txtMa_Thue.LookupKeyFilter = "";
             this.txtMa_Thue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Thue.Name = "txtMa_Thue";
             this.txtMa_Thue.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Thue.TabIndex = 19;
+            this.txtMa_Thue.TabIndex = 20;
             this.txtMa_Thue.UseAutoFilter = true;
             // 
             // txtMa_CbNv
@@ -993,12 +996,12 @@
             this.txtMa_CbNv.KeyFilter = "Ma_CbNv";
             this.txtMa_CbNv.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_CbNv.ListFilter = new string[0];
-            this.txtMa_CbNv.Location = new System.Drawing.Point(137, 390);
+            this.txtMa_CbNv.Location = new System.Drawing.Point(137, 415);
             this.txtMa_CbNv.LookupKeyFilter = "";
             this.txtMa_CbNv.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_CbNv.Name = "txtMa_CbNv";
             this.txtMa_CbNv.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_CbNv.TabIndex = 20;
+            this.txtMa_CbNv.TabIndex = 21;
             this.txtMa_CbNv.UseAutoFilter = true;
             // 
             // txtMa_Job
@@ -1013,12 +1016,12 @@
             this.txtMa_Job.KeyFilter = "Ma_Job";
             this.txtMa_Job.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Job.ListFilter = new string[0];
-            this.txtMa_Job.Location = new System.Drawing.Point(137, 413);
+            this.txtMa_Job.Location = new System.Drawing.Point(137, 438);
             this.txtMa_Job.LookupKeyFilter = "";
             this.txtMa_Job.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Job.Name = "txtMa_Job";
             this.txtMa_Job.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Job.TabIndex = 21;
+            this.txtMa_Job.TabIndex = 22;
             this.txtMa_Job.UseAutoFilter = true;
             // 
             // txtMa_Tc
@@ -1033,12 +1036,12 @@
             this.txtMa_Tc.KeyFilter = "Ma_Tc";
             this.txtMa_Tc.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Tc.ListFilter = new string[0];
-            this.txtMa_Tc.Location = new System.Drawing.Point(137, 436);
+            this.txtMa_Tc.Location = new System.Drawing.Point(137, 461);
             this.txtMa_Tc.LookupKeyFilter = "";
             this.txtMa_Tc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Tc.Name = "txtMa_Tc";
             this.txtMa_Tc.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Tc.TabIndex = 22;
+            this.txtMa_Tc.TabIndex = 23;
             this.txtMa_Tc.UseAutoFilter = true;
             // 
             // txtMa_Kv
@@ -1053,12 +1056,12 @@
             this.txtMa_Kv.KeyFilter = "Ma_Kv";
             this.txtMa_Kv.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Kv.ListFilter = new string[0];
-            this.txtMa_Kv.Location = new System.Drawing.Point(137, 459);
+            this.txtMa_Kv.Location = new System.Drawing.Point(137, 484);
             this.txtMa_Kv.LookupKeyFilter = "";
             this.txtMa_Kv.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Kv.Name = "txtMa_Kv";
             this.txtMa_Kv.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Kv.TabIndex = 23;
+            this.txtMa_Kv.TabIndex = 24;
             this.txtMa_Kv.UseAutoFilter = true;
             // 
             // chkIs_Nb
@@ -1081,7 +1084,7 @@
             this.lblControl7.AutoEllipsis = true;
             this.lblControl7.AutoSize = true;
             this.lblControl7.BackColor = System.Drawing.Color.Transparent;
-            this.lblControl7.Location = new System.Drawing.Point(41, 183);
+            this.lblControl7.Location = new System.Drawing.Point(41, 208);
             this.lblControl7.Name = "lblControl7";
             this.lblControl7.Size = new System.Drawing.Size(99, 13);
             this.lblControl7.TabIndex = 149;
@@ -1094,7 +1097,7 @@
             this.lbtTen_Tuyen.AutoEllipsis = true;
             this.lbtTen_Tuyen.AutoSize = true;
             this.lbtTen_Tuyen.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Tuyen.Location = new System.Drawing.Point(262, 186);
+            this.lbtTen_Tuyen.Location = new System.Drawing.Point(262, 211);
             this.lbtTen_Tuyen.Name = "lbtTen_Tuyen";
             this.lbtTen_Tuyen.Size = new System.Drawing.Size(103, 13);
             this.lbtTen_Tuyen.TabIndex = 152;
@@ -1113,20 +1116,66 @@
             this.txtMa_Tuyen.KeyFilter = "Ma_Tuyen";
             this.txtMa_Tuyen.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Tuyen.ListFilter = new string[0];
-            this.txtMa_Tuyen.Location = new System.Drawing.Point(137, 183);
+            this.txtMa_Tuyen.Location = new System.Drawing.Point(137, 208);
             this.txtMa_Tuyen.LookupKeyFilter = "";
             this.txtMa_Tuyen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Tuyen.Name = "txtMa_Tuyen";
             this.txtMa_Tuyen.Size = new System.Drawing.Size(120, 20);
-            this.txtMa_Tuyen.TabIndex = 11;
+            this.txtMa_Tuyen.TabIndex = 12;
             this.txtMa_Tuyen.UseAutoFilter = true;
+            // 
+            // lblControl11
+            // 
+            this.lblControl11.AutoEllipsis = true;
+            this.lblControl11.AutoSize = true;
+            this.lblControl11.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl11.Location = new System.Drawing.Point(41, 93);
+            this.lblControl11.Name = "lblControl11";
+            this.lblControl11.Size = new System.Drawing.Size(72, 13);
+            this.lblControl11.TabIndex = 0;
+            this.lblControl11.Tag = "Ma_Nvu";
+            this.lblControl11.Text = "Mã nghiệp vụ";
+            this.lblControl11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbtTen_Nvu
+            // 
+            this.lbtTen_Nvu.AutoEllipsis = true;
+            this.lbtTen_Nvu.AutoSize = true;
+            this.lbtTen_Nvu.ForeColor = System.Drawing.Color.Blue;
+            this.lbtTen_Nvu.Location = new System.Drawing.Point(214, 100);
+            this.lbtTen_Nvu.Name = "lbtTen_Nvu";
+            this.lbtTen_Nvu.Size = new System.Drawing.Size(76, 13);
+            this.lbtTen_Nvu.TabIndex = 148;
+            this.lbtTen_Nvu.Text = "Tên nghiệp vụ";
+            this.lbtTen_Nvu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMa_Nvu
+            // 
+            this.txtMa_Nvu.bEnabled = true;
+            this.txtMa_Nvu.bIsLookup = false;
+            this.txtMa_Nvu.bReadOnly = false;
+            this.txtMa_Nvu.bRequire = false;
+            this.txtMa_Nvu.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Nvu.ColumnsView = null;
+            this.txtMa_Nvu.CtrlDepend = null;
+            this.txtMa_Nvu.KeyFilter = "Ma_Nvu";
+            this.txtMa_Nvu.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Nvu.ListFilter = new string[0];
+            this.txtMa_Nvu.Location = new System.Drawing.Point(137, 93);
+            this.txtMa_Nvu.LookupKeyFilter = "";
+            this.txtMa_Nvu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Nvu.Name = "txtMa_Nvu";
+            this.txtMa_Nvu.Size = new System.Drawing.Size(68, 20);
+            this.txtMa_Nvu.TabIndex = 24;
+            this.txtMa_Nvu.UseAutoFilter = true;
             // 
             // frmFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 559);
+            this.ClientSize = new System.Drawing.Size(603, 567);
             this.Controls.Add(this.chkIs_Nb);
+            this.Controls.Add(this.txtMa_Nvu);
             this.Controls.Add(this.txtMa_Kv);
             this.Controls.Add(this.txtMa_Tc);
             this.Controls.Add(this.txtMa_Job);
@@ -1165,6 +1214,7 @@
             this.Controls.Add(this.lblControl7);
             this.Controls.Add(this.lblMa_Hd);
             this.Controls.Add(this.lbtTen_Tk_Du);
+            this.Controls.Add(this.lbtTen_Nvu);
             this.Controls.Add(this.lbtTen_Tk);
             this.Controls.Add(this.lbtTen_Thue);
             this.Controls.Add(this.lbtTen_Bp);
@@ -1193,6 +1243,7 @@
             this.Controls.Add(this.lblControl10);
             this.Controls.Add(this.lblControl9);
             this.Controls.Add(this.lblSo_Ct1);
+            this.Controls.Add(this.lblControl11);
             this.Controls.Add(this.txtMa_Ct);
             this.Controls.Add(this.lblControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1274,5 +1325,8 @@
         private Systems.Controls.lblControl lblControl7;
         private Systems.Controls.lbtControl lbtTen_Tuyen;
         private Systems.Controls.txtTextLookup txtMa_Tuyen;
-	}
+        private Systems.Controls.lblControl lblControl11;
+        private Systems.Controls.lbtControl lbtTen_Nvu;
+        private Systems.Controls.txtTextLookup txtMa_Nvu;
+    }
 }

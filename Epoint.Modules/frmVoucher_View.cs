@@ -842,6 +842,7 @@ namespace Epoint.Modules
             dtFilter.Columns.Add(new DataColumn("Ma_Job", typeof(string)));
             dtFilter.Columns.Add(new DataColumn("Ma_Tc", typeof(string)));
             dtFilter.Columns.Add(new DataColumn("Ma_Kv", typeof(string)));
+            dtFilter.Columns.Add(new DataColumn("Ma_Nvu", typeof(string)));
             dtFilter.Columns.Add(new DataColumn("Table", typeof(string)));
             dtFilter.Columns.Add(new DataColumn("Is_Thue_Vat", typeof(bool)));
             dtFilter.Columns.Add(new DataColumn("Is_Nb", typeof(bool)));
