@@ -26,8 +26,8 @@ namespace Epoint.Modules.IN
         private string strModule = "05";
         private string strMsg1 = string.Empty;
         private string strMa_Vt_List;
-        private DataTable dtImportZ;        
-        
+        private DataTable dtImportZ;
+
         #region Contructor
 
         public frmCtNX_Edit()
@@ -50,7 +50,7 @@ namespace Epoint.Modules.IN
             txtMa_Dt.Validating += new CancelEventHandler(txtMa_Dt_Validating);
 
             txtMa_Hd.Enter += new EventHandler(txtMa_Hd_Enter);
-            txtMa_Hd.Validating += new CancelEventHandler(txtMa_Hd_Validating);            
+            txtMa_Hd.Validating += new CancelEventHandler(txtMa_Hd_Validating);
 
             txtMa_KhoN.Enter += new EventHandler(txtMa_KhoN_Enter);
             txtMa_KhoN.Validating += new CancelEventHandler(txtMa_KhoN_Validating);
@@ -77,7 +77,7 @@ namespace Epoint.Modules.IN
             dgvEditCt2.CellValidated += new DataGridViewCellEventHandler(dgvEditCt2_CellValidated);
             dgvEditCt2.CellEnter += new DataGridViewCellEventHandler(dgvEditCt2_CellEnter);
         }
-               
+
 
         public override void Load(enuEdit enuNew_Edit, DataRow drEdit, DataSet dsVoucher)
         {
@@ -111,7 +111,7 @@ namespace Epoint.Modules.IN
 
             //Neu la Phieu nhap kho 
             if (strMa_Ct == "PN" || strMa_Ct == "TP")
-            {                
+            {
                 this.btImportExcel.Visible = false;
                 this.btInherit.Visible = false;
                 this.btXuat_DinhMuc.Visible = false;
@@ -128,9 +128,9 @@ namespace Epoint.Modules.IN
             }
             //Neu la Phieu nhap thanh pham
             if (strMa_Ct == "PN" || strMa_Ct == "TP")
-            {   
+            {
                 this.btImportExcel.Visible = false;
-                this.btInherit.Visible = false;             
+                this.btInherit.Visible = false;
                 this.lblHan_Tt.Visible = false;
                 this.numHan_Tt.Visible = false;
                 this.lbtNgay.Visible = false;
@@ -144,7 +144,7 @@ namespace Epoint.Modules.IN
             }
             //Neu la Phieu xuat ban
             if (strMa_Ct == "PXB")
-            {                 
+            {
                 this.btXuat_DinhMuc.Visible = false;
                 this.lblMa_KhoN.Visible = false;
                 this.txtMa_KhoN.Visible = false;
@@ -156,7 +156,7 @@ namespace Epoint.Modules.IN
             }
             //Neu la Phieu xuat dieu chuyen
             if (strMa_Ct == "PXD")
-            {                
+            {
                 this.btImportExcel.Visible = false;
                 this.btInherit.Visible = false;
                 this.btXuat_DinhMuc.Visible = false;
@@ -184,7 +184,7 @@ namespace Epoint.Modules.IN
             if (!isAccept)
                 this.ShowDialog();
             else
-                this.ActiveControl = txtMa_Ct;                       
+                this.ActiveControl = txtMa_Ct;
         }
 
         #endregion
@@ -204,7 +204,7 @@ namespace Epoint.Modules.IN
             dgvEditCt2.Height = dgvEditCt1.Height;
             dgvEditCt2.Width = dgvEditCt1.Width;
             dgvEditCt2.Location = dgvEditCt1.Location;
-            dgvEditCt2.Anchor = dgvEditCt1.Anchor;            
+            dgvEditCt2.Anchor = dgvEditCt1.Anchor;
 
             if (dgvEditCt2.Columns.Contains("So_Luong")) //Người dùng phải nhập vào cột So_Luong9
                 dgvEditCt2.Columns["So_Luong"].ReadOnly = true;
@@ -233,7 +233,7 @@ namespace Epoint.Modules.IN
 
             dtEditPh = DataTool.SQLGetDataTable((string)drDmCt["Table_Ph"], strSelectPh, strKeyFillterCt, null);
             dtEditCt = DataTool.SQLGetDataTable((string)drDmCt["Table_Ct"], strSelectCt, strKeyFillterCt, null);
-            
+
             //ThongLH: History
             dtEditCtOrg = dtEditCt.Copy();
             drEditPhOrg = drEdit;
@@ -379,11 +379,23 @@ namespace Epoint.Modules.IN
                 dicName.SetValue(txtTen_Hd.Name, txtTen_Hd.Text);
             }
             else
-                txtTen_Hd.Text = string.Empty;            
+                txtTen_Hd.Text = string.Empty;
         }
 
         private bool FormCheckValid()
         {
+            if (Common.Inlist(this.strMa_Ct, ((string)Epoint.Systems.Librarys.Parameters.GetParaValue("IN_MA_CT_KHONHAP"))))
+            {
+                if (txtMa_KhoN.Text == string.Empty)
+                {
+                    string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Chưa nhập mã kho nhập" : "Input Site code";
+                    Common.MsgCancel(strMsg);
+                    this.txtMa_KhoN.Focus();
+                    return false;
+                }
+            }
+
+
             if (!Common.CheckDataLocked(Library.StrToDate(this.dteNgay_Ct.Text)))
             {
                 string strMsg = Element.sysLanguage == enuLanguageType.Vietnamese ? "Dữ liệu đã bị khóa" : "Data have been locked";
@@ -398,7 +410,7 @@ namespace Epoint.Modules.IN
                     Common.MsgCancel("Dữ liệu đã phân vùng, không cho phép sửa chứng từ từ năm này sang năm khác");
                     return false;
                 }
-            }           
+            }
             //Kiểm tra nghiệp vụ hợp lệ
             foreach (DataRow dr in dtEditCt.Rows)
             {
@@ -680,7 +692,7 @@ namespace Epoint.Modules.IN
 
             frmInheritVoucher_Filter frm = new frmInheritVoucher_Filter();
             frm.Load(this);
-            
+
             //Ke thua So_Ct0, Ngay_Ct0, So_Seri0
             foreach (DataRow dr in dtEditCt.Rows)
             {
@@ -691,10 +703,10 @@ namespace Epoint.Modules.IN
                     txtSo_Seri0.Text = dr["So_Seri0"].ToString();
                 }
             }
-                                   
+
             Voucher.Update_Detail(this);
             Voucher.Calc_So_Luong_All(this);
-            Voucher.Update_TTien(this);            
+            Voucher.Update_TTien(this);
         }
 
         #endregion
@@ -726,7 +738,7 @@ namespace Epoint.Modules.IN
             {
                 Voucher.Update_Detail(this);
                 Voucher.Update_TTien(this);
-            }            
+            }
         }
 
         void btInherit_Click(object sender, EventArgs e)
@@ -833,7 +845,7 @@ namespace Epoint.Modules.IN
         void numTy_Gia_Leave(object sender, EventArgs e)
         {
             this.Ma_Tte_Valid();
-        }        
+        }
         //void txtMa_Dt_Enter(object sender, EventArgs e)
         //{
         //    txtTen_Dt.Text = dicName.GetValue(txtTen_Dt.Name);
@@ -931,7 +943,7 @@ namespace Epoint.Modules.IN
             }
         }
 
-        
+
         //void txtMa_So_Validating(object sender, CancelEventArgs e)
         //{      
         //    string strValue = string.Empty;
@@ -1019,9 +1031,9 @@ namespace Epoint.Modules.IN
 
                     if (tabVoucher.SelectedTab == tpChiTiet1)
                         tabVoucher.SelectedTab = tpChiTiet2;
-					else
+                    else
                         tabVoucher.SelectedTab = tpChiTiet1;
-					break;
+                    break;
 
                 case Keys.Up:
                     if (this.dgvEditCt1.Focused && this.dgvEditCt1.bIsCurrentFirstRow)
@@ -1158,7 +1170,7 @@ namespace Epoint.Modules.IN
                 else if (strColumnName == "MA_LO" && (string)drDmCt["Nh_Ct"] == "2")
                 {
                     bLookup = dgvLookupMa_Lo(ref dgvCell);
-                       
+
                 }
                 if (bLookup == false)
                     e.Cancel = true;
@@ -1189,9 +1201,9 @@ namespace Epoint.Modules.IN
                     (string)drDmCt["Nh_Ct"] == "2" && strColumnName == "SO_LUONG9")
                 {
                     double dbSo_Luong = Convert.ToDouble(drCurrent["So_Luong"]);
-                    
+
                     double dbTon_Cuoi = 0;
-                    
+
                     Voucher.GetTonCuoi(drCurrent, ref dbTon_Cuoi);
                     string strCheckQtyOnhand = Parameters.GetParaValue("CHECKONHAND") == null ? "Y" : (string)Parameters.GetParaValue("CHECKONHAND");
 
@@ -1204,13 +1216,13 @@ namespace Epoint.Modules.IN
                         else
                             strMsg = "Out quantity: " + dbSo_Luong.ToString("N2") + " > closing inventory quantity: " + dbTon_Cuoi.ToString("N2");
 
-                         if(strCheckQtyOnhand == "Y")
-                         {
+                        if (strCheckQtyOnhand == "Y")
+                        {
 
-                             drCurrent["So_Luong9"] = dbSo_Luong_Org;
-                             Voucher.Calc_So_Luong(drCurrent);
-                             Voucher.Update_TTien(this);
-                         }
+                            drCurrent["So_Luong9"] = dbSo_Luong_Org;
+                            Voucher.Calc_So_Luong(drCurrent);
+                            Voucher.Update_TTien(this);
+                        }
 
                         Common.MsgCancel(strMsg);
                     }
@@ -1384,7 +1396,7 @@ namespace Epoint.Modules.IN
             bool bRequire = true;
 
             //frmDoiTuong frmLookup = new frmDoiTuong();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Dt", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Dt", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1464,7 +1476,7 @@ namespace Epoint.Modules.IN
             }
 
             //frmKhoanMuc frmLookup = new frmKhoanMuc();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Km", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Km", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1510,7 +1522,7 @@ namespace Epoint.Modules.IN
 
 
             //frmSanPham frmLookup = new frmSanPham();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Sp", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Sp", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1541,7 +1553,7 @@ namespace Epoint.Modules.IN
             bool bRequire = true;
 
             //frmTacVu frmLookup = new frmTacVu();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Job", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Job", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1572,7 +1584,7 @@ namespace Epoint.Modules.IN
             bool bRequire = false;
 
             //frmVatTu frmLookup = new frmVatTu();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_Vt" ,strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_Vt", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1607,12 +1619,12 @@ namespace Epoint.Modules.IN
                     drCurrent["Dvt"] = drLookup["Dvt"];
                     drCurrent["Dvt"] = drLookup["Dvt_MD"].ToString() == string.Empty ? drLookup["Dvt"] : drLookup["Dvt_MD"];
                     drCurrent["He_So9"] = 1;
-                    
+
                     // tính hệ số
                     drCurrent = ((DataRowView)bdsEditCt.Current).Row;
 
                     string strDvt_Old = (string)drCurrent["Dvt"];
-                    string strDvt_Chuan =  (string)drLookup["Dvt"];
+                    string strDvt_Chuan = (string)drLookup["Dvt"];
 
 
 
@@ -1665,7 +1677,7 @@ namespace Epoint.Modules.IN
             bool bRequire = false;
 
             //frmKho frmLookup = new frmKho();
-            DataRow drLookup = Lookup.ShowLookup("Ma_Kho", strValue, bRequire, "", "");            
+            DataRow drLookup = Lookup.ShowLookup("Ma_Kho", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1738,7 +1750,7 @@ namespace Epoint.Modules.IN
             bool bRequire = false;
 
             //frmSo frmLookup = new frmSo();
-            DataRow drLookup = Lookup.ShowLookup( "Ma_So", strValue, bRequire, "", "");
+            DataRow drLookup = Lookup.ShowLookup("Ma_So", strValue, bRequire, "", "");
 
             if (bRequire && drLookup == null)
                 return false;
@@ -1792,6 +1804,6 @@ namespace Epoint.Modules.IN
                     }
                 }
             }
-        }        
+        }
     }
 }

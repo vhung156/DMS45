@@ -1498,7 +1498,7 @@ namespace Epoint.Modules
                 //    }
                 //}
                 this.GetDefColImport();
-               
+
                 object objValue;
                 //Xu ly dữ liệu
                 foreach (DataRow drRow0 in dtDefineRow_Pos.Rows)
@@ -1510,7 +1510,11 @@ namespace Epoint.Modules
                         if (this.dtDataExcelImport.Rows.IndexOf(drImport) < iRowGetValue)
                             continue;
 
-                        RowDataImport ++;
+                        if (drImport[0].ToString() == string.Empty)
+                            continue;
+
+
+                        RowDataImport++;
                         DataRow drNewRowFirst = tableDetail.NewRow();
                         foreach (DataColumn dc in dtDefineCol_Pos.Columns)
                         {
@@ -1647,11 +1651,11 @@ namespace Epoint.Modules
                         rowEx["Tk_Co2"] = this.drDmCt["Tk_Co"];
                         rowEx["Ngay_Ct"] = ((DateTime)rowEx["Ngay_Ct"]).ToShortDateString();
 
-                        rowEx["So_Luong9"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0? Convert.ToDouble(rowEx["So_LuongT"]) * Convert.ToDouble(drVt["He_So1"]) + Convert.ToDouble(rowEx["So_LuongL"]) : Convert.ToDouble(rowEx["So_LuongT"]);                        
+                        rowEx["So_Luong9"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? Convert.ToDouble(rowEx["So_LuongT"]) * Convert.ToDouble(drVt["He_So1"]) + Convert.ToDouble(rowEx["So_LuongL"]) : Convert.ToDouble(rowEx["So_LuongT"]);
                         rowEx["He_So9"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? 1 : Convert.ToDouble(drVt["He_So1"]);
                         rowEx["So_Luong"] = Convert.ToDouble(rowEx["So_Luong9"]) * Convert.ToDouble(rowEx["He_So9"]);
                         rowEx["Gia_Nt9"] = Convert.ToDouble(rowEx["Tien_Nt9"]) / Convert.ToDouble(rowEx["So_Luong9"]);
-                        rowEx["Dvt"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? drVt["Dvt"]: drVt["Dvt1"];
+                        rowEx["Dvt"] = Convert.ToDouble(rowEx["So_LuongL"]) > 0 ? drVt["Dvt"] : drVt["Dvt1"];
                         rowEx["Ma_Kho"] = drVt["Ma_Kho_Ban"];
                         rowEx["Hang_Km"] = Convert.ToDouble(rowEx["Gia_Nt9"]) == 0 ? "true" : "false";
                     }
@@ -2625,9 +2629,9 @@ namespace Epoint.Modules
             else
                 this.FillData(strFilterKey_Old, strFilterKey_Old);
         }
-    void btImport_Click(object sender, EventArgs e)
+        void btImport_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;                     
+            this.Cursor = Cursors.WaitCursor;
             OpenFileDialog dialog = new OpenFileDialog
             {
                 DefaultExt = "xlsx",
@@ -2637,7 +2641,7 @@ namespace Epoint.Modules
             {
                 this.dtDataExcelImport = Common.ReadExcel(dialog.FileName);
                 EpointProcessBox.Show(this);
-                
+
             }
 
             this.Cursor = Cursors.Default;
