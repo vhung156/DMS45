@@ -174,6 +174,14 @@ namespace Epoint.Modules.AR
             {
                 this.lblNgay_Crtd.Text = "Ngày Tạo:" + DateTime.Now.ToLongDateString();
                 this.BindingTaxDefault(strMa_Thue_Default);
+                if (this.txtMa_Dt.Text != String.Empty)
+                {
+                    DataRow drDoiTuong = DataTool.SQLGetDataRowByID("LIDoiTuong", "Ma_Dt", txtMa_Dt.Text);
+                    if (drDoiTuong.Table.Columns.Contains("Han_Tt"))
+                    {
+                        numHan_Tt.Value = Convert.ToDouble(drDoiTuong["Han_Tt"]);
+                    }
+                }
             }
             else
             {
