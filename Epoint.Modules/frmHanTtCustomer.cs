@@ -688,16 +688,16 @@ namespace Epoint.Modules
                         Stt0 += 1;
                         DataRow drDt = DataTool.SQLGetDataRowByID("LIDOITUONG", "Ma_Dt", drhd["Ma_Dt"].ToString());
 
-                        strQueryCthd += @"INSERT INTO	CATIEN (Stt, Stt0, Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ong_Ba,Ten_Dt, Ma_Dt,Ten_DtGtGt,Ten_Vt,Ma_Cbnv,Ma_Cbnv_Gh,Dia_Chi,
+                        strQueryCthd += @"INSERT INTO	CATIEN (Stt, Stt0, Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ma_Dt,Ten_DtGtGt,Ten_Vt,Ma_Cbnv,Ma_Cbnv_Gh,
                         											Tk_No, Tk_Co, Tien_Nt9, Tien, Tien_Nt, 
                                                                     Ma_Thue, Thue_GtGt, Tien3, Tien_Nt3, Tk_No3, Tk_Co3, Ngay_Ct0, So_Ct0, So_Seri0, Ma_So_Thue, 
             														Ma_Dvcs, Ma_Tte, Ty_Gia)" 
                         							+ @" VALUES('" + iStt + "', '" + Stt0 + "', 'PTT', '" + dteNgay_Ct_TT.Text + "','" + strSo_Ct_New + "', N'"
                                                               + txtDien_Giai.Text +" - Số Ct : " + drhd["So_Ct_Hd"]
-                                                              + "',  N'" + drDt["Ong_Ba"] + "',N'" + drDt["Ten_Dt"] + "', '" + drhd["Ma_Dt"] + "',N'" + drhd["So_Ct_Hd"] + "',N'" + drhd["Stt_HD"] + "','" + drhd["MA_CBNV_Bh"] + "','" + drhd["MA_CBNV_GH"] + "',N'" + drDt["Dia_Chi"] + "','"
+                                                              + "', '" + drhd["Ma_Dt"] + "',N'" + drhd["So_Ct_Hd"] + "',N'" + drhd["Stt_HD"] + "','" + drhd["MA_CBNV_Bh"] + "','" + drhd["MA_CBNV_GH"] + "','"
                                                               + txtTk_Tt.Text + "','" + drhd["Tk"] + "', " + drhd["Tien_Tt1"] + ",  " + drhd["Tien_Tt1"] + ",  " + drhd["Tien_Tt1"]
                                                               + ", '', 0, 0, 0, '', '', '', '', '', '', '" 
-                                                              + Element.sysMa_DvCs + "','VND', 1)\n";
+                                                              + Element.sysMa_DvCs + "','VND', 1)\n";//,  N'" + drDt["Ong_Ba"] + "',N'" + drDt["Ten_Dt"] + "',N'" + drDt["Dia_Chi"] + "'
 
                         strCt_Di_Kem += drhd["So_Ct_Hd"].ToString() + ",";
                     }
@@ -709,6 +709,9 @@ namespace Epoint.Modules
                                      + txtMa_Dt.Text + "', N'" + txtDien_Giai.Text + "', " + dbTien0 + ", " + dbTien0 + ", " + dbTien3 + ", " + dbTien3 + ", '"
                                       + strCreate_Log + "', '"+Element.sysUser_Id +"','" + strCt_Di_Kem + "',1,'PTT', '" + Element.sysMa_DvCs + "')";
 
+                strQueryCthd += @"UPDATE Ct FROM CATIEN Ct INNER JOIN LIDoiTuong dt on Dt.Ma_Dt = Ct.Ma_Dt 
+                                  Set Ct.Ong_Ba = dt.Ong_Ba, Ct.Ten_Dt= Dt.Ten_Dt   , Ct.Dia_Chi = dt.Dia_Chi
+                                    WHERE ct.Stt = '" + iStt + "'";
 
                 if (numTTien_Tt.Value > 0)
                 {
