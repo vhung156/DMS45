@@ -709,8 +709,7 @@ namespace Epoint.Modules
                                      + txtMa_Dt.Text + "', N'" + txtDien_Giai.Text + "', " + dbTien0 + ", " + dbTien0 + ", " + dbTien3 + ", " + dbTien3 + ", '"
                                       + strCreate_Log + "', '"+Element.sysUser_Id +"','" + strCt_Di_Kem + "',1,'PTT', '" + Element.sysMa_DvCs + "')";
 
-                strQueryCthd += @"UPDATE Ct FROM CATIEN Ct INNER JOIN LIDoiTuong dt on Dt.Ma_Dt = Ct.Ma_Dt 
-                                  Set Ct.Ong_Ba = dt.Ong_Ba, Ct.Ten_Dt= Dt.Ten_Dt   , Ct.Dia_Chi = dt.Dia_Chi
+                strQueryCthd += @"UPDATE Ct Set Ct.Ong_Ba = dt.Ong_Ba, Ct.Ten_Dt= Dt.Ten_Dt   , Ct.Dia_Chi = dt.Dia_Chi FROM CATIEN Ct INNER JOIN LIDoiTuong dt on Dt.Ma_Dt = Ct.Ma_Dt                                   
                                     WHERE ct.Stt = '" + iStt + "'";
 
                 if (numTTien_Tt.Value > 0)
