@@ -1672,7 +1672,7 @@ namespace Epoint.Modules.AR
                 if (strLoai_CtKm == "L") // Loại khuyến mãi dòng
                 {
 
-                    double dbQtyLine = 0, dbAmtLine = 0, dbAmtDiscLine = 0,dbFactorQtyAmt = 0;
+                    double dbQtyLine = 0, dbAmtLine = 0, dbAmtDiscLine = 0, dbFactorQtyAmt = 0;
                     string strSttKM_Line = string.Empty;
                     int iDiscTimeLine = 1;
                     strMa_Vt_Disc = string.Empty;
@@ -3441,6 +3441,11 @@ namespace Epoint.Modules.AR
                 if (!(bool)drCurrent["Auto_Cost"])
                     Voucher.Calc_Tien_Von(drCurrent);
             }
+            //else
+            //    if (Common.Inlist(strColumnName, "TIEN_CK"))
+            //{
+            //    EpointMessage.MsgOk(strColumnName);
+            //}
 
             bdsEditCt.EndEdit();
         }

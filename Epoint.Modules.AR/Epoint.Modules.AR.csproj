@@ -124,6 +124,12 @@
     <Compile Include="Discount\frmCheckCustCredit_View.Designer.cs">
       <DependentUpon>frmCheckCustCredit_View.cs</DependentUpon>
     </Compile>
+    <Compile Include="Discount\frmDiscountEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount\frmDiscountEdit.Designer.cs">
+      <DependentUpon>frmDiscountEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Discount\frmDiscountManual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +344,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Discount\frmCheckCustCredit_View.resx">
       <DependentUpon>frmCheckCustCredit_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount\frmDiscountEdit.resx">
+      <DependentUpon>frmDiscountEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Discount\frmDiscountManual.resx">
       <DependentUpon>frmDiscountManual.cs</DependentUpon>

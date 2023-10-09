@@ -55,8 +55,12 @@ namespace Epoint.Modules
 
 
             this.btCheckAll.Click += new EventHandler(btThanhToanALL_Click);
-            txtMa_Dt.Enter += new EventHandler(txtMa_Dt_Enter);
+            this.txtMa_Dt.Enter += new EventHandler(txtMa_Dt_Enter);
+            
             this.txtMa_Dt.Validating += new CancelEventHandler(txtMa_Dt_Validating);
+            
+            this.txtMa_Nh_Dt.Enter += new EventHandler(txtMa_Nh_Dt_Enter); 
+            this.txtMa_Nh_Dt.Validating += new CancelEventHandler(txtMa_Nh_Dt_Validating);
         }
 
 
@@ -157,6 +161,7 @@ namespace Epoint.Modules
             htSQLPara.Add("MA_TUYEN", txtMa_Tuyen.Text);
             htSQLPara.Add("MA_PX", txtMa_Px.Text);
             htSQLPara.Add("TK", "1311");
+            htSQLPara.Add("MA_NH_DT", txtMa_Nh_Dt.Text);
             htSQLPara.Add("MA_DT", txtMa_Dt.Text);
             htSQLPara.Add("MA_CBNV_BH", txtMa_CbNV_BH.Text);
             htSQLPara.Add("MA_CBNV_GH", txtMa_CbNV_GH.Text);
@@ -970,6 +975,9 @@ namespace Epoint.Modules
         }
         void txtMa_Dt_Enter(object sender, EventArgs e)
         { }
+
+        void txtMa_Nh_Dt_Enter(object sender, EventArgs e)
+        { }
         private void txtMa_Dt_Validating(object sender, CancelEventArgs e)
         {
            
@@ -1002,7 +1010,38 @@ namespace Epoint.Modules
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
+        private void txtMa_Nh_Dt_Validating(object sender, CancelEventArgs e)
+        {
 
+            string strValue = txtMa_Nh_Dt.Text.Trim();
+
+            bool bRequire = false;
+
+            DataRow drLookup = Lookup.ShowLookup("Ma_Nh_Dt", strValue, bRequire, "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Nh_Dt.Text = string.Empty;
+                lbtTen_Nh_Dt.Text = string.Empty;
+                //return;
+            }
+            else
+            {
+                txtMa_Nh_Dt.Text = drLookup["Ma_Nh_Dt"].ToString();
+                lbtTen_Nh_Dt.Text = drLookup["Ten_Nh_Dt"].ToString();
+
+            }
+
+
+            if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
+            {
+                ((txtTextLookup)sender).AutoFilter.Visible = false;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
         #endregion
     }
 }
