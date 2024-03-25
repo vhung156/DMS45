@@ -55,8 +55,12 @@ namespace Epoint.Modules
 
 
             this.btCheckAll.Click += new EventHandler(btThanhToanALL_Click);
-            txtMa_Dt.Enter += new EventHandler(txtMa_Dt_Enter);
+            this.txtMa_Dt.Enter += new EventHandler(txtMa_Dt_Enter);
+            
             this.txtMa_Dt.Validating += new CancelEventHandler(txtMa_Dt_Validating);
+            
+            this.txtMa_Nh_Dt.Enter += new EventHandler(txtMa_Nh_Dt_Enter); 
+            this.txtMa_Nh_Dt.Validating += new CancelEventHandler(txtMa_Nh_Dt_Validating);
         }
 
 
@@ -157,6 +161,7 @@ namespace Epoint.Modules
             htSQLPara.Add("MA_TUYEN", txtMa_Tuyen.Text);
             htSQLPara.Add("MA_PX", txtMa_Px.Text);
             htSQLPara.Add("TK", "1311");
+            htSQLPara.Add("MA_NH_DT", txtMa_Nh_Dt.Text);
             htSQLPara.Add("MA_DT", txtMa_Dt.Text);
             htSQLPara.Add("MA_CBNV_BH", txtMa_CbNV_BH.Text);
             htSQLPara.Add("MA_CBNV_GH", txtMa_CbNV_GH.Text);
@@ -332,6 +337,7 @@ namespace Epoint.Modules
                 command.Parameters.AddWithValue("@Ma_Ct", "PTT");
                 command.Parameters.AddWithValue("@Tk_Tt", txtTk_Tt.Text);
                 command.Parameters.AddWithValue("@Ma_Dt", "");
+                command.Parameters.AddWithValue("@Dien_Giai", txtDien_Giai.Text);
                 command.Parameters.AddWithValue("@Ma_DvCs", Element.sysMa_DvCs);
                 SqlParameter parameter = new SqlParameter
                 {
@@ -687,16 +693,16 @@ namespace Epoint.Modules
                         Stt0 += 1;
                         DataRow drDt = DataTool.SQLGetDataRowByID("LIDOITUONG", "Ma_Dt", drhd["Ma_Dt"].ToString());
 
-                        strQueryCthd += @"INSERT INTO	CATIEN (Stt, Stt0, Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ong_Ba,Ten_Dt, Ma_Dt,Ten_DtGtGt,Ten_Vt,Ma_Cbnv,Ma_Cbnv_Gh,Dia_Chi,
+                        strQueryCthd += @"INSERT INTO	CATIEN (Stt, Stt0, Ma_Ct, Ngay_Ct, So_Ct, Dien_Giai, Ma_Dt,Ten_DtGtGt,Ten_Vt,Ma_Cbnv,Ma_Cbnv_Gh,
                         											Tk_No, Tk_Co, Tien_Nt9, Tien, Tien_Nt, 
                                                                     Ma_Thue, Thue_GtGt, Tien3, Tien_Nt3, Tk_No3, Tk_Co3, Ngay_Ct0, So_Ct0, So_Seri0, Ma_So_Thue, 
             														Ma_Dvcs, Ma_Tte, Ty_Gia)" 
                         							+ @" VALUES('" + iStt + "', '" + Stt0 + "', 'PTT', '" + dteNgay_Ct_TT.Text + "','" + strSo_Ct_New + "', N'"
                                                               + txtDien_Giai.Text +" - Số Ct : " + drhd["So_Ct_Hd"]
-                                                              + "',  N'" + drDt["Ong_Ba"] + "',N'" + drDt["Ten_Dt"] + "', '" + drhd["Ma_Dt"] + "',N'" + drhd["So_Ct_Hd"] + "',N'" + drhd["Stt_HD"] + "','" + drhd["MA_CBNV_Bh"] + "','" + drhd["MA_CBNV_GH"] + "',N'" + drDt["Dia_Chi"] + "','"
+                                                              + "', '" + drhd["Ma_Dt"] + "',N'" + drhd["So_Ct_Hd"] + "',N'" + drhd["Stt_HD"] + "','" + drhd["MA_CBNV_Bh"] + "','" + drhd["MA_CBNV_GH"] + "','"
                                                               + txtTk_Tt.Text + "','" + drhd["Tk"] + "', " + drhd["Tien_Tt1"] + ",  " + drhd["Tien_Tt1"] + ",  " + drhd["Tien_Tt1"]
                                                               + ", '', 0, 0, 0, '', '', '', '', '', '', '" 
-                                                              + Element.sysMa_DvCs + "','VND', 1)\n";
+                                                              + Element.sysMa_DvCs + "','VND', 1)\n";//,  N'" + drDt["Ong_Ba"] + "',N'" + drDt["Ten_Dt"] + "',N'" + drDt["Dia_Chi"] + "'
 
                         strCt_Di_Kem += drhd["So_Ct_Hd"].ToString() + ",";
                     }
@@ -708,6 +714,8 @@ namespace Epoint.Modules
                                      + txtMa_Dt.Text + "', N'" + txtDien_Giai.Text + "', " + dbTien0 + ", " + dbTien0 + ", " + dbTien3 + ", " + dbTien3 + ", '"
                                       + strCreate_Log + "', '"+Element.sysUser_Id +"','" + strCt_Di_Kem + "',1,'PTT', '" + Element.sysMa_DvCs + "')";
 
+                strQueryCthd += @"UPDATE Ct Set Ct.Ong_Ba = dt.Ong_Ba, Ct.Ten_Dt= Dt.Ten_Dt   , Ct.Dia_Chi = dt.Dia_Chi FROM CATIEN Ct INNER JOIN LIDoiTuong dt on Dt.Ma_Dt = Ct.Ma_Dt                                   
+                                    WHERE ct.Stt = '" + iStt + "'";
 
                 if (numTTien_Tt.Value > 0)
                 {
@@ -941,9 +949,14 @@ namespace Epoint.Modules
                     continue;
                if(Convert.ToDouble(row2["Tien_Tt1"]) <= 0)
                {
-                   EpointMessage.MsgOk("Tồn tại dòng thanh toán tiền âm!");
+                   EpointMessage.MsgOk("Tồn tại dòng thanh toán tiền âm: " + row2["So_Ct_Hd"].ToString());
                    return;
                }
+                if (Convert.ToDateTime(row2["Ngay_Ct_Hd"]) > Library.StrToDate(dteNgay_Ct_TT.Text))
+                {
+                    EpointMessage.MsgOk("Tồn tại dòng hóa đơn có ngày hóa đơn lớn hơn ngày thanh toán: " + row2["So_Ct_Hd"].ToString());
+                    return;
+                }
             }
 
             EpointProcessBox.Show(this);           
@@ -961,6 +974,9 @@ namespace Epoint.Modules
             LoadDicName();
         }
         void txtMa_Dt_Enter(object sender, EventArgs e)
+        { }
+
+        void txtMa_Nh_Dt_Enter(object sender, EventArgs e)
         { }
         private void txtMa_Dt_Validating(object sender, CancelEventArgs e)
         {
@@ -994,7 +1010,38 @@ namespace Epoint.Modules
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
+        private void txtMa_Nh_Dt_Validating(object sender, CancelEventArgs e)
+        {
 
+            string strValue = txtMa_Nh_Dt.Text.Trim();
+
+            bool bRequire = false;
+
+            DataRow drLookup = Lookup.ShowLookup("Ma_Nh_Dt", strValue, bRequire, "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Nh_Dt.Text = string.Empty;
+                lbtTen_Nh_Dt.Text = string.Empty;
+                //return;
+            }
+            else
+            {
+                txtMa_Nh_Dt.Text = drLookup["Ma_Nh_Dt"].ToString();
+                lbtTen_Nh_Dt.Text = drLookup["Ten_Nh_Dt"].ToString();
+
+            }
+
+
+            if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
+            {
+                ((txtTextLookup)sender).AutoFilter.Visible = false;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
         #endregion
     }
 }

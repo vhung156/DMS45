@@ -435,6 +435,60 @@ namespace Epoint.Modules
             }
 
         }
+        public static void PrintPhieuKiemKe(string Stt, bool bPreview)
+        {
+            string strStt = Stt;// (string)drPhView["Ma_Px"];
+
+            //bool bPreview = false;
+            // bool bShowDialog;
+            // bool bInVisibleNextPrint; 
+            // string strReport_File_First;
+            bool bAcceptShowDialog = true;
+            bool bInVisibleNextPrint = false;
+            string strReport_File_First = string.Empty;
+
+            DataTable dtHeader;
+            DataTable dtDetail;
+
+            Hashtable ht = new Hashtable();
+            ht.Add("STT", strStt);
+            DataSet dsPrintVoucher = new DataSet();
+            dsPrintVoucher = SQLExec.ExecuteReturnDs("sp_PrintPhieuKiemKe", ht, CommandType.StoredProcedure);
+
+            //Upadte Gia = 0, Tien = 0, TTien = 0 khi in chung tu doi voi User cam ACCESS_PRICE
+            DataTable dtPrinVoucherHeader = new DataTable();
+            DataTable dtPrinVoucherDetail = new DataTable();
+
+            dtPrinVoucherHeader = dsPrintVoucher.Tables[0];
+            dtPrinVoucherDetail = dsPrintVoucher.Tables[1];
+
+            dtHeader = dtPrinVoucherHeader;
+            dtDetail = dtPrinVoucherDetail;
+
+            if (dtDetail.Rows.Count > 0)
+            {
+                int i = 0;
+                foreach (DataRow drCurrent in dtDetail.Rows)
+                {
+                    if (drCurrent["STT"].ToString() != string.Empty)
+                    {
+                        if (i == 0)
+                        {
+                            bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, true, ref bInVisibleNextPrint, ref strReport_File_First);
+                        }
+                        else
+                        {
+                            if (bAcceptShowDialog)
+                                bAcceptShowDialog = PrintVoucher.Print(drCurrent, bPreview, false, ref bInVisibleNextPrint, ref strReport_File_First);
+                            else
+                                break;
+                        }
+                        i++;
+                    }
+                }
+            }
+
+        }
         public static bool Print_Crytal(string Stt, string rptFileName, bool bPreview, bool bShowDialog, PrintDialog dialog)
         {
 

@@ -36,13 +36,7 @@ namespace Epoint.Modules.IN
 
             this.KeyDown += new KeyEventHandler(frmEditCtTien_KeyDown);
 
-            this.btImportExcel.Click += new EventHandler(btnImportExcel_Click);
-
             this.btHanTt.Click += new EventHandler(btHanTt_Click);
-            this.btXuat_DinhMuc.Click += new EventHandler(btXuat_DinhMuc_Click);
-            this.btInherit.Click += new EventHandler(btInherit_Click);
-            //linkHelp.LinkClicked += new LinkLabelLinkClickedEventHandler(linkHelp_LinkClicked);
-
             tabVoucher.SelectedIndexChanged += new EventHandler(tabVoucher_SelectedIndexChanged);
             tabVoucher.Enter += new EventHandler(tabVoucher_Enter);
 
@@ -348,10 +342,7 @@ namespace Epoint.Modules.IN
                          + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "') AND Year(Ngay_End) = Year ('" + Convert.ToDateTime(drCurrent["Ngay_Ct"]).ToShortDateString() + "')";
             DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
 
-            cboQuyen_So.lstItem.BuildListView("Quyen_So:80");
-            cboQuyen_So.lstItem.DataSource = dtQuyen_So;
-            cboQuyen_So.lstItem.Size = new Size(80, cboQuyen_So.lstItem.Items.Count * 60);
-            cboQuyen_So.lstItem.GridLines = true;
+          
         }
 
         private void LoadDicName()
@@ -823,12 +814,7 @@ namespace Epoint.Modules.IN
             string strSQL = "SELECT Quyen_So FROM LIQUYENSO WHERE Month(Ngay_Begin) <= Month('" + dteNgay_Ct.Text + "') AND Month(Ngay_End) >= Month('"
                                     + dteNgay_Ct.Text + "') AND Year(Ngay_End) = Year ('" + dteNgay_Ct.Text + "')";
             DataTable dtQuyen_So = SQLExec.ExecuteReturnDt(strSQL);
-
-            cboQuyen_So.lstItem.BuildListView("Quyen_So:80");
-            cboQuyen_So.lstItem.DataSource = dtQuyen_So;
-            cboQuyen_So.lstItem.Size = new Size(80, cboQuyen_So.lstItem.Items.Count * 60);
-            cboQuyen_So.lstItem.GridLines = true;
-
+         
             this.Ma_Tte_Valid();
             Common.GatherMemvar(this, ref drEditPh);
         }

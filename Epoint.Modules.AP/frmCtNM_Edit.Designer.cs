@@ -124,6 +124,8 @@ namespace Epoint.Modules.AP
             this.txtMa_Dt = new Epoint.Systems.Controls.txtTextLookup();
             this.txtTen_Hd = new Epoint.Systems.Controls.txtTextBox();
             this.linkHelp = new System.Windows.Forms.LinkLabel();
+            this.txtMa_Xe = new Epoint.Systems.Controls.txtTextLookup();
+            this.lblControl2 = new Epoint.Systems.Controls.lblControl();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEditCt)).BeginInit();
             this.pnlVAT.SuspendLayout();
             this.pnlTTien.SuspendLayout();
@@ -255,8 +257,12 @@ namespace Epoint.Modules.AP
             this.txtTk_Co3.bRequire = false;
             this.txtTk_Co3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTk_Co3.ColumnsView = null;
+            this.txtTk_Co3.CtrlDepend = null;
             this.txtTk_Co3.KeyFilter = "Tk";
+            this.txtTk_Co3.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtTk_Co3.ListFilter = new string[0];
             this.txtTk_Co3.Location = new System.Drawing.Point(413, 32);
+            this.txtTk_Co3.LookupKeyFilter = "";
             this.txtTk_Co3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk_Co3.Name = "txtTk_Co3";
             this.txtTk_Co3.Size = new System.Drawing.Size(98, 20);
@@ -272,8 +278,12 @@ namespace Epoint.Modules.AP
             this.txtTk_No3.bRequire = false;
             this.txtTk_No3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTk_No3.ColumnsView = null;
+            this.txtTk_No3.CtrlDepend = null;
             this.txtTk_No3.KeyFilter = "Tk";
+            this.txtTk_No3.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtTk_No3.ListFilter = new string[0];
             this.txtTk_No3.Location = new System.Drawing.Point(231, 31);
+            this.txtTk_No3.LookupKeyFilter = "";
             this.txtTk_No3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtTk_No3.Name = "txtTk_No3";
             this.txtTk_No3.Size = new System.Drawing.Size(86, 20);
@@ -318,8 +328,12 @@ namespace Epoint.Modules.AP
             this.txtMa_Thue.bRequire = false;
             this.txtMa_Thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Thue.ColumnsView = null;
+            this.txtMa_Thue.CtrlDepend = null;
             this.txtMa_Thue.KeyFilter = "Ma_Thue";
+            this.txtMa_Thue.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Thue.ListFilter = new string[0];
             this.txtMa_Thue.Location = new System.Drawing.Point(87, 31);
+            this.txtMa_Thue.LookupKeyFilter = "";
             this.txtMa_Thue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Thue.Name = "txtMa_Thue";
             this.txtMa_Thue.Size = new System.Drawing.Size(78, 20);
@@ -766,13 +780,14 @@ namespace Epoint.Modules.AP
             this.lblMa_Hd.BackColor = System.Drawing.Color.Transparent;
             this.lblMa_Hd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMa_Hd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblMa_Hd.Location = new System.Drawing.Point(15, 109);
+            this.lblMa_Hd.Location = new System.Drawing.Point(14, 155);
             this.lblMa_Hd.Name = "lblMa_Hd";
             this.lblMa_Hd.Size = new System.Drawing.Size(71, 13);
             this.lblMa_Hd.TabIndex = 55;
             this.lblMa_Hd.Tag = "Ma_Hd";
             this.lblMa_Hd.Text = "Mã hợp đồng";
             this.lblMa_Hd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMa_Hd.Visible = false;
             // 
             // lblMa_Tte
             // 
@@ -1509,14 +1524,19 @@ namespace Epoint.Modules.AP
             this.txtMa_Hd.bRequire = false;
             this.txtMa_Hd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Hd.ColumnsView = null;
+            this.txtMa_Hd.CtrlDepend = null;
             this.txtMa_Hd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Hd.KeyFilter = "Ma_Hd";
-            this.txtMa_Hd.Location = new System.Drawing.Point(101, 106);
+            this.txtMa_Hd.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Hd.ListFilter = new string[0];
+            this.txtMa_Hd.Location = new System.Drawing.Point(100, 152);
+            this.txtMa_Hd.LookupKeyFilter = "";
             this.txtMa_Hd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Hd.Name = "txtMa_Hd";
             this.txtMa_Hd.Size = new System.Drawing.Size(120, 20);
             this.txtMa_Hd.TabIndex = 4;
             this.txtMa_Hd.UseAutoFilter = true;
+            this.txtMa_Hd.Visible = false;
             // 
             // txtMa_Quyen
             // 
@@ -1526,9 +1546,13 @@ namespace Epoint.Modules.AP
             this.txtMa_Quyen.bRequire = false;
             this.txtMa_Quyen.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Quyen.ColumnsView = null;
+            this.txtMa_Quyen.CtrlDepend = null;
             this.txtMa_Quyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Quyen.KeyFilter = "Ma_Quyen";
+            this.txtMa_Quyen.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Quyen.ListFilter = new string[0];
             this.txtMa_Quyen.Location = new System.Drawing.Point(99, 87);
+            this.txtMa_Quyen.LookupKeyFilter = "";
             this.txtMa_Quyen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Quyen.Name = "txtMa_Quyen";
             this.txtMa_Quyen.Size = new System.Drawing.Size(135, 20);
@@ -1616,6 +1640,7 @@ namespace Epoint.Modules.AP
             this.grInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grInfo.Controls.Add(this.txtMa_Dt);
+            this.grInfo.Controls.Add(this.lblControl2);
             this.grInfo.Controls.Add(this.txtTen_Hd);
             this.grInfo.Controls.Add(this.lblMa_Hd);
             this.grInfo.Controls.Add(this.lblMa_Dt);
@@ -1624,6 +1649,7 @@ namespace Epoint.Modules.AP
             this.grInfo.Controls.Add(this.lblDia_Chi);
             this.grInfo.Controls.Add(this.txtDia_Chi);
             this.grInfo.Controls.Add(this.lblDien_Giai);
+            this.grInfo.Controls.Add(this.txtMa_Xe);
             this.grInfo.Controls.Add(this.txtDien_Giai);
             this.grInfo.Controls.Add(this.txtMa_Hd);
             this.grInfo.Controls.Add(this.txtTen_Dt);
@@ -1645,9 +1671,13 @@ namespace Epoint.Modules.AP
             this.txtMa_Dt.bRequire = false;
             this.txtMa_Dt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Dt.ColumnsView = null;
+            this.txtMa_Dt.CtrlDepend = null;
             this.txtMa_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Dt.KeyFilter = "Ma_Dt";
+            this.txtMa_Dt.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Dt.ListFilter = new string[0];
             this.txtMa_Dt.Location = new System.Drawing.Point(101, 34);
+            this.txtMa_Dt.LookupKeyFilter = "";
             this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Dt.Name = "txtMa_Dt";
             this.txtMa_Dt.Size = new System.Drawing.Size(120, 20);
@@ -1664,13 +1694,14 @@ namespace Epoint.Modules.AP
             this.txtTen_Hd.bRequire = false;
             this.txtTen_Hd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTen_Hd.KeyFilter = "";
-            this.txtTen_Hd.Location = new System.Drawing.Point(226, 106);
+            this.txtTen_Hd.Location = new System.Drawing.Point(225, 152);
             this.txtTen_Hd.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.txtTen_Hd.MaxLength = 100;
             this.txtTen_Hd.Name = "txtTen_Hd";
             this.txtTen_Hd.Size = new System.Drawing.Size(342, 20);
             this.txtTen_Hd.TabIndex = 5;
             this.txtTen_Hd.UseAutoFilter = false;
+            this.txtTen_Hd.Visible = false;
             // 
             // linkHelp
             // 
@@ -1683,6 +1714,42 @@ namespace Epoint.Modules.AP
             this.linkHelp.Tag = "Help_File";
             this.linkHelp.Text = "Hướng dẫn nhập liệu";
             this.linkHelp.Visible = false;
+            // 
+            // txtMa_Xe
+            // 
+            this.txtMa_Xe.bEnabled = true;
+            this.txtMa_Xe.bIsLookup = false;
+            this.txtMa_Xe.bReadOnly = false;
+            this.txtMa_Xe.bRequire = false;
+            this.txtMa_Xe.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Xe.ColumnsView = null;
+            this.txtMa_Xe.CtrlDepend = null;
+            this.txtMa_Xe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Xe.KeyFilter = "Ma_Xe";
+            this.txtMa_Xe.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Xe.ListFilter = new string[0];
+            this.txtMa_Xe.Location = new System.Drawing.Point(100, 106);
+            this.txtMa_Xe.LookupKeyFilter = "";
+            this.txtMa_Xe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Xe.Name = "txtMa_Xe";
+            this.txtMa_Xe.Size = new System.Drawing.Size(120, 20);
+            this.txtMa_Xe.TabIndex = 4;
+            this.txtMa_Xe.UseAutoFilter = true;
+            // 
+            // lblControl2
+            // 
+            this.lblControl2.AutoEllipsis = true;
+            this.lblControl2.AutoSize = true;
+            this.lblControl2.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblControl2.Location = new System.Drawing.Point(16, 110);
+            this.lblControl2.Name = "lblControl2";
+            this.lblControl2.Size = new System.Drawing.Size(36, 13);
+            this.lblControl2.TabIndex = 55;
+            this.lblControl2.Tag = "Ma_Xe";
+            this.lblControl2.Text = "Mã xe";
+            this.lblControl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmCtNM_Edit
             // 
@@ -1827,5 +1894,7 @@ namespace Epoint.Modules.AP
         private Systems.Controls.txtTextBox txtMa_HoaDon;
         private Systems.Controls.lblControl lblControl3;
         private Systems.Controls.txtTextLookup txtMa_Dt;
-	}
+        private Systems.Controls.lblControl lblControl2;
+        private Systems.Controls.txtTextLookup txtMa_Xe;
+    }
 }

@@ -38,7 +38,6 @@ namespace Epoint.Modules.IN
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtTen_Dt = new Epoint.Systems.Controls.txtTextBox();
-            this.btImportExcel = new Epoint.Systems.Controls.btControl();
             this.tabVoucher = new Epoint.Systems.Controls.tabControl();
             this.tpChiTiet1 = new System.Windows.Forms.TabPage();
             this.dgvEditCt1 = new Epoint.Systems.Customizes.dgvVoucher();
@@ -47,8 +46,6 @@ namespace Epoint.Modules.IN
             this.btHanTt = new Epoint.Systems.Controls.btControl();
             this.lbtTen_KhoN = new Epoint.Systems.Controls.lblControl();
             this.lblMa_KhoN = new Epoint.Systems.Controls.lblControl();
-            this.txtSo_Seri0 = new Epoint.Systems.Controls.txtTextBox();
-            this.lblSo_Seri0 = new Epoint.Systems.Controls.lblControl();
             this.lblNgay_Ct0 = new Epoint.Systems.Controls.lblControl();
             this.dteNgay_Ct0 = new Epoint.Systems.Controls.txtDateTime();
             this.txtSo_Ct0 = new Epoint.Systems.Controls.txtTextBox();
@@ -85,12 +82,9 @@ namespace Epoint.Modules.IN
             this.txtMa_Dt = new Epoint.Systems.Controls.txtTextLookup();
             this.txtMa_KhoN = new Epoint.Systems.Controls.txtTextLookup();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboQuyen_So = new Epoint.Systems.Controls.cboMultiControl();
-            this.lblQuyen_So = new Epoint.Systems.Controls.lblControl();
             this.grInfo = new System.Windows.Forms.GroupBox();
-            this.btInherit = new Epoint.Systems.Controls.btControl();
-            this.btXuat_DinhMuc = new Epoint.Systems.Controls.btControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtSo_Seri0 = new Epoint.Systems.Controls.txtTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bdsEditCt)).BeginInit();
             this.tabVoucher.SuspendLayout();
             this.tpChiTiet1.SuspendLayout();
@@ -106,13 +100,19 @@ namespace Epoint.Modules.IN
             // 
             // btgAccept
             // 
-            this.btgAccept.Location = new System.Drawing.Point(595, 519);
+            this.btgAccept.Location = new System.Drawing.Point(720, 434);
             this.btgAccept.Size = new System.Drawing.Size(181, 29);
             this.btgAccept.TabIndex = 10;
             // 
             // ucNotice
             // 
-            this.ucNotice.Location = new System.Drawing.Point(12, 519);
+            this.ucNotice.Location = new System.Drawing.Point(12, 434);
+            this.ucNotice.Size = new System.Drawing.Size(708, 30);
+            // 
+            // lineControl1
+            // 
+            this.lineControl1.Location = new System.Drawing.Point(0, 440);
+            this.lineControl1.Size = new System.Drawing.Size(1018, 1);
             // 
             // txtTen_Dt
             // 
@@ -128,24 +128,9 @@ namespace Epoint.Modules.IN
             this.txtTen_Dt.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.txtTen_Dt.MaxLength = 100;
             this.txtTen_Dt.Name = "txtTen_Dt";
-            this.txtTen_Dt.Size = new System.Drawing.Size(278, 20);
+            this.txtTen_Dt.Size = new System.Drawing.Size(403, 20);
             this.txtTen_Dt.TabIndex = 1;
             this.txtTen_Dt.UseAutoFilter = false;
-            // 
-            // btImportExcel
-            // 
-            this.btImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btImportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btImportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btImportExcel.Location = new System.Drawing.Point(270, -57);
-            this.btImportExcel.Name = "btImportExcel";
-            this.btImportExcel.Size = new System.Drawing.Size(103, 25);
-            this.btImportExcel.TabIndex = 191;
-            this.btImportExcel.TabStop = false;
-            this.btImportExcel.Tag = "Inherit_Excel";
-            this.btImportExcel.Text = "&Lấy dữ liệu tập tin";
-            this.btImportExcel.UseVisualStyleBackColor = true;
             // 
             // tabVoucher
             // 
@@ -158,7 +143,7 @@ namespace Epoint.Modules.IN
             this.tabVoucher.Location = new System.Drawing.Point(7, 171);
             this.tabVoucher.Name = "tabVoucher";
             this.tabVoucher.SelectedIndex = 0;
-            this.tabVoucher.Size = new System.Drawing.Size(778, 251);
+            this.tabVoucher.Size = new System.Drawing.Size(903, 166);
             this.tabVoucher.TabIndex = 2;
             // 
             // tpChiTiet1
@@ -169,7 +154,7 @@ namespace Epoint.Modules.IN
             this.tpChiTiet1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tpChiTiet1.Location = new System.Drawing.Point(4, 22);
             this.tpChiTiet1.Name = "tpChiTiet1";
-            this.tpChiTiet1.Size = new System.Drawing.Size(770, 225);
+            this.tpChiTiet1.Size = new System.Drawing.Size(895, 140);
             this.tpChiTiet1.TabIndex = 0;
             this.tpChiTiet1.Tag = "ChiTiet1";
             this.tpChiTiet1.Text = "Chi tiết 1";
@@ -214,7 +199,7 @@ namespace Epoint.Modules.IN
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvEditCt1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvEditCt1.Size = new System.Drawing.Size(770, 225);
+            this.dgvEditCt1.Size = new System.Drawing.Size(895, 140);
             this.dgvEditCt1.strZone = "";
             this.dgvEditCt1.TabIndex = 10;
             // 
@@ -225,7 +210,7 @@ namespace Epoint.Modules.IN
             this.tpChiTiet2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tpChiTiet2.Location = new System.Drawing.Point(4, 22);
             this.tpChiTiet2.Name = "tpChiTiet2";
-            this.tpChiTiet2.Size = new System.Drawing.Size(770, 193);
+            this.tpChiTiet2.Size = new System.Drawing.Size(770, 225);
             this.tpChiTiet2.TabIndex = 1;
             this.tpChiTiet2.Tag = "ChiTiet2";
             this.tpChiTiet2.Text = "Chi tiết 2";
@@ -270,7 +255,7 @@ namespace Epoint.Modules.IN
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvEditCt2.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvEditCt2.Size = new System.Drawing.Size(770, 193);
+            this.dgvEditCt2.Size = new System.Drawing.Size(770, 225);
             this.dgvEditCt2.strZone = "";
             this.dgvEditCt2.TabIndex = 11;
             // 
@@ -279,7 +264,7 @@ namespace Epoint.Modules.IN
             this.btHanTt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btHanTt.Image = global::Epoint.Modules.IN.Properties.Resources.tick;
             this.btHanTt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btHanTt.Location = new System.Drawing.Point(245, 21);
+            this.btHanTt.Location = new System.Drawing.Point(383, 19);
             this.btHanTt.Name = "btHanTt";
             this.btHanTt.Size = new System.Drawing.Size(86, 22);
             this.btHanTt.TabIndex = 152;
@@ -296,7 +281,7 @@ namespace Epoint.Modules.IN
             this.lbtTen_KhoN.AutoSize = true;
             this.lbtTen_KhoN.BackColor = System.Drawing.Color.Transparent;
             this.lbtTen_KhoN.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_KhoN.Location = new System.Drawing.Point(198, -10);
+            this.lbtTen_KhoN.Location = new System.Drawing.Point(198, 26);
             this.lbtTen_KhoN.Name = "lbtTen_KhoN";
             this.lbtTen_KhoN.Size = new System.Drawing.Size(86, 13);
             this.lbtTen_KhoN.TabIndex = 149;
@@ -309,7 +294,7 @@ namespace Epoint.Modules.IN
             this.lblMa_KhoN.AutoEllipsis = true;
             this.lblMa_KhoN.AutoSize = true;
             this.lblMa_KhoN.BackColor = System.Drawing.Color.Transparent;
-            this.lblMa_KhoN.Location = new System.Drawing.Point(33, -11);
+            this.lblMa_KhoN.Location = new System.Drawing.Point(33, 25);
             this.lblMa_KhoN.Name = "lblMa_KhoN";
             this.lblMa_KhoN.Size = new System.Drawing.Size(61, 13);
             this.lblMa_KhoN.TabIndex = 147;
@@ -317,43 +302,13 @@ namespace Epoint.Modules.IN
             this.lblMa_KhoN.Text = "Kho nhập";
             this.lblMa_KhoN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtSo_Seri0
-            // 
-            this.txtSo_Seri0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtSo_Seri0.bEnabled = true;
-            this.txtSo_Seri0.bIsLookup = false;
-            this.txtSo_Seri0.bReadOnly = false;
-            this.txtSo_Seri0.bRequire = false;
-            this.txtSo_Seri0.KeyFilter = "";
-            this.txtSo_Seri0.Location = new System.Drawing.Point(96, -36);
-            this.txtSo_Seri0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.txtSo_Seri0.MaxLength = 20;
-            this.txtSo_Seri0.Name = "txtSo_Seri0";
-            this.txtSo_Seri0.Size = new System.Drawing.Size(102, 20);
-            this.txtSo_Seri0.TabIndex = 7;
-            this.txtSo_Seri0.UseAutoFilter = false;
-            // 
-            // lblSo_Seri0
-            // 
-            this.lblSo_Seri0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSo_Seri0.AutoEllipsis = true;
-            this.lblSo_Seri0.AutoSize = true;
-            this.lblSo_Seri0.BackColor = System.Drawing.Color.Transparent;
-            this.lblSo_Seri0.Location = new System.Drawing.Point(50, -33);
-            this.lblSo_Seri0.Name = "lblSo_Seri0";
-            this.lblSo_Seri0.Size = new System.Drawing.Size(48, 13);
-            this.lblSo_Seri0.TabIndex = 132;
-            this.lblSo_Seri0.Tag = "So_Seri0";
-            this.lblSo_Seri0.Text = "Số Seri";
-            this.lblSo_Seri0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblNgay_Ct0
             // 
             this.lblNgay_Ct0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNgay_Ct0.AutoEllipsis = true;
             this.lblNgay_Ct0.AutoSize = true;
             this.lblNgay_Ct0.BackColor = System.Drawing.Color.Transparent;
-            this.lblNgay_Ct0.Location = new System.Drawing.Point(219, 53);
+            this.lblNgay_Ct0.Location = new System.Drawing.Point(219, 89);
             this.lblNgay_Ct0.Name = "lblNgay_Ct0";
             this.lblNgay_Ct0.Size = new System.Drawing.Size(58, 13);
             this.lblNgay_Ct0.TabIndex = 129;
@@ -371,7 +326,7 @@ namespace Epoint.Modules.IN
             this.dteNgay_Ct0.Culture = new System.Globalization.CultureInfo("fr-FR");
             this.dteNgay_Ct0.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Ct0.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Ct0.Location = new System.Drawing.Point(273, 49);
+            this.dteNgay_Ct0.Location = new System.Drawing.Point(273, 85);
             this.dteNgay_Ct0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Ct0.Mask = "00/00/0000";
             this.dteNgay_Ct0.Name = "dteNgay_Ct0";
@@ -386,7 +341,7 @@ namespace Epoint.Modules.IN
             this.txtSo_Ct0.bReadOnly = false;
             this.txtSo_Ct0.bRequire = false;
             this.txtSo_Ct0.KeyFilter = "";
-            this.txtSo_Ct0.Location = new System.Drawing.Point(120, 49);
+            this.txtSo_Ct0.Location = new System.Drawing.Point(120, 85);
             this.txtSo_Ct0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtSo_Ct0.MaxLength = 20;
             this.txtSo_Ct0.Name = "txtSo_Ct0";
@@ -400,7 +355,7 @@ namespace Epoint.Modules.IN
             this.lblSo_Ct0.AutoEllipsis = true;
             this.lblSo_Ct0.AutoSize = true;
             this.lblSo_Ct0.BackColor = System.Drawing.Color.Transparent;
-            this.lblSo_Ct0.Location = new System.Drawing.Point(33, 52);
+            this.lblSo_Ct0.Location = new System.Drawing.Point(33, 88);
             this.lblSo_Ct0.Name = "lblSo_Ct0";
             this.lblSo_Ct0.Size = new System.Drawing.Size(44, 13);
             this.lblSo_Ct0.TabIndex = 128;
@@ -417,7 +372,7 @@ namespace Epoint.Modules.IN
             this.numHan_Tt.bReadOnly = false;
             this.numHan_Tt.bRequire = false;
             this.numHan_Tt.KeyFilter = "";
-            this.numHan_Tt.Location = new System.Drawing.Point(120, 21);
+            this.numHan_Tt.Location = new System.Drawing.Point(120, 57);
             this.numHan_Tt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.numHan_Tt.Name = "numHan_Tt";
             this.numHan_Tt.Scale = 0;
@@ -455,7 +410,7 @@ namespace Epoint.Modules.IN
             this.lblHan_Tt.AutoEllipsis = true;
             this.lblHan_Tt.AutoSize = true;
             this.lblHan_Tt.BackColor = System.Drawing.Color.Transparent;
-            this.lblHan_Tt.Location = new System.Drawing.Point(33, 26);
+            this.lblHan_Tt.Location = new System.Drawing.Point(33, 62);
             this.lblHan_Tt.Name = "lblHan_Tt";
             this.lblHan_Tt.Size = new System.Drawing.Size(95, 13);
             this.lblHan_Tt.TabIndex = 68;
@@ -509,7 +464,7 @@ namespace Epoint.Modules.IN
             this.txtDien_Giai.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtDien_Giai.MaxLength = 200;
             this.txtDien_Giai.Name = "txtDien_Giai";
-            this.txtDien_Giai.Size = new System.Drawing.Size(402, 20);
+            this.txtDien_Giai.Size = new System.Drawing.Size(527, 20);
             this.txtDien_Giai.TabIndex = 6;
             this.txtDien_Giai.UseAutoFilter = false;
             // 
@@ -542,7 +497,7 @@ namespace Epoint.Modules.IN
             this.txtDia_Chi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtDia_Chi.MaxLength = 200;
             this.txtDia_Chi.Name = "txtDia_Chi";
-            this.txtDia_Chi.Size = new System.Drawing.Size(402, 20);
+            this.txtDia_Chi.Size = new System.Drawing.Size(527, 20);
             this.txtDia_Chi.TabIndex = 3;
             this.txtDia_Chi.UseAutoFilter = false;
             // 
@@ -575,7 +530,7 @@ namespace Epoint.Modules.IN
             this.txtOng_Ba.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtOng_Ba.MaxLength = 100;
             this.txtOng_Ba.Name = "txtOng_Ba";
-            this.txtOng_Ba.Size = new System.Drawing.Size(402, 20);
+            this.txtOng_Ba.Size = new System.Drawing.Size(527, 20);
             this.txtOng_Ba.TabIndex = 2;
             this.txtOng_Ba.UseAutoFilter = false;
             // 
@@ -721,7 +676,7 @@ namespace Epoint.Modules.IN
             this.pnlTTien_Nt.Controls.Add(this.numTSo_Luong);
             this.pnlTTien_Nt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlTTien_Nt.ForeColor = System.Drawing.Color.Blue;
-            this.pnlTTien_Nt.Location = new System.Drawing.Point(482, 437);
+            this.pnlTTien_Nt.Location = new System.Drawing.Point(607, 352);
             this.pnlTTien_Nt.Name = "pnlTTien_Nt";
             this.pnlTTien_Nt.Size = new System.Drawing.Size(198, 53);
             this.pnlTTien_Nt.TabIndex = 8;
@@ -798,7 +753,7 @@ namespace Epoint.Modules.IN
             // 
             this.pnlTTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTTien.Controls.Add(this.numTTien);
-            this.pnlTTien.Location = new System.Drawing.Point(680, 437);
+            this.pnlTTien.Location = new System.Drawing.Point(805, 352);
             this.pnlTTien.Name = "pnlTTien";
             this.pnlTTien.Size = new System.Drawing.Size(106, 26);
             this.pnlTTien.TabIndex = 9;
@@ -898,7 +853,7 @@ namespace Epoint.Modules.IN
             this.lbtNgay.AutoSize = true;
             this.lbtNgay.BackColor = System.Drawing.Color.Transparent;
             this.lbtNgay.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lbtNgay.Location = new System.Drawing.Point(208, 24);
+            this.lbtNgay.Location = new System.Drawing.Point(208, 60);
             this.lbtNgay.Name = "lbtNgay";
             this.lbtNgay.Size = new System.Drawing.Size(34, 13);
             this.lbtNgay.TabIndex = 196;
@@ -914,9 +869,13 @@ namespace Epoint.Modules.IN
             this.txtMa_Dt.bRequire = false;
             this.txtMa_Dt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_Dt.ColumnsView = null;
+            this.txtMa_Dt.CtrlDepend = null;
             this.txtMa_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMa_Dt.KeyFilter = "Ma_Dt";
+            this.txtMa_Dt.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Dt.ListFilter = new string[0];
             this.txtMa_Dt.Location = new System.Drawing.Point(110, 28);
+            this.txtMa_Dt.LookupKeyFilter = "";
             this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Dt.Name = "txtMa_Dt";
             this.txtMa_Dt.Size = new System.Drawing.Size(120, 20);
@@ -932,8 +891,12 @@ namespace Epoint.Modules.IN
             this.txtMa_KhoN.bRequire = false;
             this.txtMa_KhoN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMa_KhoN.ColumnsView = null;
+            this.txtMa_KhoN.CtrlDepend = null;
             this.txtMa_KhoN.KeyFilter = "Ma_Kho";
-            this.txtMa_KhoN.Location = new System.Drawing.Point(120, -13);
+            this.txtMa_KhoN.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_KhoN.ListFilter = new string[0];
+            this.txtMa_KhoN.Location = new System.Drawing.Point(120, 23);
+            this.txtMa_KhoN.LookupKeyFilter = "";
             this.txtMa_KhoN.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_KhoN.Name = "txtMa_KhoN";
             this.txtMa_KhoN.Size = new System.Drawing.Size(68, 20);
@@ -954,49 +917,13 @@ namespace Epoint.Modules.IN
             this.groupBox1.Controls.Add(this.lblSo_Ct);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(554, 9);
+            this.groupBox1.Location = new System.Drawing.Point(679, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(232, 146);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Tag = "grVoucher";
             this.groupBox1.Text = "Chứng từ";
-            // 
-            // cboQuyen_So
-            // 
-            this.cboQuyen_So.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboQuyen_So.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboQuyen_So.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.cboQuyen_So.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cboQuyen_So.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboQuyen_So.FormattingEnabled = true;
-            this.cboQuyen_So.InitValue = null;
-            this.cboQuyen_So.Location = new System.Drawing.Point(114, 10);
-            this.cboQuyen_So.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this.cboQuyen_So.MaxLength = 20;
-            this.cboQuyen_So.Name = "cboQuyen_So";
-            this.cboQuyen_So.Size = new System.Drawing.Size(137, 21);
-            this.cboQuyen_So.strValueList = null;
-            this.cboQuyen_So.TabIndex = 5;
-            this.cboQuyen_So.UpperCase = false;
-            this.cboQuyen_So.UseAutoComplete = false;
-            this.cboQuyen_So.UseBindingValue = false;
-            // 
-            // lblQuyen_So
-            // 
-            this.lblQuyen_So.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblQuyen_So.AutoEllipsis = true;
-            this.lblQuyen_So.AutoSize = true;
-            this.lblQuyen_So.BackColor = System.Drawing.Color.Transparent;
-            this.lblQuyen_So.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuyen_So.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblQuyen_So.Location = new System.Drawing.Point(42, 13);
-            this.lblQuyen_So.Name = "lblQuyen_So";
-            this.lblQuyen_So.Size = new System.Drawing.Size(52, 13);
-            this.lblQuyen_So.TabIndex = 200;
-            this.lblQuyen_So.Tag = "Quyen_So";
-            this.lblQuyen_So.Text = "Quyển số";
-            this.lblQuyen_So.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // grInfo
             // 
@@ -1015,56 +942,20 @@ namespace Epoint.Modules.IN
             this.grInfo.ForeColor = System.Drawing.Color.Blue;
             this.grInfo.Location = new System.Drawing.Point(8, 9);
             this.grInfo.Name = "grInfo";
-            this.grInfo.Size = new System.Drawing.Size(528, 146);
+            this.grInfo.Size = new System.Drawing.Size(653, 146);
             this.grInfo.TabIndex = 0;
             this.grInfo.TabStop = false;
             this.grInfo.Tag = "grInfo";
             this.grInfo.Text = "Thông tin chung";
             // 
-            // btInherit
-            // 
-            this.btInherit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btInherit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btInherit.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btInherit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btInherit.Location = new System.Drawing.Point(270, -85);
-            this.btInherit.Name = "btInherit";
-            this.btInherit.Size = new System.Drawing.Size(103, 25);
-            this.btInherit.TabIndex = 17;
-            this.btInherit.TabStop = false;
-            this.btInherit.Tag = "Inherit";
-            this.btInherit.Text = "&Kế thừa dữ liệu";
-            this.btInherit.UseVisualStyleBackColor = true;
-            // 
-            // btXuat_DinhMuc
-            // 
-            this.btXuat_DinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btXuat_DinhMuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btXuat_DinhMuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btXuat_DinhMuc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btXuat_DinhMuc.Location = new System.Drawing.Point(164, -57);
-            this.btXuat_DinhMuc.Name = "btXuat_DinhMuc";
-            this.btXuat_DinhMuc.Size = new System.Drawing.Size(103, 25);
-            this.btXuat_DinhMuc.TabIndex = 16;
-            this.btXuat_DinhMuc.TabStop = false;
-            this.btXuat_DinhMuc.Tag = "Xuat_DinhMuc";
-            this.btXuat_DinhMuc.Text = "&Xuất định mức";
-            this.btXuat_DinhMuc.UseVisualStyleBackColor = true;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.cboQuyen_So);
-            this.groupBox2.Controls.Add(this.btXuat_DinhMuc);
-            this.groupBox2.Controls.Add(this.lblQuyen_So);
-            this.groupBox2.Controls.Add(this.btImportExcel);
-            this.groupBox2.Controls.Add(this.btInherit);
             this.groupBox2.Controls.Add(this.lblMa_KhoN);
             this.groupBox2.Controls.Add(this.lbtTen_KhoN);
             this.groupBox2.Controls.Add(this.btHanTt);
             this.groupBox2.Controls.Add(this.lblNgay_Ct0);
             this.groupBox2.Controls.Add(this.dteNgay_Ct0);
-            this.groupBox2.Controls.Add(this.lblSo_Seri0);
             this.groupBox2.Controls.Add(this.lbtNgay);
             this.groupBox2.Controls.Add(this.txtSo_Seri0);
             this.groupBox2.Controls.Add(this.txtSo_Ct0);
@@ -1074,21 +965,37 @@ namespace Epoint.Modules.IN
             this.groupBox2.Controls.Add(this.txtMa_KhoN);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox2.Location = new System.Drawing.Point(58, 446);
+            this.groupBox2.Location = new System.Drawing.Point(41, 623);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(381, 59);
+            this.groupBox2.Size = new System.Drawing.Size(469, 95);
             this.groupBox2.TabIndex = 201;
             this.groupBox2.TabStop = false;
             this.groupBox2.Tag = "grVoucher";
             this.groupBox2.Text = "Chứng từ";
             this.groupBox2.Visible = false;
             // 
+            // txtSo_Seri0
+            // 
+            this.txtSo_Seri0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSo_Seri0.bEnabled = true;
+            this.txtSo_Seri0.bIsLookup = false;
+            this.txtSo_Seri0.bReadOnly = false;
+            this.txtSo_Seri0.bRequire = false;
+            this.txtSo_Seri0.KeyFilter = "";
+            this.txtSo_Seri0.Location = new System.Drawing.Point(96, 0);
+            this.txtSo_Seri0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtSo_Seri0.MaxLength = 20;
+            this.txtSo_Seri0.Name = "txtSo_Seri0";
+            this.txtSo_Seri0.Size = new System.Drawing.Size(102, 20);
+            this.txtSo_Seri0.TabIndex = 7;
+            this.txtSo_Seri0.UseAutoFilter = false;
+            // 
             // frmCtVC_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(228)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(792, 556);
+            this.ClientSize = new System.Drawing.Size(917, 471);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grInfo);
             this.Controls.Add(this.groupBox1);
@@ -1099,6 +1006,7 @@ namespace Epoint.Modules.IN
             this.Name = "frmCtVC_Edit";
             this.Tag = "frmCtNX, ESC";
             this.Text = "frmCtNX";
+            this.Controls.SetChildIndex(this.lineControl1, 0);
             this.Controls.SetChildIndex(this.pnlTTien, 0);
             this.Controls.SetChildIndex(this.pnlTTien_Nt, 0);
             this.Controls.SetChildIndex(this.tabVoucher, 0);
@@ -1159,8 +1067,6 @@ namespace Epoint.Modules.IN
         private Epoint.Systems.Controls.lblControl lblSo_Ct0;
         private Epoint.Systems.Controls.lblControl lblNgay_Ct0;
         private Epoint.Systems.Controls.txtDateTime dteNgay_Ct0;
-        private Epoint.Systems.Controls.txtTextBox txtSo_Seri0;
-        private Epoint.Systems.Controls.lblControl lblSo_Seri0;
         private Epoint.Systems.Controls.lblControl lblMa_KhoN;
         private Epoint.Systems.Controls.lblControl lbtTen_KhoN;
         private Epoint.Systems.Controls.btControl btHanTt;
@@ -1171,17 +1077,13 @@ namespace Epoint.Modules.IN
         private Systems.Customizes.dgvVoucher dgvEditCt1;
         private System.Windows.Forms.TabPage tpChiTiet2;
         private Systems.Customizes.dgvVoucher dgvEditCt2;
-        private Systems.Controls.btControl btImportExcel;
         private Systems.Controls.txtTextBox txtTen_Dt;
         private Systems.Controls.lblControl lbtNgay;
         private Systems.Controls.txtTextLookup txtMa_Dt;
         private Systems.Controls.txtTextLookup txtMa_KhoN;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox grInfo;
-        private Systems.Controls.lblControl lblQuyen_So;
-        private Systems.Controls.cboMultiControl cboQuyen_So;
-        private Systems.Controls.btControl btInherit;
-        private Systems.Controls.btControl btXuat_DinhMuc;
         private System.Windows.Forms.GroupBox groupBox2;
-	}
+        private Systems.Controls.txtTextBox txtSo_Seri0;
+    }
 }

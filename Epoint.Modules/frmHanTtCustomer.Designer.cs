@@ -55,11 +55,14 @@
             this.txtMa_CbNV_GH = new Epoint.Systems.Controls.txtTextLookup();
             this.txtMa_CbNV_BH = new Epoint.Systems.Controls.txtTextLookup();
             this.lblControl4 = new Epoint.Systems.Controls.lblControl();
+            this.lbtTen_Nh_Dt = new Epoint.Systems.Controls.lblControl();
             this.lblControl3 = new Epoint.Systems.Controls.lblControl();
             this.txtMa_Tuyen = new Epoint.Systems.Controls.txtTextLookup();
+            this.txtMa_Nh_Dt = new Epoint.Systems.Controls.txtTextLookup();
             this.txtMa_Px = new Epoint.Systems.Controls.txtTextLookup();
             this.lblControl9 = new Epoint.Systems.Controls.lblControl();
             this.lblControl7 = new Epoint.Systems.Controls.lblControl();
+            this.lblControl10 = new Epoint.Systems.Controls.lblControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboTK_List = new Epoint.Systems.Controls.cboMultiControl();
             this.lblControl5 = new Epoint.Systems.Controls.lblControl();
@@ -93,10 +96,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabChiTietThanhToan.Controls.Add(this.tabPage1);
             this.tabChiTietThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabChiTietThanhToan.Location = new System.Drawing.Point(4, 223);
+            this.tabChiTietThanhToan.Location = new System.Drawing.Point(4, 241);
             this.tabChiTietThanhToan.Name = "tabChiTietThanhToan";
             this.tabChiTietThanhToan.SelectedIndex = 0;
-            this.tabChiTietThanhToan.Size = new System.Drawing.Size(969, 498);
+            this.tabChiTietThanhToan.Size = new System.Drawing.Size(969, 480);
             this.tabChiTietThanhToan.TabIndex = 2;
             this.tabChiTietThanhToan.Tag = "HanTT0";
             // 
@@ -106,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(961, 472);
+            this.tabPage1.Size = new System.Drawing.Size(961, 454);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Tag = "HanTt0";
             this.tabPage1.Text = "Chứng từ được thanh toán";
@@ -129,7 +132,7 @@
             this.dgvHanTt0.MultiSelect = false;
             this.dgvHanTt0.Name = "dgvHanTt0";
             this.dgvHanTt0.ReadOnly = true;
-            this.dgvHanTt0.Size = new System.Drawing.Size(955, 466);
+            this.dgvHanTt0.Size = new System.Drawing.Size(955, 448);
             this.dgvHanTt0.strZone = "";
             this.dgvHanTt0.TabIndex = 66;
             // 
@@ -271,7 +274,7 @@
             this.dteNgay_Ct1.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Ct1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dteNgay_Ct1.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Ct1.Location = new System.Drawing.Point(112, 148);
+            this.dteNgay_Ct1.Location = new System.Drawing.Point(112, 173);
             this.dteNgay_Ct1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Ct1.Mask = "00/00/0000";
             this.dteNgay_Ct1.Name = "dteNgay_Ct1";
@@ -285,7 +288,7 @@
             this.lblNgay_Ct.BackColor = System.Drawing.Color.Transparent;
             this.lblNgay_Ct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNgay_Ct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNgay_Ct.Location = new System.Drawing.Point(6, 153);
+            this.lblNgay_Ct.Location = new System.Drawing.Point(6, 178);
             this.lblNgay_Ct.Name = "lblNgay_Ct";
             this.lblNgay_Ct.Size = new System.Drawing.Size(48, 13);
             this.lblNgay_Ct.TabIndex = 61;
@@ -300,7 +303,7 @@
             this.lbtTen_Dt.BackColor = System.Drawing.Color.Transparent;
             this.lbtTen_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtTen_Dt.ForeColor = System.Drawing.Color.Blue;
-            this.lbtTen_Dt.Location = new System.Drawing.Point(237, 85);
+            this.lbtTen_Dt.Location = new System.Drawing.Point(237, 110);
             this.lbtTen_Dt.Name = "lbtTen_Dt";
             this.lbtTen_Dt.Size = new System.Drawing.Size(86, 13);
             this.lbtTen_Dt.TabIndex = 63;
@@ -320,7 +323,7 @@
             this.txtMa_Dt.KeyFilter = "Ma_Dt";
             this.txtMa_Dt.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_Dt.ListFilter = new string[0];
-            this.txtMa_Dt.Location = new System.Drawing.Point(112, 82);
+            this.txtMa_Dt.Location = new System.Drawing.Point(112, 107);
             this.txtMa_Dt.LookupKeyFilter = "";
             this.txtMa_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_Dt.Name = "txtMa_Dt";
@@ -335,7 +338,7 @@
             this.lblControl1.BackColor = System.Drawing.Color.Transparent;
             this.lblControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblControl1.Location = new System.Drawing.Point(6, 85);
+            this.lblControl1.Location = new System.Drawing.Point(6, 110);
             this.lblControl1.Name = "lblControl1";
             this.lblControl1.Size = new System.Drawing.Size(70, 13);
             this.lblControl1.TabIndex = 60;
@@ -362,7 +365,7 @@
             this.chkDu_Cuoi_Only.AutoSize = true;
             this.chkDu_Cuoi_Only.Checked = true;
             this.chkDu_Cuoi_Only.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDu_Cuoi_Only.Location = new System.Drawing.Point(9, 191);
+            this.chkDu_Cuoi_Only.Location = new System.Drawing.Point(9, 216);
             this.chkDu_Cuoi_Only.Name = "chkDu_Cuoi_Only";
             this.chkDu_Cuoi_Only.Size = new System.Drawing.Size(176, 17);
             this.chkDu_Cuoi_Only.TabIndex = 5;
@@ -375,7 +378,7 @@
             this.btFillterData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btFillterData.Image = ((System.Drawing.Image)(resources.GetObject("btFillterData.Image")));
             this.btFillterData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btFillterData.Location = new System.Drawing.Point(250, 174);
+            this.btFillterData.Location = new System.Drawing.Point(250, 199);
             this.btFillterData.Name = "btFillterData";
             this.btFillterData.Size = new System.Drawing.Size(121, 33);
             this.btFillterData.TabIndex = 6;
@@ -391,7 +394,7 @@
             this.lblControl2.BackColor = System.Drawing.Color.Transparent;
             this.lblControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblControl2.Location = new System.Drawing.Point(6, 174);
+            this.lblControl2.Location = new System.Drawing.Point(6, 199);
             this.lblControl2.Name = "lblControl2";
             this.lblControl2.Size = new System.Drawing.Size(55, 13);
             this.lblControl2.TabIndex = 61;
@@ -409,7 +412,7 @@
             this.dteNgay_Ct2.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.dteNgay_Ct2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dteNgay_Ct2.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.dteNgay_Ct2.Location = new System.Drawing.Point(112, 170);
+            this.dteNgay_Ct2.Location = new System.Drawing.Point(112, 195);
             this.dteNgay_Ct2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.dteNgay_Ct2.Mask = "00/00/0000";
             this.dteNgay_Ct2.Name = "dteNgay_Ct2";
@@ -428,23 +431,26 @@
             this.groupBox1.Controls.Add(this.txtMa_Tte);
             this.groupBox1.Controls.Add(this.lbtTen_Tk);
             this.groupBox1.Controls.Add(this.numTy_Gia);
+            this.groupBox1.Controls.Add(this.lbtTen_Nh_Dt);
             this.groupBox1.Controls.Add(this.lbtTen_Dt);
             this.groupBox1.Controls.Add(this.lblControl3);
             this.groupBox1.Controls.Add(this.dteNgay_Ct2);
             this.groupBox1.Controls.Add(this.txtTk);
             this.groupBox1.Controls.Add(this.lblControl2);
             this.groupBox1.Controls.Add(this.txtMa_Tuyen);
+            this.groupBox1.Controls.Add(this.txtMa_Nh_Dt);
             this.groupBox1.Controls.Add(this.txtMa_Px);
             this.groupBox1.Controls.Add(this.txtMa_Dt);
             this.groupBox1.Controls.Add(this.dteNgay_Ct1);
             this.groupBox1.Controls.Add(this.lblControl9);
             this.groupBox1.Controls.Add(this.lblTk);
             this.groupBox1.Controls.Add(this.lblControl7);
+            this.groupBox1.Controls.Add(this.lblControl10);
             this.groupBox1.Controls.Add(this.lblNgay_Ct);
             this.groupBox1.Controls.Add(this.lblControl1);
             this.groupBox1.Location = new System.Drawing.Point(593, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(371, 215);
+            this.groupBox1.Size = new System.Drawing.Size(371, 238);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc dữ liệu";
@@ -462,7 +468,7 @@
             this.txtMa_CbNV_GH.KeyFilter = "Ma_CBNV";
             this.txtMa_CbNV_GH.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_CbNV_GH.ListFilter = new string[0];
-            this.txtMa_CbNV_GH.Location = new System.Drawing.Point(112, 125);
+            this.txtMa_CbNV_GH.Location = new System.Drawing.Point(112, 150);
             this.txtMa_CbNV_GH.LookupKeyFilter = "";
             this.txtMa_CbNV_GH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_CbNV_GH.Name = "txtMa_CbNV_GH";
@@ -483,7 +489,7 @@
             this.txtMa_CbNV_BH.KeyFilter = "Ma_CBNV";
             this.txtMa_CbNV_BH.ListControlFilter = new System.Windows.Forms.Control[0];
             this.txtMa_CbNV_BH.ListFilter = new string[0];
-            this.txtMa_CbNV_BH.Location = new System.Drawing.Point(112, 103);
+            this.txtMa_CbNV_BH.Location = new System.Drawing.Point(112, 128);
             this.txtMa_CbNV_BH.LookupKeyFilter = "";
             this.txtMa_CbNV_BH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.txtMa_CbNV_BH.Name = "txtMa_CbNV_BH";
@@ -498,13 +504,27 @@
             this.lblControl4.BackColor = System.Drawing.Color.Transparent;
             this.lblControl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblControl4.Location = new System.Drawing.Point(6, 131);
+            this.lblControl4.Location = new System.Drawing.Point(6, 156);
             this.lblControl4.Name = "lblControl4";
             this.lblControl4.Size = new System.Drawing.Size(106, 13);
             this.lblControl4.TabIndex = 64;
             this.lblControl4.Tag = "";
             this.lblControl4.Text = "Nhân viên giao hàng";
             this.lblControl4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbtTen_Nh_Dt
+            // 
+            this.lbtTen_Nh_Dt.AutoEllipsis = true;
+            this.lbtTen_Nh_Dt.AutoSize = true;
+            this.lbtTen_Nh_Dt.BackColor = System.Drawing.Color.Transparent;
+            this.lbtTen_Nh_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtTen_Nh_Dt.ForeColor = System.Drawing.Color.Blue;
+            this.lbtTen_Nh_Dt.Location = new System.Drawing.Point(237, 87);
+            this.lbtTen_Nh_Dt.Name = "lbtTen_Nh_Dt";
+            this.lbtTen_Nh_Dt.Size = new System.Drawing.Size(55, 13);
+            this.lbtTen_Nh_Dt.TabIndex = 63;
+            this.lbtTen_Nh_Dt.Text = "Tên nhóm";
+            this.lbtTen_Nh_Dt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblControl3
             // 
@@ -513,7 +533,7 @@
             this.lblControl3.BackColor = System.Drawing.Color.Transparent;
             this.lblControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControl3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblControl3.Location = new System.Drawing.Point(6, 108);
+            this.lblControl3.Location = new System.Drawing.Point(6, 133);
             this.lblControl3.Name = "lblControl3";
             this.lblControl3.Size = new System.Drawing.Size(104, 13);
             this.lblControl3.TabIndex = 63;
@@ -541,6 +561,27 @@
             this.txtMa_Tuyen.Size = new System.Drawing.Size(120, 20);
             this.txtMa_Tuyen.TabIndex = 0;
             this.txtMa_Tuyen.UseAutoFilter = true;
+            // 
+            // txtMa_Nh_Dt
+            // 
+            this.txtMa_Nh_Dt.bEnabled = true;
+            this.txtMa_Nh_Dt.bIsLookup = false;
+            this.txtMa_Nh_Dt.bReadOnly = false;
+            this.txtMa_Nh_Dt.bRequire = false;
+            this.txtMa_Nh_Dt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_Nh_Dt.ColumnsView = null;
+            this.txtMa_Nh_Dt.CtrlDepend = null;
+            this.txtMa_Nh_Dt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa_Nh_Dt.KeyFilter = "Ma_Nh_Dt";
+            this.txtMa_Nh_Dt.ListControlFilter = new System.Windows.Forms.Control[0];
+            this.txtMa_Nh_Dt.ListFilter = new string[0];
+            this.txtMa_Nh_Dt.Location = new System.Drawing.Point(112, 84);
+            this.txtMa_Nh_Dt.LookupKeyFilter = "";
+            this.txtMa_Nh_Dt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.txtMa_Nh_Dt.Name = "txtMa_Nh_Dt";
+            this.txtMa_Nh_Dt.Size = new System.Drawing.Size(120, 20);
+            this.txtMa_Nh_Dt.TabIndex = 0;
+            this.txtMa_Nh_Dt.UseAutoFilter = true;
             // 
             // txtMa_Px
             // 
@@ -592,6 +633,21 @@
             this.lblControl7.Tag = "Ma_Px";
             this.lblControl7.Text = "Mã PX";
             this.lblControl7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblControl10
+            // 
+            this.lblControl10.AutoEllipsis = true;
+            this.lblControl10.AutoSize = true;
+            this.lblControl10.BackColor = System.Drawing.Color.Transparent;
+            this.lblControl10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblControl10.Location = new System.Drawing.Point(6, 87);
+            this.lblControl10.Name = "lblControl10";
+            this.lblControl10.Size = new System.Drawing.Size(83, 13);
+            this.lblControl10.TabIndex = 60;
+            this.lblControl10.Tag = "Ma_Nh_Dt";
+            this.lblControl10.Text = "Nhóm đối tượng";
+            this.lblControl10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
@@ -998,5 +1054,8 @@
         private Systems.Controls.lblControl lblControl7;
         private Systems.Controls.txtTextLookup txtMa_Tuyen;
         private Systems.Controls.lblControl lblControl9;
-	}
+        private Systems.Controls.lblControl lbtTen_Nh_Dt;
+        private Systems.Controls.txtTextLookup txtMa_Nh_Dt;
+        private Systems.Controls.lblControl lblControl10;
+    }
 }

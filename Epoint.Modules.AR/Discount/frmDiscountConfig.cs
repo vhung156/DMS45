@@ -824,7 +824,7 @@ namespace Epoint.Modules.AR
             Hashtable htParaDiscGroup = new Hashtable();
             htParaDiscGroup["MA_CTKM"] = drCurrentCustGroup["Ma_CTKM"].ToString();
             htParaDiscGroup["STT"] = drCurrentCustGroup["Stt"].ToString();
-            htParaDiscGroup["MA_NH_VT"] = drCurrentCustGroup["Ma_Nh_Dt"].ToString();
+            htParaDiscGroup["MA_NH_DT"] = drCurrentCustGroup["Ma_Nh_Dt"].ToString();
             if (SQLExec.Execute("SP_Delete_OM_DiscCustGroup", htParaDiscGroup, CommandType.StoredProcedure))
             {
                 bdsDiscGroupCust.RemoveAt(bdsDiscGroupCust.Position);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Epoint.Modules.IN</RootNamespace>
     <AssemblyName>Epoint.Modules.IN</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -85,6 +85,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Epoint\Epoint.Modules.dll</HintPath>
     </Reference>
+    <Reference Include="Epoint.Reports, Version=2.0.1.8, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\E-DMS40\Epoint.Reports.dll</HintPath>
+    </Reference>
     <Reference Include="Epoint.Systems, Version=2.0.1.2, Culture=neutral, PublicKeyToken=3e07b9e1987d105e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Epoint\Epoint.Systems.dll</HintPath>
@@ -153,6 +157,18 @@
     </Compile>
     <Compile Include="frmCtDC_Edit.Designer.cs">
       <DependentUpon>frmCtDC_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtKiemKe_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtKiemKe_Edit.Designer.cs">
+      <DependentUpon>frmCtKiemKe_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCt_ViewKiemKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCt_ViewKiemKe.Designer.cs">
+      <DependentUpon>frmCt_ViewKiemKe.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDuDauIN_Dt_Edit.cs">
       <SubType>Form</SubType>
@@ -226,6 +242,12 @@
     <Compile Include="frmKiemKe_Filter.designer.cs">
       <DependentUpon>frmKiemKe_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPKiemKe_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPKiemKe_View.Designer.cs">
+      <DependentUpon>frmPKiemKe_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmXuat_DinhMuc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +286,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCtDC_Edit.resx">
       <DependentUpon>frmCtDC_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtKiemKe_Edit.resx">
+      <DependentUpon>frmCtKiemKe_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCt_ViewKiemKe.resx">
+      <DependentUpon>frmCt_ViewKiemKe.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDuDauIN_Dt_Edit.resx">
@@ -309,6 +339,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmKiemKe_Filter.resx">
       <DependentUpon>frmKiemKe_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPKiemKe_View.resx">
+      <DependentUpon>frmPKiemKe_View.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXuat_DinhMuc.resx">
       <DependentUpon>frmXuat_DinhMuc.cs</DependentUpon>

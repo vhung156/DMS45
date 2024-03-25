@@ -332,9 +332,7 @@ namespace Epoint.Modules.AR
             {
                 bdsPXKDetail.RemoveAt(bdsPXKDetail.Position);
                 dtPXKDetail.AcceptChanges();
-
-
-                FillData();
+                this.FillData();
                 //bdsPXK.Position = bdsPXK.Find("Ma_PX", this.strMa_PX);
             }
             else

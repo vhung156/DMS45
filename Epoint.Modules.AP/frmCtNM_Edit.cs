@@ -80,6 +80,7 @@ namespace Epoint.Modules.AP
             txtTk_Co3.Enter += new EventHandler(txtTk_Co3_Enter);
             txtTk_Co3.Validating += new CancelEventHandler(txtTk_Co3_Validating);
 
+            txtMa_Xe.Validating += new CancelEventHandler(txtMa_Xe_Validating);
             //txtTk_Co.Enter += new EventHandler(txtTk_Co_Enter);
             //txtTk_Co.Validating += new CancelEventHandler(txtTk_Co_Validating);
 
@@ -1805,6 +1806,36 @@ namespace Epoint.Modules.AP
         //    }
         //}
 
+
+        void txtMa_Xe_Validating(object sender, CancelEventArgs e)
+        {
+            string strValue = txtMa_Xe.Text.Trim();
+            bool bRequire = false;
+
+            DataRow drLookup = Lookup.ShowQuickLookup("MA_XE", strValue, bRequire, "", "");
+
+            if (bRequire && drLookup == null)
+                e.Cancel = true;
+
+            if (drLookup == null)
+            {
+                txtMa_Xe.Text = string.Empty;
+                //txtTen_CbNv_Gh.Text = string.Empty;
+            }
+            else
+            {
+                txtMa_Xe.Text = drLookup["Ma_Xe"].ToString();
+
+            }
+
+
+
+            if ((((txtTextLookup)sender).AutoFilter != null) && ((txtTextLookup)sender).AutoFilter.Visible)
+            {
+                ((txtTextLookup)sender).AutoFilter.Visible = false;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
         void frmEditCtTien_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
